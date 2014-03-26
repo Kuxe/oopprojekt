@@ -1,5 +1,8 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
+
 /**
  * 
  * @author Francine
@@ -15,9 +18,12 @@ public class Projectile implements IMovable{
 	//private Damage damage= new Damage();
 	private MoveComponent mC;
 	
-	public Projectile(Point2f position, Vector2f vector){
+	public Projectile(Point2f position, Vector2f speed, Vector2f acceleration, Vector2f direction){
 		mC= new MoveComponent();
-		this position= position;
+		this.speed= speed;
+		this.acceleration= acceleration;
+		this.direction= direction;
+		this.position= position;
 		
 	}
 	//methods
