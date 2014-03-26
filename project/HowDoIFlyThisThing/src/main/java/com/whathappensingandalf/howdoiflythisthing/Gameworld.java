@@ -30,8 +30,8 @@ public class Gameworld implements PropertyChangeListener{
 	private HashMap<IArmable, Object> armables;
 	
 	public Gameworld(){
-		moveables = new HashMap();
-		armables = new HashMap();
+		moveables = 	new HashMap();
+		armables = 		new HashMap();
 	}
 
 	/**
@@ -47,11 +47,11 @@ public class Gameworld implements PropertyChangeListener{
 	}
 	
 	/**
-	 * Moves all objects with IMoveable based on data provided from IMoveable
+	 * Moves all objects that implements IMoveable
 	 */
-	private void moveableUpdate(){
+	private void movableUpdate(){
 		for(IMovable ma : moveables.keySet()){
-			//Do whatever logic needed for moving
+			ma.move();
 		}
 	}
 	
@@ -65,7 +65,7 @@ public class Gameworld implements PropertyChangeListener{
 	}
 	
 	public void update(){
-		moveableUpdate();
+		movableUpdate();
 		armableUpdate();
 	}
 
