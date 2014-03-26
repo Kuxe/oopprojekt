@@ -13,11 +13,11 @@ public class SpaceShip implements IArmable, IMovable{
     }
     
     public Weapon getWeapon() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.weapon;
     }
 
-    public void setWeapon() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setWeapon(Weapon weapon) {
+        this.weapon=weapon;
     }
     
 }

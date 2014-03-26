@@ -6,6 +6,6 @@ package com.whathappensingandalf.howdoiflythisthing;
  */
 public interface IArmable {
     public Weapon getWeapon();
-    public void setWeapon();
+    public void setWeapon(Weapon weapon);
     
 }
