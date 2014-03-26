@@ -39,7 +39,7 @@ public class Gameworld implements PropertyChangeListener{
 	 */
 	public void addSpaceship(){
 		//temporary spaceship creating before Spaceship factory is available
-		SpaceShip ss = new SpaceShip();
+		SpaceShip ss = SpaceshipFactory.create();
 		
 		//Add spaceship to hashmap moveable, 
 		moveables.put(ss, ss);
