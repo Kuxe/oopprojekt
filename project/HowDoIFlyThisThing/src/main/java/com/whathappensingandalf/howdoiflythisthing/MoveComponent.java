@@ -6,16 +6,27 @@
 
 package com.whathappensingandalf.howdoiflythisthing;
 
+import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
+
 /**
  *
  * @author Martin
  */
 class MoveComponent {
     
+	private Point2f point;
+	private Vector2f vector;
+	
+	public MoveComponent(Point2f point, Vector2f vector){
+		this.point = point;
+		this.vector = vector;
+	}
+	
 	/**
 	 * Moves the component
 	 */
 	public void move(){
-		//TODO IMPLEMENT
+		point.add(vector);
 	}
 }

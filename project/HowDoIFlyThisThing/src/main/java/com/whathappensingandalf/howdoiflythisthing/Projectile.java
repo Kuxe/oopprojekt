@@ -19,7 +19,7 @@ public class Projectile implements IMovable{
 	private MoveComponent mC;
 	
 	public Projectile(Point2f position, Vector2f speed, Vector2f acceleration, Vector2f direction){
-		mC= new MoveComponent();
+		mC= new MoveComponent(position, speed);
 		this.speed= speed;
 		this.acceleration= acceleration;
 		this.direction= direction;

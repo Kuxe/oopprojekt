@@ -18,11 +18,11 @@ public class SpaceShip implements IArmable, IMovable{
     private Thruster[] thruster = new Thruster[3];
     
     public SpaceShip(Point2f position, Vector2f direction){
-        this.moveComponent = new MoveComponent();
         this.position = position;
         this.acceleration = new Vector2f();
         this.direction = direction;
-        this.speed = new Vector2f();
+        this.speed = new Vector2f(1.0f, 2.0f);
+        this.moveComponent = new MoveComponent(position, speed);
     }
     
     public Weapon getWeapon() {
