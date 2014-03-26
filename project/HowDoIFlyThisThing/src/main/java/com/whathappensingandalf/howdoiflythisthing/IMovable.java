@@ -7,6 +7,7 @@ package com.whathappensingandalf.howdoiflythisthing;
  */
 public interface IMovable {
 	
+	public void move();
 	//getters
 	public Vector getSpeed();
 	public Vector getAcceleration();
@@ -14,8 +15,8 @@ public interface IMovable {
 	public Point getPossition();
 	
 	//setters
-	public void setSpeed();
-	public void setAcceleration();
-	public void setDirection();
-	public void setPossition();
+	public void setSpeed(Vector speed);
+	public void setAcceleration(Vector accelertion);
+	public void setDirection(Vector direction);
+	public void setPossition(Point possition);
 }
