@@ -1,6 +1,18 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+/**
+ * 
+ * @author Francine
+ *
+ */
+
 public class Projectile implements IMovable{
+	
+	private Vector speed;
+	private Vector acc;
+	private Point pos;
+	private Damage damage= new Damage();
+	private MoveComponent mC= new MoveComponent();
 
 	public Vector getSpeed() {
 		// TODO Auto-generated method stub

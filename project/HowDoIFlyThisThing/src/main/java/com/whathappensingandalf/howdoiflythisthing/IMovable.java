@@ -1,14 +1,21 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+/**
+ * 
+ * @author Francine
+ *
+ */
 public interface IMovable {
 	
 	//getters
 	public Vector getSpeed();
-	public Vector getAcc();
-	public Point getPos();
+	public Vector getAcceleration();
+	public Vector getDirection();
+	public Point getPossition();
 	
 	//setters
 	public void setSpeed();
-	public void setAcc();
-	public void setPos();
+	public void setAcceleration();
+	public void setDirection();
+	public void setPossition();
 }
