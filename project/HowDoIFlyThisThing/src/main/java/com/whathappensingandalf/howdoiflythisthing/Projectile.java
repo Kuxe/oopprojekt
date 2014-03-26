@@ -8,40 +8,49 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 public class Projectile implements IMovable{
 	
-	private Vector speed;
-	private Vector acceleration;
-	private Vector direction;
-	private Point possition;
-	private Damage damage= new Damage();
-	private MoveComponent mC= new MoveComponent();
+	private Vector2f speed;
+	private Vector2f acceleration;
+	private Vector2f direction;
+	private Point2f position;
+	//private Damage damage= new Damage();
+	private MoveComponent mC;
 	
+	public Projectile(Point2f position, Vector2f vector){
+		mC= new MoveComponent();
+		this position= position;
+		
+	}
+	//methods
+	public void move(){
+		mC.move();
+	}
 	//getters
-	public Vector getSpeed() {
+	public Vector2f getSpeed() {
 		return speed;
 	}
-	public Vector getAcceleration() {
+	public Vector2f getAcceleration() {
 		return acceleration;
 	}
-	public Vector getDirection() {
+	public Vector2f getDirection() {
 		return direction;
 	}
-	public Point getPossition() {
-		return possition;
+	public Point2f getPosition() {
+		return position;
 	}
 	
 	//setters
-	public void setSpeed(Vector speed) {
+	public void setSpeed(Vector2f speed) {
 		//TODO
 	}
-	public void setAcceleration(Vector accelation) {
+	public void setAcceleration(Vector2f accelation) {
 		// TODO Auto-generated method stub
 		
 	}
-	public void setDirection(Vector direction) {
+	public void setDirection(Vector2f direction) {
 		// TODO Auto-generated method stub
 		
 	}
-	public void setPossition(Point possition) {
+	public void setPosition(Point2f position) {
 		// TODO Auto-generated method stub
 		
 	}
