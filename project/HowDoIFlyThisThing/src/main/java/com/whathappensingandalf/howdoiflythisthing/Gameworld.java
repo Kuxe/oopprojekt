@@ -30,7 +30,8 @@ public class Gameworld implements PropertyChangeListener{
 	private HashMap<IArmable, Object> armables;
 	
 	public Gameworld(){
-		
+		moveables = new HashMap();
+		armables = new HashMap();
 	}
 
 	/**
