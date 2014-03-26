@@ -32,6 +32,18 @@ public class Gameworld implements PropertyChangeListener{
 	public Gameworld(){
 		
 	}
+
+	/**
+	 * Adds a spaceship to the world
+	 */
+	public void addSpaceship(){
+		//temporary spaceship creating before Spaceship factory is available
+		SpaceShip ss = new SpaceShip();
+		
+		//Add spaceship to hashmap moveable, 
+		moveables.put(ss, ss);
+		armables.put(ss, ss);
+	}
 	
 	/**
 	 * Moves all objects with IMoveable based on data provided from IMoveable
