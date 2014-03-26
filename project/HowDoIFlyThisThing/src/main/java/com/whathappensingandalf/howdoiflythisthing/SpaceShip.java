@@ -36,7 +36,7 @@ public class SpaceShip implements IArmable, IMovable{
     public void move() {
         this.moveComponent.move();
     }
-
+    
     public Vector2f getAcceleration() {
         return acceleration;
     }
