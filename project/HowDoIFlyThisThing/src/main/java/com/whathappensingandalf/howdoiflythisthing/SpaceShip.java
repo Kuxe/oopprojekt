@@ -7,14 +7,20 @@ package com.whathappensingandalf.howdoiflythisthing;
 public class SpaceShip implements IArmable, IMovable{
 
     private Weapon weapon;
-    private MoveComponent moveComponent = new MoveComponent();
+    private MoveComponent moveComponent;
+    private Point position;
+    private Vector acceleration;
+    private Vector direction;
+    private Vector speed;
     private Thruster[] thruster = new Thruster[3];
     
-    public SpaceShip(){
-        
+    public SpaceShip(Point position, Vector direction){
+        this.moveComponent = new MoveComponent();
+        this.position = position;
+        this.acceleration = 0; //TODO create a new vector.
+        this.direction = direction;
+        this.speed = 0; //TODO create a new vector.
     }
-    
-    
     
     public Weapon getWeapon() {
         return this.weapon;
@@ -24,28 +30,40 @@ public class SpaceShip implements IArmable, IMovable{
         this.weapon=weapon;
     }
 
+    public void move() {
+        this.moveComponent.move();
+    }
+
+    public Vector getAcceleration() {
+        return this.acceleration;
+    }
+
+    public Vector getDirection() {
+        return this.direction;
+    }
+
+    public Point getPosition() {
+        return this.position;
+    }
+
     public Vector getSpeed() {
-        return this.moveComponent.getSpeed();
+        return this.speed;
     }
 
-    public Vector getAcc() {
-        return this.moveComponent.getAcc();
+    public void setSpeed(Vector speed) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public Point getPos() {
-        return this.moveComponent.getPos();
+    public void setAcceleration(Vector accelertion) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setSpeed() {
-        this.moveComponent.setSpeed();
+    public void setDirection(Vector direction) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setAcc() {
-        this.moveComponent.setAcc();
-    }
-
-    public void setPos() {
-        this.moveComponent.setPos();
+    public void setPosition(Point possition) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }
