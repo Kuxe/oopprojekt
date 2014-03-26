@@ -1,5 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import javax.vecmath.Point2f;
+
 /**
  * 
  * @author Kuxe
@@ -11,7 +13,7 @@ public class Main {
 		Gameworld gameworld = new Gameworld();
 		
 		//Create a spaceship and add it to the gameworld
-		gameworld.addSpaceship();
+		gameworld.addSpaceship(new Point2f(1, 1));
 		
 		//Update gameworld 10 times.
 		for(int i = 0; i < 10; i++){

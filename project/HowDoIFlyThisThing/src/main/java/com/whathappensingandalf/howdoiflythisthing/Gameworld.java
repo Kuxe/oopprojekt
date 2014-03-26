@@ -4,6 +4,9 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
 
+import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
+
 
 /**
  * 
@@ -37,9 +40,9 @@ public class Gameworld implements PropertyChangeListener{
 	/**
 	 * Adds a spaceship to the world
 	 */
-	public void addSpaceship(){
+	public void addSpaceship(Point2f point){
 		//temporary spaceship creating before Spaceship factory is available
-		SpaceShip ss = SpaceshipFactory.create();
+		SpaceShip ss = SpaceshipFactory.create(point, new Vector2f(1, 1));
 		
 		//Add spaceship to hashmap moveable, 
 		moveables.put(ss, ss);
