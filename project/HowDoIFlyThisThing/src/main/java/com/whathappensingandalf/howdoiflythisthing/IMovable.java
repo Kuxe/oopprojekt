@@ -1,5 +1,8 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
+
 /**
  * 
  * @author Francine

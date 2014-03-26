@@ -12,4 +12,10 @@ package com.whathappensingandalf.howdoiflythisthing;
  */
 class MoveComponent {
     
+	/**
+	 * Moves the component
+	 */
+	public void move(){
+		//TODO IMPLEMENT
+	}
 }
