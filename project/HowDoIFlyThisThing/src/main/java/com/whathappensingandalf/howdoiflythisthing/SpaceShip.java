@@ -1,5 +1,8 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
+
 /**
  *
  * @author Martin Nilsson
@@ -8,18 +11,18 @@ public class SpaceShip implements IArmable, IMovable{
 
     private Weapon weapon;
     private MoveComponent moveComponent;
-    private Point position;
-    private Vector acceleration;
-    private Vector direction;
-    private Vector speed;
+    private Point2f position;
+    private Vector2f acceleration;
+    private Vector2f direction;
+    private Vector2f speed;
     private Thruster[] thruster = new Thruster[3];
     
-    public SpaceShip(Point position, Vector direction){
+    public SpaceShip(Point2f position, Vector2f direction){
         this.moveComponent = new MoveComponent();
         this.position = position;
-        this.acceleration = 0; //TODO create a new vector.
+        this.acceleration = new Vector2f();
         this.direction = direction;
-        this.speed = 0; //TODO create a new vector.
+        this.speed = new Vector2f();
     }
     
     public Weapon getWeapon() {
@@ -34,35 +37,35 @@ public class SpaceShip implements IArmable, IMovable{
         this.moveComponent.move();
     }
 
-    public Vector getAcceleration() {
-        return this.acceleration;
+    public Vector2f getAcceleration() {
+        return acceleration;
     }
 
-    public Vector getDirection() {
+    public Vector2f getDirection() {
         return this.direction;
     }
 
-    public Point getPosition() {
+    public Point2f getPosition() {
         return this.position;
     }
 
-    public Vector getSpeed() {
+    public Vector2f getSpeed() {
         return this.speed;
     }
 
-    public void setSpeed(Vector speed) {
+    public void setSpeed(Vector2f speed) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setAcceleration(Vector accelertion) {
+    public void setAcceleration(Vector2f accelertion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setDirection(Vector direction) {
+    public void setDirection(Vector2f direction) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setPosition(Point possition) {
+    public void setPosition(Point2f position) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
