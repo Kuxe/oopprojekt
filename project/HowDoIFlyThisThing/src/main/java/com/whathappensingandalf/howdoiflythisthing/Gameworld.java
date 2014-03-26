@@ -29,8 +29,9 @@ public class Gameworld implements PropertyChangeListener{
 	 * HashMaps containing all interfaces which objects in gameworld implements
 	 * These are later on looped through and logic is computed centrally from this class, Gameworld.
 	 */
-	private HashMap<IMovable, Object> moveables;
-	private HashMap<IArmable, Object> armables;
+	private HashMap<Object, IMovable> moveables;
+	private HashMap<Object, IArmable> armables;
+	
 	
 	public Gameworld(){
 		moveables = 	new HashMap();
@@ -53,8 +54,9 @@ public class Gameworld implements PropertyChangeListener{
 	 * Moves all objects that implements IMoveable
 	 */
 	private void movableUpdate(){
-		for(IMovable ma : moveables.keySet()){
+		for(IMovable ma : moveables.values()){
 			ma.move();
+			System.out.println(ma.getPosition());
 		}
 	}
 	
@@ -62,7 +64,7 @@ public class Gameworld implements PropertyChangeListener{
 	 * Fire projectiles from objects with IArmable if the data provided from IArmable says so.
 	 */
 	private void armableUpdate(){
-		for(IArmable aa : armables.keySet()){
+		for(IArmable aa : armables.values()){
 			//Do whatever logic needed for weaponry
 		}
 	}
