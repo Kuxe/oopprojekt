@@ -46,18 +46,18 @@ public class Projectile implements IMovable{
 	
 	//setters
 	public void setSpeed(Vector2f speed) {
-		this.speed= speed;
+		mc.setSpeed(speed);
 	}
 	public void setAcceleration(Vector2f acceleration) {
-		this.acceleration= acceleration;
+		mc.setAcceleration(acceleration)
 		
 	}
 	public void setDirection(Vector2f direction) {
-		this.direction= direction;
+		mc.setDirection(direction);
 		
 	}
 	public void setPosition(Point2f position) {
-		this.position= position;
+		mc.setPosition(position)
 		
 	}
 }
