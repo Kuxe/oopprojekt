@@ -1,7 +1,10 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
+
 
 /**
  *
@@ -16,8 +19,10 @@ public class SpaceShip implements IArmable, IMovable{
 	private Vector2f velocity;
     private Vector2f acceleration;
     private Vector2f direction;
+	private PropertyChangeSupport pcs;
     
     public SpaceShip(Point2f position, Vector2f direction){
+		this.pcs = new PropertyChangeSupport(this);
         this.position = position;
         this.acceleration = new Vector2f();
         this.direction = direction;
@@ -74,5 +79,10 @@ public class SpaceShip implements IArmable, IMovable{
 		return armsComponent.fire();
     	
     }
-    
+    public void addPropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.addPropertyChangeListener(pcl);
+	}
+    public void removePropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.removePropertyChangeListener(pcl);
+	}
 }
