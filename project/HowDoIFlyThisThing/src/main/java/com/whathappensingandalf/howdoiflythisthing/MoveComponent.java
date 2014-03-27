@@ -15,18 +15,28 @@ import javax.vecmath.Vector2f;
  */
 class MoveComponent {
     
-	private Point2f point;
-	private Vector2f vector;
+	private Point2f position;
+	private Vector2f velocity;
+        private Vector2f acceleration;
+        private Vector2f direction;
 	
 	public MoveComponent(Point2f point, Vector2f vector){
-		this.point = point;
-		this.vector = vector;
+            this.position = point;
+            this.velocity = vector;
 	}
 	
 	/**
 	 * Moves the component
 	 */
 	public void move(){
-		point.add(vector);
+            velocity.add(acceleration);
+            position.add(velocity);
 	}
+        
+        /**
+	 * Sets the acceleration of the component
+	 */
+        public void setAcceleration(Vector2f acceleration){
+            this.acceleration.set(acceleration);
+        }
 }

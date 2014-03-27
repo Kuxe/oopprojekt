@@ -57,8 +57,8 @@ public class SpaceShip implements IArmable, IMovable{
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void setAcceleration(Vector2f accelertion) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setAcceleration(Vector2f acceleration) {
+        this.moveComponent.setAcceleration(acceleration);
     }
 
     public void setDirection(Vector2f direction) {
