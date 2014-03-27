@@ -2,8 +2,7 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
-
-import com.whathappensingandalf.howdoiflythisthing.factorys.ProjectileFactory;
+import com.whathappensingandalf.howdoiflythisthing.factorys.*;
 
 /**
  *
