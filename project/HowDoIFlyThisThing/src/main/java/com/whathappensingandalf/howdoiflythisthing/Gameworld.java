@@ -1,12 +1,15 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
-import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
+
+import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
 
 /**
@@ -33,10 +36,37 @@ public class Gameworld implements PropertyChangeListener{
 	private HashMap<Object, IMovable> moveables;
 	private HashMap<Object, IArmable> armables;
 	
+	/**
+	 * HashMap which is unlocked by any gameworld object, ie spaceship.
+	 * It retrieves a list of hashMaps, ie movables and removes the references
+	 * to this spaceship from all lists upon spaceship destruction
+	 */
+	private HashMap<Object, List<HashMap<Object, ? extends IListable>>> removalHashMap;
+	
 	
 	public Gameworld(){
 		moveables = 	new HashMap();
 		armables = 		new HashMap();
+		
+		removalHashMap = new HashMap();
+	}
+	
+	/**
+	 * Method for removing an object from all HashMaps which it has been placed into
+	 * Should ALWAYS be called whenever a gameworld object is destroyed or killed
+	 * Elsewise these hashmaps will keep references to the object and nasty
+	 * nullptrexceptions will instantly appear
+	 * @param key
+	 */
+	public void removeObjectFromHashMaps(Object key) {
+		//Loop through the List containing the HashMaps in which an gameworld object (ie spaceship) is stored
+		//That is, each hashMap in the list is one of the hashMaps in which a reference to the key object is stored
+		//These hashMaps shall remove this reference upon object destruction, which is done bellow
+		for(HashMap<Object, ? extends IListable> hashMap : removalHashMap.get(key)) {
+			hashMap.remove(key);
+		}
+		//Also remove the list containing the hashMaps from removalHashMap
+		removalHashMap.remove(key);
 	}
 
 	/**
@@ -45,10 +75,16 @@ public class Gameworld implements PropertyChangeListener{
 	public void addSpaceship(Point2f point){
 		//temporary spaceship creating before Spaceship factory is available
 		SpaceShip ss = SpaceshipFactory.create(point, new Vector2f(1, 1));
-		
+				
 		//Add spaceship to hashmap moveable, 
 		moveables.put(ss, ss);
-		armables.put(ss, ss);
+		
+		//List of hashmaps which Spaceship is added to
+		List<HashMap<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
+		listOfHashMaps.add(moveables);
+		
+		//Finally make sure that the removalHashMap has the list of hashMaps in which this spaceship exist in.
+		removalHashMap.put(ss, listOfHashMaps);
 	}
 	
 	/**
@@ -73,7 +109,7 @@ public class Gameworld implements PropertyChangeListener{
 	}
 	
 	public void update(){
-		movableUpdate();		
+		movableUpdate();
 	}
 
 	/**

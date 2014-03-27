@@ -8,7 +8,7 @@ import javax.vecmath.Vector2f;
  * @author Francine
  *
  */
-public interface IMovable {
+public interface IMovable extends IListable{
 	
 	public void move();
 	//getters
