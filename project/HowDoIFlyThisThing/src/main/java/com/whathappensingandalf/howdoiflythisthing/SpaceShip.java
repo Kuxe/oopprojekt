@@ -1,11 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeListener;
-<<<<<<< HEAD
 import java.beans.PropertyChangeSupport;
-=======
-
->>>>>>> a2cde00837dd5ded750dd1c4947553c325fbf5f7
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
