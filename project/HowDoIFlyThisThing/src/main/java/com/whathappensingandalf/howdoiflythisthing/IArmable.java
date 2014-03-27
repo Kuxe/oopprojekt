@@ -5,7 +5,7 @@ package com.whathappensingandalf.howdoiflythisthing;
  * @author Martin Nilsson
  */
 public interface IArmable {
-    public Weapon getWeapon();
-    public void setWeapon(Weapon weapon);
-    
+    public ArmsComponent getWeapon();
+    public void setWeapon(ArmsComponent weapon);
+    public Projectile fireWeapon();
 }

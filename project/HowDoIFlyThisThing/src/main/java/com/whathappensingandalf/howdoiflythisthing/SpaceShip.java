@@ -26,7 +26,7 @@ public class SpaceShip implements IArmable, IMovable{
 		this.thrusters = new ThrusterComponent(this.direction);
 		
     }
-    
+
     public void move() {
         this.moveComponent.move();
     }
@@ -63,13 +63,16 @@ public class SpaceShip implements IArmable, IMovable{
         this.moveComponent.setPosition(position);
     }
     
-    public Weapon getWeapon() {
+    public ArmsComponent getWeapon() {
         return this.armsComponent;
     }
 
-    public void setWeapon(Weapon weapon) {
+    public void setWeapon(ArmsComponent weapon) {
         this.armsComponent=weapon;
     }
-
+    public Projectile fireWeapon() {
+		return armsComponent.fire();
+    	
+    }
     
 }
