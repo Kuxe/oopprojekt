@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.whathappensingandalf.howdoiflythisthing;
 
 import javax.vecmath.Point2f;
@@ -11,53 +5,56 @@ import javax.vecmath.Vector2f;
 
 /**
  *
- * @author Martin
+ * @author Martin Nilsson
  */
 class MoveComponent {
     
 	private Point2f position;
 	private Vector2f velocity;
-        private Vector2f acceleration;
-        private Vector2f direction;
+    private Vector2f acceleration;
+    private Vector2f direction;
 	
-	public MoveComponent(Point2f point, Vector2f vector){
-            this.position = point;
-            this.velocity = vector;
+	public MoveComponent(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction){
+		this.position = position;
+		this.velocity = velocity;
+        this.acceleration = acceleration;
+		this.direction = direction;
 	}
 	
 	/**
-	 * Moves the component
-	 */
+	* Moves the component
+	*/
 	public void move(){
-            velocity.add(acceleration);
-            position.add(velocity);
+		velocity.add(acceleration);
+        position.add(velocity);
 	}
         
-        /**
-	 * Sets the speed of the component.
-	 */
-        public void setSpeed(Vector2f velocity) {
-            this.velocity.set(velocity);
-        }
+    /**
+	* Sets the speed of the component.
+	*/
+    public void setVelocity(Vector2f velocity) {
+		this.velocity.set(velocity);
+    }
         
-        /**
-	 * Sets the acceleration of the component.
-	 */
-        public void setAcceleration(Vector2f acceleration){
-            this.acceleration.set(acceleration);
-        }
+    /**
+	* Sets the acceleration of the component.
+	*/
+    public void setAcceleration(Vector2f acceleration){
+		this.acceleration.set(acceleration);
+    }
         
-        /**
-	 * Sets the direction of the component.
-	 */
-        public void setDirection(Vector2f direction) {
-            this.direction.set(direction);
-        }
+    /**
+	* Sets the direction of the component.
+	*/
+    public void setDirection(Vector2f direction) {
+		this.direction.set(direction);
+    }
 
-        /**
-	 * Sets the position of the component.
-	 */
-        public void setPosition(Point2f position) {
-            this.position.set(position);
-        }
+    /**
+	* Sets the position of the component.
+	*/
+    public void setPosition(Point2f position) {
+		this.position.set(position);
+    }
+	
 }
