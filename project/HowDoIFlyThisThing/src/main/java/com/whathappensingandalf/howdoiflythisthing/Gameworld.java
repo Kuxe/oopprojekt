@@ -14,7 +14,7 @@ import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
 /**
  * 
- * @author Kuxe
+ * @author Joakim "Kuxe" Thorén
  *
  *
  *	Gameworld is responsible for doing computations within the gameworld.
