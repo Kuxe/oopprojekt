@@ -1,31 +1,38 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeListener;
+<<<<<<< HEAD
+import java.beans.PropertyChangeSupport;
+=======
 
+>>>>>>> a2cde00837dd5ded750dd1c4947553c325fbf5f7
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
+
 
 /**
  *
  * @author Martin Nilsson
  */
-public class SpaceShip implements IArmable, IMovable{
+public class SpaceShip implements IArmable, IMovable, IThrustable{
 
     private ArmsComponent armsComponent;
     private MoveComponent moveComponent;
-    private ThrusterComponent thrusters;
+    private ThrusterComponent thrusterComponent;
     private Point2f position;
 	private Vector2f velocity;
     private Vector2f acceleration;
     private Vector2f direction;
+	private PropertyChangeSupport pcs;
     
     public SpaceShip(Point2f position, Vector2f direction){
+		this.pcs = new PropertyChangeSupport(this);
         this.position = position;
         this.acceleration = new Vector2f();
         this.direction = direction;
         this.velocity = new Vector2f(1.0f, 2.0f);
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction);
-		this.thrusters = new ThrusterComponent(this.direction);
+		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction);
 		
     }
 
@@ -73,7 +80,16 @@ public class SpaceShip implements IArmable, IMovable{
         this.armsComponent=weapon;
     }
     public Projectile fireWeapon() {
-		return armsComponent.fire();
-    	
+		return armsComponent.fire();	
     }
+	public void calculateThrust() {
+		this.thrusterComponent.calculateAceleration();
+	}
+	
+    public void addPropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.addPropertyChangeListener(pcl);
+	}
+    public void removePropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.removePropertyChangeListener(pcl);
+	}
 }
