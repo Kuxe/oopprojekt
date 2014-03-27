@@ -7,5 +7,5 @@ package com.whathappensingandalf.howdoiflythisthing;
 public interface IArmable {
     public ArmsComponent getWeapon();
     public void setWeapon(ArmsComponent weapon);
-    public boolean fireWeapon();
+    public Projectile fireWeapon();
 }
