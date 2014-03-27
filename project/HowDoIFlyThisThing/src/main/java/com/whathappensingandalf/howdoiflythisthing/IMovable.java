@@ -19,7 +19,7 @@ public interface IMovable {
 	
 	//setters
 	public void setSpeed(Vector2f speed);
-	public void setAcceleration(Vector2f accelertion);
+	public void setAcceleration(Vector2f acceleration);
 	public void setDirection(Vector2f direction);
 	public void setPosition(Point2f position);
 }
