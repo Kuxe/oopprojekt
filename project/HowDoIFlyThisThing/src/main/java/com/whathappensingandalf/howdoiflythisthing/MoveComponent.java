@@ -34,9 +34,30 @@ class MoveComponent {
 	}
         
         /**
-	 * Sets the acceleration of the component
+	 * Sets the speed of the component.
+	 */
+        public void setSpeed(Vector2f velocity) {
+            this.velocity.set(velocity);
+        }
+        
+        /**
+	 * Sets the acceleration of the component.
 	 */
         public void setAcceleration(Vector2f acceleration){
             this.acceleration.set(acceleration);
+        }
+        
+        /**
+	 * Sets the direction of the component.
+	 */
+        public void setDirection(Vector2f direction) {
+            this.direction.set(direction);
+        }
+
+        /**
+	 * Sets the position of the component.
+	 */
+        public void setPosition(Point2f position) {
+            this.position.set(position);
         }
 }

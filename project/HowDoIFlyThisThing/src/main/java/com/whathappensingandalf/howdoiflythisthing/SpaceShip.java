@@ -9,7 +9,7 @@ import javax.vecmath.Vector2f;
  */
 public class SpaceShip implements IArmable, IMovable{
 
-    private Weapon weapon;
+    private ArmsComponent armsComponent;
     private MoveComponent moveComponent;
     private Point2f position;
     private Vector2f acceleration;
@@ -25,14 +25,6 @@ public class SpaceShip implements IArmable, IMovable{
         this.moveComponent = new MoveComponent(position, speed);
     }
     
-    public Weapon getWeapon() {
-        return this.weapon;
-    }
-
-    public void setWeapon(Weapon weapon) {
-        this.weapon=weapon;
-    }
-
     public void move() {
         this.moveComponent.move();
     }
@@ -53,8 +45,8 @@ public class SpaceShip implements IArmable, IMovable{
         return this.speed;
     }
 
-    public void setSpeed(Vector2f speed) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setSpeed(Vector2f velocity) {
+        this.moveComponent.setSpeed(velocity);
     }
 
     public void setAcceleration(Vector2f acceleration) {
@@ -62,11 +54,20 @@ public class SpaceShip implements IArmable, IMovable{
     }
 
     public void setDirection(Vector2f direction) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.moveComponent.setDirection(direction);
     }
 
     public void setPosition(Point2f position) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.moveComponent.setPosition(position);
     }
+    
+    public Weapon getWeapon() {
+        return this.armsComponent;
+    }
+
+    public void setWeapon(Weapon weapon) {
+        this.armsComponent=weapon;
+    }
+
     
 }
