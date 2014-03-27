@@ -34,7 +34,6 @@ public class Gameworld implements PropertyChangeListener{
 	 * These are later on looped through and logic is computed centrally from this class, Gameworld.
 	 */
 	private HashMap<Object, IMovable> moveables;
-	private HashMap<Object, IArmable> armables;
 	
 	/**
 	 * HashMap which is unlocked by any gameworld object, ie spaceship.
@@ -45,10 +44,8 @@ public class Gameworld implements PropertyChangeListener{
 	
 	
 	public Gameworld(){
-		moveables = 	new HashMap();
-		armables = 		new HashMap();
-		
-		removalHashMap = new HashMap();
+		moveables = 		new HashMap();		
+		removalHashMap = 	new HashMap();
 	}
 	
 	/**

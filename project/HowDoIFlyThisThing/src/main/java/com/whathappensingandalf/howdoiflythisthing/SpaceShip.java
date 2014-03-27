@@ -10,7 +10,7 @@ import javax.vecmath.Vector2f;
  *
  * @author Martin Nilsson
  */
-public class SpaceShip implements IArmable, IMovable, IThrustable{
+public class SpaceShip implements IMovable, IThrustable{
 
     private ArmsComponent armsComponent;
     private MoveComponent moveComponent;
