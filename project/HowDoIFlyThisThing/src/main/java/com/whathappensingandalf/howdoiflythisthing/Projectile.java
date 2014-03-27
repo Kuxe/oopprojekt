@@ -11,16 +11,16 @@ import javax.vecmath.Vector2f;
 
 public class Projectile implements IMovable{
 	
-	private Vector2f speed;
+	private Vector2f velocity;
 	private Vector2f acceleration;
 	private Vector2f direction;
 	private Point2f position;
 	//private Damage damage= new Damage();
 	private MoveComponent mC;
 	
-	public Projectile(Point2f position, Vector2f speed, Vector2f acceleration, Vector2f direction){
-		mC= new MoveComponent(position, speed);
-		this.speed= speed;
+	public Projectile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction){
+		mC= new MoveComponent(position, velocity);
+		this.velocity= velocity;
 		this.acceleration= acceleration;
 		this.direction= direction;
 		this.position= position;
@@ -31,8 +31,8 @@ public class Projectile implements IMovable{
 		mC.move();
 	}
 	//getters
-	public Vector2f getSpeed() {
-		return speed;
+	public Vector2f getVelocity() {
+		return velocity;
 	}
 	public Vector2f getAcceleration() {
 		return acceleration;
@@ -45,8 +45,8 @@ public class Projectile implements IMovable{
 	}
 
 	//setters
-	public void setSpeed(Vector2f speed) {
-		mC.setSpeed(speed);
+	public void setVelocity(Vector2f speed) {
+		mC.setVelocity(velocity);
 	}
 	public void setAcceleration(Vector2f acceleration) {
 		mC.setAcceleration(acceleration);
