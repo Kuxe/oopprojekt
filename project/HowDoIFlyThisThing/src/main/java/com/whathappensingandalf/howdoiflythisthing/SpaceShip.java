@@ -48,7 +48,7 @@ public class SpaceShip implements IArmable, IMovable{
     }
 
     public void setVelocity(Vector2f velocity) {
-        this.moveComponent.setSpeed(velocity);
+        this.moveComponent.setVelocity(velocity);
     }
 
     public void setAcceleration(Vector2f acceleration) {

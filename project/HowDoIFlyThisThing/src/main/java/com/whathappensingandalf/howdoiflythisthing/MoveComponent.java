@@ -32,7 +32,7 @@ class MoveComponent {
     /**
 	* Sets the speed of the component.
 	*/
-    public void setSpeed(Vector2f velocity) {
+    public void setVelocity(Vector2f velocity) {
 		this.velocity.set(velocity);
     }
         
