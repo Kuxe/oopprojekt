@@ -4,7 +4,6 @@ import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
 import com.whathappensingandalf.howdoiflythisthing.factorys.ProjectileFactory;
-import com.whathappensingandalf.howdoiflythisthing.factorys.*;
 /**
  *
  * @author Joakim Thorén
@@ -24,7 +23,7 @@ public class ArmsComponent {
 	private final int baseSpeedMagnitude = 3;
 	
 	//Vector containing sum of baseSpeed and speed
-	Vector2f sumSpeed;
+	private Vector2f sumSpeed;
 	
 	public ArmsComponent(Point2f point, Vector2f speed, Vector2f acceleration, Vector2f direction) {
 		this.point 			= point;

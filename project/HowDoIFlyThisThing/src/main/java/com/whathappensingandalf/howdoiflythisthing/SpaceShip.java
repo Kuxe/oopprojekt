@@ -1,5 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.beans.PropertyChangeListener;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
@@ -72,5 +74,4 @@ public class SpaceShip implements IArmable, IMovable{
 		return armsComponent.fire();
     	
     }
-    
 }
