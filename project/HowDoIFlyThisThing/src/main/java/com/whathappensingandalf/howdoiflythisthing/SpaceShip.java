@@ -10,11 +10,11 @@ import javax.vecmath.Vector2f;
  *
  * @author Martin Nilsson
  */
-public class SpaceShip implements IArmable, IMovable{
+public class SpaceShip implements IArmable, IMovable, IThrustable{
 
     private ArmsComponent armsComponent;
     private MoveComponent moveComponent;
-    private ThrusterComponent thrusters;
+    private ThrusterComponent thrusterComponent;
     private Point2f position;
 	private Vector2f velocity;
     private Vector2f acceleration;
@@ -28,7 +28,7 @@ public class SpaceShip implements IArmable, IMovable{
         this.direction = direction;
         this.velocity = new Vector2f(1.0f, 2.0f);
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction);
-		this.thrusters = new ThrusterComponent(this.direction);
+		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction);
 		
     }
 
@@ -76,9 +76,12 @@ public class SpaceShip implements IArmable, IMovable{
         this.armsComponent=weapon;
     }
     public Projectile fireWeapon() {
-		return armsComponent.fire();
-    	
+		return armsComponent.fire();	
     }
+	public void calculateThrust() {
+		this.thrusterComponent.calculateAceleration();
+	}
+	
     public void addPropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.addPropertyChangeListener(pcl);
 	}
