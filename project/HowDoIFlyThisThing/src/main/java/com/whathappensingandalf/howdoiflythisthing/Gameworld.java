@@ -1,5 +1,6 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.HashMap;
