@@ -52,6 +52,17 @@ public class Gameworld implements PropertyChangeListener{
 	}
 	
 	/**
+	 * Adds param projectile to the world
+	 * @param projectile
+	 */
+	public void addProjectile(Projectile projectile) {
+		//Only add projectile if it exists
+		if(projectile != null) {
+			moveables.put(projectile, projectile);
+		}
+	}
+	
+	/**
 	 * Moves all objects that implements IMoveable
 	 */
 	private void movableUpdate(){
@@ -61,18 +72,8 @@ public class Gameworld implements PropertyChangeListener{
 		}
 	}
 	
-	/**
-	 * Fire projectiles from objects with IArmable if the data provided from IArmable says so.
-	 */
-	private void armableUpdate(){
-		for(IArmable aa : armables.values()){
-			//Do whatever logic needed for weaponry
-		}
-	}
-	
 	public void update(){
-		movableUpdate();
-		armableUpdate();
+		movableUpdate();		
 	}
 
 	/**
