@@ -12,11 +12,11 @@ import com.whathappensingandalf.howdoiflythisthing.Projectile;
  *
  */
 public class ProjectileFactory {
-	public static Projectile create(Point2f position, Vector2f speed, Vector2f acceleration, Vector2f direction){
-		return new Projectile(position, speed, acceleration, direction);
+	public static Projectile create(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction){
+		return new Projectile(position, velocity, acceleration, direction);
 		
 	}
 	public static Projectile create(Projectile p){
-		return create(p.getPosition(), p.getSpeed(), p.getAcceleration(), p.getDirection());		
+		return create(p.getPosition(), p.getVelocity(), p.getAcceleration(), p.getDirection());		
 	}
 }
