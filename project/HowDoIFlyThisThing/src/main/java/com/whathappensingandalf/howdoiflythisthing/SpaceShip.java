@@ -9,7 +9,7 @@ import javax.vecmath.Vector2f;
  */
 public class SpaceShip implements IArmable, IMovable{
 
-    private Weapon weapon;
+    private ArmsComponent weapon;
     private MoveComponent moveComponent;
     private Point2f position;
     private Vector2f acceleration;
@@ -25,14 +25,18 @@ public class SpaceShip implements IArmable, IMovable{
         this.moveComponent = new MoveComponent(position, speed);
     }
     
-    public Weapon getWeapon() {
+    public ArmsComponent getWeapon() {
         return this.weapon;
     }
 
-    public void setWeapon(Weapon weapon) {
+    public void setWeapon(ArmsComponent weapon) {
         this.weapon=weapon;
     }
-
+    
+    public void fireWeapon() {
+    	
+    }
+    
     public void move() {
         this.moveComponent.move();
     }
