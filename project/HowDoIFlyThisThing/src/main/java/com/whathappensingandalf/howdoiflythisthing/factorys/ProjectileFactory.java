@@ -16,4 +16,7 @@ public class ProjectileFactory {
 		return new Projectile(position, speed, acceleration, direction);
 		
 	}
+	public static Projectile create(Projectile p){
+		return create(p.getPosition(), p.getSpeed(), p.getAcceleration(), p.getDirection());		
+	}
 }
