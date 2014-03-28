@@ -71,7 +71,7 @@ public class Gameworld implements PropertyChangeListener{
 	 */
 	public void addSpaceship(Point2f point){
 		//Temporary hardcoded direction set to 1, 1
-		SpaceShip ss = SpaceshipFactory.create(point, new Vector2f(1, 1));
+		Spaceship ss = SpaceshipFactory.create(point, new Vector2f(1, 1));
 				
 		//Add spaceship to hashmap moveable, 
 		moveables.put(ss, ss);
