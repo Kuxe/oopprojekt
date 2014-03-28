@@ -105,6 +105,9 @@ public class Gameworld implements PropertyChangeListener{
 		}
 	}
 	
+	/**
+	 * Loop through all lists of interfaces and call their methods
+	 */
 	public void update(){
 		movableUpdate();
 	}
