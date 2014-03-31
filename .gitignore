@@ -4,3 +4,5 @@
 *.jar
 *.war
 *.ear
+/project/test/nbproject/private/
+/project/test/build/

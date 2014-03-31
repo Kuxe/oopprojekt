@@ -5,13 +5,27 @@ import javax.vecmath.Vector2f;
 /**
  *
  * @author Martin Nilsson
+ * 
+ * A class for representing a single thruster. It is used to calculate acceleration
+ * of the entety that it is a component of.
  */
 public class Thruster {
+	/**
+	 * A vector for storing the direction of the thruster.
+	 * A boolean that indicates if the thruster is active or not.
+	 * A int saving the magnitude of the thruster output.
+	 * A temporary vector used for calculation.
+	 */
 	private Vector2f direction;
 	private Boolean active;
 	private int magnitude;
 	private Vector2f temp;
 	
+	/**
+	 * A constructor creating a thruster with a direction given by the parameters.
+	 * @param x
+	 * @param y 
+	 */
 	public Thruster(float x, float y){
 		this.direction = new Vector2f(x, y);
 		this.direction.normalize();
