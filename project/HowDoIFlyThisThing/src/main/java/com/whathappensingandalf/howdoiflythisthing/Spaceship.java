@@ -29,11 +29,14 @@ public class Spaceship implements IMovable, IThrustable{
 	private Vector2f velocity;
     private Vector2f acceleration;
     private Vector2f direction;
+	private Float rotVelocity;
+	private Float rotAcceleration;
 	/**
 	 * A instance of PropertyChangeSupport so that this class can be listend to.
 	 */
 	private PropertyChangeSupport pcs;
-    
+	
+	
 	public enum Message{
 		SPACESHIP_DIE,
 		SPACESHIP_FIRE
@@ -125,6 +128,31 @@ public class Spaceship implements IMovable, IThrustable{
     public void setPosition(Point2f position) {
         this.moveComponent.setPosition(position);
     }
+	public float getRotVelocity() {
+		return this.rotVelocity;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public float getRotAcceleration() {
+		return this.rotAcceleration;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setRotVelocity(float rotVelocity) {
+		this.rotVelocity=rotVelocity;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setRotAcceleration(float rotAcceleration) {
+		this.rotAcceleration=rotAcceleration;
+	}
+    
     
     public ArmsComponent getWeapon() {
         return this.armsComponent;
