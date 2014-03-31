@@ -6,6 +6,7 @@ import javax.vecmath.Vector2f;
 /**
  * 
  * @author Francine
+ * @revised Mathias
  *
  */
 public interface IMovable extends IListable{
