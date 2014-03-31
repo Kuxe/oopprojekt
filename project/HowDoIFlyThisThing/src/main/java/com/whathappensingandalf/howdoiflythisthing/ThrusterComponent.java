@@ -6,6 +6,7 @@ import javax.vecmath.Vector2f;
 /**
  *
  *	@author Martin Nilsson
+ *	@revised Mathias
  * 
  *	A class for handeling thruster calculation common for several classes that 
  *	implement IThrustable. The reason is to avoid duplicate code. 
@@ -33,9 +34,9 @@ class ThrusterComponent {
     public ThrusterComponent(Vector2f acceleration, Vector2f direction){
 		this.acceleration=acceleration;
 		this.direction=direction;
-		this.mainThruster=new Thruster(0,(float)sqrt(2));
+		this.mainThruster=new Thruster(0,1);
 		this.leftThruster=new Thruster(1,1);
-		this.leftThruster=new Thruster(1,1);
+		this.rightThruster=new Thruster(-1,1);
 	}
 	
 	/**
