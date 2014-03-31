@@ -34,6 +34,11 @@ public class Spaceship implements IMovable, IThrustable{
 	 */
 	private PropertyChangeSupport pcs;
     
+	public enum Message{
+		SPACESHIP_DIE,
+		SPACESHIP_FIRE
+	}
+	
 	/**
 	 * A constructor for creating a Spaceship in the given possition and faceing
 	 * in the given direction.
@@ -57,6 +62,13 @@ public class Spaceship implements IMovable, IThrustable{
     public void move() {
         this.moveComponent.move();
     }
+	
+	/**
+	 * Removes all referenses to this component.
+	 */
+	public void remove(){
+		this.pcs.firePropertyChange(Message.SPACESHIP_DIE.toString(), this, true);
+	}
     
 	/**
 	 * {@inheritDoc}
