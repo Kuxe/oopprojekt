@@ -39,12 +39,12 @@ public interface IMovable extends IListable{
 	/**
 	 * @return the rotationvelocity of this component
 	 */
-	public float getRotVelocity();
+	public double getRotVelocity();
 	
 	/**
 	 * @return the rotationaceleration of this component
 	 */
-	public float getRotAcceleration();
+	public double getRotAcceleration();
 	
 	//setters
 	/**
@@ -72,11 +72,11 @@ public interface IMovable extends IListable{
 	 * Sets the rotationvelocity of this component to the specified rotationvelocity
 	 * @param rotVelocity
 	 */
-	public void setRotVelocity(float rotVelocity);
+	public void setRotVelocity(double rotVelocity);
 	
 	/**
 	 * Sets the rotationacceleration of this component to the specified rotationacceleration
 	 * @param rotAcceleration
 	 */
-	public void setRotAcceleration(float rotAcceleration);
+	public void setRotAcceleration(double rotAcceleration);
 }
