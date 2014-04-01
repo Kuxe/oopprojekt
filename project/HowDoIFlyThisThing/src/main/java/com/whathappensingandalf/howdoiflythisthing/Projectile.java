@@ -93,4 +93,24 @@ public class Projectile implements IMovable{
 	public void setPosition(Point2f position) {
 		mC.setPosition(position);
 	}
+	@Override
+	public double getRotVelocity() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public double getRotAcceleration() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public void setRotVelocity(double rotVelocity) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void setRotAcceleration(double rotAcceleration) {
+		// TODO Auto-generated method stub
+		
+	}
 }//end Projectile

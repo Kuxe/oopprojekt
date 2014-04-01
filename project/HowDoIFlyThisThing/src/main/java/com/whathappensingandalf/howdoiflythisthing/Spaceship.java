@@ -166,7 +166,7 @@ public class Spaceship implements IMovable, IThrustable{
      * Sends message to GameWorld which creates the bullet via projectilefactory
      */
     public void fireWeapon() {
-		pcs.firePropertyChange(Message.SPACESHIP_FIRE.toString(), armsComponent, true);
+		pcs.firePropertyChange(Message.SPACESHIP_FIRE.toString(), armsComponent.fire(), true);
     }
 	
 	/**
