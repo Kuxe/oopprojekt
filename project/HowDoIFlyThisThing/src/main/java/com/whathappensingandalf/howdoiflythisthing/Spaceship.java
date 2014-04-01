@@ -15,7 +15,7 @@ import javax.vecmath.Vector2f;
  * implements IMovable and IThrustable as it will be able to move and doing it 
  * by using a number of Thrusters.
  */
-public class Spaceship implements IMovable, IThrustable{
+public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObject{
 	/**
 	 * Different components for avoiding duplicate code.
 	 */
@@ -35,7 +35,6 @@ public class Spaceship implements IMovable, IThrustable{
 	 * A instance of PropertyChangeSupport so that this class can be listend to.
 	 */
 	private PropertyChangeSupport pcs;
-	
 	
 	public static enum Message{
 		SPACESHIP_DIE,
@@ -71,7 +70,11 @@ public class Spaceship implements IMovable, IThrustable{
 	public void remove(){
 		this.pcs.firePropertyChange(Message.SPACESHIP_DIE.toString(), this, true);
 	}
-    
+	//Only this object should be able to destroy it?
+	private void hurt(int damage){
+		//Decrease Shield or Hull.
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -127,6 +130,11 @@ public class Spaceship implements IMovable, IThrustable{
     public void setPosition(Point2f position) {
         this.moveComponent.setPosition(position);
     }
+	
+	/**
+	 * {inheritDoc}
+	 * @return 
+	 */
 	public float getRotVelocity() {
 		return this.rotationVelocity.floatValue();
 	}
@@ -147,10 +155,36 @@ public class Spaceship implements IMovable, IThrustable{
 
 	/**
 	 * {@inheritDoc}
+	 * @param rotationAcceleration
 	 */
 	public void setRotAcceleration(float rotationAcceleration) {
 		this.rotationAcceleration=rotationAcceleration;
 	}
+	
+	
+	public void collide(ICollidable rhs) {
+		
+		String s = rhs.getType();
+		
+		if(s.equals(type.SPASESHIP.toString())){
+			this.remove();
+		}else if(s.equals(type.PROJECTILE.toString())){
+			this.hurt(1);//Should depond on the manner of projectile that you colide with.
+		}
+	}
+
+	public int getHeight() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public int getWidth() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public String getType() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+	
     
     
     public ArmsComponent getWeapon() {

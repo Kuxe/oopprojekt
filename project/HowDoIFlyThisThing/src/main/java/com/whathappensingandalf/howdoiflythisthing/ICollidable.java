@@ -10,7 +10,7 @@ import javax.vecmath.Point2f;
 public interface ICollidable{
 	
 //	TODO- should take a parameter?
-	public void collide();
+	public void collide(ICollidable rhs);
 	/**
 	 * @return the height of this component
 	 */
@@ -23,5 +23,8 @@ public interface ICollidable{
 	 * @return the position of this component
 	 */
 	public Point2f getPosition();
-
+	/**
+	 * @return the type of this component
+	 */
+	public String getType();
 }

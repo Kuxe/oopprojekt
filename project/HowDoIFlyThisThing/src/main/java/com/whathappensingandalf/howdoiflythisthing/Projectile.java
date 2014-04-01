@@ -9,7 +9,7 @@ import javax.vecmath.Vector2f;
  *
  */
 
-public class Projectile implements IMovable{
+public class Projectile implements IMovable, ICollidable, IGameObject{
 	
 	private Vector2f velocity;
 	private Vector2f acceleration;
@@ -112,6 +112,22 @@ public class Projectile implements IMovable{
 	public void setRotAcceleration(float rotAcceleration) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public void collide(ICollidable rhs) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public int getHeight() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public int getWidth() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public String getType() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
 }//end Projectile
