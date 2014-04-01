@@ -94,23 +94,24 @@ public class Projectile implements IMovable{
 		mC.setPosition(position);
 	}
 	@Override
-	public double getRotVelocity() {
+	public float getRotVelocity() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	@Override
-	public double getRotAcceleration() {
+	public float getRotAcceleration() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	@Override
-	public void setRotVelocity(double rotVelocity) {
+	public void setRotVelocity(float rotVelocity) {
 		// TODO Auto-generated method stub
 		
 	}
 	@Override
-	public void setRotAcceleration(double rotAcceleration) {
+	public void setRotAcceleration(float rotAcceleration) {
 		// TODO Auto-generated method stub
 		
 	}
+
 }//end Projectile
