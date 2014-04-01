@@ -1,11 +1,11 @@
-package controler;
+package controller;
 
 import View.View;
 
-public class Controler {
+public class Controller {
 	//HowDoIFlyThisThing model;
 	View view;
-	public Controler(View v){
+	public Controller(View v){
 		view=v;
 	}
 }
