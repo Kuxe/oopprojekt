@@ -71,17 +71,22 @@ public class Gameworld implements PropertyChangeListener{
 	 */
 	public void addSpaceship(Point2f point){
 		//Temporary hardcoded direction set to 1, 1
-		Spaceship ss = SpaceshipFactory.create(point, new Vector2f(1, 1));
-				
+		addSpaceship(SpaceshipFactory.create(point, new Vector2f(1, 1)));
+	}
+	
+	/**
+	 * Adds a spaceship to the world
+	 */
+	public void addSpaceship(Spaceship spaceship){				
 		//Add spaceship to hashmap moveable, 
-		moveables.put(ss, ss);
+		moveables.put(spaceship, spaceship);
 		
 		//List of hashmaps which Spaceship is added to
 		List<HashMap<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
 		listOfHashMaps.add(moveables);
 		
 		//Finally make sure that the removalHashMap has the list of hashMaps in which this spaceship exist in.
-		removalHashMap.put(ss, listOfHashMaps);
+		removalHashMap.put(spaceship, listOfHashMaps);
 	}
 	
 	/**
