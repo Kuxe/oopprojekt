@@ -18,6 +18,8 @@ class ThrusterComponent {
 	 */
 	private Vector2f acceleration;
 	private Vector2f direction;
+	private Float rotationVelocity;
+	private Float rotationAcceleration;
 	/**
 	 * Thrusters used for calculating the resulting acceleration.
 	 */
@@ -31,9 +33,11 @@ class ThrusterComponent {
 	 * @param acceleration
 	 * @param direction 
 	 */
-    public ThrusterComponent(Vector2f acceleration, Vector2f direction){
+    public ThrusterComponent(Vector2f acceleration, Vector2f direction,Float rotationAcceleration,Float rotationVelocity){
 		this.acceleration=acceleration;
 		this.direction=direction;
+		this.rotationVelocity=rotationVelocity;
+		this.rotationAcceleration=rotationAcceleration;
 		this.mainThruster=new Thruster(0,1);
 		this.leftThruster=new Thruster(1,1);
 		this.rightThruster=new Thruster(-1,1);
@@ -47,5 +51,6 @@ class ThrusterComponent {
 		acceleration.scale(0);
 		acceleration.add(mainThruster.getAcceleration(), rightThruster.getAcceleration());
 		acceleration.add(leftThruster.getAcceleration());
+		
 	}
 }
