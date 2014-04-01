@@ -94,10 +94,10 @@ public class Gameworld implements PropertyChangeListener{
 	 * @param projectile
 	 */
 	public void addProjectile(Projectile projectile) {
-		//Only add projectile if it exists
-		if(projectile != null) {
-			moveables.put(projectile, projectile);
-		}
+		moveables.put(projectile, projectile);
+		List<HashMap<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
+		listOfHashMaps.add(moveables);
+		removalHashMap.put(projectile, listOfHashMaps);
 	}
 	
 	/**
