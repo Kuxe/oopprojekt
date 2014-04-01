@@ -37,7 +37,7 @@ public class Spaceship implements IMovable, IThrustable{
 	private PropertyChangeSupport pcs;
 	
 	
-	public enum Message{
+	public static enum Message{
 		SPACESHIP_DIE,
 		SPACESHIP_FIRE
 	}
@@ -56,7 +56,6 @@ public class Spaceship implements IMovable, IThrustable{
         this.velocity = new Vector2f(1.0f, 2.0f);
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
-		
     }
 	
 	/**

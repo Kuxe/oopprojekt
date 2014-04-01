@@ -116,8 +116,9 @@ public class Gameworld implements PropertyChangeListener{
 	 * {@inheritDoc}
 	 */
 	public void propertyChange(PropertyChangeEvent evt) {
-		// TODO Auto-generated method stub
+		if(evt.toString().equals(Spaceship.Message.SPACESHIP_FIRE.toString())) {
+			addProjectile((Projectile)evt.getOldValue());
+		}
 		
 	}
-	
 }
