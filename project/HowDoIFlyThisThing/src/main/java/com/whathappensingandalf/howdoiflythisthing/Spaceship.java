@@ -29,8 +29,8 @@ public class Spaceship implements IMovable, IThrustable{
 	private Vector2f velocity;
     private Vector2f acceleration;
     private Vector2f direction;
-	private Float rotVelocity;
-	private Float rotAcceleration;
+	private Float rotationVelocity;
+	private Float rotationAcceleration;
 	/**
 	 * A instance of PropertyChangeSupport so that this class can be listend to.
 	 */
@@ -55,7 +55,7 @@ public class Spaceship implements IMovable, IThrustable{
         this.direction = direction;
         this.velocity = new Vector2f(1.0f, 2.0f);
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction);
-		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction);
+		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
 		
     }
 	
@@ -129,28 +129,28 @@ public class Spaceship implements IMovable, IThrustable{
         this.moveComponent.setPosition(position);
     }
 	public float getRotVelocity() {
-		return this.rotVelocity;
+		return this.rotationVelocity.floatValue();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public float getRotAcceleration() {
-		return this.rotAcceleration;
+		return this.rotationAcceleration.floatValue();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void setRotVelocity(float rotVelocity) {
-		this.rotVelocity=rotVelocity;
+	public void setRotVelocity(float rotationVelocity) {
+		this.rotationVelocity=rotationVelocity;
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void setRotAcceleration(float rotAcceleration) {
-		this.rotAcceleration=rotAcceleration;
+	public void setRotAcceleration(float rotationAcceleration) {
+		this.rotationAcceleration=rotationAcceleration;
 	}
     
     
