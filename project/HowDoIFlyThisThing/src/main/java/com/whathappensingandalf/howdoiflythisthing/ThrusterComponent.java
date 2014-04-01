@@ -52,7 +52,7 @@ class ThrusterComponent {
 		acceleration.add(mainThruster.getAcceleration(), rightThruster.getAcceleration());
 		acceleration.add(leftThruster.getAcceleration());
 		float f=0;
-		f=f+mainThruster.getRotationAcceleration();
+//		f=f+mainThruster.getRotationAcceleration();
 		f=f+rightThruster.getRotationAcceleration();
 		f=f+leftThruster.getRotationAcceleration();
 		this.rotationAcceleration=f;

@@ -71,11 +71,18 @@ public class Thruster {
 //	} 
 	public Vector2f getAcceleration(){
 		temp.scale(0);
-		temp.scale(magnitude, new Vector2f(0,direction.y));
+		if(active){
+			temp.scale(magnitude, new Vector2f(0,direction.y));
+		}
 		return temp;
+		
 	}
 	
 	public Float getRotationAcceleration(){
-		return direction.x;
+		if(active){
+			return direction.x;
+		}else{
+			return 0.0f;
+		}
 	}
 }
