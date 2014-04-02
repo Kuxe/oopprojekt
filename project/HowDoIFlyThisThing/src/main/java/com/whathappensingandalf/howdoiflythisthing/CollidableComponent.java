@@ -1,5 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.awt.geom.Area;
+
 import javax.vecmath.Point2f;
 
 /**
@@ -8,8 +10,12 @@ import javax.vecmath.Point2f;
  */
 public class CollidableComponent{
 	
-	public CollidableComponent(){
+	public CollidableComponent(Area area){
 		
 	}
-
+	
+	public boolean collideDetection(ICollidable collidObj){
+		
+		return false;
+	}
 }
