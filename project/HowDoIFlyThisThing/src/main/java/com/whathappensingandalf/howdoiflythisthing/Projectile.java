@@ -13,13 +13,15 @@ import javax.vecmath.Vector2f;
 
 public class Projectile implements IMovable, ICollidable, IGameObject{
 	
+	private double width;
+	private double height;
 	private Vector2f velocity;
 	private Vector2f acceleration;
 	private Vector2f direction;
 	private Point2f position;
 	//private Damage damage= new Damage();
 	private MoveComponent mC;
-	
+	private CollidableComponent colliComp;
 	
 	/**
 	 * Contructs a projectile with a specified position, velocity, acceleration and direction
@@ -29,13 +31,15 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	 * @param acceleration
 	 * @param direction
 	 */
-	public Projectile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction){
-		mC= new MoveComponent(position, velocity, acceleration, direction);
+	public Projectile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, double width, double height){
 		this.velocity= velocity;
 		this.acceleration= acceleration;
 		this.direction= direction;
 		this.position= position;
-		
+		this.width= width;
+		this.height= height;
+		mC= new MoveComponent(position, velocity, acceleration, direction);
+		colliComp= new CollidableComponent(position.x, position.y, width, height);
 	}
 	//methods
 	/**
@@ -126,13 +130,11 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	}
 	@Override
 	public boolean collideDetection(ICollidable rhs) {
-		// TODO Auto-generated method stub
-		return false;
+		return colliComp.collideDetection(rhs);
 	}
 	@Override
 	public Rectangle2D getBoundingBox() {
-		// TODO Auto-generated method stub
-		return null;
+		return colliComp.getBoundingBox();
 	}
 
 }//end Projectile

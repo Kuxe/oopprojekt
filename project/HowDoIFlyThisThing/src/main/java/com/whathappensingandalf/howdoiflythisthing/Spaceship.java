@@ -24,9 +24,12 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
     private ArmsComponent armsComponent;
     private MoveComponent moveComponent;
     private ThrusterComponent thrusterComponent;
+    private CollidableComponent colliComp;
 	/**
 	 * The nessesary information for moving the Spaceship.
 	 */
+    private double width;
+	private double height;
     private Point2f position;
 	private Vector2f velocity;
     private Vector2f acceleration;
@@ -49,14 +52,17 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 * @param position
 	 * @param direction 
 	 */
-    public Spaceship(Point2f position, Vector2f direction){
+    public Spaceship(Point2f position, Vector2f direction, double width, double height){
 		this.pcs = new PropertyChangeSupport(this);
+		this.width= width;
+		this.height= height;
         this.position = position;
         this.acceleration = new Vector2f();
         this.direction = direction;
         this.velocity = new Vector2f(1.0f, 2.0f);
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
+		this.colliComp= new CollidableComponent(position.x, position.y, width, height);
     }
 	
 	/**
@@ -228,12 +234,10 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 	@Override
 	public boolean collideDetection(ICollidable rhs) {
-		// TODO Auto-generated method stub
-		return false;
+		return colliComp.collideDetection(rhs);
 	}
 	@Override
 	public Rectangle2D getBoundingBox() {
-		// TODO Auto-generated method stub
-		return null;
+		return colliComp.getBoundingBox();
 	}
 }
