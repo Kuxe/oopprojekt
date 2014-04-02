@@ -31,14 +31,25 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	 * @param acceleration
 	 * @param direction
 	 */
-	public Projectile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, double width, double height){
+	public Projectile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction){
 		this.velocity= velocity;
 		this.acceleration= acceleration;
 		this.direction= direction;
 		this.position= position;
+		mC= new MoveComponent(position, velocity, acceleration, direction);
+	}
+	/**
+	 * @param position
+	 * @param velocity
+	 * @param acceleration
+	 * @param direction
+	 * @param width
+	 * @param height
+	 */
+	public Projectile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, double width, double height){
+		this(position, velocity, acceleration, direction);
 		this.width= width;
 		this.height= height;
-		mC= new MoveComponent(position, velocity, acceleration, direction);
 		colliComp= new CollidableComponent(position.x, position.y, width, height);
 	}
 	//methods
