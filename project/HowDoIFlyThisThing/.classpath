@@ -22,5 +22,13 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="libs/Slick2D/lib/jinput.jar"/>
+	<classpathentry kind="lib" path="libs/Slick2D/lib/lwjgl.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="HowDoIFlyThisThing/libs/natives"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="libs/Slick2D/lib/slick.jar"/>
+	<classpathentry kind="lib" path="libs/Slick2D/lib/lwjgl_util.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

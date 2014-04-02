@@ -89,6 +89,17 @@ public class Gameworld implements PropertyChangeListener{
 		removalHashMap.put(spaceship, listOfHashMaps);
 	}
 	
+	private void addObjectToHashMaps(List<HashMap<Object, Object>> list, Object object) {
+		for(HashMap<Object, Object> item : list) {
+			item.put(object, object);
+		}
+		List<HashMap<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
+		for(HashMap<Object, ? extends IListable> listable : listOfHashMaps) {
+			listOfHashMaps.add(listable);
+		}
+		removalHashMap.put(object, listOfHashMaps);
+	}
+
 	/**
 	 * Adds param projectile to the world
 	 * @param projectile

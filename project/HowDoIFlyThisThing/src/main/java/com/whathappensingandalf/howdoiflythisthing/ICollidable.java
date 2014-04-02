@@ -28,8 +28,12 @@ public interface ICollidable{
 	 */
 	public Point2f getPosition();
 	/**
+<<<<<<< HEAD
 	 * @return
 	 */
 	public Rectangle2D getBoundingBox();
-
+	/**
+	 * @return the type of this component
+	 */
+	public String getType();
 }
