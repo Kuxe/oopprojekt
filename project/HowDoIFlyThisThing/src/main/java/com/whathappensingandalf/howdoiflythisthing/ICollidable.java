@@ -14,7 +14,7 @@ public interface ICollidable{
 	/**
 	 * @param collidableComponent
 	 */
-	public boolean collideDetection(ICollidable collidObj);
+	public boolean collideDetection(ICollidable rhs);
 	/**
 	 * @return the height of this component
 	 */
@@ -28,7 +28,6 @@ public interface ICollidable{
 	 */
 	public Point2f getPosition();
 	/**
-<<<<<<< HEAD
 	 * @return
 	 */
 	public Rectangle2D getBoundingBox();

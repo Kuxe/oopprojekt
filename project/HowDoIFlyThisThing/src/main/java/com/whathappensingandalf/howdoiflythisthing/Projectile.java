@@ -1,5 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.awt.geom.Rectangle2D;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
@@ -42,7 +44,6 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	public void move(){
 		mC.move();
 	}
-	//getters
 	/**
 	 * {@inheritDoc}
 	 */
@@ -67,8 +68,6 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	public Point2f getPosition() {
 		return position;
 	}
-
-	//setters
 	/**
 	 * {@inheritDoc}
 	 */	
@@ -114,10 +113,6 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 		
 	}
 
-	public void collide(ICollidable rhs) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
-
 	public int getHeight() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
@@ -128,6 +123,16 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 
 	public String getType() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+	@Override
+	public boolean collideDetection(ICollidable rhs) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public Rectangle2D getBoundingBox() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }//end Projectile

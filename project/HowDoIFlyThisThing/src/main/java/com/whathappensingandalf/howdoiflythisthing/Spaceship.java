@@ -1,7 +1,9 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.awt.geom.Rectangle2D;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
@@ -223,5 +225,15 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 */
     public void removePropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.removePropertyChangeListener(pcl);
+	}
+	@Override
+	public boolean collideDetection(ICollidable rhs) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	@Override
+	public Rectangle2D getBoundingBox() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
