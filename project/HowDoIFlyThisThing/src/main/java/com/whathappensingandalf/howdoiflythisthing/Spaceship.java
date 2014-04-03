@@ -1,7 +1,9 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.awt.geom.Rectangle2D;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
@@ -22,9 +24,12 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
     private ArmsComponent armsComponent;
     private MoveComponent moveComponent;
     private ThrusterComponent thrusterComponent;
+    private CollidableComponent colliComp;
 	/**
 	 * The nessesary information for moving the Spaceship.
 	 */
+    private double width;
+	private double height;
     private Point2f position;
 	private Vector2f velocity;
     private Vector2f acceleration;
@@ -56,6 +61,18 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
 		this.armsComponent = new ArmsComponent(this.position, velocity, acceleration, this.direction);
+    }
+    /**
+     * @param position
+     * @param direction
+     * @param width
+     * @param height
+     */
+    public Spaceship(Point2f position, Vector2f direction, double width, double height){
+    	this(position, direction);
+    	this.width= width;
+    	this.height= height;
+		this.colliComp= new CollidableComponent(position.x, position.y, width, height);
     }
 	
 	/**
@@ -224,5 +241,13 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 */
     public void removePropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.removePropertyChangeListener(pcl);
+	}
+	@Override
+	public boolean collideDetection(ICollidable rhs) {
+		return colliComp.collideDetection(rhs);
+	}
+	@Override
+	public Rectangle2D getBoundingBox() {
+		return colliComp.getBoundingBox();
 	}
 }

@@ -19,4 +19,7 @@ public class ProjectileFactory {
 	public static Projectile create(Projectile p){
 		return create(p.getPosition(), p.getVelocity(), p.getAcceleration(), p.getDirection());		
 	}
+	public static Projectile create(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, double width, double height){
+		return new Projectile(position, velocity, acceleration, direction, width, height);		
+	}
 }

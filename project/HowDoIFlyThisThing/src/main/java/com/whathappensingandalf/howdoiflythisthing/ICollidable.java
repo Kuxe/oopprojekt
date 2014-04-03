@@ -1,5 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.awt.geom.Rectangle2D;
+
 import javax.vecmath.Point2f;
 
 
@@ -9,8 +11,10 @@ import javax.vecmath.Point2f;
  */
 public interface ICollidable{
 	
-//	TODO- should take a parameter?
-	public void collide(ICollidable rhs);
+	/**
+	 * @param collidableComponent
+	 */
+	public boolean collideDetection(ICollidable rhs);
 	/**
 	 * @return the height of this component
 	 */
@@ -23,6 +27,10 @@ public interface ICollidable{
 	 * @return the position of this component
 	 */
 	public Point2f getPosition();
+	/**
+	 * @return
+	 */
+	public Rectangle2D getBoundingBox();
 	/**
 	 * @return the type of this component
 	 */

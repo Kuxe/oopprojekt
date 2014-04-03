@@ -1,5 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.awt.geom.Rectangle2D;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
@@ -11,13 +13,15 @@ import javax.vecmath.Vector2f;
 
 public class Projectile implements IMovable, ICollidable, IGameObject{
 	
+	private double width;
+	private double height;
 	private Vector2f velocity;
 	private Vector2f acceleration;
 	private Vector2f direction;
 	private Point2f position;
 	//private Damage damage= new Damage();
 	private MoveComponent mC;
-	
+	private CollidableComponent colliComp;
 	
 	/**
 	 * Contructs a projectile with a specified position, velocity, acceleration and direction
@@ -28,12 +32,25 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	 * @param direction
 	 */
 	public Projectile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction){
-		mC= new MoveComponent(position, velocity, acceleration, direction);
 		this.velocity= velocity;
 		this.acceleration= acceleration;
 		this.direction= direction;
 		this.position= position;
-		
+		mC= new MoveComponent(position, velocity, acceleration, direction);
+	}
+	/**
+	 * @param position
+	 * @param velocity
+	 * @param acceleration
+	 * @param direction
+	 * @param width
+	 * @param height
+	 */
+	public Projectile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, double width, double height){
+		this(position, velocity, acceleration, direction);
+		this.width= width;
+		this.height= height;
+		colliComp= new CollidableComponent(position.x, position.y, width, height);
 	}
 	//methods
 	/**
@@ -42,7 +59,6 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	public void move(){
 		mC.move();
 	}
-	//getters
 	/**
 	 * {@inheritDoc}
 	 */
@@ -67,8 +83,6 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	public Point2f getPosition() {
 		return position;
 	}
-
-	//setters
 	/**
 	 * {@inheritDoc}
 	 */	
@@ -114,10 +128,6 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 		
 	}
 
-	public void collide(ICollidable rhs) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
-
 	public int getHeight() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
@@ -128,6 +138,14 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 
 	public String getType() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+	@Override
+	public boolean collideDetection(ICollidable rhs) {
+		return colliComp.collideDetection(rhs);
+	}
+	@Override
+	public Rectangle2D getBoundingBox() {
+		return colliComp.getBoundingBox();
 	}
 
 }//end Projectile
