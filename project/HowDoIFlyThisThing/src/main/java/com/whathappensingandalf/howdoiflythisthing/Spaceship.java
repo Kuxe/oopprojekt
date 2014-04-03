@@ -55,6 +55,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         this.velocity = new Vector2f(1.0f, 2.0f);
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
+		this.armsComponent = new ArmsComponent(this.position, velocity, acceleration, this.direction);
     }
 	
 	/**
