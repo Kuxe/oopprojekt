@@ -35,4 +35,17 @@ public interface ICollidable extends IListable{
 	 * @return the type of this component
 	 */
 	public String getType();
+	/**
+	 * @param visitor
+	 */
+	public void accept(ICollidable visitor);
+	/**
+	 * @param spaceship
+	 */
+	public void visit(Spaceship spaceship);
+	/**
+	 * @param projectile
+	 */
+	public void visit(Projectile projectile);
+	
 }

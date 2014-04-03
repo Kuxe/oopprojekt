@@ -41,6 +41,8 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 */
 	private PropertyChangeSupport pcs;
 	
+	private int hull;
+	
 	public static enum Message{
 		SPACESHIP_DIE,
 		SPACESHIP_FIRE
@@ -60,6 +62,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         this.acceleration = new Vector2f();
         this.direction = direction;
         this.velocity = new Vector2f(1.0f, 2.0f);
+		this.hull=100;
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
 		this.armsComponent = new ArmsComponent(this.position, velocity, acceleration, this.direction);
@@ -81,7 +84,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 	//Only this object should be able to destroy it?
 	private void hurt(int damage){
-		//Decrease Shield or Hull.
+		this.hull=this.hull-damage;
 	}
 	
 	/**
@@ -169,18 +172,6 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	public void setRotAcceleration(float rotationAcceleration) {
 		this.rotationAcceleration=rotationAcceleration;
 	}
-	
-	
-	public void collide(ICollidable rhs) {
-		
-		String s = rhs.getType();
-		
-		if(s.equals(type.SPASESHIP.toString())){
-			this.remove();
-		}else if(s.equals(type.PROJECTILE.toString())){
-			this.hurt(1);//Should depond on the manner of projectile that you colide with.
-		}
-	}
 
 	public int getHeight() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -218,6 +209,17 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		this.thrusterComponent.calculateAceleration();
 	}
 	
+	public void accept(ICollidable visitor) {
+		visitor.visit(this);
+	}
+	public void visit(Spaceship spaceship) {
+		this.remove();
+	}
+
+	public void visit(Projectile projectile) {
+		this.hurt(projectile.getDamage());
+	}
+	
 	/**
 	 * Adds a listener to this object.
 	 * @param pcl
@@ -225,7 +227,6 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
     public void addPropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.addPropertyChangeListener(pcl);
 	}
-	
 	/**
 	 * Adds a listener to this object.
 	 * @param pcl
