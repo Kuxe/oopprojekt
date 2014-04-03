@@ -160,13 +160,13 @@ public class Gameworld implements PropertyChangeListener{
 	 * Detects collisions and saves each collision for resolving later on
 	 */
 	private void collisionUpdate() {
-		//TODO: This implementation is clearly broken as it does not test collision
-		//on every permutation of values in collidables. How to test permutation of all objects
-		for(ICollidable collidable1 : collidables.values()) {
-			for(ICollidable collidable2 : collidables.values()) {
-				if(collidable1.collideDetection(collidable2)) {
-					collidable1.accept(collidable2);
-					collidable2.accept(collidable1);
+		ICollidable[] array = collidables.values().toArray(new ICollidable[collidables.values().size()]);
+		for(int first = 0; first < array.length; first++) {
+			for(int second = first + 1; second < array.length; second++) {
+				if(array[first].collideDetection(array[second])) {
+					System.out.println("COLLISION AAAAHHH");
+					array[first].accept(array[second]);
+					array[second].accept(array[first]);
 				}
 			}
 		}
@@ -189,7 +189,7 @@ public class Gameworld implements PropertyChangeListener{
 			addProjectile((Projectile)evt.getOldValue());
 			System.out.println("here");
 		} else if(evt.getPropertyName().equals(Projectile.Message.PROJECTILE_DIE.toString())) {
-			
+			listOfObjectsToBeRemoved.add(evt.getSource());
 		}
 		
 	}
