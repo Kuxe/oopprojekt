@@ -30,7 +30,7 @@ public interface ICollidable extends IListable{
 	/**
 	 * @return
 	 */
-	public Rectangle2D getBoundingBox();
+	public Rectangle2D getBoundingBox(double x, double y, double width, double height);
 	/**
 	 * @return the type of this component
 	 */
