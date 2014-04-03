@@ -10,9 +10,9 @@ import javax.vecmath.Vector2f;
  */
 public class SpaceshipFactory {
     public static Spaceship create(Point2f point, Vector2f vector){
-    	return new Spaceship(point, vector);
+    	return new Spaceship(new Point2f(point), new Vector2f(vector));
     }
     public static Spaceship create(Point2f point, Vector2f vector, double width, double height){
-    	return new Spaceship(point, vector, width, height);
+    	return new Spaceship(new Point2f(point), new Vector2f(vector), width, height);
     }
 }
