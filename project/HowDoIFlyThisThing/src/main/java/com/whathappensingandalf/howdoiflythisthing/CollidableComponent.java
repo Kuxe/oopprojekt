@@ -17,8 +17,8 @@ public class CollidableComponent{
 	/**
 	 * @param collidObj
 	 */
-	public CollidableComponent(double x, double y, double width, double height){
-		rect2D= new Rectangle2D.Double(x, y, width, height);
+	public CollidableComponent(Point2f position, double width, double height){
+		rect2D= new Rectangle2D.Double(position.x, position.y, width, height);
 		area= new Area(rect2D);
 	}
 	
@@ -28,6 +28,10 @@ public class CollidableComponent{
 	 * @return true if this Area intersects rhs
 	 */
 	public boolean collideDetection(ICollidable rhs){
+		
+		//rect2D.setRect(x, y, w, h);
+//		rect2D.intersects(rect2D)
+		
 		if(area.intersects(rhs.getBoundingBox())){
 			return true;
 		}else{
@@ -36,5 +40,9 @@ public class CollidableComponent{
 	}
 	public Rectangle2D getBoundingBox() {
 		return rect2D;
+	}
+	public void updateRectangle(double x, double y, double width, double height){
+		rect2D.setRect(x, y, width, height);
+//		rect2D
 	}
 }
