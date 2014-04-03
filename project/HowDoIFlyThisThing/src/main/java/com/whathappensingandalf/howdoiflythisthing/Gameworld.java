@@ -168,7 +168,6 @@ public class Gameworld implements PropertyChangeListener{
 		for(int first = 0; first < array.length; first++) {
 			for(int second = first + 1; second < array.length; second++) {
 				if(array[first].collideDetection(array[second])) {
-					System.out.println("COLLISION AAAAHHH");
 					array[first].accept(array[second]);
 					array[second].accept(array[first]);
 				}
@@ -192,7 +191,6 @@ public class Gameworld implements PropertyChangeListener{
 		System.out.println(evt.getPropertyName());
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_FIRE.toString())) {
 			addProjectile((Projectile)evt.getOldValue());
-			System.out.println("here");
 		} else if(evt.getPropertyName().equals(Projectile.Message.PROJECTILE_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
 		}
