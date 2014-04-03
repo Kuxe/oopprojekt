@@ -3,6 +3,8 @@ package com.whathappensingandalf.howdoiflythisthing;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
+import View.View;
+
 /**
  * 
  * @author Kuxe
@@ -24,5 +26,6 @@ public class Main {
 		for(int i = 0; i < 2; i++){
 			gameworld.update();
 		}
+		new View();
 	}
 }
