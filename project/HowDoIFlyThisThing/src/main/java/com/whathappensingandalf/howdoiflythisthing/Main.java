@@ -17,12 +17,11 @@ public class Main {
 		Spaceship spaceship1 = new Spaceship(new Point2f(0, 0), new Vector2f(0, 0));
 		Spaceship spaceship2 = new Spaceship(new Point2f(10, 10), new Vector2f(0, 0));
 		gameworld.addSpaceship(spaceship1);
-		gameworld.addSpaceship(spaceship2);
-		
+		//gameworld.addSpaceship(spaceship2);
 		spaceship1.fireWeapon();
 		
 		//Update gameworld 10 times.
-		for(int i = 0; i < 100; i++){
+		for(int i = 0; i < 2; i++){
 			gameworld.update();
 		}
 	}

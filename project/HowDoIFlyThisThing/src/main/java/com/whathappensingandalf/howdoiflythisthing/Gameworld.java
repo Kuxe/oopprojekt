@@ -77,7 +77,10 @@ public class Gameworld implements PropertyChangeListener{
 	/**
 	 * Adds a spaceship to the world
 	 */
-	public void addSpaceship(Spaceship spaceship){				
+	public void addSpaceship(Spaceship spaceship){
+		//Make gameworld listen to spaceship
+		spaceship.addPropertyChangeListener(this);
+		
 		//Add spaceship to hashmap moveable, 
 		moveables.put(spaceship, spaceship);
 		
@@ -115,9 +118,11 @@ public class Gameworld implements PropertyChangeListener{
 	 * Moves all objects that implements IMoveable
 	 */
 	private void movableUpdate(){
+		int i = 1;
 		for(IMovable ma : moveables.values()){
 			ma.move();
-			System.out.println(ma.getPosition());
+			System.out.println(i + ": " + ma.getPosition());
+			i+=1;
 		}
 	}
 	
@@ -132,8 +137,9 @@ public class Gameworld implements PropertyChangeListener{
 	 * {@inheritDoc}
 	 */
 	public void propertyChange(PropertyChangeEvent evt) {
-		if(evt.toString().equals(Spaceship.Message.SPACESHIP_FIRE.toString())) {
+		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_FIRE.toString())) {
 			addProjectile((Projectile)evt.getOldValue());
+			System.out.println("here");
 		}
 		
 	}
