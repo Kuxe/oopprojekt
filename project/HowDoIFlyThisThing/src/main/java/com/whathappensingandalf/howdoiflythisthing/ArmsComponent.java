@@ -28,6 +28,6 @@ public class ArmsComponent {
 	 * @return Projectile that the weapon fires
 	 */
 	public Projectile fire(){
-		return ProjectileFactory.create(point, velocity, acceleration, direction);
+		return ProjectileFactory.create(point, velocity, acceleration, direction, 1, 1);
 	}
 }

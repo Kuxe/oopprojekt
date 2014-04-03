@@ -2,13 +2,12 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.Set;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
@@ -47,11 +46,23 @@ public class Gameworld implements PropertyChangeListener{
 	 */
 	private Map<Object, List<Map<Object, ? extends IListable>>> removalMap;
 	
+	private Set<Object> listOfObjectsToBeRemoved;
 	
 	public Gameworld(){
-		moveables = 		new HashMap();
-		collidables =		new HashMap();
-		removalMap = 		new HashMap();
+		moveables = 					new HashMap();
+		collidables =					new HashMap();
+		removalMap = 					new HashMap();
+		listOfObjectsToBeRemoved = 		new HashSet();
+	}
+	
+	/**
+	 * Adds object to list of slated removals. This list is iterated through 
+	 * last of all updates in gameworld.update(). This is to prevent removal
+	 * of references during updates, saving removals until later
+	 * @param object
+	 */
+	public void slateObjectForRemoval(Object object) {
+		listOfObjectsToBeRemoved.add(object);
 	}
 	
 	/**
@@ -61,7 +72,7 @@ public class Gameworld implements PropertyChangeListener{
 	 * nullptrexceptions will instantly appear
 	 * @param key
 	 */
-	public void removeObjectFromMaps(Object key) {
+	private void removeObjectFromMaps(Object key) {
 		//Loop through the List containing the HashMaps in which an gameworld object (ie spaceship) is stored
 		//That is, each hashMap in the list is one of the hashMaps in which a reference to the key object is stored
 		//These hashMaps shall remove this reference upon object destruction, which is done bellow
@@ -70,6 +81,15 @@ public class Gameworld implements PropertyChangeListener{
 		}
 		//Also remove the list containing the hashMaps from removalHashMap
 		removalMap.remove(key);
+	}
+	
+	/**
+	 * Iterate through list of slated objects and remove them
+	 */
+	private void removalUpdate() {
+		for(Object object : listOfObjectsToBeRemoved) {
+			removeObjectFromMaps(object);
+		}
 	}
 
 	/**
@@ -139,10 +159,15 @@ public class Gameworld implements PropertyChangeListener{
 	/**
 	 * Detects collisions and saves each collision for resolving later on
 	 */
-	private void collisionDetectionUpdate() {		
+	private void collisionUpdate() {
+		//TODO: This implementation is clearly broken as it does not test collision
+		//on every permutation of values in collidables. How to test permutation of all objects
 		for(ICollidable collidable1 : collidables.values()) {
 			for(ICollidable collidable2 : collidables.values()) {
-				collidable1.collideDetection(collidable2);
+				if(collidable1.collideDetection(collidable2)) {
+					collidable1.accept(collidable2);
+					collidable2.accept(collidable1);
+				}
 			}
 		}
 	}
@@ -152,6 +177,8 @@ public class Gameworld implements PropertyChangeListener{
 	 */
 	public void update(){
 		movableUpdate();
+		collisionUpdate();
+		removalUpdate(); //IT IS VERY IMPORTANT THAT THIS METHOD IS CALLED LAST!!!
 	}
 
 	/**
@@ -161,6 +188,8 @@ public class Gameworld implements PropertyChangeListener{
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_FIRE.toString())) {
 			addProjectile((Projectile)evt.getOldValue());
 			System.out.println("here");
+		} else if(evt.getPropertyName().equals(Projectile.Message.PROJECTILE_DIE.toString())) {
+			
 		}
 		
 	}
