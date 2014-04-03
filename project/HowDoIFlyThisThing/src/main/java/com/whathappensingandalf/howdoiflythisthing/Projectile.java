@@ -1,6 +1,8 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import java.awt.geom.Rectangle2D;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
@@ -19,9 +21,18 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	private Vector2f acceleration;
 	private Vector2f direction;
 	private Point2f position;
+	private int damage = 1;  //@TODO
 	//private Damage damage= new Damage();
 	private MoveComponent mC;
 	private CollidableComponent colliComp;
+	/**
+	 * A instance of PropertyChangeSupport so that this class can be listend to.
+	 */
+	private PropertyChangeSupport pcs;
+	
+	public static enum Message{
+		PROJECTILE_DIE
+	}
 	
 	/**
 	 * Contructs a projectile with a specified position, velocity, acceleration and direction
@@ -58,6 +69,12 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	 */
 	public void move(){
 		mC.move();
+	}
+	/**
+	 * Removes all referenses to this component.
+	 */
+	public void remove(){
+		this.pcs.firePropertyChange(Message.PROJECTILE_DIE.toString(), this, true);
 	}
 	/**
 	 * {@inheritDoc}
@@ -127,6 +144,9 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 		// TODO Auto-generated method stub
 		
 	}
+	public int getDamage(){
+		return this.damage;
+	}
 
 	public int getHeight() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -139,6 +159,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	public String getType() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
+	
 	@Override
 	public boolean collideDetection(ICollidable rhs) {
 		return colliComp.collideDetection(rhs);
@@ -146,6 +167,32 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	@Override
 	public Rectangle2D getBoundingBox() {
 		return colliComp.getBoundingBox();
+	}
+
+	public void accept(ICollidable visitor) {
+		visitor.visit(this);
+	}
+
+	public void visit(Spaceship spaceship) {
+		this.remove();
+	}
+
+	public void visit(Projectile projectile) {
+		this.remove();
+	}
+	/**
+	 * Adds a listener to this object.
+	 * @param pcl
+	 */
+    public void addPropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.addPropertyChangeListener(pcl);
+	}
+	/**
+	 * Adds a listener to this object.
+	 * @param pcl
+	 */
+    public void removePropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.removePropertyChangeListener(pcl);
 	}
 
 }//end Projectile
