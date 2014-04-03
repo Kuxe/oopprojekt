@@ -81,6 +81,9 @@ public class Gameworld implements PropertyChangeListener{
 		}
 		//Also remove the list containing the hashMaps from removalHashMap
 		removalMap.remove(key);
+		
+		//Don't forget to remove the object from listOfObjectsToBeRemoved
+		listOfObjectsToBeRemoved.remove(key);
 	}
 	
 	/**
@@ -136,6 +139,7 @@ public class Gameworld implements PropertyChangeListener{
 	 * @param projectile
 	 */
 	public void addProjectile(Projectile projectile) {
+		projectile.addPropertyChangeListener(this);
 		moveables.put(projectile, projectile);
 		collidables.put(projectile, projectile);
 		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
@@ -185,6 +189,7 @@ public class Gameworld implements PropertyChangeListener{
 	 * {@inheritDoc}
 	 */
 	public void propertyChange(PropertyChangeEvent evt) {
+		System.out.println(evt.getPropertyName());
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_FIRE.toString())) {
 			addProjectile((Projectile)evt.getOldValue());
 			System.out.println("here");
