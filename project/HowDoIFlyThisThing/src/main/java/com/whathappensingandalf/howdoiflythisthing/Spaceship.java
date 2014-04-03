@@ -61,7 +61,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         this.position = position;
         this.acceleration = new Vector2f();
         this.direction = direction;
-        this.velocity = new Vector2f(1.0f, 2.0f);
+        this.velocity = new Vector2f(0.0f, 0.0f);
 		this.hull=100;
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
@@ -173,11 +173,11 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		this.rotationAcceleration=rotationAcceleration;
 	}
 
-	public int getHeight() {
+	public double getHeight() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
-	public int getWidth() {
+	public double getWidth() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
@@ -218,6 +218,10 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 
 	public void visit(Projectile projectile) {
 		this.hurt(projectile.getDamage());
+	}
+	
+	public void visit(Asteroid asteroid) {
+		this.remove();
 	}
 	
 	/**

@@ -7,7 +7,7 @@ import javax.vecmath.Point2f;
  *
  * @author Martin Nilsson
  */
-public class Asteroid implements ICollidable{
+public class Asteroid implements ICollidable, IGameObject{
 
 	
 	private CollidableComponent colliComp;
@@ -26,16 +26,16 @@ public class Asteroid implements ICollidable{
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
-	public int getHeight() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public double getHeight() {
+		return this.height;
 	}
 
-	public int getWidth() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public double getWidth() {
+		return this.width;
 	}
 
 	public Point2f getPosition() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.position;
 	}
 
 	public Rectangle2D getBoundingBox() {
@@ -43,19 +43,22 @@ public class Asteroid implements ICollidable{
 	}
 
 	public String getType() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return type.ASTEROID.toString();
 	}
 
 	public void accept(ICollidable visitor) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		visitor.visit(this);
 	}
 
 	public void visit(Spaceship spaceship) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//Nothing should happen.
 	}
 
 	public void visit(Projectile projectile) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//Nothing should happen.
 	}
 	
+	public void visit(Asteroid asteroid) {
+		//Nothing should happen.
+	}
 }

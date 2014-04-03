@@ -18,11 +18,11 @@ public interface ICollidable extends IListable{
 	/**
 	 * @return the height of this component
 	 */
-	public int getHeight();
+	public double getHeight();
 	/**
 	 * @return the width of this component
 	 */
-	public int getWidth();
+	public double  getWidth();
 	/**
 	 * @return the position of this component
 	 */
@@ -47,5 +47,8 @@ public interface ICollidable extends IListable{
 	 * @param projectile
 	 */
 	public void visit(Projectile projectile);
-	
+	/**
+	 * @param asteroid
+	 */
+	public void visit(Asteroid asteroid);
 }
