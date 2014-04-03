@@ -47,15 +47,18 @@ public class Asteroid implements ICollidable, IGameObject{
 	}
 
 	public void accept(ICollidable visitor) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		visitor.visit(this);
 	}
 
 	public void visit(Spaceship spaceship) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//Nothing should happen.
 	}
 
 	public void visit(Projectile projectile) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//Nothing should happen.
 	}
 	
+	public void visit(Asteroid asteroid) {
+		//Nothing should happen.
+	}
 }

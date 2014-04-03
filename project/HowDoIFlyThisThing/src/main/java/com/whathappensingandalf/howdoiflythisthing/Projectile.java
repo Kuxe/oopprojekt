@@ -169,6 +169,10 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	public void visit(Projectile projectile) {
 		this.remove();
 	}
+	
+	public void visit(Asteroid asteroid) {
+		this.remove();
+	}
 	/**
 	 * Adds a listener to this object.
 	 * @param pcl

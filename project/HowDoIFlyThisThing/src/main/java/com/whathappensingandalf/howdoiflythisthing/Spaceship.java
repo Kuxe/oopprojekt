@@ -220,6 +220,10 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		this.hurt(projectile.getDamage());
 	}
 	
+	public void visit(Asteroid asteroid) {
+		this.remove();
+	}
+	
 	/**
 	 * Adds a listener to this object.
 	 * @param pcl

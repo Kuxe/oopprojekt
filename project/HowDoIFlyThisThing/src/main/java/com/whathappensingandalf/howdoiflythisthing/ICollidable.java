@@ -47,5 +47,8 @@ public interface ICollidable extends IListable{
 	 * @param projectile
 	 */
 	public void visit(Projectile projectile);
-	
+	/**
+	 * @param asteroid
+	 */
+	public void visit(Asteroid asteroid);
 }
