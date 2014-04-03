@@ -50,9 +50,11 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 * A constructor for creating a Spaceship in the given possition and faceing
 	 * in the given direction.
 	 * @param position
-	 * @param direction 
+	 * @param direction
+	 * @param width
+	 * @param height 
 	 */
-    public Spaceship(Point2f position, Vector2f direction){
+    public Spaceship(Point2f position, Vector2f direction, double width, double height){
 		this.pcs = new PropertyChangeSupport(this);
         this.position = position;
         this.acceleration = new Vector2f();
@@ -61,18 +63,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
 		this.armsComponent = new ArmsComponent(this.position, velocity, acceleration, this.direction);
-    }
-    /**
-     * @param position
-     * @param direction
-     * @param width
-     * @param height
-     */
-    public Spaceship(Point2f position, Vector2f direction, double width, double height){
-    	this(position, direction);
-    	this.width= width;
-    	this.height= height;
-		this.colliComp= new CollidableComponent(position.x, position.y, width, height);
+		this.colliComp = new CollidableComponent(position, width, height);
     }
 	
 	/**

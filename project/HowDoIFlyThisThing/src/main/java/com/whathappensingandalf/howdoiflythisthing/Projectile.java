@@ -50,7 +50,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 		this(position, velocity, acceleration, direction);
 		this.width= width;
 		this.height= height;
-		colliComp= new CollidableComponent(position.x, position.y, width, height);
+		colliComp= new CollidableComponent(position, width, height);
 	}
 	//methods
 	/**
