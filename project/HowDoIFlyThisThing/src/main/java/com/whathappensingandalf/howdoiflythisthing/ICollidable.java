@@ -9,7 +9,7 @@ import javax.vecmath.Point2f;
  * @author Francine
  *
  */
-public interface ICollidable{
+public interface ICollidable extends IListable{
 	
 	/**
 	 * @param collidableComponent

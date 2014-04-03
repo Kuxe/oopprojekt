@@ -2,9 +2,13 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
@@ -33,19 +37,21 @@ public class Gameworld implements PropertyChangeListener{
 	 * HashMaps containing all interfaces which objects in gameworld implements
 	 * These are later on looped through and logic is computed centrally from this class, Gameworld.
 	 */
-	private HashMap<Object, IMovable> moveables;
+	private Map<Object, IMovable> moveables;
+	private Map<Object, ICollidable> collidables;
 	
 	/**
 	 * HashMap which is unlocked by any gameworld object, ie spaceship.
 	 * It retrieves a list of hashMaps, ie movables and removes the references
 	 * to this spaceship from all lists upon spaceship destruction
 	 */
-	private HashMap<Object, List<HashMap<Object, ? extends IListable>>> removalHashMap;
+	private Map<Object, List<Map<Object, ? extends IListable>>> removalMap;
 	
 	
 	public Gameworld(){
-		moveables = 		new HashMap();		
-		removalHashMap = 	new HashMap();
+		moveables = 		new HashMap();
+		collidables =		new HashMap();
+		removalMap = 		new HashMap();
 	}
 	
 	/**
@@ -55,15 +61,15 @@ public class Gameworld implements PropertyChangeListener{
 	 * nullptrexceptions will instantly appear
 	 * @param key
 	 */
-	public void removeObjectFromHashMaps(Object key) {
+	public void removeObjectFromMaps(Object key) {
 		//Loop through the List containing the HashMaps in which an gameworld object (ie spaceship) is stored
 		//That is, each hashMap in the list is one of the hashMaps in which a reference to the key object is stored
 		//These hashMaps shall remove this reference upon object destruction, which is done bellow
-		for(HashMap<Object, ? extends IListable> hashMap : removalHashMap.get(key)) {
-			hashMap.remove(key);
+		for(Map<Object, ? extends IListable> map : removalMap.get(key)) {
+			map.remove(key);
 		}
 		//Also remove the list containing the hashMaps from removalHashMap
-		removalHashMap.remove(key);
+		removalMap.remove(key);
 	}
 
 	/**
@@ -83,24 +89,26 @@ public class Gameworld implements PropertyChangeListener{
 		
 		//Add spaceship to hashmap moveable, 
 		moveables.put(spaceship, spaceship);
+		collidables.put(spaceship, spaceship);
 		
 		//List of hashmaps which Spaceship is added to
-		List<HashMap<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
+		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
 		listOfHashMaps.add(moveables);
+		listOfHashMaps.add(collidables);
 		
 		//Finally make sure that the removalHashMap has the list of hashMaps in which this spaceship exist in.
-		removalHashMap.put(spaceship, listOfHashMaps);
+		removalMap.put(spaceship, listOfHashMaps);
 	}
 	
 	private void addObjectToHashMaps(List<HashMap<Object, Object>> list, Object object) {
 		for(HashMap<Object, Object> item : list) {
 			item.put(object, object);
 		}
-		List<HashMap<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
-		for(HashMap<Object, ? extends IListable> listable : listOfHashMaps) {
+		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
+		for(Map<Object, ? extends IListable> listable : listOfHashMaps) {
 			listOfHashMaps.add(listable);
 		}
-		removalHashMap.put(object, listOfHashMaps);
+		removalMap.put(object, listOfHashMaps);
 	}
 
 	/**
@@ -109,9 +117,11 @@ public class Gameworld implements PropertyChangeListener{
 	 */
 	public void addProjectile(Projectile projectile) {
 		moveables.put(projectile, projectile);
-		List<HashMap<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
+		collidables.put(projectile, projectile);
+		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
 		listOfHashMaps.add(moveables);
-		removalHashMap.put(projectile, listOfHashMaps);
+		listOfHashMaps.add(collidables);
+		removalMap.put(projectile, listOfHashMaps);
 	}
 	
 	/**
@@ -123,6 +133,17 @@ public class Gameworld implements PropertyChangeListener{
 			ma.move();
 			System.out.println(i + ": " + ma.getPosition());
 			i+=1;
+		}
+	}
+	
+	/**
+	 * Detects collisions and saves each collision for resolving later on
+	 */
+	private void collisionDetectionUpdate() {		
+		for(ICollidable collidable1 : collidables.values()) {
+			for(ICollidable collidable2 : collidables.values()) {
+				collidable1.collideDetection(collidable2);
+			}
 		}
 	}
 	
