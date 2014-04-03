@@ -137,11 +137,11 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 		return this.damage;
 	}
 
-	public int getHeight() {
+	public double getHeight() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
-	public int getWidth() {
+	public double getWidth() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
@@ -167,6 +167,10 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	}
 
 	public void visit(Projectile projectile) {
+		this.remove();
+	}
+	
+	public void visit(Asteroid asteroid) {
 		this.remove();
 	}
 	/**
