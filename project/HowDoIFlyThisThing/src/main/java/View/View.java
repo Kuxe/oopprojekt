@@ -1,6 +1,7 @@
 package View;
 
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -17,7 +18,6 @@ public class View implements ApplicationListener{
 	
 	private AppGameContainer container;
 	private GameWindow game;
-	private List<ICollidable> renderObjects;
 	
 	public View(){
 		game=new GameWindow("How do i fly this thing?");
@@ -30,6 +30,10 @@ public class View implements ApplicationListener{
 			Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		
+	}
+	
+	public synchronized void setRenderObjects(List<IDrawable> list){
+		game.setRenderObjects(list);
 	}
 	
 }

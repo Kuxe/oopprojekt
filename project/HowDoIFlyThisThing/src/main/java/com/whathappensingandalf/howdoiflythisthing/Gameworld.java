@@ -81,6 +81,9 @@ public class Gameworld implements PropertyChangeListener{
 		}
 		//Also remove the list containing the hashMaps from removalHashMap
 		removalMap.remove(key);
+		
+		//Don't forget to remove the object from listOfObjectsToBeRemoved
+		listOfObjectsToBeRemoved.remove(key);
 	}
 	
 	/**
@@ -136,6 +139,7 @@ public class Gameworld implements PropertyChangeListener{
 	 * @param projectile
 	 */
 	public void addProjectile(Projectile projectile) {
+		projectile.addPropertyChangeListener(this);
 		moveables.put(projectile, projectile);
 		collidables.put(projectile, projectile);
 		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
@@ -160,13 +164,12 @@ public class Gameworld implements PropertyChangeListener{
 	 * Detects collisions and saves each collision for resolving later on
 	 */
 	private void collisionUpdate() {
-		//TODO: This implementation is clearly broken as it does not test collision
-		//on every permutation of values in collidables. How to test permutation of all objects
-		for(ICollidable collidable1 : collidables.values()) {
-			for(ICollidable collidable2 : collidables.values()) {
-				if(collidable1.collideDetection(collidable2)) {
-					collidable1.accept(collidable2);
-					collidable2.accept(collidable1);
+		ICollidable[] array = collidables.values().toArray(new ICollidable[collidables.values().size()]);
+		for(int first = 0; first < array.length; first++) {
+			for(int second = first + 1; second < array.length; second++) {
+				if(array[first].collideDetection(array[second])) {
+					array[first].accept(array[second]);
+					array[second].accept(array[first]);
 				}
 			}
 		}
@@ -185,11 +188,11 @@ public class Gameworld implements PropertyChangeListener{
 	 * {@inheritDoc}
 	 */
 	public void propertyChange(PropertyChangeEvent evt) {
+		System.out.println(evt.getPropertyName());
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_FIRE.toString())) {
 			addProjectile((Projectile)evt.getOldValue());
-			System.out.println("here");
 		} else if(evt.getPropertyName().equals(Projectile.Message.PROJECTILE_DIE.toString())) {
-			
+			listOfObjectsToBeRemoved.add(evt.getSource());
 		}
 		
 	}
