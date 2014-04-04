@@ -39,8 +39,8 @@ class ThrusterComponent {
 		this.rotationVelocity=rotationVelocity;
 		this.rotationAcceleration=rotationAcceleration;
 		this.mainThruster=new Thruster(0,1,2,0);
-		this.leftThruster=new Thruster(0,1,1,45);
-		this.rightThruster=new Thruster(0,1,1,45);
+		this.leftThruster=new Thruster(0,1,1,(float)Math.PI/4);
+		this.rightThruster=new Thruster(0,1,1,(float)Math.PI/4);
 	}
 	
 	/**
