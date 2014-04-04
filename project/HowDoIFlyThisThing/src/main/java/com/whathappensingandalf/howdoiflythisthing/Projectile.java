@@ -15,8 +15,8 @@ import javax.vecmath.Vector2f;
 
 public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable{
 	
-	private double width;
-	private double height;
+	private int width;
+	private int height;
 	private Vector2f velocity;
 	private Vector2f acceleration;
 	private Vector2f direction;
@@ -158,7 +158,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 		return colliComp.collideDetection(rhs);
 	}
 	@Override
-	public Rectangle2D getBoundingBox() {
+	public Area getBoundingBox() {
 		return colliComp.getBoundingBox();
 	}
 
