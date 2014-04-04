@@ -38,6 +38,7 @@ public class Gameworld implements PropertyChangeListener{
 	 */
 	private Map<Object, IMovable> moveables;
 	private Map<Object, ICollidable> collidables;
+	private Map<Object, IDrawable> drawables;
 	
 	/**
 	 * HashMap which is unlocked by any gameworld object, ie spaceship.
@@ -53,6 +54,11 @@ public class Gameworld implements PropertyChangeListener{
 		collidables =					new HashMap();
 		removalMap = 					new HashMap();
 		listOfObjectsToBeRemoved = 		new HashSet();
+		drawables =						new HashMap();
+	}
+	
+	public Map<Object, IDrawable> getIDrawables() {
+		return drawables;
 	}
 	
 	/**
@@ -113,11 +119,13 @@ public class Gameworld implements PropertyChangeListener{
 		//Add spaceship to hashmap moveable, 
 		moveables.put(spaceship, spaceship);
 		collidables.put(spaceship, spaceship);
+		drawables.put(spaceship, spaceship);
 		
 		//List of hashmaps which Spaceship is added to
 		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
 		listOfHashMaps.add(moveables);
 		listOfHashMaps.add(collidables);
+		listOfHashMaps.add(drawables);
 		
 		//Finally make sure that the removalHashMap has the list of hashMaps in which this spaceship exist in.
 		removalMap.put(spaceship, listOfHashMaps);
@@ -142,9 +150,11 @@ public class Gameworld implements PropertyChangeListener{
 		projectile.addPropertyChangeListener(this);
 		moveables.put(projectile, projectile);
 		collidables.put(projectile, projectile);
+		drawables.put(projectile, projectile);
 		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
 		listOfHashMaps.add(moveables);
 		listOfHashMaps.add(collidables);
+		listOfHashMaps.add(drawables);
 		removalMap.put(projectile, listOfHashMaps);
 	}
 	
