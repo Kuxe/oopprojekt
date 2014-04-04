@@ -1,13 +1,15 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import java.awt.geom.Rectangle2D;
+
 import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
 
 /**
  *
  * @author Martin Nilsson
  */
-public class Asteroid implements ICollidable, IGameObject{
+public class Asteroid implements ICollidable, IGameObject, IDrawable{
 
 	
 	private CollidableComponent colliComp;
@@ -60,5 +62,15 @@ public class Asteroid implements ICollidable, IGameObject{
 	
 	public void visit(Asteroid asteroid) {
 		//Nothing should happen.
+	}
+
+	@Override
+	public Point2f getPossition() {
+		return position;
+	}
+
+	@Override
+	public Vector2f getDirection() {
+		return new Vector2f(0,1);
 	}
 }
