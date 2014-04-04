@@ -9,9 +9,15 @@ public class VecmathUtils {
 		return new Vector2f((float)temp.getElement(0), (float)temp.getElement(1));
 	}
 	
-	public static void rotateVectorV2(Vector2f vector, float angle) {
+	public static void setVectorAngle(Vector2f vector, float angle) {
 		float length = vector.length();
 		vector.set((float)Math.cos(angle), (float)Math.sin(angle));
+		vector.scale(length);
+	}
+	public static void rotateVectorV2(Vector2f vector, float angle){
+		float length = vector.length();
+		vector.normalize();
+		vector.set((float)Math.cos(angle+Math.acos(vector.x)), (float)Math.sin(angle+Math.acos(vector.x)));
 		vector.scale(length);
 	}
 	
