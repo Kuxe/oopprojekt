@@ -70,7 +70,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, rotationAcceleration);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
 		this.armsComponent = new ArmsComponent(this.position, velocity, acceleration, this.direction, weaponPipePosition);
-		this.colliComp = new CollidableComponent(position, width, height);
+		this.colliComp = new CollidableComponent(position, direction, width, height);
     }
 	/**
 	 * {@inheritDoc}
@@ -87,7 +87,9 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 	//Only this object should be able to destroy it?
 	private void hurt(int damage){
-		this.hull=this.hull-damage;
+		hull-=damage;
+		if(hull<=0)
+			this.remove();
 	}
 	
 	/**
