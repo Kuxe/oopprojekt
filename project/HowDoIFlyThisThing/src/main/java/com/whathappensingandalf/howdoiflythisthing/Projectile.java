@@ -13,7 +13,7 @@ import javax.vecmath.Vector2f;
  *
  */
 
-public class Projectile implements IMovable, ICollidable, IGameObject{
+public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable{
 	
 	private double width;
 	private double height;
@@ -186,6 +186,11 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	 */
     public void removePropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.removePropertyChangeListener(pcl);
+	}
+
+	@Override
+	public Point2f getPossition() {
+		return position;
 	}
 
 }//end Projectile
