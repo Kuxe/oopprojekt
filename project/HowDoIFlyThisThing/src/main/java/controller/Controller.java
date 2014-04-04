@@ -24,20 +24,24 @@ public class Controller {
 		model = new Gameworld();
 		
 		//Create two spaceships and make the first one shoot bullets on the other one
-		Spaceship spaceship1 = new Spaceship(new Point2f(0, 0), new Vector2f(-1, 0), 5, 5);
+		Spaceship spaceship1 = new Spaceship(new Point2f(0, 0), new Vector2f(1, 0), 5, 5);
+		Spaceship spaceship2 = new Spaceship(new Point2f(100, 0), new Vector2f(-1, 0), 5, 5);
 		model.addSpaceship(spaceship1);
-		spaceship1.fireWeapon();
 		
 		viewThread=new ViewThread();
 		viewThread.start();
-		
-		setRenderObjects(model.getIDrawables());
-		
-		//Update gameworld 10 times.
-		for(int i = 0; i < 5; i++){
-			model.update();
-			setRenderObjects(model.getIDrawables());
+	}
+	
+	public void start() {
+		boolean running = true;
+		while(running) {
+			update();
 		}
+	}
+	
+	private void update() {
+		model.update();
+		setRenderObjects(model.getIDrawables());
 	}
 	
 	public synchronized void setRenderObjects(Map<Object,IDrawable> list){

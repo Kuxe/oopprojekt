@@ -14,6 +14,7 @@ import View.View;
  */
 public class Main {
 	public static void main(String argc[]){
-		new Controller();
+		Controller controller = new Controller();
+		controller.start();
 	}
 }
