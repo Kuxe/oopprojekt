@@ -65,8 +65,8 @@ public class View extends BasicGame implements ApplicationListener{
 		for(IDrawable comp: renderObjects.values()){
 //			System.out.println();
 //			System.out.println("Name: "+comp.getType());
-//			System.out.println("Pos X: "+comp.getPossition().x);
-//			System.out.println("Pos Y: "+comp.getPossition().y);
+			System.out.println("Pos X: "+comp.getPossition().x);
+			System.out.println("Pos Y: "+comp.getPossition().y);
 //			System.out.println("Dir X: "+comp.getDirection().x);
 //			System.out.println("Dir X: "+comp.getDirection().y);
 //			g.translate(comp.getPossition().x, comp.getDirection().y);
