@@ -21,10 +21,8 @@ public class Controller {
 		model = new Gameworld();
 		
 		//Create two spaceships and make the first one shoot bullets on the other one
-		Spaceship spaceship1 = new Spaceship(new Point2f(0, 0), new Vector2f(0, 0), 5, 5);
-		Spaceship spaceship2 = new Spaceship(new Point2f(10, 10), new Vector2f(0, 0), 5, 5);
+		Spaceship spaceship1 = new Spaceship(new Point2f(0, 0), new Vector2f(-1, 0), 5, 5);
 		model.addSpaceship(spaceship1);
-		model.addSpaceship(spaceship2);
 		spaceship1.fireWeapon();
 		
 		//Update gameworld 10 times.
