@@ -8,6 +8,7 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
 import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
 
 /**
  * @author Francine
@@ -17,6 +18,7 @@ public class CollidableComponent implements ICollidableComponent{
 	
 	private Point2f position;
 	private Dimension2D size;
+	private Vector2f direction;
 	private Rectangle2D rect2D;	//Only used to create boundingBox
 	private Area boundingBox;
 	private AffineTransform affineTransform;
@@ -26,8 +28,9 @@ public class CollidableComponent implements ICollidableComponent{
 	 * @param width
 	 * @param height
 	 */
-	public CollidableComponent(Point2f position, int width, int height){
+	public CollidableComponent(Point2f position, Vector2f direction, int width, int height){
 		this.position= position;
+		this.direction= direction;
 		affineTransform= new AffineTransform();
 		size= new Dimension(width, height);
 		rect2D= new Rectangle2D.Double(position.x, position.y, width, height);
@@ -42,7 +45,7 @@ public class CollidableComponent implements ICollidableComponent{
 	public boolean collideDetection(ICollidable rhs){
 		
 //		TODO- new parameter; rotationvector
-		affineTransform.rotation(vecx, vecy, rect2D.getCenterX(), rect2D.getCenterY());	//this or the angle of rotation in radius
+		affineTransform.rotate(direction.x, direction.y, rect2D.getCenterX(), rect2D.getCenterY());	//this or the angle of rotation in radius
 		
 //		affineTransform.createTransformedShape(shape)- shape rotates and then creates a NEW Shape
 //			Creates a new Area object that contains the same geometry as this Area transformed by the specified AffineTransform.
@@ -51,7 +54,7 @@ public class CollidableComponent implements ICollidableComponent{
 		
 		updateBoundingBox();
 		
-		return boundingBox.intersects(rhs.getBoundingBox());
+		return boundingBox.intersects(rhs.getBoundingBox().getBounds2D());
 	}
 	public Area getBoundingBox() {
 		updateBoundingBox();

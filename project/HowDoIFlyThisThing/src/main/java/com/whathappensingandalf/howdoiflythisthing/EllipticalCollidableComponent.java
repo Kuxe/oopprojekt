@@ -8,11 +8,13 @@ import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
 import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
 
 public class EllipticalCollidableComponent implements ICollidableComponent{
 
 	private Point2f position;
 	private Dimension2D size;
+	private Vector2f direction;
 	private Area boundingBox;
 	private Ellipse2D ellipse2D;
 	private AffineTransform affineTransform;
@@ -22,7 +24,10 @@ public class EllipticalCollidableComponent implements ICollidableComponent{
 	 * @param width
 	 * @param height
 	 */
-	public EllipticalCollidableComponent(Point2f position, int width, int height){
+	public EllipticalCollidableComponent(Point2f position, Vector2f direction, int width, int height){
+		this.position= position;
+		this.direction= direction;
+		affineTransform= new AffineTransform();
 		size= new Dimension(width, height);
 		ellipse2D= new Ellipse2D.Double(position.x, position.y, width, height);
 		boundingBox= new Area(ellipse2D);
@@ -40,12 +45,12 @@ public class EllipticalCollidableComponent implements ICollidableComponent{
 	public boolean collideDetection(ICollidable rhs){
 		
 //		TODO- new parameter; rotationvector
-		affineTransform.rotation(vecx, vecy, rect2D.getCenterX(), rect2D.getCenterY());	//this or the angle of rotation in radius
+		affineTransform.rotate(direction.x, direction.y, ellipse2D.getCenterX(), ellipse2D.getCenterY());	//this or the angle of rotation in radius
 		
 //		ellipse2D.setFrame(position.x, position.y, size.getWidth(), size.getHeight());
 		
 		updateBoundingBox();
-		return ellipse2D.intersects(rhs.getBoundingBox());
+		return ellipse2D.intersects(rhs.getBoundingBox().getBounds2D());
 	}
 	public Area getBoundingBox(){
 		updateBoundingBox();
