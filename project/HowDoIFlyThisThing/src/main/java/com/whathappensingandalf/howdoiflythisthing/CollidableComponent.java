@@ -17,9 +17,7 @@ public class CollidableComponent implements ICollidableComponent{
 	
 	private Point2f position;
 	private Dimension2D size;
-	private Area area;
-	private Rectangle2D rect2D;
-//	private Rectangle2D boundingBox;
+	private Rectangle2D rect2D;	//Only used to create boundingBox
 	private Area boundingBox;
 	private AffineTransform affineTransform;
 	/**
@@ -33,43 +31,36 @@ public class CollidableComponent implements ICollidableComponent{
 		affineTransform= new AffineTransform();
 		size= new Dimension(width, height);
 		rect2D= new Rectangle2D.Double(position.x, position.y, width, height);
-		area= new Area(rect2D);
+		boundingBox= new Area(rect2D);
 	}
-	
-//	TODO- position should be area:s position?
-//	TODO- rect2D has to be the boundingbox, but we can not transform it? BUt we CAN transform it and THEN update the area, or well,
-//			we could do that if I can find a way to set the values of the area
 	
 	/**
 	 * Tests if this Area have collide with a Rectangle2D
 	 * @param rhs- the ICollidable whose Rectangle2D to compare with
-	 * @param x- the x coordinate of the upper- left corner
-	 * @param y- the y coordinate of the upper- left corner
-	 * @param width- the width of this component
-	 * @param height- the height of this component
 	 * @return true if this Area intersects rhs
 	 */
 	public boolean collideDetection(ICollidable rhs){
 		
 //		TODO- new parameter; rotationvector
-		affineTransform.rotate(vecx, vecy, x, y);	//this or the angle of rotation in radians
+		affineTransform.rotation(vecx, vecy, rect2D.getCenterX(), rect2D.getCenterY());	//this or the angle of rotation in radius
 		
-//		TODO- set size at area, not rect2D
-		rect2D.setRect(position.x, position.y, size.getWidth(), size.getHeight());
+//		affineTransform.createTransformedShape(shape)- shape rotates and then creates a NEW Shape
+//			Creates a new Area object that contains the same geometry as this Area transformed by the specified AffineTransform.
+//		creates a new Shape
+//		Rectangle2D r= (Rectangle2D)affineTransform.createTransformedShape(rect2D);
 		
-//		Update area, how?
-		area.transform(affineTransform);
-
-		return area.intersects(rhs.getBoundingBox());
+		updateBoundingBox();
+		
+		return boundingBox.intersects(rhs.getBoundingBox());
 	}
-	
-//	the boundingbox should be an Area, which means this method should return Area
 	public Area getBoundingBox() {
 		updateBoundingBox();
 		return boundingBox;
 	}
-	public void updateBoundingBox(){
-		boundingBox.setRect(position.x, position.y, size.getWidth(), size.getHeight());
+
+	@Override
+	public void updateBoundingBox() {
+		boundingBox.transform(affineTransform);
 	}
 
 }
