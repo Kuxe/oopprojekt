@@ -19,6 +19,7 @@ class MoveComponent {
 	private Vector2f velocity;
     private Vector2f acceleration;
     private Vector2f direction;
+	private Float rotationVelocity;
 	
 	/**
 	 * A constructor for creating a MoveComponent. The parameters are the instanses 
@@ -28,17 +29,20 @@ class MoveComponent {
 	 * @param acceleration
 	 * @param direction 
 	 */
-	public MoveComponent(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction){
+	public MoveComponent(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, Float rotationVelocity){
 		this.position = position;
 		this.velocity = velocity;
         this.acceleration = acceleration;
 		this.direction = direction;
+		this.rotationVelocity = rotationVelocity;
 	}
 	
 	/**
 	* Moves the component
 	*/
 	public void move(){
+		VecmathUtils.rotateVectorV2(velocity, rotationVelocity);
+		VecmathUtils.setAngleFromVector(acceleration, velocity);
 		velocity.add(acceleration);
         position.add(velocity);
 	}
