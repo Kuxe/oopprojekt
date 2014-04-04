@@ -142,11 +142,11 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 		return this.damage;
 	}
 
-	public double getHeight() {
+	public int getHeight() {
 		return this.height;
 	}
 
-	public double getWidth() {
+	public int getWidth() {
 		return this.width;
 	}
 
