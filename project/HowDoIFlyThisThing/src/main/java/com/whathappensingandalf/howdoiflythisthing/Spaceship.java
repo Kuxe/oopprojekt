@@ -17,7 +17,7 @@ import javax.vecmath.Vector2f;
  * implements IMovable and IThrustable as it will be able to move and doing it 
  * by using a number of Thrusters.
  */
-public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObject{
+public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObject, IDrawable{
 	/**
 	 * Different components for avoiding duplicate code.
 	 */
@@ -182,7 +182,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 
 	public String getType() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return type.SPASESHIP.toString();
 	}
 	
     
@@ -245,5 +245,9 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	@Override
 	public Rectangle2D getBoundingBox() {
 		return colliComp.getBoundingBox();
+	}
+	
+	public Point2f getPossition() {
+		return this.position;
 	}
 }
