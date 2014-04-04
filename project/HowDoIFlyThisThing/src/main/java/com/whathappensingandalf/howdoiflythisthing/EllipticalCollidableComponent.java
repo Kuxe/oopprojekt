@@ -40,10 +40,10 @@ public class EllipticalCollidableComponent implements ICollidableComponent{
 		
 		ellipse2D.setFrame(position.x, position.y, size.getWidth(), size.getHeight());
 		
-		return ellipse2D.intersects(rhs.getBoundingBox(rhs.getPosition().x, rhs.getPosition().y, rhs.getWidth(), rhs.getHeight()));
+		return ellipse2D.intersects(rhs.getBoundingBox());
 	}
 	public Rectangle2D getBoundingBox(){
-		updateBoundingBox(position, size.getWidth(), size.getHeight());
+		updateBoundingBox();
 		return boundingBox;
 	}
 	public void updateBoundingBox(){
