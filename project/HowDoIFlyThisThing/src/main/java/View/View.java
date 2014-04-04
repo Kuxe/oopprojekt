@@ -71,7 +71,7 @@ public class View extends BasicGame implements ApplicationListener{
 //			System.out.println("Dir X: "+comp.getDirection().y);
 //			g.translate(comp.getPossition().x, comp.getDirection().y);
 //			g.drawImage(spaceship, 100, 150, Color.blue);
-//			g.drawImage(spaceship, comp.getPossition().x*10, comp.getPossition().y*10);
+			g.drawImage(spaceship, comp.getPossition().x*10, comp.getPossition().y*10);
 		}
 		System.out.println("-------------------------------------------------");
 		
@@ -79,11 +79,11 @@ public class View extends BasicGame implements ApplicationListener{
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
-//		try {
-//			spaceship=new Image("C:/Users/Mathias/Pictures/HDFTT/Spaceship.png");
-//		} catch (SlickException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			spaceship=new Image("C:/Users/Mathias/Pictures/HDFTT/Spaceship.png");
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
