@@ -1,6 +1,8 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.awt.Dimension;
 import java.awt.geom.Area;
+import java.awt.geom.Dimension2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
@@ -9,8 +11,7 @@ import javax.vecmath.Point2f;
 public class EllipticalCollidableComponent implements ICollidableComponent{
 
 	private Point2f position;
-	private double width;
-	private double height;
+	private Dimension2D size;
 	private Area area;
 	private Ellipse2D ellipse2D;
 	private Rectangle2D boundingBox;
@@ -20,7 +21,8 @@ public class EllipticalCollidableComponent implements ICollidableComponent{
 	 * @param width
 	 * @param height
 	 */
-	public EllipticalCollidableComponent(Point2f position, double width, double height){
+	public EllipticalCollidableComponent(Point2f position, int width, int height){
+		size= new Dimension(width, height);
 		ellipse2D= new Ellipse2D.Double(position.x, position.y, width, height);
 		area= new Area(ellipse2D);
 	}
@@ -34,23 +36,17 @@ public class EllipticalCollidableComponent implements ICollidableComponent{
 	 * @param height- the height of this component
 	 * @return true if this Area intersects rhs
 	 */
-	public boolean collideDetection(ICollidable rhs, double x, double y, double width, double height){
+	public boolean collideDetection(ICollidable rhs){
 		
-//		TODO- the row below is wrong, figure something out
-		ellipse2D.setFrame(x, y, width, height);
+		ellipse2D.setFrame(position.x, position.y, size.getWidth(), size.getHeight());
 		
-//		TODO- fix parameters for boundingbox, form were do we get them?
-		if(ellipse2D.intersects(rhs.getBoundingBox(rhs.getPosition().x, rhs.getPosition().y, rhs.getWidth(), rhs.getHeight()))){
-			return true;
-		}else{
-			return false;
-		}
+		return ellipse2D.intersects(rhs.getBoundingBox(rhs.getPosition().x, rhs.getPosition().y, rhs.getWidth(), rhs.getHeight()));
 	}
-	public Rectangle2D getBoundingBox(double x, double y, double width, double height){
-		updateBoundingBox(x, y, width, height);
+	public Rectangle2D getBoundingBox(){
+		updateBoundingBox(position, size.getWidth(), size.getHeight());
 		return boundingBox;
 	}
-	public void updateBoundingBox(double x, double y, double width, double height){
-		boundingBox.setRect(x, y, width, height);
+	public void updateBoundingBox(){
+		boundingBox.setRect(position.x, position.y, size.getWidth(), size.getHeight());
 	}
 }

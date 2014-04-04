@@ -1,6 +1,8 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.awt.Dimension;
 import java.awt.geom.Area;
+import java.awt.geom.Dimension2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 
@@ -13,8 +15,7 @@ import javax.vecmath.Point2f;
 public class CollidableComponent implements ICollidableComponent{
 	
 	private Point2f position;
-	private double width;
-	private double height;
+	private Dimension2D size;
 	private Area area;
 	private Rectangle2D rect2D;
 	private Rectangle2D boundingBox;
@@ -24,10 +25,9 @@ public class CollidableComponent implements ICollidableComponent{
 	 * @param width
 	 * @param height
 	 */
-	public CollidableComponent(Point2f position, double width, double height){
+	public CollidableComponent(Point2f position, int width, int height){
 		this.position= position;
-		this.width= width;
-		this.height= height;
+		size= new Dimension(width, height);
 		rect2D= new Rectangle2D.Double(position.x, position.y, width, height);
 		area= new Area(rect2D);
 	}
@@ -41,9 +41,9 @@ public class CollidableComponent implements ICollidableComponent{
 	 * @param height- the height of this component
 	 * @return true if this Area intersects rhs
 	 */
-	public boolean collideDetection(ICollidable rhs, double x, double y, double width, double height){
+	public boolean collideDetection(ICollidable rhs){
 		
-		rect2D.setRect(x, y, width, height);
+		rect2D.setRect(position.x, position.y, size.getWidth(), size.getHeight());
 
 		if(rect2D.intersects(rhs.getBoundingBox(rhs.getPosition().x, rhs.getPosition().y, rhs.getWidth(), rhs.getHeight()))){
 			return true;
@@ -51,11 +51,11 @@ public class CollidableComponent implements ICollidableComponent{
 			return false;
 		}
 	}
-	public Rectangle2D getBoundingBox(double x, double y, double width, double height) {
-		updateBoundingBox(x, y, width, height);
+	public Rectangle2D getBoundingBox() {
+		updateBoundingBox(position, size.getWidth(), size.getHeight());
 		return boundingBox;
 	}
-	public void updateBoundingBox(double x, double y, double width, double height){
-		boundingBox.setRect(x, y, width, height);
+	public void updateBoundingBox(){
+		boundingBox.setRect(position.x, position.y, size.getWidth(), size.getHeight());
 	}
 }
