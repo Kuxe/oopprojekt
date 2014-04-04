@@ -1,5 +1,6 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 
 import javax.vecmath.Point2f;
@@ -14,10 +15,10 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable{
 	
 	private CollidableComponent colliComp;
 	Point2f position;
-	double width;
-	double height;
+	int width;
+	int height;
 	
-	public Asteroid (Point2f position, double width, double height){
+	public Asteroid (Point2f position, int width, int height){
 		this.position = position;
 		this.width = width;
 		this.height = height;
@@ -28,11 +29,11 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable{
 		return this.colliComp.collideDetection(rhs);
 	}
 
-	public double getHeight() {
+	public int getHeight() {
 		return this.height;
 	}
 
-	public double getWidth() {
+	public int getWidth() {
 		return this.width;
 	}
 
@@ -40,7 +41,7 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable{
 		return this.position;
 	}
 
-	public Rectangle2D getBoundingBox() {
+	public Area getBoundingBox() {
 		return this.colliComp.getBoundingBox();
 	}
 
