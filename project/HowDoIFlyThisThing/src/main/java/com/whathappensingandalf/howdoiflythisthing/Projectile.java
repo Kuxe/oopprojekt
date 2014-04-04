@@ -13,7 +13,7 @@ import javax.vecmath.Vector2f;
  *
  */
 
-public class Projectile implements IMovable, ICollidable, IGameObject{
+public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable{
 	
 	private double width;
 	private double height;
@@ -41,13 +41,17 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	 * @param velocity
 	 * @param acceleration
 	 * @param direction
+	 * @param width
+	 * @param height
 	 */
 	public Projectile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, double width, double height){
 		this.velocity= velocity;
 		this.acceleration= acceleration;
 		this.direction= direction;
 		this.position= position;
-		mC= new MoveComponent(position, velocity, acceleration, direction);
+		this.width = width;
+		this.height = height;
+		mC= new MoveComponent(position, velocity, acceleration, direction, 0f);
 		colliComp = new CollidableComponent(position, width, height);
 		pcs = new PropertyChangeSupport(this);
 	}
@@ -138,15 +142,15 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	}
 
 	public double getHeight() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.height;
 	}
 
 	public double getWidth() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.width;
 	}
 
 	public String getType() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return type.PROJECTILE.toString();
 	}
 	
 	@Override
@@ -186,6 +190,11 @@ public class Projectile implements IMovable, ICollidable, IGameObject{
 	 */
     public void removePropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.removePropertyChangeListener(pcl);
+	}
+
+	@Override
+	public Point2f getPossition() {
+		return position;
 	}
 
 }//end Projectile

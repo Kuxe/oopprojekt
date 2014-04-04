@@ -36,6 +36,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
     private Vector2f direction;
 	private Float rotationVelocity;
 	private Float rotationAcceleration;
+	private final Vector2f weaponPipePosition;
 	/**
 	 * A instance of PropertyChangeSupport so that this class can be listend to.
 	 */
@@ -62,13 +63,14 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         this.acceleration = new Vector2f();
         this.direction = direction;
         this.velocity = new Vector2f(0.0f, 0.0f);
+        rotationAcceleration = 0.0f;
+        this.weaponPipePosition = new Vector2f((float)(width / 2.0f), (float)(height + 1.0f)); //Should fire from middle of spaceships just infront of it
 		this.hull=100;
-        this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction);
+        this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, rotationAcceleration);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
-		this.armsComponent = new ArmsComponent(this.position, velocity, acceleration, this.direction);
+		this.armsComponent = new ArmsComponent(this.position, velocity, acceleration, this.direction, weaponPipePosition);
 		this.colliComp = new CollidableComponent(position, width, height);
     }
-	
 	/**
 	 * {@inheritDoc}
 	 */
@@ -174,11 +176,11 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 
 	public double getHeight() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.height;
 	}
 
 	public double getWidth() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.width;
 	}
 
 	public String getType() {

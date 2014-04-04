@@ -18,19 +18,21 @@ public class Thruster {
 	 */
 	private Vector2f direction;
 	private Boolean active;
-	private int magnitude;
-	private Vector2f temp;
+	private float rotationAcceleration;
 	
 	/**
 	 * A constructor creating a thruster with a direction given by the parameters.
 	 * @param x
 	 * @param y 
+	 * @param magnitude 
+	 * @param rotation 
 	 */
-	public Thruster(float x, float y){
+	public Thruster(float x, float y, float magnitude, float rotation){
 		this.direction = new Vector2f(x, y);
 		this.direction.normalize();
+		this.direction.scale(magnitude);
+		this.rotationAcceleration = rotation;
 		this.active = false;
-		this.magnitude  =1;
 	}
 	
 	/**
@@ -52,7 +54,8 @@ public class Thruster {
 	 * @param magnitude
 	*/
 	public void setMagnitude(int magnitude){
-		this.magnitude=magnitude;
+		this.direction.normalize();
+		this.direction.scale(magnitude);
 	}
 	
 	/**
@@ -70,17 +73,18 @@ public class Thruster {
 //		}
 //	} 
 	public Vector2f getAcceleration(){
-		temp.scale(0);
 		if(active){
-			temp.scale(magnitude, new Vector2f(0,direction.y));
+			return this.direction;
 		}
-		return temp;
+		else{
+			return this.direction;
+		}
 		
 	}
 	
 	public Float getRotationAcceleration(){
 		if(active){
-			return direction.x;
+			return this.rotationAcceleration;
 		}else{
 			return 0.0f;
 		}

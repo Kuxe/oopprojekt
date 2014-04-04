@@ -1,13 +1,15 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import java.awt.geom.Rectangle2D;
+
 import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
 
 /**
  *
  * @author Martin Nilsson
  */
-public class Asteroid implements ICollidable, IGameObject{
+public class Asteroid implements ICollidable, IGameObject, IDrawable{
 
 	
 	private CollidableComponent colliComp;
@@ -23,7 +25,7 @@ public class Asteroid implements ICollidable, IGameObject{
 	}
 	
 	public boolean collideDetection(ICollidable rhs) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.colliComp.collideDetection(rhs);
 	}
 
 	public double getHeight() {
@@ -39,7 +41,7 @@ public class Asteroid implements ICollidable, IGameObject{
 	}
 
 	public Rectangle2D getBoundingBox() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.colliComp.getBoundingBox();
 	}
 
 	public String getType() {
@@ -60,5 +62,15 @@ public class Asteroid implements ICollidable, IGameObject{
 	
 	public void visit(Asteroid asteroid) {
 		//Nothing should happen.
+	}
+
+	@Override
+	public Point2f getPossition() {
+		return position;
+	}
+
+	@Override
+	public Vector2f getDirection() {
+		return new Vector2f(0,1);
 	}
 }
