@@ -1,5 +1,6 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -28,8 +29,8 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	/**
 	 * The nessesary information for moving the Spaceship.
 	 */
-    private double width;
-	private double height;
+    private int width;
+	private int height;
     private Point2f position;
 	private Vector2f velocity;
     private Vector2f acceleration;
@@ -57,7 +58,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 * @param width
 	 * @param height 
 	 */
-    public Spaceship(Point2f position, Vector2f direction, double width, double height){
+    public Spaceship(Point2f position, Vector2f direction, int width, int height){
 		this.pcs = new PropertyChangeSupport(this);
         this.position = position;
         this.acceleration = new Vector2f();
@@ -175,11 +176,11 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		this.rotationAcceleration=rotationAcceleration;
 	}
 
-	public double getHeight() {
+	public int getHeight() {
 		return this.height;
 	}
 
-	public double getWidth() {
+	public int getWidth() {
 		return this.width;
 	}
 
@@ -245,7 +246,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		return colliComp.collideDetection(rhs);
 	}
 	@Override
-	public Rectangle2D getBoundingBox() {
+	public Area getBoundingBox() {
 		return colliComp.getBoundingBox();
 	}
 	
