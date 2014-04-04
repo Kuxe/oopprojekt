@@ -18,9 +18,11 @@ public class VecmathUtils {
 	}
 	public static void rotateVectorV2(Vector2f vector, float angle){
 		float length = vector.length();
-		vector.normalize();
-		vector.set((float)Math.cos(angle+Math.acos(vector.x)), (float)Math.sin(angle+Math.acos(vector.x)));
-		vector.scale(length);
+		if(length != 0.0f) {
+			vector.normalize();
+			vector.set((float)Math.cos(angle+Math.acos(vector.x)), (float)Math.sin(angle+Math.acos(vector.x)));
+			vector.scale(length);
+		}
 	}
 	
 	/**
