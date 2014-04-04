@@ -1,5 +1,6 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 
 import javax.vecmath.Point2f;
@@ -30,7 +31,7 @@ public interface ICollidable extends IListable{
 	/**
 	 * @return
 	 */
-	public Rectangle2D getBoundingBox();
+	public Area getBoundingBox();
 	/**
 	 * @return the type of this component
 	 */

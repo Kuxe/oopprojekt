@@ -10,60 +10,53 @@ import java.awt.geom.Rectangle2D;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
-/**
- * @author Francine
- *
- */
-public class CollidableComponent implements ICollidableComponent{
-	
+public class EllipticalCollidableComponent implements ICollidableComponent{
+
 	private Point2f position;
 	private Dimension2D size;
 	private Vector2f direction;
-	private Rectangle2D rect2D;	//Only used to create boundingBox
 	private Area boundingBox;
+	private Ellipse2D ellipse2D;
 	private AffineTransform affineTransform;
 	/**
-	 * Constructs a CollidableComponent and creates a Rectangle2D representing this component
+	 * Constructs a CollidableComponent and creates a Ellipse2D representing this component
 	 * @param position
 	 * @param width
 	 * @param height
 	 */
-	public CollidableComponent(Point2f position, Vector2f direction, int width, int height){
+	public EllipticalCollidableComponent(Point2f position, Vector2f direction, int width, int height){
 		this.position= position;
 		this.direction= direction;
 		affineTransform= new AffineTransform();
 		size= new Dimension(width, height);
-		rect2D= new Rectangle2D.Double(position.x, position.y, width, height);
-		boundingBox= new Area(rect2D);
+		ellipse2D= new Ellipse2D.Double(position.x, position.y, width, height);
+		boundingBox= new Area(ellipse2D);
 	}
-	
+		
 	/**
 	 * Tests if this Area have collide with a Rectangle2D
 	 * @param rhs- the ICollidable whose Rectangle2D to compare with
+	 * @param x- the x coordinate of the upper- left corner
+	 * @param y- the y coordinate of the upper- left corner
+	 * @param width- the width of this component
+	 * @param height- the height of this component
 	 * @return true if this Area intersects rhs
 	 */
 	public boolean collideDetection(ICollidable rhs){
 		
 //		TODO- new parameter; rotationvector
-		affineTransform.rotate(direction.x, direction.y, rect2D.getCenterX(), rect2D.getCenterY());	//this or the angle of rotation in radius
+		affineTransform.rotate(direction.x, direction.y, ellipse2D.getCenterX(), ellipse2D.getCenterY());	//this or the angle of rotation in radius
 		
-//		affineTransform.createTransformedShape(shape)- shape rotates and then creates a NEW Shape
-//			Creates a new Area object that contains the same geometry as this Area transformed by the specified AffineTransform.
-//		creates a new Shape
-//		Rectangle2D r= (Rectangle2D)affineTransform.createTransformedShape(rect2D);
+//		ellipse2D.setFrame(position.x, position.y, size.getWidth(), size.getHeight());
 		
 		updateBoundingBox();
-		
-		return boundingBox.intersects(rhs.getBoundingBox().getBounds2D());
+		return ellipse2D.intersects(rhs.getBoundingBox().getBounds2D());
 	}
-	public Area getBoundingBox() {
+	public Area getBoundingBox(){
 		updateBoundingBox();
 		return boundingBox;
 	}
-
-	@Override
-	public void updateBoundingBox() {
+	public void updateBoundingBox(){
 		boundingBox.transform(affineTransform);
 	}
-
 }
