@@ -25,7 +25,7 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable{
 	}
 	
 	public boolean collideDetection(ICollidable rhs) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.colliComp.collideDetection(rhs);
 	}
 
 	public double getHeight() {
@@ -41,7 +41,7 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable{
 	}
 
 	public Rectangle2D getBoundingBox() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.colliComp.getBoundingBox();
 	}
 
 	public String getType() {

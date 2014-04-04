@@ -1,4 +1,4 @@
-package com.whathappensingandalf.howdoiflythisthing;
+package utils;
 
 import javax.vecmath.*;
 
