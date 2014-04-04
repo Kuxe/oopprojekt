@@ -14,7 +14,6 @@ public class ViewThred extends Thread implements Runnable{
 //	}
 	
 	public void run(){
-		System.out.println("dasfgd");
 		v.start();
 	}
 	

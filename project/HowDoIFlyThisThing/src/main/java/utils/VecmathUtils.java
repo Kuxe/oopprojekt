@@ -1,4 +1,4 @@
-package com.whathappensingandalf.howdoiflythisthing;
+package utils;
 
 import javax.vecmath.*;
 
@@ -13,5 +13,14 @@ public class VecmathUtils {
 		float length = vector.length();
 		vector.set((float)Math.cos(angle), (float)Math.sin(angle));
 		vector.scale(length);
+	}
+	
+	/**
+	 * Rotates vector to have same angle as direction
+	 * @param vec1
+	 * @param vec2
+	 */
+	public static void setAngleFromVector(Vector2f vector, Vector2f direction) {
+		rotateVectorV2(vector, vector.angle(direction));
 	}
 }

@@ -71,7 +71,7 @@ public class View extends BasicGame implements ApplicationListener{
 //			System.out.println("Dir X: "+comp.getDirection().y);
 //			g.translate(comp.getPossition().x, comp.getDirection().y);
 //			g.drawImage(spaceship, 100, 150, Color.blue);
-			g.drawImage(spaceship, comp.getPossition().x+100, comp.getPossition().y+100);
+			g.drawImage(spaceship, comp.getPossition().x, comp.getPossition().y);
 		}
 		
 	}

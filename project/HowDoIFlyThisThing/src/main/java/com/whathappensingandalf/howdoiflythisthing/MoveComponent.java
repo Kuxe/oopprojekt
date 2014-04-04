@@ -1,5 +1,6 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import utils.VecmathUtils;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
@@ -20,7 +21,6 @@ class MoveComponent {
     private Vector2f acceleration;
     private Vector2f direction;
 	private Float rotationVelocity;
-	private Float rotationAcceleration;
 	
 	/**
 	 * A constructor for creating a MoveComponent. The parameters are the instanses 
@@ -36,13 +36,14 @@ class MoveComponent {
         this.acceleration = acceleration;
 		this.direction = direction;
 		this.rotationVelocity = rotationVelocity;
-		this.rotationAcceleration = rotationAcceleration;
 	}
 	
 	/**
 	* Moves the component
 	*/
 	public void move(){
+		VecmathUtils.rotateVectorV2(velocity, rotationVelocity);
+		VecmathUtils.setAngleFromVector(acceleration, velocity);
 		velocity.add(acceleration);
         position.add(velocity);
 	}
