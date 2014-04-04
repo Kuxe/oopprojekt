@@ -162,11 +162,8 @@ public class Gameworld implements PropertyChangeListener{
 	 * Moves all objects that implements IMoveable
 	 */
 	private void movableUpdate(){
-		int i = 1;
 		for(IMovable ma : moveables.values()){
 			ma.move();
-			System.out.println(i + ": " + ma.getPosition());
-			i+=1;
 		}
 	}
 	

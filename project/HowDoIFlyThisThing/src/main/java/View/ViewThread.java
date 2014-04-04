@@ -1,9 +1,9 @@
 package View;
 
-public class ViewThred extends Thread implements Runnable{
+public class ViewThread extends Thread implements Runnable{
 	public View v;
 	
-	public ViewThred(){
+	public ViewThread(){
 		v=new View("How do i fly this?");
 	}
 	

@@ -63,27 +63,27 @@ public class View extends BasicGame implements ApplicationListener{
 //		g.rotate(25, 25, f);
 //		f++;
 		for(IDrawable comp: renderObjects.values()){
-			System.out.println();
+//			System.out.println();
 //			System.out.println("Name: "+comp.getType());
-			System.out.println("Pos X: "+comp.getPossition().x);
-			System.out.println("Pos Y: "+comp.getPossition().y);
+//			System.out.println("Pos X: "+comp.getPossition().x);
+//			System.out.println("Pos Y: "+comp.getPossition().y);
 //			System.out.println("Dir X: "+comp.getDirection().x);
 //			System.out.println("Dir X: "+comp.getDirection().y);
 //			g.translate(comp.getPossition().x, comp.getDirection().y);
 //			g.drawImage(spaceship, 100, 150, Color.blue);
-//			g.drawImage(spaceship, comp.getPossition().x*10, comp.getPossition().y*10);
+			g.drawImage(spaceship, comp.getPossition().x, comp.getPossition().y);
 		}
-		System.out.println("-------------------------------------------------");
+//		System.out.println("-------------------------------------------------");
 		
 	}
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
-//		try {
-//			spaceship=new Image("C:/Users/Mathias/Pictures/HDFTT/Spaceship.png");
-//		} catch (SlickException e) {
-//			e.printStackTrace();
-//		}
+		try {
+			spaceship=new Image("resources/Spaceship.png");
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
