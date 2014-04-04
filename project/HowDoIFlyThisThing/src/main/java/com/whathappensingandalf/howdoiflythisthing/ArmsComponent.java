@@ -43,6 +43,12 @@ public class ArmsComponent {
 		tempPoint.add(point);
 		tempPoint.add(weaponPipePosition);
 		
-		return ProjectileFactory.create(tempPoint, velocity, acceleration, direction, 1, 1);
+		float baseSpeedMagnitude = 1.0f;
+		Vector2f baseSpeed = new Vector2f(direction);
+		baseSpeed.scale(baseSpeedMagnitude);
+		baseSpeed.normalize();
+		System.out.println(baseSpeed);
+		baseSpeed.add(velocity);
+		return ProjectileFactory.create(tempPoint, baseSpeed, acceleration, direction, 1, 1);
 	}
 }
