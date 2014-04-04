@@ -12,7 +12,7 @@ import com.whathappensingandalf.howdoiflythisthing.Projectile;
  *
  */
 public class ProjectileFactory {
-	public static Projectile create(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, double width, double height){
+	public static Projectile create(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, int width, int height){
 		return new Projectile(new Point2f(position), new Vector2f(velocity), new Vector2f(acceleration), new Vector2f(direction), width, height);
 		
 	}
