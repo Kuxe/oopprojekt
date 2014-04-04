@@ -87,9 +87,6 @@ public class Gameworld implements PropertyChangeListener{
 		}
 		//Also remove the list containing the hashMaps from removalHashMap
 		removalMap.remove(key);
-		
-		//Don't forget to remove the object from listOfObjectsToBeRemoved
-		listOfObjectsToBeRemoved.remove(key);
 	}
 	
 	/**
@@ -99,6 +96,9 @@ public class Gameworld implements PropertyChangeListener{
 		for(Object object : listOfObjectsToBeRemoved) {
 			removeObjectFromMaps(object);
 		}
+		
+		//Objects are now removed and only left removal is form the list iteself
+		listOfObjectsToBeRemoved.clear();
 	}
 
 	/**
