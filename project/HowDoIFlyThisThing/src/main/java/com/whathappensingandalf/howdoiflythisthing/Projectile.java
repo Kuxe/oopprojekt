@@ -1,5 +1,6 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -44,7 +45,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	 * @param width
 	 * @param height
 	 */
-	public Projectile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, double width, double height){
+	public Projectile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, int width, int height){
 		this.velocity= velocity;
 		this.acceleration= acceleration;
 		this.direction= direction;
