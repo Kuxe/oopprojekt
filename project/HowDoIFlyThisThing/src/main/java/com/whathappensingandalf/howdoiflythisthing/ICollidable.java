@@ -19,11 +19,11 @@ public interface ICollidable extends IListable{
 	/**
 	 * @return the height of this component
 	 */
-	public double getHeight();
+	public int getHeight();
 	/**
 	 * @return the width of this component
 	 */
-	public double  getWidth();
+	public int  getWidth();
 	/**
 	 * @return the position of this component
 	 */
