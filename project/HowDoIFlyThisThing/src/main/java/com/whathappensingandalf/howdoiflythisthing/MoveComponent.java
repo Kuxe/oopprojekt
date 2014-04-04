@@ -1,5 +1,6 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import utils.VecmathUtils;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
