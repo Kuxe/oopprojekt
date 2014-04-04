@@ -45,9 +45,8 @@ public class ArmsComponent {
 		
 		float baseSpeedMagnitude = 1.0f;
 		Vector2f baseSpeed = new Vector2f(direction);
-		baseSpeed.scale(baseSpeedMagnitude);
 		baseSpeed.normalize();
-		System.out.println(baseSpeed);
+		baseSpeed.scale(baseSpeedMagnitude);
 		baseSpeed.add(velocity);
 		return ProjectileFactory.create(tempPoint, baseSpeed, acceleration, direction, 1, 1);
 	}
