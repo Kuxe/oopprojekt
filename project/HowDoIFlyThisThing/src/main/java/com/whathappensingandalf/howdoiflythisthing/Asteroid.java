@@ -22,7 +22,7 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable{
 		this.position = position;
 		this.width = width;
 		this.height = height;
-		this.colliComp = new CollidableComponent(position, width, height);
+		this.colliComp = new CollidableComponent(position, new Vector2f(1,0), width, height);
 	}
 	
 	public boolean collideDetection(ICollidable rhs) {
