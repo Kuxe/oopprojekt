@@ -12,12 +12,12 @@ import com.whathappensingandalf.howdoiflythisthing.IDrawable;
 import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 
 import View.View;
-import View.ViewThred;
+import View.ViewThread;
 
 public class Controller {
 	
 	private Gameworld model;
-	private ViewThred viewThred;
+	private ViewThread viewThread;
 	private View view;
 	
 	public Controller(){
@@ -28,8 +28,8 @@ public class Controller {
 		model.addSpaceship(spaceship1);
 		spaceship1.fireWeapon();
 		
-		viewThred=new ViewThred();
-		viewThred.start();
+		viewThread=new ViewThread();
+		viewThread.start();
 		
 		setRenderObjects(model.getIDrawables());
 		
@@ -41,7 +41,7 @@ public class Controller {
 	}
 	
 	public synchronized void setRenderObjects(Map<Object,IDrawable> list){
-		viewThred.getView().setRenderObjects(list);
+		viewThread.getView().setRenderObjects(list);
 	}
 	
 }
