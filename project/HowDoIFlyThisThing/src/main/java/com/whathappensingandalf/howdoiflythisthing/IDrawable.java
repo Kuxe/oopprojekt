@@ -10,5 +10,5 @@ public interface IDrawable {
 	
 	public Vector2f getDirection();
 	
-	public String getIdentifyer();
+	public String getIdentifier();
 }
