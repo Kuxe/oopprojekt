@@ -56,6 +56,20 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 		colliComp = new CollidableComponent(position, direction, width, height);
 		pcs = new PropertyChangeSupport(this);
 	}
+	
+	/**
+	 * Deep copy-ctor
+	 * @param spaceship
+	 */
+	public Projectile(Projectile projectile) {
+		this(
+				projectile.getPosition(), 
+				projectile.getVelocity(), 
+				projectile.getAcceleration(), 
+				projectile.getDirection(), 
+				projectile.getWidth(), 
+				projectile.getHeight());
+	}
 
 	//methods
 	/**
@@ -74,25 +88,25 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	 * {@inheritDoc}
 	 */
 	public Vector2f getVelocity() {
-		return velocity;
+		return new Vector2f(velocity.x, velocity.y);
 	}
 	/**
 	 * {@inheritDoc}
 	 */
 	public Vector2f getAcceleration() {
-		return acceleration;
+		return new Vector2f(acceleration.x, acceleration.y);
 	}
 	/**
 	 * {@inheritDoc}
 	 */
 	public Vector2f getDirection() {
-		return direction;
+		return new Vector2f(direction.x, direction.y);
 	}
 	/**
 	 * {@inheritDoc}
 	 */
 	public Point2f getPosition() {
-		return position;
+		return new Point2f(position.x, position.y);
 	}
 	/**
 	 * {@inheritDoc}
@@ -197,5 +211,8 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	public Point2f getPossition() {
 		return position;
 	}
-
+	@Override
+	public Projectile clone() {
+		return new Projectile(this);
+	}
 }//end Projectile
