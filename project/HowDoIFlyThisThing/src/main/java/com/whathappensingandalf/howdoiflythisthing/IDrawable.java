@@ -19,4 +19,6 @@ public interface IDrawable extends IListable {
 	public Vector2f getDirection();
 	
 	public String getType();
+	
+	public IDrawable clone();
 }

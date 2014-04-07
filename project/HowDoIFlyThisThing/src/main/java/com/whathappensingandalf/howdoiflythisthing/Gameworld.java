@@ -58,7 +58,11 @@ public class Gameworld implements PropertyChangeListener{
 	}
 	
 	public Map<Object, IDrawable> getIDrawables() {
-		return drawables;
+		HashMap<Object, IDrawable> map = new HashMap();
+		for(Object key : drawables.keySet()) {
+			map.put(key, drawables.get(key).clone());
+		}
+		return map;
 	}
 	
 	/**
