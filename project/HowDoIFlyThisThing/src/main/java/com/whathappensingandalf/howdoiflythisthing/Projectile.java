@@ -14,7 +14,7 @@ import javax.vecmath.Vector2f;
  *
  */
 
-public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable{
+public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable, Cloneable {
 	
 	private int width;
 	private int height;

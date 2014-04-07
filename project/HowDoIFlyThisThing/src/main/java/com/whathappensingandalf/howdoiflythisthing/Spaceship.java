@@ -18,7 +18,7 @@ import javax.vecmath.Vector2f;
  * implements IMovable and IThrustable as it will be able to move and doing it 
  * by using a number of Thrusters.
  */
-public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObject, IDrawable{
+public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObject, IDrawable, Cloneable {
 	/**
 	 * Different components for avoiding duplicate code.
 	 */
