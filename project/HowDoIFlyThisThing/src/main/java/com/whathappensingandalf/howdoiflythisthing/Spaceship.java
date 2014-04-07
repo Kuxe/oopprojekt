@@ -74,7 +74,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
     }
     
     /**
-     * Copy-constructor
+     * Deep Copy-constructor
      * @param spaceship
      */
 	public Spaceship(Spaceship spaceship) {
@@ -104,28 +104,28 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 * {@inheritDoc}
 	 */
     public Vector2f getAcceleration() {
-        return acceleration;
+        return new Vector2f(acceleration.x, acceleration.y);
     }
 	
 	/**
 	 * {@inheritDoc}
 	 */
     public Vector2f getDirection() {
-        return this.direction;
+        return new Vector2f(direction.x, direction.y);
     }
 
 	/**
 	 * {@inheritDoc}
 	 */
     public Point2f getPosition() {
-        return this.position;
+        return new Point2f(position.x, position.y);
     }
 
 	/**
 	 * {@inheritDoc}
 	 */
     public Vector2f getVelocity() {
-        return this.velocity;
+        return new Vector2f(velocity.x, velocity.y);
     }
 
 	/**
