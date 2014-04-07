@@ -206,11 +206,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
     public void removePropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.removePropertyChangeListener(pcl);
 	}
-
-	@Override
-	public Point2f getPossition() {
-		return position;
-	}
+    
 	@Override
 	public Projectile clone() {
 		return new Projectile(this);

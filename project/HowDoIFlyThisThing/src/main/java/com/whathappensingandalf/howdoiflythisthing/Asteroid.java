@@ -10,7 +10,7 @@ import javax.vecmath.Vector2f;
  *
  * @author Martin Nilsson
  */
-public class Asteroid implements ICollidable, IGameObject, IDrawable{
+public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 
 	
 	private CollidableComponent colliComp;
@@ -23,6 +23,14 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable{
 		this.width = width;
 		this.height = height;
 		this.colliComp = new CollidableComponent(position, new Vector2f(1,0), width, height);
+	}
+	
+	/**
+	 * Deep-copy CTOR
+	 * @param asteroid
+	 */
+	public Asteroid(Asteroid asteroid) {
+		this(asteroid.getPosition(), asteroid.getWidth(), asteroid.getHeight());
 	}
 	
 	public boolean collideDetection(ICollidable rhs) {
@@ -38,7 +46,7 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable{
 	}
 
 	public Point2f getPosition() {
-		return this.position;
+		return new Point2f(position.x, position.y);
 	}
 
 	public Area getBoundingBox() {
@@ -66,12 +74,11 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable{
 	}
 
 	@Override
-	public Point2f getPossition() {
-		return position;
-	}
-
-	@Override
 	public Vector2f getDirection() {
 		return new Vector2f(0,1);
+	}
+	@Override
+	public Asteroid clone() {
+		return new Asteroid(this);
 	}
 }
