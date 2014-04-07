@@ -1,5 +1,6 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -15,8 +16,8 @@ import javax.vecmath.Vector2f;
 
 public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable{
 	
-	private double width;
-	private double height;
+	private int width;
+	private int height;
 	private Vector2f velocity;
 	private Vector2f acceleration;
 	private Vector2f direction;
@@ -44,7 +45,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	 * @param width
 	 * @param height
 	 */
-	public Projectile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, double width, double height){
+	public Projectile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, int width, int height){
 		this.velocity= velocity;
 		this.acceleration= acceleration;
 		this.direction= direction;
@@ -52,7 +53,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 		this.width = width;
 		this.height = height;
 		mC= new MoveComponent(position, velocity, acceleration, direction, 0f);
-		colliComp = new CollidableComponent(position, width, height);
+		colliComp = new CollidableComponent(position, direction, width, height);
 		pcs = new PropertyChangeSupport(this);
 	}
 
@@ -141,11 +142,11 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 		return this.damage;
 	}
 
-	public double getHeight() {
+	public int getHeight() {
 		return this.height;
 	}
 
-	public double getWidth() {
+	public int getWidth() {
 		return this.width;
 	}
 
@@ -158,7 +159,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 		return colliComp.collideDetection(rhs);
 	}
 	@Override
-	public Rectangle2D getBoundingBox() {
+	public Area getBoundingBox() {
 		return colliComp.getBoundingBox();
 	}
 
