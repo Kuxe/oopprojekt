@@ -72,6 +72,14 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		this.armsComponent = new ArmsComponent(this.position, velocity, acceleration, this.direction, weaponPipePosition);
 		this.colliComp = new CollidableComponent(position, direction, width, height);
     }
+    
+    /**
+     * Copy-constructor
+     * @param spaceship
+     */
+	public Spaceship(Spaceship spaceship) {
+		this(spaceship.getPosition(),spaceship.getDirection(), spaceship.getWidth(), spaceship.getHeight());
+	}
 	/**
 	 * {@inheritDoc}
 	 */
