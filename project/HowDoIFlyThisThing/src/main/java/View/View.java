@@ -70,8 +70,10 @@ public class View extends BasicGame implements ApplicationListener{
 //			System.out.println("Dir X: "+comp.getDirection().x);
 //			System.out.println("Dir X: "+comp.getDirection().y);
 //			g.translate(comp.getPossition().x, comp.getDirection().y);
-//			g.drawImage(spaceship, 100, 150, Color.blue);
-			g.drawImage(spaceship, comp.getPossition().x, comp.getPossition().y);
+//			g.rotate(200, 200, claculateRotation(comp.getDirection()));
+			Image tmpImg=spaceship.copy();
+			tmpImg.rotate(claculateRotation(comp.getDirection()));
+			g.drawImage(tmpImg, comp.getPosition().x, comp.getPosition().y);
 		}
 //		System.out.println("-------------------------------------------------");
 		
@@ -91,6 +93,17 @@ public class View extends BasicGame implements ApplicationListener{
 	public void update(GameContainer arg0, int arg1) throws SlickException {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private float claculateRotation(Vector2f vector){
+		Vector2f ex=new Vector2f(0,1);
+		System.out.println(vector);
+		System.out.println(radinanToDegrees(vector.angle(ex)));
+		return radinanToDegrees(vector.angle(ex));
+	}
+	
+	private float radinanToDegrees(float angle){
+		return angle*57.2957795f;
 	}
 
 }
