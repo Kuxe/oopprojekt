@@ -6,7 +6,7 @@ import javax.vecmath.Vector2f;
 
 public interface IDrawable extends IListable {
 	
-	public Point2f getPossition();
+	public Point2f getPosition();
 	
 	public Vector2f getDirection();
 	
