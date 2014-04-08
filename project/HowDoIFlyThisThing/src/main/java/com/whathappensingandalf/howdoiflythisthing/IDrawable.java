@@ -18,6 +18,10 @@ public interface IDrawable extends IListable {
 	
 	public Vector2f getDirection();
 	
+	public int getHeight();
+	
+	public int getWidth();
+	
 	public String getType();
 	
 	public IDrawable clone();
