@@ -17,6 +17,7 @@ public class Thruster {
 	 * A temporary vector used for calculation.
 	 */
 	private Vector2f direction;
+	private Vector2f zero;
 	private Boolean active;
 	private float rotationAcceleration;
 	
@@ -77,7 +78,7 @@ public class Thruster {
 			return this.direction;
 		}
 		else{
-			return this.direction;
+			return this.zero;
 		}
 		
 	}
