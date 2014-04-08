@@ -182,7 +182,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	}
 
 	public void visit(Spaceship spaceship) {
-		this.remove();
+		//this.remove();
 	}
 
 	public void visit(Projectile projectile) {
