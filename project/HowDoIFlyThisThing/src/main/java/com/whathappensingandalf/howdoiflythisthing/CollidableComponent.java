@@ -61,7 +61,6 @@ public class CollidableComponent implements ICollidableComponent{
 		return boundingBox;
 	}
 
-	@Override
 	public void updateBoundingBox() {
 		boundingBox.transform(affineTransform);
 	}

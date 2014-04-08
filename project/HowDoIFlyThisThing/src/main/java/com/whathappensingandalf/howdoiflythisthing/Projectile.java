@@ -118,22 +118,18 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	public void setPosition(Point2f position) {
 		mC.setPosition(position);
 	}
-	@Override
 	public float getRotVelocity() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	@Override
 	public float getRotAcceleration() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	@Override
 	public void setRotVelocity(float rotVelocity) {
 		// TODO Auto-generated method stub
 		
 	}
-	@Override
 	public void setRotAcceleration(float rotAcceleration) {
 		// TODO Auto-generated method stub
 		
@@ -153,12 +149,9 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	public String getType() {
 		return type.PROJECTILE.toString();
 	}
-	
-	@Override
 	public boolean collideDetection(ICollidable rhs) {
 		return colliComp.collideDetection(rhs);
 	}
-	@Override
 	public Area getBoundingBox() {
 		return colliComp.getBoundingBox();
 	}
@@ -192,8 +185,6 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
     public void removePropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.removePropertyChangeListener(pcl);
 	}
-
-	@Override
 	public Point2f getPossition() {
 		return position;
 	}

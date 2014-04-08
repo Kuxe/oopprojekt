@@ -56,8 +56,6 @@ public class View extends BasicGame implements ApplicationListener{
 	public synchronized void setRenderObjects(Map<Object,IDrawable> list){
 		renderObjects=Collections.synchronizedMap(list);
 	}
-
-	@Override
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 //		g.translate(100, 100);
 //		g.rotate(25, 25, f);

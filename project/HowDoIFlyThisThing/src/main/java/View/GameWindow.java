@@ -26,8 +26,6 @@ public class GameWindow extends BasicGame{
 	public synchronized void setRenderObjects(List<IDrawable> list){
 		renderObjects=Collections.synchronizedList(list);
 	}
-
-	@Override
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 //		g.drawImage(spaceship, 100, 100);
 //		System.out.println("render");

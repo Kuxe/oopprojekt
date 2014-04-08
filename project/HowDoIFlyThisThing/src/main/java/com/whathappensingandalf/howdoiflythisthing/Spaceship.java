@@ -243,11 +243,9 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
     public void removePropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.removePropertyChangeListener(pcl);
 	}
-	@Override
 	public boolean collideDetection(ICollidable rhs) {
 		return colliComp.collideDetection(rhs);
 	}
-	@Override
 	public Area getBoundingBox() {
 		return colliComp.getBoundingBox();
 	}

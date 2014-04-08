@@ -65,12 +65,9 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable{
 		//Nothing should happen.
 	}
 
-	@Override
 	public Point2f getPossition() {
 		return position;
 	}
-
-	@Override
 	public Vector2f getDirection() {
 		return new Vector2f(0,1);
 	}
