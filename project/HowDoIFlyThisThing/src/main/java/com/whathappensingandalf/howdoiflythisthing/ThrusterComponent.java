@@ -67,4 +67,13 @@ class ThrusterComponent {
 	public void activateRightThruster(){
 		this.rightThruster.activate();
 	}
+	public void deactivateMainThruster(){
+		this.mainThruster.deactivate();
+	}
+	public void deactivateLeftThruster(){
+		this.leftThruster.deactivate();
+	}
+	public void deactivateRightThruster(){
+		this.rightThruster.deactivate();
+	}
 }

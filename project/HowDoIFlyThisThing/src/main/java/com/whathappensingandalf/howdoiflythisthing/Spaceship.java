@@ -275,4 +275,13 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	public void activateRightThruste(){
 		this.thrusterComponent.activateRightThruster();
 	}
+	public void deactivateMainThruster(){
+		this.thrusterComponent.deactivateMainThruster();
+	}
+	public void deactivateLeftThruster(){
+		this.thrusterComponent.deactivateLeftThruster();
+	}
+	public void deactivateRightThruster(){
+		this.thrusterComponent.deactivateRightThruster();
+	}
 }
