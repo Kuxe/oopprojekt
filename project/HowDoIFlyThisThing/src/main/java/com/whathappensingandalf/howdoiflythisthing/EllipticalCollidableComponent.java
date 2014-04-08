@@ -44,10 +44,8 @@ public class EllipticalCollidableComponent implements ICollidableComponent{
 	 */
 	public boolean collideDetection(ICollidable rhs){
 		
-//		TODO- new parameter; rotationvector
+//		TODO- now: rotate around upper- left corner, how get to rotation around the center- point?
 		affineTransform.rotate(direction.x, direction.y, ellipse2D.getCenterX(), ellipse2D.getCenterY());	//this or the angle of rotation in radius
-		
-//		ellipse2D.setFrame(position.x, position.y, size.getWidth(), size.getHeight());
 		
 		updateBoundingBox();
 		return ellipse2D.intersects(rhs.getBoundingBox().getBounds2D());

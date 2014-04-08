@@ -72,8 +72,6 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 	public void visit(Asteroid asteroid) {
 		//Nothing should happen.
 	}
-
-	@Override
 	public Vector2f getDirection() {
 		return new Vector2f(0,1);
 	}
