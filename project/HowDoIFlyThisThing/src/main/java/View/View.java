@@ -85,6 +85,7 @@ public class View extends BasicGame implements ApplicationListener{
 			tmpY=comp.getPosition().y-comp.getHeight()/2;
 			tmpImg.rotate(claculateRotation(comp.getDirection()));
 			g.drawImage(tmpImg, tmpX, tmpY);
+//			arg0.
 		}
 //		System.out.println("-------------------------------------------------");
 		
@@ -92,6 +93,8 @@ public class View extends BasicGame implements ApplicationListener{
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
+		System.out.println(this.claculateRotation(new Vector2f(0,1)));
+		System.out.println(this.claculateRotation(new Vector2f(0,-1)));
 		try {
 			spaceship=new Image("resources/Spaceship.png");
 			shott=new Image("resources/Shott.png");
@@ -104,13 +107,15 @@ public class View extends BasicGame implements ApplicationListener{
 
 	@Override
 	public void update(GameContainer arg0, int arg1) throws SlickException {
-		// TODO Auto-generated method stub
+		for(IDrawable comp: renderObjects.values()){
+			
+		}
 		
 	}
 	
 	private float claculateRotation(Vector2f vector){
 		Vector2f ex=new Vector2f(1,0);
-		Vector2f ey=new Vector2f(0,1);
+		Vector2f ey=new Vector2f(0,-1);
 		float f1,f2;
 		f2=ex.angle(vector);
 		f1=ey.angle(vector);
