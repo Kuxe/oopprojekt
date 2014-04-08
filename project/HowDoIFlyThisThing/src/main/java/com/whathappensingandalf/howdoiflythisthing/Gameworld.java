@@ -163,7 +163,6 @@ public class Gameworld implements PropertyChangeListener{
 	}
 	
 	public void addAsteroid(Asteroid asteroid) {
-		asteroid.addPropertyChangeListener(this);
 		collidables.put(asteroid, asteroid);
 		drawables.put(asteroid, asteroid);
 		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
