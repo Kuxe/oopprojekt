@@ -64,7 +64,8 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         this.acceleration = new Vector2f();
         this.direction = direction;
         this.velocity = new Vector2f(0.0f, 0.0f);
-        rotationAcceleration = 0.0f;
+        rotationAcceleration = new Float(0.0f);
+        rotationVelocity = new Float(0.0f);
         this.weaponPipePosition = new Vector2f(51, 51); //Should fire from middle of spaceships just infront of it
 		this.hull=100;
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, rotationAcceleration);
@@ -84,6 +85,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 * {@inheritDoc}
 	 */
     public void move() {
+		this.calculateThrust();
         this.moveComponent.move();
     }
 	
@@ -198,8 +200,6 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		return type.SPASESHIP.toString();
 	}
 	
-    
-    
     public ArmsComponent getWeapon() {
         return this.armsComponent;
     }
@@ -266,5 +266,24 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	@Override
 	public Spaceship clone() {
 		return new Spaceship(this);
+	}
+	
+	public void activateMainThruste(){
+		this.thrusterComponent.activateMainThruster();
+	}
+	public void activateLeftThruste(){
+		this.thrusterComponent.activateLeftThruster();
+	}
+	public void activateRightThruste(){
+		this.thrusterComponent.activateRightThruster();
+	}
+	public void deactivateMainThruster(){
+		this.thrusterComponent.deactivateMainThruster();
+	}
+	public void deactivateLeftThruster(){
+		this.thrusterComponent.deactivateLeftThruster();
+	}
+	public void deactivateRightThruster(){
+		this.thrusterComponent.deactivateRightThruster();
 	}
 }
