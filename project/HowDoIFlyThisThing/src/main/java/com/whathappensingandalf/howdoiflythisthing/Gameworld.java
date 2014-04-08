@@ -211,6 +211,7 @@ public class Gameworld implements PropertyChangeListener{
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_FIRE.toString())) {
 			addProjectile((Projectile)evt.getOldValue());
 		} else if(evt.getPropertyName().equals(Projectile.Message.PROJECTILE_DIE.toString())) {
+			System.out.println(evt.getPropertyName());
 			listOfObjectsToBeRemoved.add(evt.getSource());
 		}
 		

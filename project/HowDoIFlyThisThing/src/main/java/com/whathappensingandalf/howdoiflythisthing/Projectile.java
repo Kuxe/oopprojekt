@@ -186,7 +186,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	}
 
 	public void visit(Projectile projectile) {
-		this.remove();
+		//Do nothing
 	}
 	
 	public void visit(Asteroid asteroid) {
