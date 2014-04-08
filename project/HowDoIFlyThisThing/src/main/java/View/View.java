@@ -56,8 +56,6 @@ public class View extends BasicGame implements ApplicationListener{
 	public synchronized void setRenderObjects(Map<Object,IDrawable> list){
 		renderObjects=Collections.synchronizedMap(list);
 	}
-
-	@Override
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 //		g.translate(100, 100);
 //		g.rotate(25, 25, f);
@@ -70,8 +68,6 @@ public class View extends BasicGame implements ApplicationListener{
 //			System.out.println("Pos Y: "+comp.getPossition().y);
 //			System.out.println("Dir X: "+comp.getDirection().x);
 //			System.out.println("Dir X: "+comp.getDirection().y);
-//			g.translate(comp.getPossition().x, comp.getDirection().y);
-//			g.rotate(200, 200, claculateRotation(comp.getDirection()));
 			float tmpX,tmpY;
 			Image tmpImg;
 			if(comp.getType()=="SPACESHIP"){
@@ -121,16 +117,11 @@ public class View extends BasicGame implements ApplicationListener{
 		float f1,f2;
 		f2=ex.angle(vector);
 		f1=ey.angle(vector);
-		if(f1<Math.PI/2 && f2<Math.PI/2){
+		if(f2<Math.PI/2){
 			return this.radinanToDegrees(f1);
-		}else if(f1>Math.PI/2 && f2<Math.PI/2){
-			return this.radinanToDegrees(f1);
-		}else if(f1>Math.PI/2 && f2>Math.PI/2){
-			return this.radinanToDegrees((float)(2*Math.PI-f1));
 		}else{
 			return this.radinanToDegrees((float)(2*Math.PI-f1));
 		}
-
 //		return radinanToDegrees(vector.angle(ex));
 	}
 	

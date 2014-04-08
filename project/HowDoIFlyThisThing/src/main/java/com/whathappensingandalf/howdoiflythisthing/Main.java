@@ -5,7 +5,6 @@ import javax.vecmath.Vector2f;
 
 import controller.Controller;
 import View.View;
-
 /**
  * 
  * @author Kuxe
