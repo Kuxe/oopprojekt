@@ -72,10 +72,10 @@ public class View extends BasicGame implements ApplicationListener{
 //			g.translate(comp.getPossition().x, comp.getDirection().y);
 //			g.rotate(200, 200, claculateRotation(comp.getDirection()));
 			Image tmpImg;
-			if(comp.getType()=="SPASESHIP"){
+			if(comp.getType()=="SPACESHIP"){
 				tmpImg=spaceship.copy();
-			}else if(comp.getType()=="ASTEROID"){
-				tmpImg=asteroid.copy();
+//			}else if(comp.getType()=="ASTEROID"){
+//				tmpImg=asteroid.copy();
 			}else{
 				tmpImg=shott.copy();
 			}
