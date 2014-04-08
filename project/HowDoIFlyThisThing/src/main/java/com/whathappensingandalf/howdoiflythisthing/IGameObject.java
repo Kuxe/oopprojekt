@@ -6,7 +6,7 @@ package com.whathappensingandalf.howdoiflythisthing;
  */
 public interface IGameObject {
 	public enum type{
-		SPASESHIP,
+		SPACESHIP,
 		PROJECTILE,
 		ASTEROID,
 		PICKUP
