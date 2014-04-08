@@ -59,15 +59,17 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 * @param height 
 	 */
     public Spaceship(Point2f position, Vector2f direction, int width, int height){
-		this.pcs = new PropertyChangeSupport(this);
+		this.width = width;
+		this.height = height;
+    	this.pcs = new PropertyChangeSupport(this);
         this.position = position;
         this.acceleration = new Vector2f(0.0f, 0.0f);
         this.direction = direction;
         this.velocity = new Vector2f(0.0f, 0.0f);
         rotationAcceleration = new Float(0.0f);
-        rotationVelocity = new Float(0.0f);
-        this.weaponPipePosition = new Vector2f(0.0f, height/2); //Should fire from middle of spaceships just infront of it
-		this.hull=100;
+        rotationVelocity = new Float(0.0f);        
+        this.weaponPipePosition = new Vector2f(0.0f, -height/2); //Should fire from middle of spaceships just infront of it
+        this.hull=100;
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, rotationAcceleration);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
 		this.armsComponent = new ArmsComponent(this.position, velocity, acceleration, this.direction, weaponPipePosition);

@@ -19,8 +19,6 @@ public class ProjectileFactory {
 		
 	}
 	public static Projectile create(Projectile p){
-		System.out.println(count);
-		count += 1;
 		return create(p.getPosition(), p.getVelocity(), p.getAcceleration(), p.getDirection(), p.getWidth(), p.getHeight());		
 	}
 }
