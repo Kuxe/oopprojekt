@@ -8,6 +8,8 @@ import java.beans.PropertyChangeSupport;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
+import utils.VecmathUtils;
+
 
 /**
  *
@@ -68,7 +70,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         this.velocity = new Vector2f(0.0f, 0.0f);
         rotationAcceleration = new Float(0.0f);
         rotationVelocity = new Float(0.0f);        
-        this.weaponPipePosition = new Vector2f(0.0f, -height/2); //Should fire from middle of spaceships just infront of it
+        this.weaponPipePosition = new Vector2f(0.0f, height/2); //Should fire from middle of spaceships just infront of it
         this.hull=100;
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, rotationAcceleration);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
@@ -88,7 +90,12 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 */
     public void move() {
 		this.calculateThrust();
+		calculateWeaponPipePosition();
         this.moveComponent.move();
+    }
+    
+    private void calculateWeaponPipePosition() {
+    	VecmathUtils.setAngleFromVector(weaponPipePosition, direction);
     }
 	
 	/**
