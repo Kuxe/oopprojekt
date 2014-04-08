@@ -102,13 +102,22 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	
 	private float claculateRotation(Vector2f vector){
-		Vector2f ex=new Vector2f(0,1);
+		Vector2f ex=new Vector2f(1,0);
+		Vector2f ey=new Vector2f(0,1);
+		float f1,f2;
+		f2=ex.angle(vector);
+		f1=ey.angle(vector);
+		if(f1<Math.PI/2 && f2<Math.PI/2){
+			return this.radinanToDegrees(f1);
+		}else if(f1>Math.PI/2 && f2<Math.PI/2){
+			return this.radinanToDegrees(f1);
+		}else if(f1>Math.PI/2 && f2>Math.PI/2){
+			return this.radinanToDegrees((float)(2*Math.PI-f1));
+		}else{
+			return this.radinanToDegrees((float)(2*Math.PI-f1));
+		}
 
-//		System.out.println(vector);
-//		System.out.println(radinanToDegrees(vector.angle(ex)));
-
-
-		return radinanToDegrees(vector.angle(ex));
+//		return radinanToDegrees(vector.angle(ex));
 	}
 	
 	private float radinanToDegrees(float angle){
