@@ -162,6 +162,16 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap.put(projectile, listOfHashMaps);
 	}
 	
+	public void addAsteroid(Asteroid asteroid) {
+		asteroid.addPropertyChangeListener(this);
+		collidables.put(asteroid, asteroid);
+		drawables.put(asteroid, asteroid);
+		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
+		listOfHashMaps.add(collidables);
+		listOfHashMaps.add(drawables);
+		removalMap.put(asteroid, listOfHashMaps);
+	}
+	
 	/**
 	 * Moves all objects that implements IMoveable
 	 */
