@@ -58,4 +58,13 @@ class ThrusterComponent {
 		this.rotationAcceleration=f;
 		this.rotationVelocity = rotationVelocity+rotationAcceleration;
 	}
+	public void activateMainThruster(){
+		this.mainThruster.activate();
+	}
+	public void activateLeftThruster(){
+		this.leftThruster.activate();
+	}
+	public void activateRightThruster(){
+		this.rightThruster.activate();
+	}
 }

@@ -198,8 +198,6 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		return type.SPASESHIP.toString();
 	}
 	
-    
-    
     public ArmsComponent getWeapon() {
         return this.armsComponent;
     }
@@ -266,5 +264,15 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	@Override
 	public Spaceship clone() {
 		return new Spaceship(this);
+	}
+	
+	public void activateMainThruste(){
+		this.thrusterComponent.activateMainThruster();
+	}
+	public void activateLeftThruste(){
+		this.thrusterComponent.activateLeftThruster();
+	}
+	public void activateRightThruste(){
+		this.thrusterComponent.activateRightThruster();
 	}
 }
