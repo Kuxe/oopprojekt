@@ -63,6 +63,7 @@ public class View extends BasicGame implements ApplicationListener{
 //		g.rotate(25, 25, f);
 //		f++;
 		for(IDrawable comp: renderObjects.values()){
+			
 //			System.out.println();
 //			System.out.println("Name: "+comp.getType());
 //			System.out.println("Pos X: "+comp.getPossition().x);
@@ -71,16 +72,21 @@ public class View extends BasicGame implements ApplicationListener{
 //			System.out.println("Dir X: "+comp.getDirection().y);
 //			g.translate(comp.getPossition().x, comp.getDirection().y);
 //			g.rotate(200, 200, claculateRotation(comp.getDirection()));
+			float tmpX,tmpY;
 			Image tmpImg;
 			if(comp.getType()=="SPACESHIP"){
 				tmpImg=spaceship.copy();
-//			}else if(comp.getType()=="ASTEROID"){
-//				tmpImg=asteroid.copy();
+			}else if(comp.getType()=="ASTEROID"){
+				tmpImg=asteroid.copy();
 			}else{
 				tmpImg=shott.copy();
 			}
+//			System.out.println(comp.getWidth());
+//			System.out.println(comp.getDirection().x);
+			tmpX=comp.getPosition().x-comp.getWidth()/2;
+			tmpY=comp.getPosition().y-comp.getHeight()/2;
 			tmpImg.rotate(claculateRotation(comp.getDirection()));
-			g.drawImage(tmpImg, comp.getPosition().x, comp.getPosition().y);
+			g.drawImage(tmpImg, tmpX, tmpY);
 		}
 //		System.out.println("-------------------------------------------------");
 		
