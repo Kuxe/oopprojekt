@@ -64,7 +64,8 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         this.acceleration = new Vector2f();
         this.direction = direction;
         this.velocity = new Vector2f(0.0f, 0.0f);
-        rotationAcceleration = 0.0f;
+        rotationAcceleration = new Float(0.0f);
+        rotationVelocity = new Float(0.0f);
         this.weaponPipePosition = new Vector2f(51, 51); //Should fire from middle of spaceships just infront of it
 		this.hull=100;
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, rotationAcceleration);
@@ -196,7 +197,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 
 	public String getType() {
-		return type.SPASESHIP.toString();
+		return type.SPACESHIP.toString();
 	}
 	
     public ArmsComponent getWeapon() {

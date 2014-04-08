@@ -27,7 +27,7 @@ public class View extends BasicGame implements ApplicationListener{
 //	private GameWindow game;
 	
 	private Map<Object,IDrawable> renderObjects;
-	private Image spaceship,shott;
+	private Image spaceship,shott,asteroid;
 	Float f=0f;
 	
 	public View(String title){
@@ -72,8 +72,10 @@ public class View extends BasicGame implements ApplicationListener{
 //			g.translate(comp.getPossition().x, comp.getDirection().y);
 //			g.rotate(200, 200, claculateRotation(comp.getDirection()));
 			Image tmpImg;
-			if(comp.getType()=="SPASESHIP"){
+			if(comp.getType()=="SPACESHIP"){
 				tmpImg=spaceship.copy();
+			}else if(comp.getType()=="ASTEROID"){
+				tmpImg=asteroid.copy();
 			}else{
 				tmpImg=shott.copy();
 			}
@@ -89,6 +91,7 @@ public class View extends BasicGame implements ApplicationListener{
 		try {
 			spaceship=new Image("resources/Spaceship.png");
 			shott=new Image("resources/Shott.png");
+			asteroid=new Image("resources/Asteroid.png");
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -102,13 +105,22 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	
 	private float claculateRotation(Vector2f vector){
-		Vector2f ex=new Vector2f(0,1);
+		Vector2f ex=new Vector2f(1,0);
+		Vector2f ey=new Vector2f(0,1);
+		float f1,f2;
+		f2=ex.angle(vector);
+		f1=ey.angle(vector);
+		if(f1<Math.PI/2 && f2<Math.PI/2){
+			return this.radinanToDegrees(f1);
+		}else if(f1>Math.PI/2 && f2<Math.PI/2){
+			return this.radinanToDegrees(f1);
+		}else if(f1>Math.PI/2 && f2>Math.PI/2){
+			return this.radinanToDegrees((float)(2*Math.PI-f1));
+		}else{
+			return this.radinanToDegrees((float)(2*Math.PI-f1));
+		}
 
-//		System.out.println(vector);
-//		System.out.println(radinanToDegrees(vector.angle(ex)));
-
-
-		return radinanToDegrees(vector.angle(ex));
+//		return radinanToDegrees(vector.angle(ex));
 	}
 	
 	private float radinanToDegrees(float angle){
