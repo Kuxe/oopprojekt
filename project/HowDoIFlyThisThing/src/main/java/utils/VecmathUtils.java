@@ -31,6 +31,10 @@ public class VecmathUtils {
 	 * @param vec2
 	 */
 	public static void setAngleFromVector(Vector2f vector, Vector2f direction) {
-		rotateVectorV2(vector, vector.angle(direction));
+		double length = Math.sqrt(Math.pow(vector.x, 2) + Math.pow(vector.y, 2));
+		Vector2f temp = new Vector2f(direction.x, direction.y);
+		temp.normalize();
+		vector.x = (float) (temp.x * length);
+		vector.y = (float) (temp.y * length);
 	}
 }
