@@ -41,7 +41,7 @@ public class Controller {
 		boolean running = true;
 		while(running) {
 			update();
-			spaceship2.fireWeapon();
+			spaceship1.fireWeapon();
 		}
 	}
 	
