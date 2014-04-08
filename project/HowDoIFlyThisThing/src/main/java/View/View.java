@@ -27,7 +27,7 @@ public class View extends BasicGame implements ApplicationListener{
 //	private GameWindow game;
 	
 	private Map<Object,IDrawable> renderObjects;
-	private Image spaceship;
+	private Image spaceship,shott;
 	Float f=0f;
 	
 	public View(String title){
@@ -71,7 +71,12 @@ public class View extends BasicGame implements ApplicationListener{
 //			System.out.println("Dir X: "+comp.getDirection().y);
 //			g.translate(comp.getPossition().x, comp.getDirection().y);
 //			g.rotate(200, 200, claculateRotation(comp.getDirection()));
-			Image tmpImg=spaceship.copy();
+			Image tmpImg;
+			if(comp.getType()=="SPASESHIP"){
+				tmpImg=spaceship.copy();
+			}else{
+				tmpImg=shott.copy();
+			}
 			tmpImg.rotate(claculateRotation(comp.getDirection()));
 			g.drawImage(tmpImg, comp.getPosition().x, comp.getPosition().y);
 		}
@@ -83,6 +88,7 @@ public class View extends BasicGame implements ApplicationListener{
 	public void init(GameContainer arg0) throws SlickException {
 		try {
 			spaceship=new Image("resources/Spaceship.png");
+			shott=new Image("resources/Shott.png");
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -97,8 +103,11 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private float claculateRotation(Vector2f vector){
 		Vector2f ex=new Vector2f(0,1);
-		System.out.println(vector);
-		System.out.println(radinanToDegrees(vector.angle(ex)));
+
+//		System.out.println(vector);
+//		System.out.println(radinanToDegrees(vector.angle(ex)));
+
+
 		return radinanToDegrees(vector.angle(ex));
 	}
 	
