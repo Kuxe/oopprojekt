@@ -42,8 +42,8 @@ class MoveComponent {
 	* Moves the component
 	*/
 	public void move(){
-		VecmathUtils.rotateVectorV2(velocity, rotationVelocity);
-		VecmathUtils.setAngleFromVector(acceleration, velocity);
+		VecmathUtils.rotateVectorV2(direction, rotationVelocity);
+		VecmathUtils.setAngleFromVector(acceleration, direction);
 		velocity.add(acceleration);
         position.add(velocity);
 	}

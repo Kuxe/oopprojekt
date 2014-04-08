@@ -18,7 +18,7 @@ import javax.vecmath.Vector2f;
  * implements IMovable and IThrustable as it will be able to move and doing it 
  * by using a number of Thrusters.
  */
-public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObject, IDrawable{
+public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObject, IDrawable, Cloneable {
 	/**
 	 * Different components for avoiding duplicate code.
 	 */
@@ -59,23 +59,35 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 * @param height 
 	 */
     public Spaceship(Point2f position, Vector2f direction, int width, int height){
-		this.pcs = new PropertyChangeSupport(this);
+		this.width = width;
+		this.height = height;
+    	this.pcs = new PropertyChangeSupport(this);
         this.position = position;
-        this.acceleration = new Vector2f();
+        this.acceleration = new Vector2f(0.0f, 0.0f);
         this.direction = direction;
         this.velocity = new Vector2f(0.0f, 0.0f);
-        rotationAcceleration = 0.0f;
-        this.weaponPipePosition = new Vector2f((float)(width / 2.0f), (float)(height + 1.0f)); //Should fire from middle of spaceships just infront of it
-		this.hull=100;
+        rotationAcceleration = new Float(0.0f);
+        rotationVelocity = new Float(0.0f);        
+        this.weaponPipePosition = new Vector2f(0.0f, -height/2); //Should fire from middle of spaceships just infront of it
+        this.hull=100;
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, rotationAcceleration);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
 		this.armsComponent = new ArmsComponent(this.position, velocity, acceleration, this.direction, weaponPipePosition);
 		this.colliComp = new CollidableComponent(position, direction, width, height);
     }
+    
+    /**
+     * Deep Copy-constructor
+     * @param spaceship
+     */
+	public Spaceship(Spaceship spaceship) {
+		this(spaceship.getPosition(),spaceship.getDirection(), spaceship.getWidth(), spaceship.getHeight());
+	}
 	/**
 	 * {@inheritDoc}
 	 */
     public void move() {
+		this.calculateThrust();
         this.moveComponent.move();
     }
 	
@@ -96,28 +108,28 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 * {@inheritDoc}
 	 */
     public Vector2f getAcceleration() {
-        return acceleration;
+        return new Vector2f(acceleration.x, acceleration.y);
     }
 	
 	/**
 	 * {@inheritDoc}
 	 */
     public Vector2f getDirection() {
-        return this.direction;
+        return new Vector2f(direction.x, direction.y);
     }
 
 	/**
 	 * {@inheritDoc}
 	 */
     public Point2f getPosition() {
-        return this.position;
+        return new Point2f(position.x, position.y);
     }
 
 	/**
 	 * {@inheritDoc}
 	 */
     public Vector2f getVelocity() {
-        return this.velocity;
+        return new Vector2f(velocity.x, velocity.y);
     }
 
 	/**
@@ -187,11 +199,9 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 
 	public String getType() {
-		return type.SPASESHIP.toString();
+		return type.SPACESHIP.toString();
 	}
 	
-    
-    
     public ArmsComponent getWeapon() {
         return this.armsComponent;
     }
@@ -252,5 +262,28 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	
 	public Point2f getPossition() {
 		return this.position;
+	}
+	@Override
+	public Spaceship clone() {
+		return new Spaceship(this);
+	}
+	
+	public void activateMainThruste(){
+		this.thrusterComponent.activateMainThruster();
+	}
+	public void activateLeftThruste(){
+		this.thrusterComponent.activateLeftThruster();
+	}
+	public void activateRightThruste(){
+		this.thrusterComponent.activateRightThruster();
+	}
+	public void deactivateMainThruster(){
+		this.thrusterComponent.deactivateMainThruster();
+	}
+	public void deactivateLeftThruster(){
+		this.thrusterComponent.deactivateLeftThruster();
+	}
+	public void deactivateRightThruster(){
+		this.thrusterComponent.deactivateRightThruster();
 	}
 }

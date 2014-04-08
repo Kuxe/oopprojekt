@@ -27,7 +27,7 @@ public class View extends BasicGame implements ApplicationListener{
 //	private GameWindow game;
 	
 	private Map<Object,IDrawable> renderObjects;
-	private Image spaceship;
+	private Image spaceship,shott,asteroid;
 	Float f=0f;
 	
 	public View(String title){
@@ -61,6 +61,7 @@ public class View extends BasicGame implements ApplicationListener{
 //		g.rotate(25, 25, f);
 //		f++;
 		for(IDrawable comp: renderObjects.values()){
+			
 //			System.out.println();
 //			System.out.println("Name: "+comp.getType());
 //			System.out.println("Pos X: "+comp.getPossition().x);
@@ -68,8 +69,22 @@ public class View extends BasicGame implements ApplicationListener{
 //			System.out.println("Dir X: "+comp.getDirection().x);
 //			System.out.println("Dir X: "+comp.getDirection().y);
 //			g.translate(comp.getPossition().x, comp.getDirection().y);
-//			g.drawImage(spaceship, 100, 150, Color.blue);
-			g.drawImage(spaceship, comp.getPossition().x, comp.getPossition().y);
+//			g.rotate(200, 200, claculateRotation(comp.getDirection()));
+			float tmpX,tmpY;
+			Image tmpImg;
+			if(comp.getType()=="SPACESHIP"){
+				tmpImg=spaceship.copy();
+			}else if(comp.getType()=="ASTEROID"){
+				tmpImg=asteroid.copy();
+			}else{
+				tmpImg=shott.copy();
+			}
+//			System.out.println(comp.getWidth());
+//			System.out.println(comp.getDirection().x);
+			tmpX=comp.getPosition().x-comp.getWidth()/2;
+			tmpY=comp.getPosition().y-comp.getHeight()/2;
+			tmpImg.rotate(claculateRotation(comp.getDirection()));
+			g.drawImage(tmpImg, tmpX, tmpY);
 		}
 //		System.out.println("-------------------------------------------------");
 		
@@ -79,6 +94,8 @@ public class View extends BasicGame implements ApplicationListener{
 	public void init(GameContainer arg0) throws SlickException {
 		try {
 			spaceship=new Image("resources/Spaceship.png");
+			shott=new Image("resources/Shott.png");
+			asteroid=new Image("resources/Asteroid.png");
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -89,6 +106,29 @@ public class View extends BasicGame implements ApplicationListener{
 	public void update(GameContainer arg0, int arg1) throws SlickException {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	private float claculateRotation(Vector2f vector){
+		Vector2f ex=new Vector2f(1,0);
+		Vector2f ey=new Vector2f(0,1);
+		float f1,f2;
+		f2=ex.angle(vector);
+		f1=ey.angle(vector);
+		if(f1<Math.PI/2 && f2<Math.PI/2){
+			return this.radinanToDegrees(f1);
+		}else if(f1>Math.PI/2 && f2<Math.PI/2){
+			return this.radinanToDegrees(f1);
+		}else if(f1>Math.PI/2 && f2>Math.PI/2){
+			return this.radinanToDegrees((float)(2*Math.PI-f1));
+		}else{
+			return this.radinanToDegrees((float)(2*Math.PI-f1));
+		}
+
+//		return radinanToDegrees(vector.angle(ex));
+	}
+	
+	private float radinanToDegrees(float angle){
+		return angle*57.2957795f;
 	}
 
 }

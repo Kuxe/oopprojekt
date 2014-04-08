@@ -58,7 +58,11 @@ public class Gameworld implements PropertyChangeListener{
 	}
 	
 	public Map<Object, IDrawable> getIDrawables() {
-		return drawables;
+		HashMap<Object, IDrawable> map = new HashMap();
+		for(Object key : drawables.keySet()) {
+			map.put(key, drawables.get(key).clone());
+		}
+		return map;
 	}
 	
 	/**
@@ -87,9 +91,6 @@ public class Gameworld implements PropertyChangeListener{
 		}
 		//Also remove the list containing the hashMaps from removalHashMap
 		removalMap.remove(key);
-		
-		//Don't forget to remove the object from listOfObjectsToBeRemoved
-		listOfObjectsToBeRemoved.remove(key);
 	}
 	
 	/**
@@ -99,6 +100,9 @@ public class Gameworld implements PropertyChangeListener{
 		for(Object object : listOfObjectsToBeRemoved) {
 			removeObjectFromMaps(object);
 		}
+		
+		//Objects are now removed and only left removal is form the list iteself
+		listOfObjectsToBeRemoved.clear();
 	}
 
 	/**
@@ -158,6 +162,15 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap.put(projectile, listOfHashMaps);
 	}
 	
+	public void addAsteroid(Asteroid asteroid) {
+		collidables.put(asteroid, asteroid);
+		drawables.put(asteroid, asteroid);
+		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
+		listOfHashMaps.add(collidables);
+		listOfHashMaps.add(drawables);
+		removalMap.put(asteroid, listOfHashMaps);
+	}
+	
 	/**
 	 * Moves all objects that implements IMoveable
 	 */
@@ -195,10 +208,10 @@ public class Gameworld implements PropertyChangeListener{
 	 * {@inheritDoc}
 	 */
 	public void propertyChange(PropertyChangeEvent evt) {
-		System.out.println(evt.getPropertyName());
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_FIRE.toString())) {
 			addProjectile((Projectile)evt.getOldValue());
 		} else if(evt.getPropertyName().equals(Projectile.Message.PROJECTILE_DIE.toString())) {
+			System.out.println(evt.getPropertyName());
 			listOfObjectsToBeRemoved.add(evt.getSource());
 		}
 		
