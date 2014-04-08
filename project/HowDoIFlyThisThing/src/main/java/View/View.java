@@ -27,7 +27,7 @@ public class View extends BasicGame implements ApplicationListener{
 //	private GameWindow game;
 	
 	private Map<Object,IDrawable> renderObjects;
-	private Image spaceship,shott;
+	private Image spaceship,shott,asteroid;
 	Float f=0f;
 	
 	public View(String title){
@@ -74,6 +74,8 @@ public class View extends BasicGame implements ApplicationListener{
 			Image tmpImg;
 			if(comp.getType()=="SPASESHIP"){
 				tmpImg=spaceship.copy();
+			}else if(comp.getType()=="ASTEROID"){
+				tmpImg=asteroid.copy();
 			}else{
 				tmpImg=shott.copy();
 			}
@@ -89,6 +91,7 @@ public class View extends BasicGame implements ApplicationListener{
 		try {
 			spaceship=new Image("resources/Spaceship.png");
 			shott=new Image("resources/Shott.png");
+			asteroid=new Image("resources/Asteroid.png");
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
