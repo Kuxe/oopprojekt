@@ -17,7 +17,7 @@ public class Thruster {
 	 * A temporary vector used for calculation.
 	 */
 	private Vector2f direction;
-	private Vector2f zero;
+	private Vector2f zero = new Vector2f(0,0);
 	private Boolean active;
 	private float rotationAcceleration;
 	
