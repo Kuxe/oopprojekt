@@ -61,7 +61,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
     public Spaceship(Point2f position, Vector2f direction, int width, int height){
 		this.pcs = new PropertyChangeSupport(this);
         this.position = position;
-        this.acceleration = new Vector2f();
+        this.acceleration = new Vector2f(0.0f, 0.0f);
         this.direction = direction;
         this.velocity = new Vector2f(0.0f, 0.0f);
         rotationAcceleration = new Float(0.0f);
