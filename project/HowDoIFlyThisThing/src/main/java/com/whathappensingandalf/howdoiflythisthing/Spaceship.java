@@ -84,6 +84,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 * {@inheritDoc}
 	 */
     public void move() {
+		this.calculateThrust();
         this.moveComponent.move();
     }
 	
