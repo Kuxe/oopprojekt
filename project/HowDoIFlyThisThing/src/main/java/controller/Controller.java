@@ -14,6 +14,7 @@ import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 
 import View.View;
 import View.ViewThread;
+import com.whathappensingandalf.howdoiflythisthing.User;
 import org.newdawn.slick.Input;
 
 public class Controller {
@@ -35,6 +36,11 @@ public class Controller {
 		model.addAsteroid(asteroid1);
 		viewThread=new ViewThread();
 		viewThread.start();
+		
+		User user = new User();
+		Input input = view.getContainer.getInput();
+		input.addKeyListener(user);
+		
 	}
 	
 	public void start() {
@@ -47,7 +53,7 @@ public class Controller {
 	
 	private void update() {
 		model.update();
-		setRenderObjects(model.getIDrawables());
+		setRenderObjects(model.getIDrawables());	
 	}
 	
 	public synchronized void setRenderObjects(Map<Object,IDrawable> list){
