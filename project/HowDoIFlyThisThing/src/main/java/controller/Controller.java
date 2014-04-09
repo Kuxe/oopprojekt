@@ -50,7 +50,7 @@ public class Controller {
 		setRenderObjects(model.getIDrawables());
 	}
 	
-	public synchronized void setRenderObjects(Map<Object,IDrawable> list){
+	public void setRenderObjects(Map<Object,IDrawable> list){
 		viewThread.getView().setRenderObjects(list);
 	}
 	private void inputHandeler(Input i, int delta){

@@ -53,7 +53,7 @@ public class View extends BasicGame implements ApplicationListener{
 		}
 	}
 	
-	public synchronized void setRenderObjects(Map<Object,IDrawable> list){
+	public void setRenderObjects(Map<Object,IDrawable> list){
 		renderObjects=Collections.synchronizedMap(list);
 	}
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
@@ -81,7 +81,7 @@ public class View extends BasicGame implements ApplicationListener{
 //			System.out.println(comp.getDirection().x);
 			tmpX=comp.getPosition().x-comp.getWidth()/2;
 			tmpY=comp.getPosition().y-comp.getHeight()/2;
-			tmpImg.rotate(claculateRotation(comp.getDirection()));
+			tmpImg.rotate(calculateRotation(comp.getDirection()));
 			g.drawImage(tmpImg, tmpX, tmpY);
 //			arg0.
 		}
@@ -91,8 +91,8 @@ public class View extends BasicGame implements ApplicationListener{
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
-		System.out.println(this.claculateRotation(new Vector2f(0,1)));
-		System.out.println(this.claculateRotation(new Vector2f(0,-1)));
+		System.out.println(this.calculateRotation(new Vector2f(0,1)));
+		System.out.println(this.calculateRotation(new Vector2f(0,-1)));
 		try {
 			spaceship=new Image("resources/Spaceship.png");
 			shott=new Image("resources/Shott.png");
@@ -105,13 +105,13 @@ public class View extends BasicGame implements ApplicationListener{
 
 	@Override
 	public void update(GameContainer arg0, int arg1) throws SlickException {
-		for(IDrawable comp: renderObjects.values()){
-			
-		}
+//		for(IDrawable comp: renderObjects.values()){
+//			
+//		}
 		
 	}
 	
-	private float claculateRotation(Vector2f vector){
+	private float calculateRotation(Vector2f vector){
 		Vector2f ex=new Vector2f(1,0);
 		Vector2f ey=new Vector2f(0,-1);
 		float f1,f2;
