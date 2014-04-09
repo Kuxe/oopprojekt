@@ -41,7 +41,8 @@ public class CollidableComponent implements ICollidableComponent{
 	}
 
 	public boolean collideDetection(ICollidable rhs) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return false;
+		//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 	public Point2f getLeftmostCoordinate(){
 		calc = new Point2f(0,0);
