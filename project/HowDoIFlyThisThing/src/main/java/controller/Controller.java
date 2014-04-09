@@ -1,7 +1,8 @@
 package controller;
 
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
@@ -20,12 +21,6 @@ import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 import com.whathappensingandalf.howdoiflythisthing.factorys.AsteroidFactory;
 import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
-
-import View.View;
-import View.ViewThread;
-import com.whathappensingandalf.howdoiflythisthing.User;
-import org.newdawn.slick.Input;
-
 public class Controller implements KeyListener {
 	
 	private Gameworld model;
@@ -37,8 +32,8 @@ public class Controller implements KeyListener {
 	private Spaceship spaceship2 = SpaceshipFactory.create(new Point2f(500, 0), new Vector2f(-1, 0));
 	private Asteroid asteroid1 = AsteroidFactory.create(new Point2f(300, 20));
 	
-	private LinkedList<Integer> listOfPressedKeys;
-	private LinkedList<Integer> listOfReleasedKeys;
+	private Set<Integer> listOfPressedKeys;
+	private Set<Integer> listOfReleasedKeys;
 	boolean aHold, wHold, dHold, spaceHold;
 	
 	public Controller(){
@@ -48,8 +43,8 @@ public class Controller implements KeyListener {
 		model.addSpaceship(spaceship2);
 		model.addAsteroid(asteroid1);
 		
-		listOfPressedKeys = new LinkedList();
-		listOfReleasedKeys = new LinkedList();
+		listOfPressedKeys = new HashSet();
+		listOfReleasedKeys = new HashSet();
 		
 		viewThread=new ViewThread();
 		viewThread.start();
@@ -87,12 +82,18 @@ public class Controller implements KeyListener {
 		}
 		if (wHold) {
 			spaceship1.activateMainThruste();
+		} else {
+			spaceship1.deactivateMainThruster();
 		}
 		if (aHold) {
 			spaceship1.activateLeftThruste();
+		} else {
+			spaceship1.deactivateLeftThruster();
 		}
 		if (dHold) {
 			spaceship1.activateRightThruste();
+		} else {
+			spaceship1.deactivateRightThruster();
 		}
 	}
 	
