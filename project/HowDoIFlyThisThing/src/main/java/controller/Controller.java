@@ -11,6 +11,8 @@ import com.whathappensingandalf.howdoiflythisthing.Asteroid;
 import com.whathappensingandalf.howdoiflythisthing.Gameworld;
 import com.whathappensingandalf.howdoiflythisthing.IDrawable;
 import com.whathappensingandalf.howdoiflythisthing.Spaceship;
+import com.whathappensingandalf.howdoiflythisthing.factorys.AsteroidFactory;
+import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
 import View.View;
 import View.ViewThread;
@@ -22,9 +24,9 @@ public class Controller {
 	private View view;
 	
 	//Create two spaceships and make the first one shoot bullets on the other one
-	Spaceship spaceship1 = new Spaceship(new Point2f(50, 50), new Vector2f(3.0f, 1.0f), 50, 50);
-	Spaceship spaceship2 = new Spaceship(new Point2f(500, 0), new Vector2f(-1, 0), 50, 50);
-	Asteroid asteroid1 = new Asteroid(new Point2f(300, 20), 100, 100);
+	Spaceship spaceship1 = SpaceshipFactory.create(new Point2f(50, 50), new Vector2f(3.0f, 1.0f));
+	Spaceship spaceship2 = SpaceshipFactory.create(new Point2f(500, 0), new Vector2f(-1, 0));
+	Asteroid asteroid1 = AsteroidFactory.create(new Point2f(300, 20));
 	
 	public Controller(){
 		model = new Gameworld();
