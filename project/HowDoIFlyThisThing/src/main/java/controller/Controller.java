@@ -16,6 +16,7 @@ import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
 import View.View;
 import View.ViewThread;
+import org.newdawn.slick.Input;
 
 public class Controller {
 	
@@ -51,8 +52,19 @@ public class Controller {
 		setRenderObjects(model.getIDrawables());
 	}
 	
-	public synchronized void setRenderObjects(Map<Object,IDrawable> list){
+	public void setRenderObjects(Map<Object,IDrawable> list){
 		viewThread.getView().setRenderObjects(list);
+	}
+	private void inputHandeler(Input i, int delta){
+		if(i.isKeyDown(Input.KEY_LEFT)){
+			System.out.println("Left Thruster");
+		}else if(i.isKeyDown(Input.KEY_RIGHT)){
+			System.out.println("Main Thruster");
+		}else if(i.isKeyDown(Input.KEY_DOWN)){
+			System.out.println("Right Thruster");
+		}else if(i.isKeyDown(Input.KEY_UP)){
+			System.out.println("FIRE!!!");
+		}
 	}
 	
 }
