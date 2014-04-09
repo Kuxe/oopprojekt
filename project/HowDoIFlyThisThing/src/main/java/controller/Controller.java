@@ -27,11 +27,13 @@ public class Controller implements KeyListener {
 	private View view;
 	
 	//Create two spaceships and make the first one shoot bullets on the other one
-	private Spaceship spaceship1 = SpaceshipFactory.create(new Point2f(50, 50), new Vector2f(3.0f, 1.0f));
+	private Spaceship spaceship1 = SpaceshipFactory.create(new Point2f(50, 50), new Vector2f(3.0f, -1.0f));
 	private Spaceship spaceship2 = SpaceshipFactory.create(new Point2f(500, 0), new Vector2f(-1, 0));
 	private Asteroid asteroid1 = AsteroidFactory.create(new Point2f(300, 20));
 	
-	private LinkedList<Integer> listOfKeys;
+	private LinkedList<Integer> listOfPressedKeys;
+	private LinkedList<Integer> listOfReleasedKeys;
+	boolean aHold, wHold, dHold, spaceHold;
 	
 	public Controller(){
 		model = new Gameworld();
@@ -40,7 +42,8 @@ public class Controller implements KeyListener {
 		model.addSpaceship(spaceship2);
 		model.addAsteroid(asteroid1);
 		
-		listOfKeys = new LinkedList();
+		listOfPressedKeys = new LinkedList();
+		listOfReleasedKeys = new LinkedList();
 		
 		viewThread=new ViewThread();
 		viewThread.start();
@@ -62,6 +65,7 @@ public class Controller implements KeyListener {
 	}
 	
 	private void update() {
+		manageInput();
 		executeInput();
 		model.update();
 		setRenderObjects(model.getIDrawables());
@@ -72,20 +76,65 @@ public class Controller implements KeyListener {
 	}
 	
 	private void executeInput() {
-		for(int key : listOfKeys) {
-			if(key == Keyboard.KEY_SPACE) {
-				spaceship1.fireWeapon();
-			} else if (key == Keyboard.KEY_W) {
-				spaceship1.activateMainThruste();
-			} else if (key == Keyboard.KEY_A) {
-				spaceship1.activateLeftThruste();
-			} else if (key == Keyboard.KEY_D) {
-				spaceship1.activateRightThruste();
-			} else if (key == Keyboard.KEY_ESCAPE) {
-				shutdown();
+		if(spaceHold) {
+			spaceship1.fireWeapon();
+		}
+		if (wHold) {
+			spaceship1.activateMainThruste();
+		}
+		if (aHold) {
+			spaceship1.activateLeftThruste();
+		}
+		if (dHold) {
+			spaceship1.activateRightThruste();
+		}
+	}
+	
+	private void manageInput() {
+		for(int key : listOfPressedKeys) {
+			switch(key) {
+			case Keyboard.KEY_A: {
+				aHold = true;
+				break;
+			}
+			case Keyboard.KEY_W: {
+				wHold = true;
+				break;
+			}
+			case Keyboard.KEY_D: {
+				dHold = true;
+				break;
+			}
+			case Keyboard.KEY_SPACE: {
+				spaceHold = true;
+				break;
+			}
 			}
 		}
-		listOfKeys.clear();
+		
+		for(int key : listOfReleasedKeys) {
+			switch(key) {
+			case Keyboard.KEY_A: {
+				aHold = false;
+				break;
+			}
+			case Keyboard.KEY_W: {
+				wHold = false;
+				break;
+			}
+			case Keyboard.KEY_D: {
+				dHold = false;
+				break;
+			}
+			case Keyboard.KEY_SPACE: {
+				spaceHold = false;
+				break;
+			}
+			}
+		}
+		
+		listOfPressedKeys.clear();
+		listOfReleasedKeys.clear();
 	}
 	
 	private void shutdown() {
@@ -108,18 +157,15 @@ public class Controller implements KeyListener {
 	}
 
 	public void inputStarted() {
-		// TODO Auto-generated method stub
-		
+		// TODO Auto-generated method stub		
 	}
 
 	public void keyPressed(int key, char c) {
-		listOfKeys.add(key);
+		listOfPressedKeys.add(key);
 	}
 
 	public void keyReleased(int key, char c) {
-		// TODO Auto-generated method stub
-		
-	}
-	
+		listOfReleasedKeys.add(key);
+	}	
 }
 
