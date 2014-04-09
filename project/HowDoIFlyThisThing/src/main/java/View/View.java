@@ -128,5 +128,9 @@ public class View extends BasicGame implements ApplicationListener{
 	private float radinanToDegrees(float angle){
 		return angle*57.2957795f;
 	}
+	
+	public AppGameContainer getContainer(){
+		return this.container;
+	}
 
 }
