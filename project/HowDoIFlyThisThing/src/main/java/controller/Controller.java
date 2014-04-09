@@ -20,6 +20,12 @@ import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 import com.whathappensingandalf.howdoiflythisthing.factorys.AsteroidFactory;
 import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
+
+import View.View;
+import View.ViewThread;
+import com.whathappensingandalf.howdoiflythisthing.User;
+import org.newdawn.slick.Input;
+
 public class Controller implements KeyListener {
 	
 	private Gameworld model;
@@ -68,7 +74,7 @@ public class Controller implements KeyListener {
 		manageInput();
 		executeInput();
 		model.update();
-		setRenderObjects(model.getIDrawables());
+		setRenderObjects(model.getIDrawables());	
 	}
 	
 	public void setRenderObjects(Map<Object,IDrawable> list){

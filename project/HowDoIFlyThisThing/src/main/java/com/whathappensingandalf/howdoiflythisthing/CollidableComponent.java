@@ -1,68 +1,95 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
-import java.awt.Dimension;
-import java.awt.geom.AffineTransform;
 import java.awt.geom.Area;
-import java.awt.geom.Dimension2D;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Rectangle2D;
-
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
 /**
- * @author Francine
  *
+ * @author Martin Nilsson
  */
 public class CollidableComponent implements ICollidableComponent{
-	
+
 	private Point2f position;
-	private Dimension2D size;
+	private Vector2f topLeftCorner;
+	private Vector2f width;
+	private Vector2f height;
 	private Vector2f direction;
-	private Rectangle2D rect2D;	//Only used to create boundingBox
-	private Area boundingBox;
-	private AffineTransform affineTransform;
-	/**
-	 * Constructs a CollidableComponent and creates a Rectangle2D representing this component
-	 * @param position
-	 * @param width
-	 * @param height
-	 */
+	private Vector2f ex;
+	private Vector2f ey;
+	private Point2f calc;
+	
 	public CollidableComponent(Point2f position, Vector2f direction, int width, int height){
-		this.position= position;
-		this.direction= direction;
-		affineTransform= new AffineTransform();
-		size= new Dimension(width, height);
-		rect2D= new Rectangle2D.Double(position.x, position.y, width, height);
-		boundingBox= new Area(rect2D);
+		
+		this.position = new Point2f(position.x, position.y);
+		this.topLeftCorner = new Vector2f(-width/2, -height/2);
+		this.direction = direction;
+		this.width = new Vector2f(width,0);
+		this.height = new Vector2f(0,height);
+		this.ex = new Vector2f(1,0);
+		this.ey = new Vector2f(0,1);
+		
+		
 	}
 	
-	/**
-	 * Tests if this Area have collide with a Rectangle2D
-	 * @param rhs- the ICollidable whose Rectangle2D to compare with
-	 * @return true if this Area intersects rhs
-	 */
-	public boolean collideDetection(ICollidable rhs){
-		
-//		TODO- new parameter; rotationvector
-		affineTransform.rotate(direction.x, direction.y, rect2D.getCenterX(), rect2D.getCenterY());	//this or the angle of rotation in radius
-		
-//		affineTransform.createTransformedShape(shape)- shape rotates and then creates a NEW Shape
-//			Creates a new Area object that contains the same geometry as this Area transformed by the specified AffineTransform.
-//		creates a new Shape
-//		Rectangle2D r= (Rectangle2D)affineTransform.createTransformedShape(rect2D);
-		
-		updateBoundingBox();
-		
-		return boundingBox.intersects(rhs.getBoundingBox().getBounds2D());
-	}
-	public Area getBoundingBox() {
-		updateBoundingBox();
-		return boundingBox;
-	}
-
 	public void updateBoundingBox() {
-		boundingBox.transform(affineTransform);
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
+	public Area getBoundingBox() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public boolean collideDetection(ICollidable rhs) {
+		return false;
+		//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+	public Point2f getLeftmostCoordinate(){
+		calc = new Point2f(0,0);
+		if(height.x<0){
+			calc.add(height);
+		}else{
+			calc.add(height);
+		}if(width.x<0){
+			calc.add(width);
+		}else{
+			calc.add(width);
+		}return calc;
+	}
+	public Point2f getRightmostCoordinate(){
+		calc = new Point2f(0,0);
+		if(height.x>0){
+			calc.add(height);
+		}else{
+			calc.add(width);
+		}if(width.x>0){
+			calc.add(width);
+		}else{
+			calc.add(width);
+		}return calc;
+	}
+	public Point2f getTopmostCoordinate(){
+		calc = new Point2f(0,0);
+		if(height.y<0){
+			calc.add(height);
+		}else{
+			calc.add(height);
+		}if(width.y<0){
+			calc.add(width);
+		}else{
+			calc.add(width);
+		}return calc;
+	}
+	public Point2f getBottommostCoordinate(){
+		calc = new Point2f(position.x,position.y);
+		if(height.y>0){
+			calc.add(height);
+		}else{
+			calc.add(height);
+		}if(width.y>0){
+			calc.add(width);
+		}else{
+			calc.add(width);
+		}return calc;
+	}
 }
