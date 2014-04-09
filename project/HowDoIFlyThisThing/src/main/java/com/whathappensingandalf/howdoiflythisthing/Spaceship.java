@@ -39,7 +39,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
     private Vector2f direction;
 	private Float rotationVelocity;
 	private Float rotationAcceleration;
-	private final Vector2f weaponPipePosition;
+	private final Vector2f WEAPON_PIPE_POSITION;
 	/**
 	 * A instance of PropertyChangeSupport so that this class can be listend to.
 	 */
@@ -70,11 +70,11 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         this.velocity = new Vector2f(0.0f, 0.0f);
         rotationAcceleration = new Float(0.0f);
         rotationVelocity = new Float(0.0f);        
-        this.weaponPipePosition = new Vector2f(0.0f, height/2); //Should fire from middle of spaceships just infront of it
+        this.WEAPON_PIPE_POSITION = new Vector2f(0.0f, height/2); //Should fire from middle of spaceships just infront of it
         this.hull=100;
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, rotationAcceleration);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
-		this.armsComponent = new ArmsComponent(this.position, velocity, acceleration, this.direction, weaponPipePosition);
+		this.armsComponent = new ArmsComponent(this.position, velocity, acceleration, this.direction, WEAPON_PIPE_POSITION);
 		this.colliComp = new CollidableComponent(position, direction, width, height);
     }
     
@@ -95,7 +95,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
     }
     
     private void calculateWeaponPipePosition() {
-    	VecmathUtils.setAngleFromVector(weaponPipePosition, direction);
+    	VecmathUtils.setAngleFromVector(WEAPON_PIPE_POSITION, direction);
     }
 	
 	/**
