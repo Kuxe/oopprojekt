@@ -2,6 +2,7 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import static java.lang.Math.sqrt;
 import javax.vecmath.Vector2f;
+import utils.TypeWrapper;
 
 /**
  *
@@ -18,8 +19,8 @@ class ThrusterComponent {
 	 */
 	private Vector2f acceleration;
 	private Vector2f direction;
-	private Float rotationVelocity;
-	private Float rotationAcceleration;
+	private TypeWrapper rotationVelocity;
+	private TypeWrapper rotationAcceleration;
 	/**
 	 * Thrusters used for calculating the resulting acceleration.
 	 */
@@ -33,7 +34,7 @@ class ThrusterComponent {
 	 * @param acceleration
 	 * @param direction 
 	 */
-    public ThrusterComponent(Vector2f acceleration, Vector2f direction,Float rotationAcceleration,Float rotationVelocity){
+    public ThrusterComponent(Vector2f acceleration, Vector2f direction,TypeWrapper rotationAcceleration,TypeWrapper rotationVelocity){
 		this.acceleration=acceleration;
 		this.direction=direction;
 		this.rotationVelocity=rotationVelocity;
@@ -61,8 +62,8 @@ class ThrusterComponent {
 //		f=f+mainThruster.getRotationAcceleration();
 		f=f+rightThruster.getRotationAcceleration();
 		f=f+leftThruster.getRotationAcceleration();
-		this.rotationAcceleration=f;
-		this.rotationVelocity = rotationVelocity+rotationAcceleration;
+		this.rotationAcceleration.setValue(f);
+		this.rotationVelocity.setValue(rotationVelocity.getValue()+rotationAcceleration.getValue());
 	}
 	public void activateMainThruster(){
 		this.mainThruster.activate();
