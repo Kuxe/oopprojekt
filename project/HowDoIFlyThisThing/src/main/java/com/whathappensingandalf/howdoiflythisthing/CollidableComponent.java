@@ -12,8 +12,8 @@ public class CollidableComponent implements ICollidableComponent{
 
 	private Point2f position;
 	private Vector2f topLeftCorner;
-	private Vector2f distanceToSide;
-	private Vector2f distanceToTop;
+	private Vector2f distanceToSide;	//vector pointing to the right (from start)
+	private Vector2f distanceToTop;		//vector pointing to upwards (from start)
 	private Vector2f direction;
 	private Vector2f ex;
 	private Vector2f ey;
@@ -61,32 +61,38 @@ public class CollidableComponent implements ICollidableComponent{
 		}return calc;
 	}
 	/**
-	 * @return the vector pointing from the center point to the upper corner (with the lowest y value)
+	 * @return the vector pointing from the center point to the upper corner (with the lowest y- value)
 	 */
 	public Point2f getTopmostCoordinate(){
+//		Shouldn't calc has the value of the center point?
 		calc = new Point2f(0,0);
 		if(distanceToTop.y<0){
-			distanceToTop.negate();
 			calc.add(distanceToTop);
 		}else{
-			calc.add(distanceToTop);
+			calc.sub(distanceToTop);
 		}if(distanceToSide.y<0){
 			calc.add(distanceToSide);
 		}else{
-			calc.add(distanceToSide);
-		}return calc;
+			calc.sub(distanceToSide);
+		}
+		return calc;
 	}
+	/**
+	 * @return the vector pointing from the center to the down corner (with the highest y- value)
+	 */
 	public Point2f getBottommostCoordinate(){
+//		Think more about the point- value
 		calc = new Point2f(position.x,position.y);
 		if(distanceToTop.y>0){
 			calc.add(distanceToTop);
 		}else{
-			calc.add(distanceToTop);
+			calc.sub(distanceToTop);
 		}if(distanceToSide.y>0){
 			calc.add(distanceToSide);
 		}else{
-			calc.add(distanceToSide);
-		}return calc;
+			calc.sub(distanceToSide);
+		}
+		return calc;
 	}
 	
 	public void updateBoundingBox() {
