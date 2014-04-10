@@ -37,6 +37,8 @@ class ThrusterComponent {
 		this.acceleration=acceleration;
 		this.direction=direction;
 		this.rotationVelocity=rotationVelocity;
+		System.out.println(rotationVelocity+"con");
+		System.out.println(this.rotationVelocity+"con");
 		this.rotationAcceleration=rotationAcceleration;
 		this.mainThruster=new Thruster(0,1,2,0);
 		this.leftThruster=new Thruster(0,1,1,(float)Math.PI/4);
@@ -51,6 +53,10 @@ class ThrusterComponent {
 		acceleration.scale(0);
 		acceleration.add(mainThruster.getAcceleration(), rightThruster.getAcceleration());
 		acceleration.add(leftThruster.getAcceleration());
+		
+	}
+	public void calculateRotation(){
+		System.out.println(this.rotationVelocity);
 		float f=0;
 //		f=f+mainThruster.getRotationAcceleration();
 		f=f+rightThruster.getRotationAcceleration();
