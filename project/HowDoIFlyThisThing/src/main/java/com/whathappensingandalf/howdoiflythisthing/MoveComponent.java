@@ -43,8 +43,20 @@ class MoveComponent {
 	*/
 	public void move(Timestep timestep){
 		VecmathUtils.rotateVector(direction, rotationVelocity);
-		VecmathUtils.setAngleFromVector(acceleration, direction);
-		velocity.add(acceleration);
+		
+		Vector2f tempAcc=(Vector2f) acceleration.clone();
+//		System.out.println(acceleration.length()+velocity.length()*-0.1f);
+		VecmathUtils.setLength(tempAcc, acceleration.length()-(velocity.length()*0.01f));
+		
+		System.out.println("Acc: "+tempAcc.toString());
+		System.out.println(acceleration.length()-(velocity.length()*0.01f));
+		System.out.println("Vel: "+velocity.toString());
+		System.out.println();
+		
+		VecmathUtils.setAngleFromVector(tempAcc, direction);
+		tempAcc.x=tempAcc.x*(float) timestep.getDelta();
+		tempAcc.y=tempAcc.y*(float) timestep.getDelta();
+		velocity.add(tempAcc);
         position.add(new Vector2f((float) (velocity.x * timestep.getDelta()), (float) (velocity.y * timestep.getDelta())));
 	}
         
