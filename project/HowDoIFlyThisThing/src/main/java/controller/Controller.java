@@ -104,7 +104,7 @@ public class Controller implements KeyListener {
 	 * If a key is inside pressedKeys (someone pressed a key), set the boolean to true
 	 * If a key is inside releasedkeys (someone released a key), set the boolean to false
 	 */
-	private void manageInput() {
+	private synchronized void manageInput() {
 		for(int key : listOfPressedKeys) {
 			switch(key) {
 			case Keyboard.KEY_A: {
@@ -174,12 +174,12 @@ public class Controller implements KeyListener {
 		// TODO Auto-generated method stub		
 	}
 
-	public void keyPressed(int key, char c) {
+	public synchronized void keyPressed(int key, char c) {
 		listOfPressedKeys.add(key);
 	}
 
-	public void keyReleased(int key, char c) {
+	public synchronized void keyReleased(int key, char c) {
 		listOfReleasedKeys.add(key);
-	}	
+	}
 }
 
