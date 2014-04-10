@@ -37,4 +37,16 @@ public class VecmathUtils {
 		vector.x = (float) (temp.x * length);
 		vector.y = (float) (temp.y * length);
 	}
+	
+	/**
+	 * Scales the vector to have param <i>length</i> length 
+	 * @param vector
+	 * @param length
+	 */
+	public static void setLength(Vector2f vector, float length) {
+		if(vector.length() != 0.0f && length != 0.0f) {
+			float scaleFactor = length / vector.length();
+			vector.scale(scaleFactor);
+		}
+	}
 }
