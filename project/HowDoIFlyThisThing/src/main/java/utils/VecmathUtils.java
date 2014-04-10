@@ -3,10 +3,10 @@ package utils;
 import javax.vecmath.*;
 
 public class VecmathUtils {
-	public static Vector2f rotateVector(Vector2f vector, double degree) {
+	public static void rotateVector(Vector2f vector, double degree) {
 		GVector temp = new GVector(vector);
 		temp.mul(new GMatrix(2, 2, new double[]{Math.cos(degree), -Math.sin(degree), Math.sin(degree), Math.cos(degree)}), temp);
-		return new Vector2f((float)temp.getElement(0), (float)temp.getElement(1));
+		vector.set((float)temp.getElement(0), (float)temp.getElement(1));
 	}
 	
 	public static void setVectorAngle(Vector2f vector, float angle) {
