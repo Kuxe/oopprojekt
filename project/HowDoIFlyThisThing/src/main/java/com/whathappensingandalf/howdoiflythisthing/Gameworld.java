@@ -50,8 +50,8 @@ public class Gameworld implements PropertyChangeListener{
 	private Set<Object> listOfObjectsToBeRemoved;
 	
 	private Timestep timestep;
-	private int worldHeight=640;
-	private int worldWidth=480;
+	private int worldHeight=440;
+	private int worldWidth=680;
 	
 	public Gameworld(){
 		moveables = 					new HashMap();
