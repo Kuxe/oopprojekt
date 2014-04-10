@@ -75,7 +75,9 @@ public class Controller implements KeyListener {
 	public void setRenderObjects(Map<Object,IDrawable> list){
 		viewThread.getView().setRenderObjects(list);
 	}
-	
+	/**
+	 * Checks if any key is held down, if so execute whatever is binded to the key
+	 */
 	private void executeInput() {
 		if(spaceHold) {
 			spaceship1.fireWeapon();
@@ -97,6 +99,11 @@ public class Controller implements KeyListener {
 		}
 	}
 	
+	/**
+	 * Set booleans representing if a key is held down or not
+	 * If a key is inside pressedKeys (someone pressed a key), set the boolean to true
+	 * If a key is inside releasedkeys (someone released a key), set the boolean to false
+	 */
 	private void manageInput() {
 		for(int key : listOfPressedKeys) {
 			switch(key) {
