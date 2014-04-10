@@ -42,7 +42,7 @@ public class ArmsComponent {
 		Point2f tempPoint = new Point2f(point.x, point.y);
 		tempPoint.add(weaponPipePosition);
 		
-		float baseSpeedMagnitude = 3.0f;
+		float baseSpeedMagnitude = 100.0f;
 		Vector2f baseSpeed = new Vector2f(direction.x, direction.y);
 		baseSpeed.normalize();
 		baseSpeed.scale(baseSpeedMagnitude);
