@@ -7,6 +7,7 @@ import java.beans.PropertyChangeSupport;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
+import utils.TypeWrapper;
 
 import utils.VecmathUtils;
 
@@ -37,8 +38,8 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	private Vector2f velocity;
     private Vector2f acceleration;
     private Vector2f direction;
-	private Float rotationVelocity;
-	private Float rotationAcceleration;
+	private TypeWrapper rotationVelocity;
+	private TypeWrapper rotationAcceleration;
 	private final Vector2f WEAPON_PIPE_POSITION;
 	/**
 	 * A instance of PropertyChangeSupport so that this class can be listend to.
@@ -68,8 +69,8 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         this.acceleration = new Vector2f(0.0f, 0.0f);
         this.direction = direction;
         this.velocity = new Vector2f(0.0f, 0.0f);
-        rotationAcceleration = new Float(0.0f);
-        rotationVelocity = new Float(0.0f);        
+        rotationAcceleration = new TypeWrapper(0.0f);
+        rotationVelocity = new TypeWrapper(0.0f);        
         this.WEAPON_PIPE_POSITION = new Vector2f(0.0f, height/2); //Should fire from middle of spaceships just infront of it
         this.hull=100;
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, rotationAcceleration);
@@ -172,21 +173,21 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 * @return 
 	 */
 	public float getRotVelocity() {
-		return this.rotationVelocity.floatValue();
+		return this.rotationVelocity.getValue();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public float getRotAcceleration() {
-		return this.rotationAcceleration.floatValue();
+		return this.rotationAcceleration.getValue();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void setRotVelocity(float rotationVelocity) {
-		this.rotationVelocity=rotationVelocity;
+		this.rotationVelocity.setValue(rotationVelocity);
 	}
 
 	/**
@@ -194,7 +195,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 * @param rotationAcceleration
 	 */
 	public void setRotAcceleration(float rotationAcceleration) {
-		this.rotationAcceleration=rotationAcceleration;
+		this.rotationAcceleration.setValue(rotationAcceleration);
 	}
 
 	public int getHeight() {
@@ -229,9 +230,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 */
 	public void calculateThrust() {
 		this.thrusterComponent.calculateAceleration();
-		this.rotationVelocity=50f;
 		this.thrusterComponent.calculateRotation();
-		System.out.println(this.rotationVelocity);
 	}
 	
 	public void accept(ICollidable visitor) {
