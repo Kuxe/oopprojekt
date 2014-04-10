@@ -49,12 +49,16 @@ public class Gameworld implements PropertyChangeListener{
 	
 	private Set<Object> listOfObjectsToBeRemoved;
 	
+	private Timestep timestep;
+	
 	public Gameworld(){
 		moveables = 					new HashMap();
 		collidables =					new HashMap();
 		removalMap = 					new HashMap();
 		listOfObjectsToBeRemoved = 		new HashSet();
 		drawables =						new HashMap();
+		
+		timestep = new Timestep();
 	}
 	
 	public Map<Object, IDrawable> getIDrawables() {
@@ -176,7 +180,7 @@ public class Gameworld implements PropertyChangeListener{
 	 */
 	private void movableUpdate(){
 		for(IMovable ma : moveables.values()){
-			ma.move();
+			ma.move(timestep);
 		}
 	}
 	
@@ -199,9 +203,14 @@ public class Gameworld implements PropertyChangeListener{
 	 * Loop through all lists of interfaces and call their methods
 	 */
 	public void update(){
+		timestep.start();
+		
 		movableUpdate();
 		collisionUpdate();
 		removalUpdate(); //IT IS VERY IMPORTANT THAT THIS METHOD IS CALLED LAST!!!
+		
+		timestep.end();
+		timestep.calculateDeltatime();
 	}
 
 	/**

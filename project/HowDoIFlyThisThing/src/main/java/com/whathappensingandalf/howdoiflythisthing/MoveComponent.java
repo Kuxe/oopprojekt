@@ -41,11 +41,11 @@ class MoveComponent {
 	/**
 	* Moves the component
 	*/
-	public void move(){
+	public void move(Timestep timestep){
 		VecmathUtils.rotateVectorV2(direction, rotationVelocity);
 		VecmathUtils.setAngleFromVector(acceleration, direction);
 		velocity.add(acceleration);
-        position.add(velocity);
+        position.add(new Vector2f((float) (velocity.x * timestep.getDelta()), (float) (velocity.y * timestep.getDelta())));
 	}
         
     /**

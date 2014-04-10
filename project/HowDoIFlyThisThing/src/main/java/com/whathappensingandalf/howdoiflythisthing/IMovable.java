@@ -15,7 +15,7 @@ public interface IMovable extends IListable{
 	/**
 	 * Moves this component to the specified location
 	 */
-	public void move();
+	public void move(Timestep timestep);
 	
 	//getters
 	/**

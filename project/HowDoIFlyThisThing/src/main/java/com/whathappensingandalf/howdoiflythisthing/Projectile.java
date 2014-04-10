@@ -75,8 +75,8 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	/**
 	 * {@inheritDoc}
 	 */
-	public void move(){
-		mC.move();
+	public void move(Timestep timestep){
+		mC.move(timestep);
 	}
 	/**
 	 * Removes all referenses to this component.

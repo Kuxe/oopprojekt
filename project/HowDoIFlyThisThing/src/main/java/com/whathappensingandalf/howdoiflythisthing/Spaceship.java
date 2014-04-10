@@ -88,10 +88,10 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	/**
 	 * {@inheritDoc}
 	 */
-    public void move() {
+    public void move(Timestep timestep) {
 		this.calculateThrust();
 		calculateWeaponPipePosition();
-        this.moveComponent.move();
+        this.moveComponent.move(timestep);
     }
     
     private void calculateWeaponPipePosition() {
