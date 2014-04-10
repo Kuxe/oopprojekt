@@ -41,9 +41,9 @@ class ThrusterComponent {
 		System.out.println(rotationVelocity+"con");
 		System.out.println(this.rotationVelocity+"con");
 		this.rotationAcceleration=rotationAcceleration;
-		this.mainThruster=new Thruster(0,1,2,0);
-		this.leftThruster=new Thruster(0,1,1,(float)Math.PI/4);
-		this.rightThruster=new Thruster(0,1,1,(float)Math.PI/4);
+		this.mainThruster=new Thruster(0,1,200,0);
+		this.leftThruster=new Thruster(0,1,100,(float)Math.PI/4);
+		this.rightThruster=new Thruster(0,1,100,(float)Math.PI/4);
 	}
 	
 	/**
