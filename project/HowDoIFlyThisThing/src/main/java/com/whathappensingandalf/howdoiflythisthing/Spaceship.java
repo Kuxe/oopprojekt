@@ -229,6 +229,9 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 */
 	public void calculateThrust() {
 		this.thrusterComponent.calculateAceleration();
+		this.rotationVelocity=50f;
+		this.thrusterComponent.calculateRotation();
+		System.out.println(this.rotationVelocity);
 	}
 	
 	public void accept(ICollidable visitor) {
