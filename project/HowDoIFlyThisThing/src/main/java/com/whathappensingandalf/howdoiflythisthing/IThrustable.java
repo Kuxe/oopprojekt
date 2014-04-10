@@ -12,5 +12,5 @@ public interface IThrustable {
 	/**
 	 * Updates this objects thrust by recalculating it.
 	 */
-	public void calculateThrust();
+	public void calculateThrust(Timestep timestep);
 }

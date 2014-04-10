@@ -56,12 +56,12 @@ class ThrusterComponent {
 		acceleration.add(leftThruster.getAcceleration());
 		
 	}
-	public void calculateRotation(){
+	public void calculateRotation(Timestep timestep){
 		System.out.println(this.rotationVelocity);
 		float f=0;
 //		f=f+mainThruster.getRotationAcceleration();
-		f=f+rightThruster.getRotationAcceleration();
-		f=f+leftThruster.getRotationAcceleration();
+		f=(float) (f+rightThruster.getRotationAcceleration() * timestep.getDelta());
+		f=(float) (f+leftThruster.getRotationAcceleration() * timestep.getDelta());
 		this.rotationAcceleration.setValue(f);
 		this.rotationVelocity.setValue(rotationVelocity.getValue()+rotationAcceleration.getValue());
 	}
