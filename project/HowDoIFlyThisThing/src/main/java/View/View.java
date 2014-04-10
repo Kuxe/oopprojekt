@@ -83,7 +83,6 @@ public class View extends BasicGame implements ApplicationListener{
 			tmpY=comp.getPosition().y-comp.getHeight()/2;
 			tmpImg.rotate(calculateRotation(comp.getDirection()));
 			g.drawImage(tmpImg, tmpX, tmpY);
-//			arg0.
 		}
 //		System.out.println("-------------------------------------------------");
 		
@@ -91,8 +90,6 @@ public class View extends BasicGame implements ApplicationListener{
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
-		System.out.println(this.calculateRotation(new Vector2f(0,1)));
-		System.out.println(this.calculateRotation(new Vector2f(0,-1)));
 		try {
 			spaceship=new Image("resources/Spaceship.png");
 			shott=new Image("resources/Shott.png");

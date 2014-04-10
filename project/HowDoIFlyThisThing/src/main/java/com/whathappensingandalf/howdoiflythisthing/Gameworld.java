@@ -50,6 +50,8 @@ public class Gameworld implements PropertyChangeListener{
 	private Set<Object> listOfObjectsToBeRemoved;
 	
 	private Timestep timestep;
+	private int worldHeight=640;
+	private int worldWidth=480;
 	
 	public Gameworld(){
 		moveables = 					new HashMap();
@@ -206,6 +208,7 @@ public class Gameworld implements PropertyChangeListener{
 		timestep.start();
 		
 		movableUpdate();
+		worldBounderyCheck();
 		collisionUpdate();
 		removalUpdate(); //IT IS VERY IMPORTANT THAT THIS METHOD IS CALLED LAST!!!
 		
@@ -224,5 +227,13 @@ public class Gameworld implements PropertyChangeListener{
 			listOfObjectsToBeRemoved.add(evt.getSource());
 		}
 		
+	}
+	
+	private void worldBounderyCheck(){
+		for(IMovable item: moveables.values()){
+			if(item.getPosition().x<0.0f || item.getPosition().x>worldWidth || item.getPosition().y<0.0f || item.getPosition().y>worldHeight){
+				slateObjectForRemoval(item);
+			}
+		}
 	}
 }
