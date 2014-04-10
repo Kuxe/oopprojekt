@@ -42,7 +42,7 @@ class MoveComponent {
 	* Moves the component
 	*/
 	public void move(Timestep timestep){
-		VecmathUtils.rotateVectorV2(direction, rotationVelocity);
+		VecmathUtils.rotateVector(direction, rotationVelocity);
 		VecmathUtils.setAngleFromVector(acceleration, direction);
 		velocity.add(acceleration);
         position.add(new Vector2f((float) (velocity.x * timestep.getDelta()), (float) (velocity.y * timestep.getDelta())));
