@@ -12,8 +12,8 @@ public class CollidableComponent implements ICollidableComponent{
 
 	private Point2f position;
 	private Vector2f topLeftCorner;
-	private Vector2f width;
-	private Vector2f height;
+	private Vector2f distanceToSide;	//vector pointing to the right (from start)
+	private Vector2f distanceToTop;		//vector pointing to upwards (from start)
 	private Vector2f direction;
 	private Vector2f ex;
 	private Vector2f ey;
@@ -21,15 +21,78 @@ public class CollidableComponent implements ICollidableComponent{
 	
 	public CollidableComponent(Point2f position, Vector2f direction, int width, int height){
 		
-		this.position = new Point2f(position.x, position.y);
-		this.topLeftCorner = new Vector2f(-width/2, -height/2);
+		this.position = new Point2f(position.x, position.y);	//Center point
+		this.topLeftCorner = new Vector2f(-width/2, -height/2);	//To find upper left corner
 		this.direction = direction;
-		this.width = new Vector2f(width,0);
-		this.height = new Vector2f(0,height);
+		this.distanceToSide = new Vector2f(width/2,0);
+		this.distanceToTop = new Vector2f(0,height/2);
 		this.ex = new Vector2f(1,0);
 		this.ey = new Vector2f(0,1);
 		
 		
+	}
+
+	public boolean collideDetection(ICollidable rhs) {
+		return false;
+		//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+	public Point2f getLeftmostCoordinate(){
+		calc = new Point2f(0,0);
+		if(distanceToTop.x<0){
+			calc.add(distanceToTop);
+		}else{
+			calc.add(distanceToTop);
+		}if(distanceToSide.x<0){
+			calc.add(distanceToSide);
+		}else{
+			calc.add(distanceToSide);
+		}return calc;
+	}
+	public Point2f getRightmostCoordinate(){
+		calc = new Point2f(0,0);
+		if(distanceToTop.x>0){
+			calc.add(distanceToTop);
+		}else{
+			calc.add(distanceToSide);
+		}if(distanceToSide.x>0){
+			calc.add(distanceToSide);
+		}else{
+			calc.add(distanceToSide);
+		}return calc;
+	}
+	/**
+	 * @return the vector pointing from the center point to the upper corner (with the lowest y- value)
+	 */
+	public Point2f getTopmostCoordinate(){
+//		Shouldn't calc has the value of the center point?
+		calc = new Point2f(0,0);
+		if(distanceToTop.y<0){
+			calc.add(distanceToTop);
+		}else{
+			calc.sub(distanceToTop);
+		}if(distanceToSide.y<0){
+			calc.add(distanceToSide);
+		}else{
+			calc.sub(distanceToSide);
+		}
+		return calc;
+	}
+	/**
+	 * @return the vector pointing from the center to the down corner (with the highest y- value)
+	 */
+	public Point2f getBottommostCoordinate(){
+//		Think more about the point- value
+		calc = new Point2f(position.x,position.y);
+		if(distanceToTop.y>0){
+			calc.add(distanceToTop);
+		}else{
+			calc.sub(distanceToTop);
+		}if(distanceToSide.y>0){
+			calc.add(distanceToSide);
+		}else{
+			calc.sub(distanceToSide);
+		}
+		return calc;
 	}
 	
 	public void updateBoundingBox() {
@@ -39,57 +102,4 @@ public class CollidableComponent implements ICollidableComponent{
 	public Area getBoundingBox() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
-
-	public boolean collideDetection(ICollidable rhs) {
-		return false;
-		//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
-	public Point2f getLeftmostCoordinate(){
-		calc = new Point2f(0,0);
-		if(height.x<0){
-			calc.add(height);
-		}else{
-			calc.add(height);
-		}if(width.x<0){
-			calc.add(width);
-		}else{
-			calc.add(width);
-		}return calc;
-	}
-	public Point2f getRightmostCoordinate(){
-		calc = new Point2f(0,0);
-		if(height.x>0){
-			calc.add(height);
-		}else{
-			calc.add(width);
-		}if(width.x>0){
-			calc.add(width);
-		}else{
-			calc.add(width);
-		}return calc;
-	}
-	public Point2f getTopmostCoordinate(){
-		calc = new Point2f(0,0);
-		if(height.y<0){
-			calc.add(height);
-		}else{
-			calc.add(height);
-		}if(width.y<0){
-			calc.add(width);
-		}else{
-			calc.add(width);
-		}return calc;
-	}
-	public Point2f getBottommostCoordinate(){
-		calc = new Point2f(position.x,position.y);
-		if(height.y>0){
-			calc.add(height);
-		}else{
-			calc.add(height);
-		}if(width.y>0){
-			calc.add(width);
-		}else{
-			calc.add(width);
-		}return calc;
-	}
-}
+}//end CollidableComponent
