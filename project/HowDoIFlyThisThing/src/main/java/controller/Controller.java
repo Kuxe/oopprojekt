@@ -28,7 +28,7 @@ public class Controller implements KeyListener {
 	private View view;
 	
 	//Create two spaceships and make the first one shoot bullets on the other one
-	private Spaceship spaceship1 = SpaceshipFactory.create(new Point2f(50, 50), new Vector2f(3.0f, -1.0f));
+	private Spaceship spaceship1 = SpaceshipFactory.create(new Point2f(50, 50), new Vector2f(3.0f, 1.0f));
 	private Spaceship spaceship2 = SpaceshipFactory.create(new Point2f(500, 0), new Vector2f(-1, 0));
 	private Asteroid asteroid1 = AsteroidFactory.create(new Point2f(300, 20));
 	
