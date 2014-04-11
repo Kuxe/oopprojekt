@@ -27,28 +27,29 @@ public class User implements KeyListener{
 		this.spaceship=spaceship;
 	}
 
-	public void keyPressed(int i, char c) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public void keyPressed(int key, char c) {
+		listOfPressedKeys.add(key);
 	}
 
-	public void keyReleased(int i, char c) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	public void keyReleased(int key, char c) {
+		listOfReleasedKeys.add(key);
 	}
 
 	public void setInput(Input input) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		// TODO Auto-generated method stub
 	}
 
 	public boolean isAcceptingInput() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		// TODO Auto-generated method stub
+		return true;
 	}
 
 	public void inputEnded() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		// TODO Auto-generated method stub
 	}
 
 	public void inputStarted() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		// TODO Auto-generated method stub
 	}
 	
 }
