@@ -18,4 +18,12 @@ public class WorldBorder {
 		maxWorldHeight=worldHeight;
 		maxWorldWidth=worldWidth;
 	}
+	
+	public int getWorldHeight(){
+		return worldHeight;
+	}
+	
+	public int getWorldWidth(){
+		return this.worldWidth;
+	}
 }
