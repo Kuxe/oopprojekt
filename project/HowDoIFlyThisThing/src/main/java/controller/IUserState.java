@@ -6,6 +6,8 @@ package controller;
  */
 public interface IUserState {
 	
+	public void manageInput();
 	
+	public void executeInput();
 	
 }

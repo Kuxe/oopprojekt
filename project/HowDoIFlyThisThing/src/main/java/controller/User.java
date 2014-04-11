@@ -18,7 +18,6 @@ public class User implements KeyListener,PropertyChangeListener{
 	private IUserState state;
 	private SpectatorState spectatorState;
 	private PlayerState playerState;
-	private Spaceship spaceship;//MOVE TO PLAYER
 	private Set<Integer> listOfPressedKeys;
 	private Set<Integer> listOfReleasedKeys;
 	boolean aHold, wHold, dHold, spaceHold;
@@ -33,8 +32,8 @@ public class User implements KeyListener,PropertyChangeListener{
 	
 	public void setSpaceship(Spaceship spaceship){
 		this.state=playerState;
-		this.spaceship=spaceship;
-		this.spaceship.addPropertyChangeListener(this);
+		this.playerState.setSpaceship(spaceship);
+		spaceship.addPropertyChangeListener(this);
 	}
 
 	public void keyPressed(int key, char c) {
@@ -48,90 +47,22 @@ public class User implements KeyListener,PropertyChangeListener{
 	public void setInput(Input input) {
 		// TODO Auto-generated method stub
 	}
-
 	public boolean isAcceptingInput() {
 		// TODO Auto-generated method stub
 		return true;
 	}
-
 	public void inputEnded() {
 		// TODO Auto-generated method stub
 	}
-
 	public void inputStarted() {
 		// TODO Auto-generated method stub
 	}
-	public void executeInput() {//MOVE TO INTERFACE
-		if(spaceHold) {
-			spaceship.fireWeapon();
-		}
-		if (wHold) {
-			spaceship.activateMainThruste();
-		} else {
-			spaceship.deactivateMainThruster();
-		}
-		if (aHold) {
-			spaceship.activateLeftThruste();
-		} else {
-			spaceship.deactivateLeftThruster();
-		}
-		if (dHold) {
-			spaceship.activateRightThruste();
-		} else {
-			spaceship.deactivateRightThruster();
-		}
-	}
 	
-	/**
-	 * Set booleans representing if a key is held down or not
-	 * If a key is inside pressedKeys (someone pressed a key), set the boolean to true
-	 * If a key is inside releasedkeys (someone released a key), set the boolean to false
-	 */
-	public synchronized void manageInput() {
-		for(int key : listOfPressedKeys) {
-			switch(key) {
-			case Keyboard.KEY_A: {
-				aHold = true;
-				break;
-			}
-			case Keyboard.KEY_W: {
-				wHold = true;
-				break;
-			}
-			case Keyboard.KEY_D: {
-				dHold = true;
-				break;
-			}
-			case Keyboard.KEY_SPACE: {
-				spaceHold = true;
-				break;
-			}
-			}
-		}
-		
-		for(int key : listOfReleasedKeys) {
-			switch(key) {
-			case Keyboard.KEY_A: {
-				aHold = false;
-				break;
-			}
-			case Keyboard.KEY_W: {
-				wHold = false;
-				break;
-			}
-			case Keyboard.KEY_D: {
-				dHold = false;
-				break;
-			}
-			case Keyboard.KEY_SPACE: {
-				spaceHold = false;
-				break;
-			}
-			}
-		}
-		
-		listOfPressedKeys.clear();
-		listOfReleasedKeys.clear();
+	public void manageInput(){
+		this.state.manageInput();
+	}
+	public void executeInput() {
+		this.state.executeInput();
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
