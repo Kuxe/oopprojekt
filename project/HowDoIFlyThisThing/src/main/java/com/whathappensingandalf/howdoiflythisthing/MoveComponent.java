@@ -22,6 +22,7 @@ class MoveComponent {
     private Vector2f acceleration;
     private Vector2f direction;
 	private TypeWrapper rotationVelocity;
+	private TypeWrapper rotationAcceleration;
 	
 	/**
 	 * A constructor for creating a MoveComponent. The parameters are the instanses 
@@ -29,14 +30,15 @@ class MoveComponent {
 	 * @param position
 	 * @param velocity
 	 * @param acceleration
-	 * @param direction 
+	 * @param direction
 	 */
-	public MoveComponent(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, TypeWrapper rotationVelocity){
+	public MoveComponent(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, TypeWrapper rotationVelocity, TypeWrapper rotationAcceleration){
 		this.position = position;
 		this.velocity = velocity;
         this.acceleration = acceleration;
 		this.direction = direction;
 		this.rotationVelocity = rotationVelocity;
+		this.rotationAcceleration = rotationAcceleration;
 	}
 	
 	/**
