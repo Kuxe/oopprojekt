@@ -206,22 +206,18 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	}
 
 	public Point2f getLeftmostCoordinate() {
-		colliComp.getLeftmostCoordinate();
-		return null;
+		return colliComp.getLeftmostCoordinate();
 	}
 
 	public Point2f getRightmostCoordinate() {
-		colliComp.getRightmostCoordinate();
-		return null;
+		return colliComp.getRightmostCoordinate();
 	}
 
 	public Point2f getTopmostCoordinate() {
-		colliComp.getTopmostCoordinate();
-		return null;
+		return colliComp.getTopmostCoordinate();
 	}
 
 	public Point2f getBottommmostCoordinate() {
-		colliComp.getBottommostCoordinate();
-		return null;
+		return colliComp.getBottommmostCoordinate();
 	}
 }//end Projectile

@@ -42,7 +42,7 @@ public class Controller implements KeyListener {
 		model = new Gameworld();
 		
 		model.addSpaceship(spaceship1);
-		model.addSpaceship(spaceship2);
+//		model.addSpaceship(spaceship2);
 		model.addAsteroid(asteroid1);
 		
 		listOfPressedKeys = new HashSet();
