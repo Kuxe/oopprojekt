@@ -129,7 +129,6 @@ public class User implements KeyListener,PropertyChangeListener{
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
-			System.out.println("DIE");
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
 			//TODO change state
 		}
