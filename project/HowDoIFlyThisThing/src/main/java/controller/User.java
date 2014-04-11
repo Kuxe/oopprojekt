@@ -6,6 +6,10 @@ package controller;
  */
 public class User {
 	
+	private IUserState state;
 	
+	public User(){
+		
+	}
 	
 }
