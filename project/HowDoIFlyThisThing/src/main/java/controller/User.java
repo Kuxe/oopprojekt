@@ -1,6 +1,8 @@
 package controller;
 
 import com.whathappensingandalf.howdoiflythisthing.Spaceship;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.HashSet;
 import java.util.Set;
 import org.lwjgl.input.Keyboard;
@@ -11,7 +13,7 @@ import org.newdawn.slick.KeyListener;
  *
  * @author Martin Nilsson
  */
-public class User implements KeyListener{
+public class User implements KeyListener,PropertyChangeListener{
 	
 	private IUserState state;
 	private Spaceship spaceship;
@@ -26,6 +28,7 @@ public class User implements KeyListener{
 	
 	public void setSpaceship(Spaceship spaceship){
 		this.spaceship=spaceship;
+		this.spaceship.addPropertyChangeListener(this);
 	}
 
 	public void keyPressed(int key, char c) {
@@ -123,6 +126,12 @@ public class User implements KeyListener{
 		
 		listOfPressedKeys.clear();
 		listOfReleasedKeys.clear();
+	}
+
+	public void propertyChange(PropertyChangeEvent evt) {
+		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
+			//TODO change state
+		}
 	}
 	
 }

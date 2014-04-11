@@ -50,8 +50,8 @@ public class Gameworld implements PropertyChangeListener{
 	private Set<Object> listOfObjectsToBeRemoved;
 	
 	private Timestep timestep;
-	private int worldHeight=440;
-	private int worldWidth=680;
+	
+	private WorldBorder worldBorder;
 	
 	public Gameworld(){
 		moveables = 					new HashMap();
@@ -59,6 +59,8 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap = 					new HashMap();
 		listOfObjectsToBeRemoved = 		new HashSet();
 		drawables =						new HashMap();
+		
+		worldBorder=new WorldBorder(440,680);
 		
 		timestep = new Timestep();
 	}
@@ -225,14 +227,17 @@ public class Gameworld implements PropertyChangeListener{
 		} else if(evt.getPropertyName().equals(Projectile.Message.PROJECTILE_DIE.toString())) {
 			System.out.println(evt.getPropertyName());
 			listOfObjectsToBeRemoved.add(evt.getSource());
+		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
+			listOfObjectsToBeRemoved.add(evt.getSource());
 		}
 		
 	}
 	
 	private void worldBounderyCheck(){
 		for(IMovable item: moveables.values()){
-			if(item.getPosition().x<0.0f || item.getPosition().x>worldWidth || item.getPosition().y<0.0f || item.getPosition().y>worldHeight){
-				slateObjectForRemoval(item);
+			if(item.getPosition().x<0.0f || item.getPosition().x>worldBorder.getWorldWidth() || item.getPosition().y<0.0f || item.getPosition().y>worldBorder.getWorldHeight()){
+//				slateObjectForRemoval(item);
+				item.remove();
 			}
 		}
 	}
