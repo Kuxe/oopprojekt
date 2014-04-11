@@ -36,7 +36,7 @@ public class View extends BasicGame implements ApplicationListener{
 		renderObjects=new HashMap<Object,IDrawable>();
 		try{
 			container=new AppGameContainer(this);
-			container.setDisplayMode(640, 480, false);
+			container.setDisplayMode(1040, 580, false);
 			container.setTargetFrameRate(60);
 		}catch(SlickException ex){
 			Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);

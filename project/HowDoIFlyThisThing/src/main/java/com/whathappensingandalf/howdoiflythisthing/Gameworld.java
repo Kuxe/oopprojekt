@@ -60,7 +60,7 @@ public class Gameworld implements PropertyChangeListener{
 		listOfObjectsToBeRemoved = 		new HashSet();
 		drawables =						new HashMap();
 		
-		worldBorder=new WorldBorder(440,680);
+		worldBorder=new WorldBorder(540,1080);
 		
 		timestep = new Timestep();
 	}
