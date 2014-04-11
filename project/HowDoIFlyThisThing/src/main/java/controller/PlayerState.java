@@ -19,7 +19,7 @@ public class PlayerState implements IUserState{
 	private Spaceship spaceship;
 	private Set<Integer> listOfPressedKeys;
 	private Set<Integer> listOfReleasedKeys;
-	boolean aHold, wHold, dHold, spaceHold;
+	boolean leftHold, mainHold, rightHold, fireHold;
 	
 	
 	public PlayerState(Set<Integer> listOfPressedKeys, Set<Integer> listOfReleasedKeys){
@@ -38,19 +38,19 @@ public class PlayerState implements IUserState{
 		for(int key : listOfPressedKeys) {
 			switch(key) {
 			case Keyboard.KEY_A: {
-				aHold = true;
+				leftHold = true;
 				break;
 			}
 			case Keyboard.KEY_W: {
-				wHold = true;
+				mainHold = true;
 				break;
 			}
 			case Keyboard.KEY_D: {
-				dHold = true;
+				rightHold = true;
 				break;
 			}
 			case Keyboard.KEY_SPACE: {
-				spaceHold = true;
+				fireHold = true;
 				break;
 			}
 			}
@@ -59,19 +59,19 @@ public class PlayerState implements IUserState{
 		for(int key : listOfReleasedKeys) {
 			switch(key) {
 			case Keyboard.KEY_A: {
-				aHold = false;
+				leftHold = false;
 				break;
 			}
 			case Keyboard.KEY_W: {
-				wHold = false;
+				mainHold = false;
 				break;
 			}
 			case Keyboard.KEY_D: {
-				dHold = false;
+				rightHold = false;
 				break;
 			}
 			case Keyboard.KEY_SPACE: {
-				spaceHold = false;
+				fireHold = false;
 				break;
 			}
 			}
@@ -82,20 +82,20 @@ public class PlayerState implements IUserState{
 	}
 	
 	public void executeInput() {//MOVE TO INTERFACE
-		if(spaceHold) {
+		if(fireHold) {
 			spaceship.fireWeapon();
 		}
-		if (wHold) {
+		if (mainHold) {
 			spaceship.activateMainThruste();
 		} else {
 			spaceship.deactivateMainThruster();
 		}
-		if (aHold) {
+		if (leftHold) {
 			spaceship.activateLeftThruste();
 		} else {
 			spaceship.deactivateLeftThruster();
 		}
-		if (dHold) {
+		if (rightHold) {
 			spaceship.activateRightThruste();
 		} else {
 			spaceship.deactivateRightThruster();
