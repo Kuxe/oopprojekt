@@ -23,6 +23,12 @@ public class CollidableComponent implements ICollidableComponent{
 	private float alfa;
 	private float beta;
 	
+	/**
+	 * @param position - the position of the component
+	 * @param direction - the direction of the component
+	 * @param width - the width of the component
+	 * @param height - the height of the component
+	 */
 	public CollidableComponent(Point2f position, Vector2f direction, int width, int height){
 		this.direction = direction;
 		this.position = position;
@@ -57,8 +63,6 @@ public class CollidableComponent implements ICollidableComponent{
 			return false;
 		}
 		else{
-			System.out.println("p: " + position);
-			System.out.println("top: " + getTopmostCoordinate());
 			if(getLeftmostCoordinate().x < rhs.getRightmostCoordinate().x){
 				System.out.println("1");
 				if(getLeftmostCoordinate().y > rhs.getRightmostCoordinate().y){
