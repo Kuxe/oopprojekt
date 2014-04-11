@@ -52,8 +52,6 @@ public class Gameworld implements PropertyChangeListener{
 	private Timestep timestep;
 	
 	private WorldBorder worldBorder;
-	private int worldHeight=440;
-	private int worldWidth=680;
 	
 	public Gameworld(){
 		moveables = 					new HashMap();
