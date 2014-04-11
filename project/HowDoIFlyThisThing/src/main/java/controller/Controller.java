@@ -36,6 +36,8 @@ public class Controller implements KeyListener {
 	private Set<Integer> listOfReleasedKeys;
 	boolean aHold, wHold, dHold, spaceHold;
 	
+	private User user1;
+	
 	public Controller(){
 		model = new Gameworld();
 		
@@ -56,6 +58,10 @@ public class Controller implements KeyListener {
 			e.printStackTrace();
 		}
 		viewThread.getView().getContainer().getInput().addKeyListener(this);
+		
+		user1 = new User();
+		user1.setSpaceship(spaceship1);
+		viewThread.getView().getContainer().getInput().addKeyListener(user1);
 	}
 	
 	public void start() {
@@ -66,8 +72,8 @@ public class Controller implements KeyListener {
 	}
 	
 	private void update() {
-		manageInput();
-		executeInput();
+		user1.manageInput();
+		user1.executeInput();
 		model.update();
 		setRenderObjects(model.getIDrawables());	
 	}
