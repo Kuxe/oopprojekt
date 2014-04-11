@@ -3,6 +3,7 @@ package controller;
 import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 import java.util.HashSet;
 import java.util.Set;
+import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 
@@ -50,6 +51,78 @@ public class User implements KeyListener{
 
 	public void inputStarted() {
 		// TODO Auto-generated method stub
+	}
+	private void executeInput() {
+		if(spaceHold) {
+			spaceship.fireWeapon();
+		}
+		if (wHold) {
+			spaceship.activateMainThruste();
+		} else {
+			spaceship.deactivateMainThruster();
+		}
+		if (aHold) {
+			spaceship.activateLeftThruste();
+		} else {
+			spaceship.deactivateLeftThruster();
+		}
+		if (dHold) {
+			spaceship.activateRightThruste();
+		} else {
+			spaceship.deactivateRightThruster();
+		}
+	}
+	
+	/**
+	 * Set booleans representing if a key is held down or not
+	 * If a key is inside pressedKeys (someone pressed a key), set the boolean to true
+	 * If a key is inside releasedkeys (someone released a key), set the boolean to false
+	 */
+	private synchronized void manageInput() {
+		for(int key : listOfPressedKeys) {
+			switch(key) {
+			case Keyboard.KEY_A: {
+				aHold = true;
+				break;
+			}
+			case Keyboard.KEY_W: {
+				wHold = true;
+				break;
+			}
+			case Keyboard.KEY_D: {
+				dHold = true;
+				break;
+			}
+			case Keyboard.KEY_SPACE: {
+				spaceHold = true;
+				break;
+			}
+			}
+		}
+		
+		for(int key : listOfReleasedKeys) {
+			switch(key) {
+			case Keyboard.KEY_A: {
+				aHold = false;
+				break;
+			}
+			case Keyboard.KEY_W: {
+				wHold = false;
+				break;
+			}
+			case Keyboard.KEY_D: {
+				dHold = false;
+				break;
+			}
+			case Keyboard.KEY_SPACE: {
+				spaceHold = false;
+				break;
+			}
+			}
+		}
+		
+		listOfPressedKeys.clear();
+		listOfReleasedKeys.clear();
 	}
 	
 }
