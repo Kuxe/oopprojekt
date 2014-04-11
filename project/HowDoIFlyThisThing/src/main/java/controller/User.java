@@ -52,7 +52,7 @@ public class User implements KeyListener{
 	public void inputStarted() {
 		// TODO Auto-generated method stub
 	}
-	private void executeInput() {
+	public void executeInput() {
 		if(spaceHold) {
 			spaceship.fireWeapon();
 		}
@@ -78,7 +78,7 @@ public class User implements KeyListener{
 	 * If a key is inside pressedKeys (someone pressed a key), set the boolean to true
 	 * If a key is inside releasedkeys (someone released a key), set the boolean to false
 	 */
-	private synchronized void manageInput() {
+	public synchronized void manageInput() {
 		for(int key : listOfPressedKeys) {
 			switch(key) {
 			case Keyboard.KEY_A: {
