@@ -225,6 +225,8 @@ public class Gameworld implements PropertyChangeListener{
 		} else if(evt.getPropertyName().equals(Projectile.Message.PROJECTILE_DIE.toString())) {
 			System.out.println(evt.getPropertyName());
 			listOfObjectsToBeRemoved.add(evt.getSource());
+		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
+			listOfObjectsToBeRemoved.add(evt.getSource());
 		}
 		
 	}
@@ -232,7 +234,8 @@ public class Gameworld implements PropertyChangeListener{
 	private void worldBounderyCheck(){
 		for(IMovable item: moveables.values()){
 			if(item.getPosition().x<0.0f || item.getPosition().x>worldWidth || item.getPosition().y<0.0f || item.getPosition().y>worldHeight){
-				slateObjectForRemoval(item);
+				//slateObjectForRemoval(item);
+				item.remove();
 			}
 		}
 	}
