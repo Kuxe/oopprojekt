@@ -73,6 +73,7 @@ public class Controller{
 		user1.manageInput();
 		user1.executeInput();
 		model.update();
+		viewThread.getView().setCamera(spaceship1.getPosition()); //Makes camerae follow spaceship1 position
 		setRenderObjects(model.getIDrawables());	
 	}
 	

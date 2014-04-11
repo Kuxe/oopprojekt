@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
 import org.newdawn.slick.AppGameContainer;
@@ -28,7 +29,11 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private Map<Object,IDrawable> renderObjects;
 	private Image spaceship,shott,asteroid;
-	Float f=0f;
+	private Float f=0f;
+	
+	private Point2f camera;
+	private final int windowWidth = 1040;
+	private final int windowHeight = 580;
 	
 	public View(String title){
 		super(title);
@@ -36,7 +41,7 @@ public class View extends BasicGame implements ApplicationListener{
 		renderObjects=new HashMap<Object,IDrawable>();
 		try{
 			container=new AppGameContainer(this);
-			container.setDisplayMode(1040, 580, false);
+			container.setDisplayMode(windowWidth, windowHeight, false);
 			container.setTargetFrameRate(60);
 		}catch(SlickException ex){
 			Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
@@ -82,7 +87,7 @@ public class View extends BasicGame implements ApplicationListener{
 			tmpX=comp.getPosition().x-comp.getWidth()/2;
 			tmpY=comp.getPosition().y-comp.getHeight()/2;
 			tmpImg.rotate(calculateRotation(comp.getDirection()));
-			g.drawImage(tmpImg, tmpX, tmpY);
+			g.drawImage(tmpImg, tmpX - camera.x + windowWidth/2, tmpY - camera.y + windowHeight/2);
 		}
 //		System.out.println("-------------------------------------------------");
 		
@@ -128,6 +133,10 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	public AppGameContainer getContainer(){
 		return this.container;
+	}
+	
+	public void setCamera(Point2f camera) {
+		this.camera = camera;
 	}
 
 }
