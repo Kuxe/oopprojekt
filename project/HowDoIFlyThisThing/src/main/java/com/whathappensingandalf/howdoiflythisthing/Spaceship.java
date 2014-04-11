@@ -73,7 +73,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         rotationVelocity = new TypeWrapper(0.0f);        
         this.WEAPON_PIPE_POSITION = new Vector2f(0.0f, height/2); //Should fire from middle of spaceships just infront of it
         this.hull=100;
-        this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, rotationAcceleration);
+        this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, this.rotationVelocity, this.rotationAcceleration);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
 		this.armsComponent = new ArmsComponent(this.position, velocity, new Vector2f(0,0), this.direction, WEAPON_PIPE_POSITION);
 		this.colliComp = new CollidableComponent(position, direction, width, height);
@@ -294,5 +294,25 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 	public void deactivateRightThruster(){
 		this.thrusterComponent.deactivateRightThruster();
+	}
+
+	public Point2f getLeftmostCoordinate() {
+		colliComp.getLeftmostCoordinate();
+		return null;
+	}
+
+	public Point2f getRightmostCoordinate() {
+		colliComp.getRightmostCoordinate();
+		return null;
+	}
+
+	public Point2f getTopmostCoordinate() {
+		colliComp.getTopmostCoordinate();
+		return null;
+	}
+
+	public Point2f getBottommmostCoordinate() {
+		colliComp.getBottommostCoordinate();
+		return null;
 	}
 }
