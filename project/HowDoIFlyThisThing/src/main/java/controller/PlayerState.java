@@ -6,10 +6,14 @@
 
 package controller;
 
+import java.util.Set;
+
 /**
  *
  * @author Martin
  */
 public class PlayerState implements IUserState{
-	
+	public PlayerState(Set<Integer> listOfPressedKeys, Set<Integer> listOfReleasedKeys){
+		
+	}
 }

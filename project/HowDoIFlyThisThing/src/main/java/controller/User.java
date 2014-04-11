@@ -16,7 +16,9 @@ import org.newdawn.slick.KeyListener;
 public class User implements KeyListener,PropertyChangeListener{
 	
 	private IUserState state;
-	private Spaceship spaceship;
+	private SpectatorState spectatorState;
+	private PlayerState playerState;
+	private Spaceship spaceship;//MOVE TO PLAYER
 	private Set<Integer> listOfPressedKeys;
 	private Set<Integer> listOfReleasedKeys;
 	boolean aHold, wHold, dHold, spaceHold;
@@ -24,9 +26,13 @@ public class User implements KeyListener,PropertyChangeListener{
 	public User(){
 		listOfPressedKeys = new HashSet();
 		listOfReleasedKeys = new HashSet();
+		spectatorState = new SpectatorState(listOfPressedKeys, listOfReleasedKeys);
+		playerState = new PlayerState(listOfPressedKeys, listOfReleasedKeys);
+		state = spectatorState;
 	}
 	
 	public void setSpaceship(Spaceship spaceship){
+		this.state=playerState;
 		this.spaceship=spaceship;
 		this.spaceship.addPropertyChangeListener(this);
 	}
@@ -55,7 +61,7 @@ public class User implements KeyListener,PropertyChangeListener{
 	public void inputStarted() {
 		// TODO Auto-generated method stub
 	}
-	public void executeInput() {
+	public void executeInput() {//MOVE TO INTERFACE
 		if(spaceHold) {
 			spaceship.fireWeapon();
 		}
@@ -130,7 +136,7 @@ public class User implements KeyListener,PropertyChangeListener{
 
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
-			//TODO change state
+			state = spectatorState;
 		}
 	}
 	
