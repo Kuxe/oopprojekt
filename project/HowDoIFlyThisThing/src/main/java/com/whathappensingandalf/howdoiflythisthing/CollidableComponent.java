@@ -33,6 +33,8 @@ public class CollidableComponent implements ICollidableComponent{
 	}
 
 	public boolean collideDetection(ICollidable rhs) {
+		
+		
 		return false;
 		//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
