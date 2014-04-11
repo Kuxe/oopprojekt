@@ -51,7 +51,6 @@ public class CollidableComponent implements ICollidableComponent{
 		/*
 		if(getLeftmostCoordinate().x > rhs.getRightmostCoordinate().x || getRightmostCoordinate().x < rhs.getLeftmostCoordinate().x ||
 				getTopmostCoordinate().y > rhs.getBottommmostCoordinate().y || getBottommmostCoordinate().y < rhs.getTopmostCoordinate().y){
-//			System.out.println("if");
  */
 		if(getLeftmostCoordinate().x > rhs.getRightmostCoordinate().x ){
 			return false;
@@ -64,7 +63,6 @@ public class CollidableComponent implements ICollidableComponent{
 		}
 		else{
 			if(getLeftmostCoordinate().x < rhs.getRightmostCoordinate().x){
-				System.out.println("1");
 				if(getLeftmostCoordinate().y > rhs.getRightmostCoordinate().y){
 					alfaVector.sub(rhs.getRightmostCoordinate(), getLeftmostCoordinate());
 					alfa= ex.angle(alfaVector);
@@ -83,7 +81,6 @@ public class CollidableComponent implements ICollidableComponent{
 					return beta- alfa > 0;
 				}
 			}else if(getRightmostCoordinate().x < rhs.getLeftmostCoordinate().x){
-				System.out.println("2");
 				if(getRightmostCoordinate().y > rhs.getLeftmostCoordinate().y){
 					alfaVector.sub(rhs.getLeftmostCoordinate(), getRightmostCoordinate());
 					alfa= ex.angle(alfaVector);
@@ -102,7 +99,6 @@ public class CollidableComponent implements ICollidableComponent{
 					return alfa- beta > 0;
 				}
 			}else if(getTopmostCoordinate().y < rhs.getBottommmostCoordinate().y){
-				System.out.println("3");
 				if(getTopmostCoordinate().x > rhs.getBottommmostCoordinate().x){
 					alfaVector.sub(rhs.getBottommmostCoordinate(), getTopmostCoordinate());
 					alfa= ey.angle(alfaVector);
@@ -121,7 +117,6 @@ public class CollidableComponent implements ICollidableComponent{
 					return beta- alfa > 0;
 				}
 			}else if(getBottommmostCoordinate().y > rhs.getTopmostCoordinate().y){
-				System.out.println("4");
 				if(getBottommmostCoordinate().x > rhs.getTopmostCoordinate().x){
 					alfaVector.sub(rhs.getTopmostCoordinate(), getBottommmostCoordinate());
 					alfa= ey.angle(alfaVector);
