@@ -11,30 +11,77 @@ import javax.vecmath.Vector2f;
 public class CollidableComponent implements ICollidableComponent{
 
 	private Point2f position;
-	private Vector2f topLeftCorner;
 	private Vector2f distanceToSide;	//vector pointing to the right (from start)
 	private Vector2f distanceToTop;		//vector pointing to upwards (from start)
 	private Vector2f direction;
+	private Vector2f alfaVector;
+	private Vector2f betaVector;
 	private Vector2f ex;
 	private Vector2f ey;
 	private Point2f calc;
+	private float alfa;
+	private float beta;
 	
 	public CollidableComponent(Point2f position, Vector2f direction, int width, int height){
 		
-		this.position = new Point2f(position.x, position.y);	//Center point
-		this.topLeftCorner = new Vector2f(-width/2, -height/2);	//To find upper left corner
 		this.direction = direction;
-		this.distanceToSide = new Vector2f(width/2,0);
-		this.distanceToTop = new Vector2f(0,height/2);
-		this.ex = new Vector2f(1,0);
-		this.ey = new Vector2f(0,1);
-		
-		
+		position = new Point2f(position.x, position.y);	//Center point
+		distanceToSide = new Vector2f(width/2,0);
+		distanceToTop = new Vector2f(0,height/2);
+		ex = new Vector2f(1,0);
+		ey = new Vector2f(0,1);
+		alfaVector= new Vector2f();
+		alfa= 0.0f;
+		beta= 0.0f;
 	}
 
 	public boolean collideDetection(ICollidable rhs) {
 		
-		
+//		Checks if it's ok, else we might be colliding
+		if(getLeftmostCoordinate().x > rhs.getRightmostCoordinate().x || getRightmostCoordinate().x < rhs.getLeftmostCoordinate().x ||
+				getTopmostCoordinate().y > rhs.getBottommmostCoordinate().y || getBottommostCoordinate().y < rhs.getTopmostCoordinate().y){
+			return false;
+		}else{
+			if(getLeftmostCoordinate().x < rhs.getRightmostCoordinate().x){
+				if(getLeftmostCoordinate().y > rhs.getRightmostCoordinate().y){
+					alfaVector.sub(rhs.getRightmostCoordinate(), getLeftmostCoordinate());
+					alfa= ex.angle(alfaVector);
+					
+					betaVector.sub(getTopmostCoordinate(), getLeftmostCoordinate());
+					beta= ex.angle(betaVector);
+					
+					return alfa- beta > 0;
+				}else{
+					alfaVector.sub(rhs.getRightmostCoordinate(), getLeftmostCoordinate());
+					alfa= ex.angle(alfaVector);
+					
+					betaVector.sub(getBottommostCoordinate(), getLeftmostCoordinate());
+					beta= ex.angle(betaVector);
+					
+					return alfa- beta > 0;
+				}
+			}
+//			*******
+			else if(getLeftmostCoordinate().x < rhs.getRightmostCoordinate().x){
+				if(getLeftmostCoordinate().y > rhs.getRightmostCoordinate().y){
+					alfaVector.sub(rhs.getRightmostCoordinate(), getLeftmostCoordinate());
+					alfa= ex.angle(alfaVector);
+					
+					betaVector.sub(getTopmostCoordinate(), getLeftmostCoordinate());
+					beta= ex.angle(betaVector);
+					
+					return alfa- beta > 0;
+				}else{
+					alfaVector.sub(rhs.getRightmostCoordinate(), getLeftmostCoordinate());
+					alfa= ex.angle(alfaVector);
+					
+					betaVector.sub(getBottommostCoordinate(), getLeftmostCoordinate());
+					beta= ex.angle(betaVector);
+					
+					return alfa- beta > 0;
+				}
+			}
+		}
 		return false;
 		//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
