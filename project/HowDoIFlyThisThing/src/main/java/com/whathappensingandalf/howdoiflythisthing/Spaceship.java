@@ -89,7 +89,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	/**
 	 * {@inheritDoc}
 	 */
-    public void move(Timestep timestep) {
+    public synchronized void move(Timestep timestep) {
 		this.calculateThrust(timestep);
 		calculateWeaponPipePosition();
         this.moveComponent.move(timestep);
@@ -269,7 +269,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		return colliComp.getBoundingBox();
 	}
 	
-	public Point2f getPossition() {
+	public synchronized Point2f getPossition() {
 		return this.position;
 	}
 	@Override
