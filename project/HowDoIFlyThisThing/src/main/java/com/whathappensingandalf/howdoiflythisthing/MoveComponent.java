@@ -45,7 +45,9 @@ class MoveComponent {
 	* Moves the component
 	*/
 	public void move(Timestep timestep){
-		VecmathUtils.rotateVector(direction, rotationVelocity.getValue());
+		rotationVelocity.setValue(rotationVelocity.getValue()+(float)(rotationAcceleration.getValue()*timestep.getDelta()));
+		System.out.println(rotationVelocity.getValue());
+		VecmathUtils.rotateVector(direction, (float)(rotationVelocity.getValue()*timestep.getDelta()));
 		
 		Vector2f tempAcc=(Vector2f) acceleration.clone();
 		VecmathUtils.setLength(tempAcc, acceleration.length()-(velocity.length()*0.001f));
