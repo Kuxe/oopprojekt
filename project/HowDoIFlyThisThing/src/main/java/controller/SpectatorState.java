@@ -6,10 +6,22 @@
 
 package controller;
 
+import java.util.Set;
+
 /**
  *
  * @author Martin
  */
 public class SpectatorState implements IUserState{
-	
+	public SpectatorState(Set<Integer> listOfPressedKeys, Set<Integer> listOfReleasedKeys){
+		
+	}
+
+	public void manageInput() {
+		//TODO Something
+	}
+	public void executeInput() {
+		//TODO Ssomething
+	}
+
 }
