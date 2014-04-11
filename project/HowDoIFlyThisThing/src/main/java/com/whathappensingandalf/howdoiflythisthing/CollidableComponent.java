@@ -48,19 +48,15 @@ public class CollidableComponent implements ICollidableComponent{
 //			System.out.println("if");
  */
 		if(getLeftmostCoordinate().x > rhs.getRightmostCoordinate().x ){
-			System.out.println(rhs.getType());
-			System.out.println("if1");
-//			return false;
-		if(getRightmostCoordinate().x < rhs.getLeftmostCoordinate().x){
-			System.out.println("if2");
+			return false;
+		}else if(getRightmostCoordinate().x < rhs.getLeftmostCoordinate().x){
+			return false;
+		}else if(getTopmostCoordinate().y > rhs.getBottommmostCoordinate().y){
+			return false;
+		}else if(getBottommmostCoordinate().y < rhs.getTopmostCoordinate().y){
+			return false;
 		}
-		if(getTopmostCoordinate().y > rhs.getBottommmostCoordinate().y){
-			System.out.println("if3");
-		}
-		if(getBottommmostCoordinate().y < rhs.getTopmostCoordinate().y){
-			System.out.println("if4");
-		}
-		}else{
+		else{
 			System.out.println("p: " + position);
 			System.out.println("top: " + getTopmostCoordinate());
 			if(getLeftmostCoordinate().x < rhs.getRightmostCoordinate().x){
