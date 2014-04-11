@@ -1,5 +1,8 @@
 package controller;
 
+import com.whathappensingandalf.howdoiflythisthing.Spaceship;
+import java.util.HashSet;
+import java.util.Set;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 
@@ -10,9 +13,18 @@ import org.newdawn.slick.KeyListener;
 public class User implements KeyListener{
 	
 	private IUserState state;
+	private Spaceship spaceship;
+	private Set<Integer> listOfPressedKeys;
+	private Set<Integer> listOfReleasedKeys;
+	boolean aHold, wHold, dHold, spaceHold;
 	
 	public User(){
-		
+		listOfPressedKeys = new HashSet();
+		listOfReleasedKeys = new HashSet();
+	}
+	
+	public void setSpaceship(Spaceship spaceship){
+		this.spaceship=spaceship;
 	}
 
 	public void keyPressed(int i, char c) {
