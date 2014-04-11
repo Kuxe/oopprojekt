@@ -235,7 +235,7 @@ public class Gameworld implements PropertyChangeListener{
 	
 	private void worldBounderyCheck(){
 		for(IMovable item: moveables.values()){
-			if(item.getPosition().x<0.0f || item.getPosition().x>worldWidth || item.getPosition().y<0.0f || item.getPosition().y>worldHeight){
+			if(item.getPosition().x<0.0f || item.getPosition().x>worldBorder.getWorldWidth() || item.getPosition().y<0.0f || item.getPosition().y>worldBorder.getWorldHeight()){
 				slateObjectForRemoval(item);
 			}
 		}
