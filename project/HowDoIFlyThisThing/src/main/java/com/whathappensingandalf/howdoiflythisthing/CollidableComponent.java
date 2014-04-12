@@ -204,12 +204,4 @@ public class CollidableComponent implements ICollidableComponent{
 		}
 		return calc;
 	}
-	
-	public void updateBoundingBox() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
-
-	public Area getBoundingBox() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
 }//end CollidableComponent
