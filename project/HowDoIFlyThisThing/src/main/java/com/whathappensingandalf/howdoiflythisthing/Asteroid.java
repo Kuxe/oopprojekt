@@ -79,19 +79,27 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 	public Asteroid clone() {
 		return new Asteroid(this);
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public Point2f getLeftmostCoordinate() {
 		return colliComp.getLeftmostCoordinate();
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public Point2f getRightmostCoordinate() {
 		return colliComp.getRightmostCoordinate();
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public Point2f getTopmostCoordinate() {
 		return colliComp.getTopmostCoordinate();
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public Point2f getBottommmostCoordinate() {
 		return colliComp.getBottommmostCoordinate();
 	}
