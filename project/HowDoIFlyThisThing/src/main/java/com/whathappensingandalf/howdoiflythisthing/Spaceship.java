@@ -265,9 +265,6 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	public boolean collideDetection(ICollidable rhs) {
 		return colliComp.collideDetection(rhs);
 	}
-	public Area getBoundingBox() {
-		return colliComp.getBoundingBox();
-	}
 	
 	public synchronized Point2f getPossition() {
 		return this.position;

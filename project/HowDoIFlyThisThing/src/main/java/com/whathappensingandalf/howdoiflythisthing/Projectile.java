@@ -167,9 +167,6 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	public boolean collideDetection(ICollidable rhs) {
 		return colliComp.collideDetection(rhs);
 	}
-	public Area getBoundingBox() {
-		return colliComp.getBoundingBox();
-	}
 
 	public void accept(ICollidable visitor) {
 		visitor.visit(this);

@@ -29,10 +29,6 @@ public interface ICollidable extends IListable{
 	 */
 	public Point2f getPosition();
 	/**
-	 * @return
-	 */
-	public Area getBoundingBox();
-	/**
 	 * @return the type of this component
 	 */
 	public String getType();

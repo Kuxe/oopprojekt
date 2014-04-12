@@ -49,10 +49,6 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 		return new Point2f(position.x, position.y);
 	}
 
-	public Area getBoundingBox() {
-		return this.colliComp.getBoundingBox();
-	}
-
 	public String getType() {
 		return type.ASTEROID.toString();
 	}
