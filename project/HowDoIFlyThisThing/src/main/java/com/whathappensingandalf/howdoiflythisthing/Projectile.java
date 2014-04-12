@@ -204,19 +204,27 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	public Projectile clone() {
 		return new Projectile(this);
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public Point2f getLeftmostCoordinate() {
 		return colliComp.getLeftmostCoordinate();
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public Point2f getRightmostCoordinate() {
 		return colliComp.getRightmostCoordinate();
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public Point2f getTopmostCoordinate() {
 		return colliComp.getTopmostCoordinate();
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public Point2f getBottommmostCoordinate() {
 		return colliComp.getBottommmostCoordinate();
 	}

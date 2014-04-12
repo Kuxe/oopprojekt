@@ -24,8 +24,8 @@ public class CollidableComponent implements ICollidableComponent{
 	private float beta;
 	
 	/**
-	 * @param position - the position of the component
-	 * @param direction - the direction of the component
+	 * @param position - a point describing the center of the component
+	 * @param direction - a vector describing the direction of the component
 	 * @param width - the width of the component
 	 * @param height - the height of the component
 	 */
