@@ -100,7 +100,7 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 	/**
 	 * {@inheritDoc}
 	 */
-	public Point2f getBottommmostCoordinate() {
-		return colliComp.getBottommmostCoordinate();
+	public Point2f getBottommostCoordinate() {
+		return colliComp.getBottommostCoordinate();
 	}
 }

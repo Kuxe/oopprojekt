@@ -67,5 +67,5 @@ public interface ICollidable extends IListable{
 	/**
 	 * @return the point at the bottom
 	 */
-	public Point2f getBottommmostCoordinate();
+	public Point2f getBottommostCoordinate();
 }

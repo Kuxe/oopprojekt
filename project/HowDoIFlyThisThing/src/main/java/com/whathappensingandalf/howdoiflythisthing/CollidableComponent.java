@@ -50,15 +50,15 @@ public class CollidableComponent implements ICollidableComponent{
 
 		/*
 		if(getLeftmostCoordinate().x > rhs.getRightmostCoordinate().x || getRightmostCoordinate().x < rhs.getLeftmostCoordinate().x ||
-				getTopmostCoordinate().y > rhs.getBottommmostCoordinate().y || getBottommmostCoordinate().y < rhs.getTopmostCoordinate().y){
+				getTopmostCoordinate().y > rhs.getBottommostCoordinate().y || getBottommostCoordinate().y < rhs.getTopmostCoordinate().y){
  */
 		if(getLeftmostCoordinate().x > rhs.getRightmostCoordinate().x ){
 			return false;
 		}else if(getRightmostCoordinate().x < rhs.getLeftmostCoordinate().x){
 			return false;
-		}else if(getTopmostCoordinate().y > rhs.getBottommmostCoordinate().y){
+		}else if(getTopmostCoordinate().y > rhs.getBottommostCoordinate().y){
 			return false;
-		}else if(getBottommmostCoordinate().y < rhs.getTopmostCoordinate().y){
+		}else if(getBottommostCoordinate().y < rhs.getTopmostCoordinate().y){
 			return false;
 		}
 		else{
@@ -75,7 +75,7 @@ public class CollidableComponent implements ICollidableComponent{
 					alfaVector.sub(rhs.getRightmostCoordinate(), getLeftmostCoordinate());
 					alfa= ex.angle(alfaVector);
 					
-					betaVector.sub(getBottommmostCoordinate(), getLeftmostCoordinate());
+					betaVector.sub(getBottommostCoordinate(), getLeftmostCoordinate());
 					beta= ex.angle(betaVector);
 					
 					return beta- alfa > 0;
@@ -93,14 +93,14 @@ public class CollidableComponent implements ICollidableComponent{
 					alfaVector.sub(rhs.getLeftmostCoordinate(), getRightmostCoordinate());
 					alfa= ex.angle(alfaVector);
 					
-					betaVector.sub(getBottommmostCoordinate(), getRightmostCoordinate());
+					betaVector.sub(getBottommostCoordinate(), getRightmostCoordinate());
 					beta= ex.angle(betaVector);
 					
 					return alfa- beta > 0;
 				}
-			}else if(getTopmostCoordinate().y < rhs.getBottommmostCoordinate().y){
-				if(getTopmostCoordinate().x > rhs.getBottommmostCoordinate().x){
-					alfaVector.sub(rhs.getBottommmostCoordinate(), getTopmostCoordinate());
+			}else if(getTopmostCoordinate().y < rhs.getBottommostCoordinate().y){
+				if(getTopmostCoordinate().x > rhs.getBottommostCoordinate().x){
+					alfaVector.sub(rhs.getBottommostCoordinate(), getTopmostCoordinate());
 					alfa= ey.angle(alfaVector);
 					
 					betaVector.sub(getLeftmostCoordinate(), getTopmostCoordinate());
@@ -108,7 +108,7 @@ public class CollidableComponent implements ICollidableComponent{
 					
 					return beta- alfa > 0;
 				}else{
-					alfaVector.sub(rhs.getBottommmostCoordinate(), getTopmostCoordinate());
+					alfaVector.sub(rhs.getBottommostCoordinate(), getTopmostCoordinate());
 					alfa= ey.angle(alfaVector);
 					
 					betaVector.sub(getRightmostCoordinate(), getTopmostCoordinate());
@@ -116,20 +116,20 @@ public class CollidableComponent implements ICollidableComponent{
 					
 					return beta- alfa > 0;
 				}
-			}else if(getBottommmostCoordinate().y > rhs.getTopmostCoordinate().y){
-				if(getBottommmostCoordinate().x > rhs.getTopmostCoordinate().x){
-					alfaVector.sub(rhs.getTopmostCoordinate(), getBottommmostCoordinate());
+			}else if(getBottommostCoordinate().y > rhs.getTopmostCoordinate().y){
+				if(getBottommostCoordinate().x > rhs.getTopmostCoordinate().x){
+					alfaVector.sub(rhs.getTopmostCoordinate(), getBottommostCoordinate());
 					alfa= ey.angle(alfaVector);
 					
-					betaVector.sub(getLeftmostCoordinate(), getBottommmostCoordinate());
+					betaVector.sub(getLeftmostCoordinate(), getBottommostCoordinate());
 					beta= ey.angle(betaVector);
 					
 					return alfa- beta > 0;
 				}else{
-					alfaVector.sub(rhs.getTopmostCoordinate(), getBottommmostCoordinate());
+					alfaVector.sub(rhs.getTopmostCoordinate(), getBottommostCoordinate());
 					alfa= ey.angle(alfaVector);
 					
-					betaVector.sub(getRightmostCoordinate(), getBottommmostCoordinate());
+					betaVector.sub(getRightmostCoordinate(), getBottommostCoordinate());
 					beta= ey.angle(betaVector);
 					
 					return alfa- beta > 0;
@@ -186,7 +186,7 @@ public class CollidableComponent implements ICollidableComponent{
 	/**
 	 * @return the point in the down corner (with the highest y- value)
 	 */
-	public Point2f getBottommmostCoordinate(){
+	public Point2f getBottommostCoordinate(){
 		calc.set(position.x,position.y);
 		if(distanceToTop.y>0){
 			calc.add(distanceToTop);

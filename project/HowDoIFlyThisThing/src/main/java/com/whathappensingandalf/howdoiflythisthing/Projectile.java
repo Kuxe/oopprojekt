@@ -225,7 +225,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	/**
 	 * {@inheritDoc}
 	 */
-	public Point2f getBottommmostCoordinate() {
-		return colliComp.getBottommmostCoordinate();
+	public Point2f getBottommostCoordinate() {
+		return colliComp.getBottommostCoordinate();
 	}
 }//end Projectile
