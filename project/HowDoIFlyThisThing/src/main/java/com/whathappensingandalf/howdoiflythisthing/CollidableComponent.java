@@ -42,7 +42,9 @@ public class CollidableComponent implements ICollidableComponent{
 		beta= 0.0f;
 		calc= new Point2f(0, 0);
 	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean collideDetection(ICollidable rhs) {
 		utils.VecmathUtils.setAngleFromVector(distanceToTop, direction);
 		utils.VecmathUtils.setAngleFromVector(distanceToSide, direction);
@@ -139,6 +141,9 @@ public class CollidableComponent implements ICollidableComponent{
 //		throw new UnsupportedOperationException("Not supported yet.");
 		return false;
 	}
+	/**
+	 * @return the point most to the left (lowest x- value)
+	 */
 	public Point2f getLeftmostCoordinate(){
 		calc.set(position.x, position.y);
 		if(distanceToTop.x<0){
