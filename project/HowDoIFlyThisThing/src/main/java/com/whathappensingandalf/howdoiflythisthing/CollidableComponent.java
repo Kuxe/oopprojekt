@@ -65,72 +65,56 @@ public class CollidableComponent implements ICollidableComponent{
 		}
 		else{
 			if(getLeftmostCoordinate().x < rhs.getRightmostCoordinate().x){
+				alfaVector.sub(rhs.getRightmostCoordinate(), getLeftmostCoordinate());
+				alfa= ex.angle(alfaVector);
 				if(getLeftmostCoordinate().y > rhs.getRightmostCoordinate().y){
-					alfaVector.sub(rhs.getRightmostCoordinate(), getLeftmostCoordinate());
-					alfa= ex.angle(alfaVector);
-					
 					betaVector.sub(getTopmostCoordinate(), getLeftmostCoordinate());
 					beta= ex.angle(betaVector);
 					
 					return beta- alfa > 0;
 				}else{
-					alfaVector.sub(rhs.getRightmostCoordinate(), getLeftmostCoordinate());
-					alfa= ex.angle(alfaVector);
-					
 					betaVector.sub(getBottommostCoordinate(), getLeftmostCoordinate());
 					beta= ex.angle(betaVector);
 					
 					return beta- alfa > 0;
 				}
 			}else if(getRightmostCoordinate().x < rhs.getLeftmostCoordinate().x){
+				alfaVector.sub(rhs.getLeftmostCoordinate(), getRightmostCoordinate());
+				alfa= ex.angle(alfaVector);
 				if(getRightmostCoordinate().y > rhs.getLeftmostCoordinate().y){
-					alfaVector.sub(rhs.getLeftmostCoordinate(), getRightmostCoordinate());
-					alfa= ex.angle(alfaVector);
-					
 					betaVector.sub(getTopmostCoordinate(), getRightmostCoordinate());
 					beta= ex.angle(betaVector);
 					
 					return alfa- beta > 0;
 				}else{
-					alfaVector.sub(rhs.getLeftmostCoordinate(), getRightmostCoordinate());
-					alfa= ex.angle(alfaVector);
-					
 					betaVector.sub(getBottommostCoordinate(), getRightmostCoordinate());
 					beta= ex.angle(betaVector);
 					
 					return alfa- beta > 0;
 				}
 			}else if(getTopmostCoordinate().y < rhs.getBottommostCoordinate().y){
+				alfaVector.sub(rhs.getBottommostCoordinate(), getTopmostCoordinate());
+				alfa= ey.angle(alfaVector);
 				if(getTopmostCoordinate().x > rhs.getBottommostCoordinate().x){
-					alfaVector.sub(rhs.getBottommostCoordinate(), getTopmostCoordinate());
-					alfa= ey.angle(alfaVector);
-					
 					betaVector.sub(getLeftmostCoordinate(), getTopmostCoordinate());
 					beta= ey.angle(betaVector);
 					
 					return beta- alfa > 0;
 				}else{
-					alfaVector.sub(rhs.getBottommostCoordinate(), getTopmostCoordinate());
-					alfa= ey.angle(alfaVector);
-					
 					betaVector.sub(getRightmostCoordinate(), getTopmostCoordinate());
 					beta= ey.angle(betaVector);
 					
 					return beta- alfa > 0;
 				}
 			}else if(getBottommostCoordinate().y > rhs.getTopmostCoordinate().y){
+				alfaVector.sub(rhs.getTopmostCoordinate(), getBottommostCoordinate());
+				alfa= ey.angle(alfaVector);
 				if(getBottommostCoordinate().x > rhs.getTopmostCoordinate().x){
-					alfaVector.sub(rhs.getTopmostCoordinate(), getBottommostCoordinate());
-					alfa= ey.angle(alfaVector);
-					
 					betaVector.sub(getLeftmostCoordinate(), getBottommostCoordinate());
 					beta= ey.angle(betaVector);
 					
 					return alfa- beta > 0;
 				}else{
-					alfaVector.sub(rhs.getTopmostCoordinate(), getBottommostCoordinate());
-					alfa= ey.angle(alfaVector);
-					
 					betaVector.sub(getRightmostCoordinate(), getBottommostCoordinate());
 					beta= ey.angle(betaVector);
 					
