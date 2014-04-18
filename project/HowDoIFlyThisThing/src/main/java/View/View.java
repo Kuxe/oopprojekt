@@ -75,6 +75,17 @@ public class View extends BasicGame implements ApplicationListener{
 					-windowHeight/2 + mody * windowHeight - camera.y);
 	}
 	
+	/**
+	 * For debugging purposes. Displays the worlds border.
+	 * @param arg0
+	 * @param g
+	 */
+	private void drawBorder(GameContainer arg0, Graphics g) {
+		//HARDCODED. If world border changes,this row must manually be changed to display
+		//correct world border
+		g.drawRect(-camera.x + windowWidth/2, -camera.y + windowHeight/2, 1080, 540);
+	}
+	
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 //		g.translate(100, 100);
 //		g.rotate(25, 25, f);
@@ -104,7 +115,8 @@ public class View extends BasicGame implements ApplicationListener{
 			tmpImg.rotate(calculateRotation(comp.getDirection()));
 			g.drawImage(tmpImg, tmpX - camera.x + windowWidth/2, tmpY - camera.y + windowHeight/2);
 		}
-//		System.out.println("-------------------------------------------------");;
+//		System.out.println("-------------------------------------------------");
+		drawBorder(arg0, g);
 	}
 
 	@Override
