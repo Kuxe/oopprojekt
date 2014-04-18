@@ -19,6 +19,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Circle;
 
 import com.whathappensingandalf.howdoiflythisthing.*;
 
@@ -28,12 +29,13 @@ public class View extends BasicGame implements ApplicationListener{
 //	private GameWindow game;
 	
 	private Map<Object,IDrawable> renderObjects;
-	private Image spaceship,shott,asteroid;
+	private Image spaceship,shott,asteroid, background;
+	private int backgroundWidth, backgroundHeight;
 	private Float f=0f;
 	
 	private Point2f camera;
-	private final int windowWidth = 1040;
-	private final int windowHeight = 580;
+	private final int windowWidth = 640;
+	private final int windowHeight = 480;
 	
 	public View(String title){
 		super(title);
@@ -46,6 +48,9 @@ public class View extends BasicGame implements ApplicationListener{
 		}catch(SlickException ex){
 			Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
 		}
+		
+		//Camera default to coordiante (0, 0)
+		camera = new Point2f(0, 0);
 		
 	}
 	
@@ -61,10 +66,20 @@ public class View extends BasicGame implements ApplicationListener{
 	public void setRenderObjects(Map<Object,IDrawable> list){
 		renderObjects=Collections.synchronizedMap(list);
 	}
+	
+	private void drawBackground(GameContainer arg0, Graphics g) {
+		int modx = (int) ((camera.x + windowWidth/2) / windowWidth);
+		int mody = (int) ((camera.y + windowHeight/2) / windowHeight);
+		g.drawImage(background, 
+					-windowWidth/2 + modx * windowWidth  - camera.x,
+					-windowHeight/2 + mody * windowHeight - camera.y);
+	}
+	
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 //		g.translate(100, 100);
 //		g.rotate(25, 25, f);
 //		f++;
+		drawBackground(arg0, g);
 		for(IDrawable comp: renderObjects.values()){
 			
 //			System.out.println();
@@ -89,8 +104,7 @@ public class View extends BasicGame implements ApplicationListener{
 			tmpImg.rotate(calculateRotation(comp.getDirection()));
 			g.drawImage(tmpImg, tmpX - camera.x + windowWidth/2, tmpY - camera.y + windowHeight/2);
 		}
-//		System.out.println("-------------------------------------------------");
-		
+//		System.out.println("-------------------------------------------------");;
 	}
 
 	@Override
@@ -99,6 +113,10 @@ public class View extends BasicGame implements ApplicationListener{
 			spaceship=new Image("resources/Spaceship.png");
 			shott=new Image("resources/Shott.png");
 			asteroid=new Image("resources/Asteroid.png");
+			background = new Image("resources/scrollingbackground.png");
+			
+			backgroundWidth = background.getWidth();
+			backgroundHeight = background.getHeight();
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
