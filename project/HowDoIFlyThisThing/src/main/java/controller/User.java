@@ -36,11 +36,11 @@ public class User implements KeyListener,PropertyChangeListener{
 		spaceship.addPropertyChangeListener(this);
 	}
 
-	public void keyPressed(int key, char c) {
+	public synchronized void keyPressed(int key, char c) {
 		listOfPressedKeys.add(key);
 	}
 
-	public void keyReleased(int key, char c) {
+	public synchronized void keyReleased(int key, char c) {
 		listOfReleasedKeys.add(key);
 	}
 
@@ -58,7 +58,7 @@ public class User implements KeyListener,PropertyChangeListener{
 		// TODO Auto-generated method stub
 	}
 	
-	public void manageInput(){
+	public synchronized void manageInput(){
 		this.state.manageInput();
 	}
 	public void executeInput() {
