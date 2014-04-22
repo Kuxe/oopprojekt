@@ -34,8 +34,8 @@ public class View extends BasicGame implements ApplicationListener{
 	private Float f=0f;
 	
 	private Point2f camera;
-	private final int windowWidth = 640;
-	private final int windowHeight = 480;
+	private final int windowWidth = 800;
+	private final int windowHeight = 600;
 	
 	public View(String title){
 		super(title);
@@ -67,12 +67,24 @@ public class View extends BasicGame implements ApplicationListener{
 		renderObjects=Collections.synchronizedMap(list);
 	}
 	
-	private void drawBackground(GameContainer arg0, Graphics g) {
-		int modx = (int) ((camera.x + windowWidth/2) / windowWidth);
-		int mody = (int) ((camera.y + windowHeight/2) / windowHeight);
+	/**
+	 * Draws a scrolling image, that is an Image that composed of
+	 * 4 subpieces that all look exactly the same which "follows"
+	 * the camera seamlessly. Used for scrolling background.
+	 * Note that param <i>image</i> must have dimensions equal to
+	 * or greater than that of the window, else the black
+	 * standard background will appear between scrolls.
+	 * 
+	 * @param arg0
+	 * @param g
+	 * @param image which scrolls with camera
+	 */
+	private void drawScrollingImage(GameContainer arg0, Graphics g, Image image) {
+		int modx = (int) ((camera.x + windowWidth/2) / (image.getWidth()/2));
+		int mody = (int) ((camera.y + windowHeight/2) / (image.getHeight()/2));
 		g.drawImage(background, 
-					-windowWidth/2 + modx * windowWidth  - camera.x,
-					-windowHeight/2 + mody * windowHeight - camera.y);
+					-windowWidth/2 + modx * image.getWidth()/2  - camera.x,
+					-windowHeight/2 + mody * image.getHeight()/2 - camera.y);
 	}
 	
 	/**
@@ -90,7 +102,7 @@ public class View extends BasicGame implements ApplicationListener{
 //		g.translate(100, 100);
 //		g.rotate(25, 25, f);
 //		f++;
-		drawBackground(arg0, g);
+		drawScrollingImage(arg0, g, background);
 		for(IDrawable comp: renderObjects.values()){
 			
 //			System.out.println();
@@ -125,12 +137,16 @@ public class View extends BasicGame implements ApplicationListener{
 			spaceship=new Image("resources/Spaceship.png");
 			shott=new Image("resources/Shott.png");
 			asteroid=new Image("resources/Asteroid.png");
-			background = new Image("resources/scrollingbackground.png");
-			
-			backgroundWidth = background.getWidth();
-			backgroundHeight = background.getHeight();
+			background = new Image("resources/scrollingbackgroundLarge.png");
 		} catch (SlickException e) {
 			e.printStackTrace();
+		}
+		
+		if(background.getWidth()/2 < windowWidth) {
+			System.out.println("WARNING: backgroundWidth/2 is less than windowWidth. Scrolling will be broke!");
+		}
+		if(background.getHeight()/2 < windowHeight) {
+			System.out.println("WARNING: backgroundHeight/2 is less than windowHeight. Scrolling will be broke!");
 		}
 		
 	}
