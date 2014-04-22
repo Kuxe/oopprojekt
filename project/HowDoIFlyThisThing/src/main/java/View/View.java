@@ -78,13 +78,17 @@ public class View extends BasicGame implements ApplicationListener{
 	 * @param arg0
 	 * @param g
 	 * @param image which scrolls with camera
+	 * @param speed that determines how fast the background moves
+	 * relative to the player.
+	 * Higher means faster (feels like object is closer to camera).
+	 * Lower means slower (feels like object is farther from camera).
 	 */
-	private void drawScrollingImage(GameContainer arg0, Graphics g, Image image) {
-		int modx = (int) ((camera.x + windowWidth/2) / (image.getWidth()/2));
-		int mody = (int) ((camera.y + windowHeight/2) / (image.getHeight()/2));
+	private void drawScrollingImage(GameContainer arg0, Graphics g, Image image, float speed) {
+		int modx = (int) ((camera.x*speed + windowWidth/2) / (image.getWidth()/2));
+		int mody = (int) ((camera.y*speed + windowHeight/2) / (image.getHeight()/2));
 		g.drawImage(background, 
-					-windowWidth/2 + modx * image.getWidth()/2  - camera.x,
-					-windowHeight/2 + mody * image.getHeight()/2 - camera.y);
+					-windowWidth/2 + modx * image.getWidth()/2  - camera.x*speed,
+					-windowHeight/2 + mody * image.getHeight()/2 - camera.y*speed);
 	}
 	
 	/**
@@ -102,7 +106,7 @@ public class View extends BasicGame implements ApplicationListener{
 //		g.translate(100, 100);
 //		g.rotate(25, 25, f);
 //		f++;
-		drawScrollingImage(arg0, g, background);
+		drawScrollingImage(arg0, g, background, 1.0f);
 		for(IDrawable comp: renderObjects.values()){
 			
 //			System.out.println();
