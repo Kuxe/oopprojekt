@@ -32,4 +32,8 @@ public class Timer {
 		return (int)(startTime.getTime()-refTime.getTime());
 	}
 	
+	public void setTimerLength(int length){
+		timerLength=length;
+	}
+	
 }
