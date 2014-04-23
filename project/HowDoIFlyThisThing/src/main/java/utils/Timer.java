@@ -14,4 +14,8 @@ public class Timer {
 		timerLength=intervalLength;
 	}
 	
+	public void start(){
+		startTime=new Date();
+	}
+	
 }
