@@ -27,9 +27,9 @@ public class Timer {
 		}
 	}
 	
-	private int getTimeOfsettMillis(){
+	private long getTimeOfsettMillis(){
 		Date refTime=new Date();
-		return (int)(startTime.getTime()-refTime.getTime());
+		return (refTime.getTime()-startTime.getTime());
 	}
 	
 	public void setTimerLength(int length){
