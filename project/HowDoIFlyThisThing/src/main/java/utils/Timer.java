@@ -18,6 +18,14 @@ public class Timer {
 		startTime=new Date();
 	}
 	
+	public boolean isTimerDone(){
+		if(this.timerLength>this.getTimeOfsettMillis()){
+			return false;
+		}else{
+			return true;
+		}
+	}
+	
 	private int getTimeOfsettMillis(){
 		Date refTime=new Date();
 		return (int)(startTime.getTime()-refTime.getTime());
