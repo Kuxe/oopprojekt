@@ -12,6 +12,7 @@ public class Timer {
 	
 	public Timer(int intervalLength){
 		timerLength=intervalLength;
+		startTime=new Date(0);
 	}
 	
 	public void start(){
