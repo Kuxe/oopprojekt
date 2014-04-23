@@ -18,4 +18,9 @@ public class Timer {
 		startTime=new Date();
 	}
 	
+	private int getTimeOfsettMillis(){
+		Date refTime=new Date();
+		return (int)(startTime.getTime()-refTime.getTime());
+	}
+	
 }
