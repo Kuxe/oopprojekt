@@ -78,7 +78,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
 		this.armsComponent = new ArmsComponent(this.position, velocity, new Vector2f(0,0), this.direction, WEAPON_PIPE_POSITION);
 		this.colliComp = new CollidableComponent(this.position, this.direction, this.width, this.height);
-		timer = new Timer(5); 
+		timer = new Timer(5000); 
     }
     
     /**
@@ -224,7 +224,12 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
      * Sends message to GameWorld which creates the bullet via projectilefactory
      */
     public void fireWeapon() {
-		pcs.firePropertyChange(Message.SPACESHIP_FIRE.toString(), armsComponent.fire(), true);
+    	if(timer.isTimerDone()){
+    		pcs.firePropertyChange(Message.SPACESHIP_FIRE.toString(), armsComponent.fire(), true);
+    		timer.start();
+    	}else{
+    		System.out.println("Weapon on cooldown");
+    	}
     }
 	
 	/**
