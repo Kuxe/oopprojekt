@@ -7,10 +7,10 @@ import java.beans.PropertyChangeSupport;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
+
 import utils.TypeWrapper;
-
 import utils.VecmathUtils;
-
+import utils.Timer;
 
 /**
  *
@@ -41,6 +41,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	private TypeWrapper rotationVelocity;
 	private TypeWrapper rotationAcceleration;
 	private final Vector2f WEAPON_PIPE_POSITION;
+	private Timer timer;
 	/**
 	 * A instance of PropertyChangeSupport so that this class can be listend to.
 	 */
@@ -77,6 +78,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
 		this.armsComponent = new ArmsComponent(this.position, velocity, new Vector2f(0,0), this.direction, WEAPON_PIPE_POSITION);
 		this.colliComp = new CollidableComponent(this.position, this.direction, this.width, this.height);
+		timer = new Timer(5); 
     }
     
     /**
