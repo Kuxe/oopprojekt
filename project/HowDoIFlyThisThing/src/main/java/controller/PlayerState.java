@@ -36,7 +36,8 @@ public class PlayerState implements IUserState{
 	}
 	public void setLeftButton(int key){
 		this.left=key;
-	}public void setRightButton(int key){
+	}
+	public void setRightButton(int key){
 		this.right=key;
 	}
 	public void setMainButton(int key){

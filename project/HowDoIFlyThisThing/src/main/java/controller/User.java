@@ -35,6 +35,18 @@ public class User implements KeyListener,PropertyChangeListener{
 		this.playerState.setSpaceship(spaceship);
 		spaceship.addPropertyChangeListener(this);
 	}
+	public void setLeftButton(int key){
+		playerState.setLeftButton(key);
+	}
+	public void setRightButton(int key){
+		playerState.setRightButton(key);
+	}
+	public void setMainButton(int key){
+		playerState.setMainButton(key);
+	}
+	public void setFireButton(int key){
+		playerState.setFireButton(key);
+	}
 
 	public synchronized void keyPressed(int key, char c) {
 		listOfPressedKeys.add(key);
