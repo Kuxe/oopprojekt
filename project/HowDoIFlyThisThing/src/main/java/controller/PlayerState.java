@@ -55,38 +55,30 @@ public class PlayerState implements IUserState{
 		for(int key : listOfPressedKeys) {
 			if (key == left) {
 				leftHold = true;
-				break;
 			}
 			else if (key == main) {
 				mainHold = true;
-				break;
 			}
 			else if (key == right) {
 				rightHold = true;
-				break;
 			}
 			else if (key == fire) {
 				fireHold = true;
-				break;
 			}
 		}
 		
 		for(int key : listOfReleasedKeys) {
 			if (key == left) {
 				leftHold = false;
-				break;
 			}
 			else if (key == main) {
 				mainHold = false;
-				break;
 			}
 			else if (key == right) {
 				rightHold = false;
-				break;
 			}
 			else if (key == fire) {
 				fireHold = false;
-				break;
 			}
 		}
 		
