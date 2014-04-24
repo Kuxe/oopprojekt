@@ -20,7 +20,7 @@ public class User implements KeyListener,PropertyChangeListener{
 	private PlayerState playerState;
 	private Set<Integer> listOfPressedKeys;
 	private Set<Integer> listOfReleasedKeys;
-	boolean aHold, wHold, dHold, spaceHold;
+	//boolean aHold, wHold, dHold, spaceHold;
 	
 	public User(){
 		listOfPressedKeys = new HashSet();

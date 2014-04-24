@@ -19,15 +19,31 @@ public class PlayerState implements IUserState{
 	private Spaceship spaceship;
 	private Set<Integer> listOfPressedKeys;
 	private Set<Integer> listOfReleasedKeys;
-	boolean leftHold, mainHold, rightHold, fireHold;
+	private boolean leftHold, mainHold, rightHold, fireHold;
+	private int left, main, right, fire;
 	
 	
 	public PlayerState(Set<Integer> listOfPressedKeys, Set<Integer> listOfReleasedKeys){
 		this.listOfPressedKeys=listOfPressedKeys;
 		this.listOfReleasedKeys=listOfReleasedKeys;
+		this.left=Keyboard.KEY_A;
+		this.main=Keyboard.KEY_W;
+		this.right=Keyboard.KEY_D;
+		this.fire=Keyboard.KEY_SPACE;
 	}
 	public void setSpaceship(Spaceship spaceship){
 		this.spaceship=spaceship;
+	}
+	public void setLeftButton(int key){
+		this.left=key;
+	}public void setRightButton(int key){
+		this.right=key;
+	}
+	public void setMainButton(int key){
+		this.main=key;
+	}
+	public void setFireButton(int key){
+		this.fire=key;
 	}
 	/**
 	 * Set booleans representing if a key is held down or not
@@ -36,44 +52,40 @@ public class PlayerState implements IUserState{
 	 */
 	public synchronized void manageInput() {
 		for(int key : listOfPressedKeys) {
-			switch(key) {
-			case Keyboard.KEY_A: {
+			if (key == left) {
 				leftHold = true;
 				break;
 			}
-			case Keyboard.KEY_W: {
+			else if (key == main) {
 				mainHold = true;
 				break;
 			}
-			case Keyboard.KEY_D: {
+			else if (key == right) {
 				rightHold = true;
 				break;
 			}
-			case Keyboard.KEY_SPACE: {
+			else if (key == fire) {
 				fireHold = true;
 				break;
-			}
 			}
 		}
 		
 		for(int key : listOfReleasedKeys) {
-			switch(key) {
-			case Keyboard.KEY_A: {
+			if (key == left) {
 				leftHold = false;
 				break;
 			}
-			case Keyboard.KEY_W: {
+			else if (key == main) {
 				mainHold = false;
 				break;
 			}
-			case Keyboard.KEY_D: {
+			else if (key == right) {
 				rightHold = false;
 				break;
 			}
-			case Keyboard.KEY_SPACE: {
+			else if (key == fire) {
 				fireHold = false;
 				break;
-			}
 			}
 		}
 		
