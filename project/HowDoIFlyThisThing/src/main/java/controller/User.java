@@ -27,7 +27,7 @@ public class User implements KeyListener,PropertyChangeListener{
 	public User(){
 		listOfPressedKeys = new HashSet();
 		listOfReleasedKeys = new HashSet();
-		spectatorState = new SpectatorState(listOfPressedKeys, listOfReleasedKeys);
+		spectatorState = new SpectatorState();
 		playerState = new PlayerState();
 		state = spectatorState;
 		left=Keyboard.KEY_A;
