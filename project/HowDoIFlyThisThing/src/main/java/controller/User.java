@@ -20,14 +20,20 @@ public class User implements KeyListener,PropertyChangeListener{
 	private PlayerState playerState;
 	private Set<Integer> listOfPressedKeys;
 	private Set<Integer> listOfReleasedKeys;
+	private boolean leftHold, mainHold, rightHold, fireHold;
+	private int left, main, right, fire;
 	//boolean aHold, wHold, dHold, spaceHold;
 	
 	public User(){
 		listOfPressedKeys = new HashSet();
 		listOfReleasedKeys = new HashSet();
-		spectatorState = new SpectatorState(listOfPressedKeys, listOfReleasedKeys);
-		playerState = new PlayerState(listOfPressedKeys, listOfReleasedKeys);
+		spectatorState = new SpectatorState();
+		playerState = new PlayerState();
 		state = spectatorState;
+		left=Keyboard.KEY_A;
+		main=Keyboard.KEY_W;
+		right=Keyboard.KEY_D;
+		fire=Keyboard.KEY_SPACE;
 	}
 	
 	public void setSpaceship(Spaceship spaceship){
@@ -35,17 +41,67 @@ public class User implements KeyListener,PropertyChangeListener{
 		this.playerState.setSpaceship(spaceship);
 		spaceship.addPropertyChangeListener(this);
 	}
+	
 	public void setLeftButton(int key){
-		playerState.setLeftButton(key);
+		this.left=key;
 	}
 	public void setRightButton(int key){
-		playerState.setRightButton(key);
+		this.right=key;
 	}
 	public void setMainButton(int key){
-		playerState.setMainButton(key);
+		this.main=key;
 	}
 	public void setFireButton(int key){
-		playerState.setFireButton(key);
+		this.fire=key;
+	}
+	/**
+	 * Set booleans representing if a key is held down or not
+	 * If a key is inside pressedKeys (someone pressed a key), set the boolean to true
+	 * If a key is inside releasedkeys (someone released a key), set the boolean to false
+	 */
+	public synchronized void manageInput() {
+		for(int key : listOfPressedKeys) {
+			if (key == left) {
+				leftHold = true;
+			}
+			else if (key == main) {
+				mainHold = true;
+			}
+			else if (key == right) {
+				rightHold = true;
+			}
+			else if (key == fire) {
+				fireHold = true;
+			}
+		}
+		
+		for(int key : listOfReleasedKeys) {
+			if (key == left) {
+				leftHold = false;
+			}
+			else if (key == main) {
+				mainHold = false;
+			}
+			else if (key == right) {
+				rightHold = false;
+			}
+			else if (key == fire) {
+				fireHold = false;
+			}
+		}
+		
+		listOfPressedKeys.clear();
+		listOfReleasedKeys.clear();
+	}
+	
+	public void executeInput() {
+		state.fireHold(fireHold);
+			
+		state.mainHold(mainHold);
+			
+		state.leftHold(leftHold);
+			
+		state.rightHold(rightHold);
 	}
 
 	public synchronized void keyPressed(int key, char c) {
@@ -68,13 +124,6 @@ public class User implements KeyListener,PropertyChangeListener{
 	}
 	public void inputStarted() {
 		// TODO Auto-generated method stub
-	}
-	
-	public synchronized void manageInput(){
-		this.state.manageInput();
-	}
-	public void executeInput() {
-		this.state.executeInput();
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
