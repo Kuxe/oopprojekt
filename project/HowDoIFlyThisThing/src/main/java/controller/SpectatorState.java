@@ -18,19 +18,19 @@ public class SpectatorState implements IUserState{
 	}
 
 	public void mainHold(boolean held) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//To change body of generated methods, choose Tools | Templates.
 	}
 
 	public void leftHold(boolean held) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//To change body of generated methods, choose Tools | Templates.
 	}
 
 	public void rightHold(boolean held) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//To change body of generated methods, choose Tools | Templates.
 	}
 
 	public void fireHold(boolean held) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//To change body of generated methods, choose Tools | Templates.
 	}
 
 }

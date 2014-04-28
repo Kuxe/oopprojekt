@@ -36,19 +36,33 @@ public class PlayerState implements IUserState{
 	}
 
 	public void mainHold(boolean held) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		if(held){
+			spaceship.activateMainThruste();
+		}else{
+			spaceship.deactivateMainThruster();
+		}
 	}
 
 	public void leftHold(boolean held) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		if(held){
+			spaceship.activateLeftThruste();
+		}else{
+			spaceship.deactivateLeftThruster();
+		}
 	}
 
 	public void rightHold(boolean held) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		if(held){
+			spaceship.activateRightThruste();
+		}else{
+			spaceship.deactivateRightThruster();
+		}
 	}
 
 	public void fireHold(boolean held) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		if(held){
+			spaceship.fireWeapon();
+		}
 	}
 	
 }
