@@ -91,13 +91,13 @@ public class User implements KeyListener,PropertyChangeListener{
 	}
 	
 	public void executeInput() {//MOVE TO INTERFACE
-			state.fireHold(fireHold);
+		state.fireHold(fireHold);
 			
-			state.mainHold(mainHold);
+		state.mainHold(mainHold);
 			
-			state.leftHold(leftHold);
+		state.leftHold(leftHold);
 			
-			state.rightHold(rightHold);
+		state.rightHold(rightHold);
 	}
 
 	public synchronized void keyPressed(int key, char c) {
@@ -120,13 +120,6 @@ public class User implements KeyListener,PropertyChangeListener{
 	}
 	public void inputStarted() {
 		// TODO Auto-generated method stub
-	}
-	
-	public synchronized void manageInput(){
-		this.state.manageInput();
-	}
-	public void executeInput() {
-		this.state.executeInput();
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
