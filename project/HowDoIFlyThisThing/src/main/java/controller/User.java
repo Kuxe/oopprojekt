@@ -30,6 +30,10 @@ public class User implements KeyListener,PropertyChangeListener{
 		spectatorState = new SpectatorState(listOfPressedKeys, listOfReleasedKeys);
 		playerState = new PlayerState(listOfPressedKeys, listOfReleasedKeys);
 		state = spectatorState;
+		left=Keyboard.KEY_A;
+		main=Keyboard.KEY_W;
+		right=Keyboard.KEY_D;
+		fire=Keyboard.KEY_SPACE;
 	}
 	
 	public void setSpaceship(Spaceship spaceship){
@@ -90,7 +94,7 @@ public class User implements KeyListener,PropertyChangeListener{
 		listOfReleasedKeys.clear();
 	}
 	
-	public void executeInput() {//MOVE TO INTERFACE
+	public void executeInput() {
 		state.fireHold(fireHold);
 			
 		state.mainHold(mainHold);
