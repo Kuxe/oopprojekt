@@ -31,8 +31,6 @@ public class Controller{
 	private Spaceship spaceship2 = SpaceshipFactory.create(new Point2f(200, 100), new Vector2f(-1, 0));
 	private Asteroid asteroid1 = AsteroidFactory.create(new Point2f(500, 300));
 	
-	private Set<Integer> listOfPressedKeys;
-	private Set<Integer> listOfReleasedKeys;
 	boolean aHold, wHold, dHold, spaceHold;
 	
 	private User user1;
@@ -44,9 +42,6 @@ public class Controller{
 		model.addSpaceship(spaceship1);
 		model.addSpaceship(spaceship2);
 		model.addAsteroid(asteroid1);
-		
-		listOfPressedKeys = new HashSet();
-		listOfReleasedKeys = new HashSet();
 		
 		viewThread=new ViewThread();
 		viewThread.start();
