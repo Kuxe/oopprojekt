@@ -1,6 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import java.util.HashSet;
+import java.util.Map;
 
 import controller.User;
 
@@ -15,7 +16,9 @@ public class HowDoIFlyThisThing {
 	
 	Session session;
 	
-	HashSet<User> users;
+	public HowDoIFlyThisThing() {
+		
+	}
 	
 	/**
 	 *  
@@ -28,5 +31,17 @@ public class HowDoIFlyThisThing {
 	public void host() {
 		session = new Session();
 		addUser(127001);
+	}
+	
+	public void join(int ip) {
+		//TODO: Connect to server
+	}
+	
+	public void update() {
+		session.update();
+	}
+	
+	public Map<Object, IDrawable> getIDrawables() {
+		return session.getIDrawables();
 	}
 }
