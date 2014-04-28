@@ -34,5 +34,21 @@ public class PlayerState implements IUserState{
 	public void setSpaceship(Spaceship spaceship){
 		this.spaceship=spaceship;
 	}
+
+	public void mainHold(boolean held) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public void leftHold(boolean held) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public void rightHold(boolean held) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public void fireHold(boolean held) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
 	
 }
