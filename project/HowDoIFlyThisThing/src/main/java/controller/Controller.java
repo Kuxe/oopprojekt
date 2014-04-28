@@ -28,7 +28,7 @@ public class Controller{
 	
 	//Create two spaceships and make the first one shoot bullets on the other one
 	private Spaceship spaceship1 = SpaceshipFactory.create(new Point2f(50, 100), new Vector2f(3.0f, 1.0f));
-	private Spaceship spaceship2 = SpaceshipFactory.create(new Point2f(500, 0), new Vector2f(-1, 0));
+	private Spaceship spaceship2 = SpaceshipFactory.create(new Point2f(200, 100), new Vector2f(-1, 0));
 	private Asteroid asteroid1 = AsteroidFactory.create(new Point2f(500, 300));
 	
 	private Set<Integer> listOfPressedKeys;
@@ -36,12 +36,13 @@ public class Controller{
 	boolean aHold, wHold, dHold, spaceHold;
 	
 	private User user1;
+	private User user2;
 	
 	public Controller(){
 		model = new Gameworld();
 		
 		model.addSpaceship(spaceship1);
-//		model.addSpaceship(spaceship2);
+		model.addSpaceship(spaceship2);
 		model.addAsteroid(asteroid1);
 		
 		listOfPressedKeys = new HashSet();
@@ -59,7 +60,15 @@ public class Controller{
 		
 		user1 = new User();
 		user1.setSpaceship(spaceship1);
+		
+		user2 = new User();
+		user2.setSpaceship(spaceship2);
+		user2.setLeftButton(Keyboard.KEY_LEFT);
+		user2.setRightButton(Keyboard.KEY_RIGHT);
+		user2.setMainButton(Keyboard.KEY_UP);
+		
 		viewThread.getView().getContainer().getInput().addKeyListener(user1);
+		viewThread.getView().getContainer().getInput().addKeyListener(user2);
 	}
 	
 	public void start() {
@@ -72,8 +81,11 @@ public class Controller{
 	private void update() {
 		user1.manageInput();
 		user1.executeInput();
+		user2.manageInput();
+		user2.executeInput();
 		model.update();
-		viewThread.getView().setCamera(spaceship1.getPosition()); //Makes camerae follow spaceship1 position
+		viewThread.getView().setCamera(new Point2f((spaceship1.getPosition().x + spaceship2.getPosition().x)/2,
+			(spaceship1.getPosition().y + spaceship2.getPosition().y)/2)); //Makes camerae follow spaceship1 position
 		setRenderObjects(model.getIDrawables());	
 	}
 	
