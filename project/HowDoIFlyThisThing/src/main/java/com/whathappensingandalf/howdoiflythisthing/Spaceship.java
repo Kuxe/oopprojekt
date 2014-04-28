@@ -8,8 +8,9 @@ import java.beans.PropertyChangeSupport;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
+import utils.TypeWrapper;
 import utils.VecmathUtils;
-
+import utils.Timer;
 
 /**
  *
@@ -37,9 +38,10 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	private Vector2f velocity;
     private Vector2f acceleration;
     private Vector2f direction;
-	private Float rotationVelocity;
-	private Float rotationAcceleration;
+	private TypeWrapper rotationVelocity;
+	private TypeWrapper rotationAcceleration;
 	private final Vector2f WEAPON_PIPE_POSITION;
+	private Timer timer;
 	/**
 	 * A instance of PropertyChangeSupport so that this class can be listend to.
 	 */
@@ -68,14 +70,15 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         this.acceleration = new Vector2f(0.0f, 0.0f);
         this.direction = direction;
         this.velocity = new Vector2f(0.0f, 0.0f);
-        rotationAcceleration = new Float(0.0f);
-        rotationVelocity = new Float(0.0f);        
+        rotationAcceleration = new TypeWrapper(0.0f);
+        rotationVelocity = new TypeWrapper(0.0f);        
         this.WEAPON_PIPE_POSITION = new Vector2f(0.0f, height/2); //Should fire from middle of spaceships just infront of it
         this.hull=100;
-        this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, rotationAcceleration);
+        this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, this.rotationVelocity, this.rotationAcceleration);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
-		this.armsComponent = new ArmsComponent(this.position, velocity, acceleration, this.direction, WEAPON_PIPE_POSITION);
-		this.colliComp = new CollidableComponent(position, direction, width, height);
+		this.armsComponent = new ArmsComponent(this.position, velocity, new Vector2f(0,0), this.direction, WEAPON_PIPE_POSITION);
+		this.colliComp = new CollidableComponent(this.position, this.direction, this.width, this.height);
+		timer = new Timer(1000); 
     }
     
     /**
@@ -88,8 +91,8 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	/**
 	 * {@inheritDoc}
 	 */
-    public void move(Timestep timestep) {
-		this.calculateThrust();
+    public synchronized void move(Timestep timestep) {
+		this.calculateThrust(timestep);
 		calculateWeaponPipePosition();
         this.moveComponent.move(timestep);
     }
@@ -172,21 +175,21 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 * @return 
 	 */
 	public float getRotVelocity() {
-		return this.rotationVelocity.floatValue();
+		return this.rotationVelocity.getValue();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public float getRotAcceleration() {
-		return this.rotationAcceleration.floatValue();
+		return this.rotationAcceleration.getValue();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void setRotVelocity(float rotationVelocity) {
-		this.rotationVelocity=rotationVelocity;
+		this.rotationVelocity.setValue(rotationVelocity);
 	}
 
 	/**
@@ -194,7 +197,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 * @param rotationAcceleration
 	 */
 	public void setRotAcceleration(float rotationAcceleration) {
-		this.rotationAcceleration=rotationAcceleration;
+		this.rotationAcceleration.setValue(rotationAcceleration);
 	}
 
 	public int getHeight() {
@@ -221,17 +224,18 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
      * Sends message to GameWorld which creates the bullet via projectilefactory
      */
     public void fireWeapon() {
-		pcs.firePropertyChange(Message.SPACESHIP_FIRE.toString(), armsComponent.fire(), true);
+    	if(timer.isTimerDone()){
+    		pcs.firePropertyChange(Message.SPACESHIP_FIRE.toString(), armsComponent.fire(), true);
+    		timer.start();
+    	}
     }
 	
 	/**
 	 * {@inheritDoc}
 	 */
-	public void calculateThrust() {
+	public void calculateThrust(Timestep timestep) {
 		this.thrusterComponent.calculateAceleration();
-		this.rotationVelocity=50f;
-		this.thrusterComponent.calculateRotation();
-		System.out.println(this.rotationVelocity);
+		this.thrusterComponent.calculateRotation(timestep);
 	}
 	
 	public void accept(ICollidable visitor) {
@@ -266,11 +270,8 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	public boolean collideDetection(ICollidable rhs) {
 		return colliComp.collideDetection(rhs);
 	}
-	public Area getBoundingBox() {
-		return colliComp.getBoundingBox();
-	}
 	
-	public Point2f getPossition() {
+	public synchronized Point2f getPossition() {
 		return this.position;
 	}
 	@Override
@@ -295,5 +296,29 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 	public void deactivateRightThruster(){
 		this.thrusterComponent.deactivateRightThruster();
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public Point2f getLeftmostCoordinate() {
+		return colliComp.getLeftmostCoordinate();
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public Point2f getRightmostCoordinate() {
+		return colliComp.getRightmostCoordinate();
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public Point2f getTopmostCoordinate() {
+		return colliComp.getTopmostCoordinate();
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public Point2f getBottommostCoordinate() {
+		return colliComp.getBottommostCoordinate();
 	}
 }

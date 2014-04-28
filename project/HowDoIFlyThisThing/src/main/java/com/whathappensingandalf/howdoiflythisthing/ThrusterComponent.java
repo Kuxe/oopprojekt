@@ -2,6 +2,7 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import static java.lang.Math.sqrt;
 import javax.vecmath.Vector2f;
+import utils.TypeWrapper;
 
 /**
  *
@@ -18,8 +19,8 @@ class ThrusterComponent {
 	 */
 	private Vector2f acceleration;
 	private Vector2f direction;
-	private Float rotationVelocity;
-	private Float rotationAcceleration;
+	private TypeWrapper rotationVelocity;
+	private TypeWrapper rotationAcceleration;
 	/**
 	 * Thrusters used for calculating the resulting acceleration.
 	 */
@@ -33,16 +34,14 @@ class ThrusterComponent {
 	 * @param acceleration
 	 * @param direction 
 	 */
-    public ThrusterComponent(Vector2f acceleration, Vector2f direction,Float rotationAcceleration,Float rotationVelocity){
+    public ThrusterComponent(Vector2f acceleration, Vector2f direction,TypeWrapper rotationAcceleration,TypeWrapper rotationVelocity){
 		this.acceleration=acceleration;
 		this.direction=direction;
 		this.rotationVelocity=rotationVelocity;
-		System.out.println(rotationVelocity+"con");
-		System.out.println(this.rotationVelocity+"con");
 		this.rotationAcceleration=rotationAcceleration;
-		this.mainThruster=new Thruster(0,1,2,0);
-		this.leftThruster=new Thruster(0,1,1,(float)Math.PI/4);
-		this.rightThruster=new Thruster(0,1,1,(float)Math.PI/4);
+		this.mainThruster=new Thruster(0,1,200,0);
+		this.leftThruster=new Thruster(0,1,10, (float)Math.PI);
+		this.rightThruster=new Thruster(0,1,10, -(float)Math.PI);
 	}
 	
 	/**
@@ -55,14 +54,13 @@ class ThrusterComponent {
 		acceleration.add(leftThruster.getAcceleration());
 		
 	}
-	public void calculateRotation(){
-		System.out.println(this.rotationVelocity);
+	public void calculateRotation(Timestep timestep){
 		float f=0;
 //		f=f+mainThruster.getRotationAcceleration();
-		f=f+rightThruster.getRotationAcceleration();
-		f=f+leftThruster.getRotationAcceleration();
-		this.rotationAcceleration=f;
-		this.rotationVelocity = rotationVelocity+rotationAcceleration;
+		f=(float) (f+rightThruster.getRotationAcceleration() * timestep.getDelta());
+		f=(float) (f+leftThruster.getRotationAcceleration() * timestep.getDelta());
+		this.rotationAcceleration.setValue(f);
+		this.rotationVelocity.setValue(rotationVelocity.getValue()+rotationAcceleration.getValue());
 	}
 	public void activateMainThruster(){
 		this.mainThruster.activate();

@@ -49,10 +49,6 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 		return new Point2f(position.x, position.y);
 	}
 
-	public Area getBoundingBox() {
-		return this.colliComp.getBoundingBox();
-	}
-
 	public String getType() {
 		return type.ASTEROID.toString();
 	}
@@ -78,5 +74,29 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 	@Override
 	public Asteroid clone() {
 		return new Asteroid(this);
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public Point2f getLeftmostCoordinate() {
+		return colliComp.getLeftmostCoordinate();
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public Point2f getRightmostCoordinate() {
+		return colliComp.getRightmostCoordinate();
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public Point2f getTopmostCoordinate() {
+		return colliComp.getTopmostCoordinate();
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public Point2f getBottommostCoordinate() {
+		return colliComp.getBottommostCoordinate();
 	}
 }

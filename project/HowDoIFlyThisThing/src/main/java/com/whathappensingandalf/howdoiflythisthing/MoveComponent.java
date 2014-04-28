@@ -3,6 +3,7 @@ package com.whathappensingandalf.howdoiflythisthing;
 import utils.VecmathUtils;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
+import utils.TypeWrapper;
 
 /**
  *
@@ -20,7 +21,8 @@ class MoveComponent {
 	private Vector2f velocity;
     private Vector2f acceleration;
     private Vector2f direction;
-	private Float rotationVelocity;
+	private TypeWrapper rotationVelocity;
+	private TypeWrapper rotationAcceleration;
 	
 	/**
 	 * A constructor for creating a MoveComponent. The parameters are the instanses 
@@ -28,21 +30,23 @@ class MoveComponent {
 	 * @param position
 	 * @param velocity
 	 * @param acceleration
-	 * @param direction 
+	 * @param direction
 	 */
-	public MoveComponent(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, Float rotationVelocity){
+	public MoveComponent(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, TypeWrapper rotationVelocity, TypeWrapper rotationAcceleration){
 		this.position = position;
 		this.velocity = velocity;
         this.acceleration = acceleration;
 		this.direction = direction;
 		this.rotationVelocity = rotationVelocity;
+		this.rotationAcceleration = rotationAcceleration;
 	}
 	
 	/**
 	* Moves the component
 	*/
 	public void move(Timestep timestep){
-		VecmathUtils.rotateVector(direction, rotationVelocity);
+		rotationVelocity.setValue(rotationVelocity.getValue()+(float)(rotationAcceleration.getValue()*timestep.getDelta()));
+		VecmathUtils.rotateVector(direction, (float)(rotationVelocity.getValue()*timestep.getDelta()));
 		
 		Vector2f tempAcc=(Vector2f) acceleration.clone();
 		VecmathUtils.setLength(tempAcc, acceleration.length()-(velocity.length()*0.001f));

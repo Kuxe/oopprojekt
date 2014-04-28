@@ -54,7 +54,8 @@ public class CollidableComponentOld implements ICollidableComponent{
 		
 		updateBoundingBox();
 		
-		return boundingBox.intersects(rhs.getBoundingBox().getBounds2D());
+//		return boundingBox.intersects(rhs.getBoundingBox().getBounds2D());
+		return false;
 	}
 	public Area getBoundingBox() {
 		updateBoundingBox();

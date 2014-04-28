@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
 import org.newdawn.slick.AppGameContainer;
@@ -18,6 +19,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Circle;
 
 import com.whathappensingandalf.howdoiflythisthing.*;
 
@@ -27,8 +29,13 @@ public class View extends BasicGame implements ApplicationListener{
 //	private GameWindow game;
 	
 	private Map<Object,IDrawable> renderObjects;
-	private Image spaceship,shott,asteroid;
-	Float f=0f;
+	private Image spaceship,shott,asteroid, background;
+	private int backgroundWidth, backgroundHeight;
+	private Float f=0f;
+	
+	private Point2f camera;
+	private final int windowWidth = 800;
+	private final int windowHeight = 600;
 	
 	public View(String title){
 		super(title);
@@ -36,11 +43,14 @@ public class View extends BasicGame implements ApplicationListener{
 		renderObjects=new HashMap<Object,IDrawable>();
 		try{
 			container=new AppGameContainer(this);
-			container.setDisplayMode(640, 480, false);
+			container.setDisplayMode(windowWidth, windowHeight, false);
 			container.setTargetFrameRate(60);
 		}catch(SlickException ex){
 			Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
 		}
+		
+		//Camera default to coordiante (0, 0)
+		camera = new Point2f(0, 0);
 		
 	}
 	
@@ -56,10 +66,47 @@ public class View extends BasicGame implements ApplicationListener{
 	public void setRenderObjects(Map<Object,IDrawable> list){
 		renderObjects=Collections.synchronizedMap(list);
 	}
+	
+	/**
+	 * Draws a scrolling image, that is an Image that composed of
+	 * 4 subpieces that all look exactly the same which "follows"
+	 * the camera seamlessly. Used for scrolling background.
+	 * Note that param <i>image</i> must have dimensions equal to
+	 * or greater than that of the window, else the black
+	 * standard background will appear between scrolls.
+	 * 
+	 * @param arg0
+	 * @param g
+	 * @param image which scrolls with camera
+	 * @param speed that determines how fast the background moves
+	 * relative to the player.
+	 * Higher means faster (feels like object is closer to camera).
+	 * Lower means slower (feels like object is farther from camera).
+	 */
+	private void drawScrollingImage(GameContainer arg0, Graphics g, Image image, float speed) {
+		int modx = (int) ((camera.x*speed + windowWidth/2) / (image.getWidth()/2));
+		int mody = (int) ((camera.y*speed + windowHeight/2) / (image.getHeight()/2));
+		g.drawImage(background, 
+					-windowWidth/2 + modx * image.getWidth()/2  - camera.x*speed,
+					-windowHeight/2 + mody * image.getHeight()/2 - camera.y*speed);
+	}
+	
+	/**
+	 * For debugging purposes. Displays the worlds border.
+	 * @param arg0
+	 * @param g
+	 */
+	private void drawBorder(GameContainer arg0, Graphics g) {
+		//HARDCODED. If world border changes,this row must manually be changed to display
+		//correct world border
+		g.drawRect(-camera.x + windowWidth/2, -camera.y + windowHeight/2, 1080, 540);
+	}
+	
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 //		g.translate(100, 100);
 //		g.rotate(25, 25, f);
 //		f++;
+		drawScrollingImage(arg0, g, background, 1.0f);
 		for(IDrawable comp: renderObjects.values()){
 			
 //			System.out.println();
@@ -82,10 +129,10 @@ public class View extends BasicGame implements ApplicationListener{
 			tmpX=comp.getPosition().x-comp.getWidth()/2;
 			tmpY=comp.getPosition().y-comp.getHeight()/2;
 			tmpImg.rotate(calculateRotation(comp.getDirection()));
-			g.drawImage(tmpImg, tmpX, tmpY);
+			g.drawImage(tmpImg, tmpX - camera.x + windowWidth/2, tmpY - camera.y + windowHeight/2);
 		}
 //		System.out.println("-------------------------------------------------");
-		
+		drawBorder(arg0, g);
 	}
 
 	@Override
@@ -94,8 +141,16 @@ public class View extends BasicGame implements ApplicationListener{
 			spaceship=new Image("resources/Spaceship.png");
 			shott=new Image("resources/Shott.png");
 			asteroid=new Image("resources/Asteroid.png");
+			background = new Image("resources/scrollingbackgroundLarge.png");
 		} catch (SlickException e) {
 			e.printStackTrace();
+		}
+		
+		if(background.getWidth()/2 < windowWidth) {
+			System.out.println("WARNING: backgroundWidth/2 is less than windowWidth. Scrolling will be broke!");
+		}
+		if(background.getHeight()/2 < windowHeight) {
+			System.out.println("WARNING: backgroundHeight/2 is less than windowHeight. Scrolling will be broke!");
 		}
 		
 	}
@@ -128,6 +183,10 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	public AppGameContainer getContainer(){
 		return this.container;
+	}
+	
+	public void setCamera(Point2f camera) {
+		this.camera = camera;
 	}
 
 }

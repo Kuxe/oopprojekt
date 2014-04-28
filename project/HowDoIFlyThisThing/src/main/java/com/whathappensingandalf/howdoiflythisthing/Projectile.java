@@ -7,6 +7,7 @@ import java.beans.PropertyChangeSupport;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
+import utils.TypeWrapper;
 
 /**
  * 
@@ -52,7 +53,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 		this.position= position;
 		this.width = width;
 		this.height = height;
-		mC= new MoveComponent(position, velocity, acceleration, direction, 0f);
+		mC= new MoveComponent(position, velocity, acceleration, direction, new TypeWrapper(0.0f),new TypeWrapper(0.0f));
 		colliComp = new CollidableComponent(position, direction, width, height);
 		pcs = new PropertyChangeSupport(this);
 	}
@@ -166,9 +167,6 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	public boolean collideDetection(ICollidable rhs) {
 		return colliComp.collideDetection(rhs);
 	}
-	public Area getBoundingBox() {
-		return colliComp.getBoundingBox();
-	}
 
 	public void accept(ICollidable visitor) {
 		visitor.visit(this);
@@ -202,5 +200,29 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	@Override
 	public Projectile clone() {
 		return new Projectile(this);
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public Point2f getLeftmostCoordinate() {
+		return colliComp.getLeftmostCoordinate();
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public Point2f getRightmostCoordinate() {
+		return colliComp.getRightmostCoordinate();
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public Point2f getTopmostCoordinate() {
+		return colliComp.getTopmostCoordinate();
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	public Point2f getBottommostCoordinate() {
+		return colliComp.getBottommostCoordinate();
 	}
 }//end Projectile

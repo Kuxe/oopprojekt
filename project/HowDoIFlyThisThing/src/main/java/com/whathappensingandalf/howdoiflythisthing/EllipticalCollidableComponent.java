@@ -48,7 +48,8 @@ public class EllipticalCollidableComponent implements ICollidableComponent{
 		affineTransform.rotate(direction.x, direction.y, ellipse2D.getCenterX(), ellipse2D.getCenterY());	//this or the angle of rotation in radius
 		
 		updateBoundingBox();
-		return ellipse2D.intersects(rhs.getBoundingBox().getBounds2D());
+//		return ellipse2D.intersects(rhs.getBoundingBox().getBounds2D());
+		return false;
 	}
 	public Area getBoundingBox(){
 		updateBoundingBox();

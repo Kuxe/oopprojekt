@@ -29,10 +29,6 @@ public interface ICollidable extends IListable{
 	 */
 	public Point2f getPosition();
 	/**
-	 * @return
-	 */
-	public Area getBoundingBox();
-	/**
 	 * @return the type of this component
 	 */
 	public String getType();
@@ -52,4 +48,20 @@ public interface ICollidable extends IListable{
 	 * @param asteroid
 	 */
 	public void visit(Asteroid asteroid);
+	/**
+	 * @return the point most to the left
+	 */
+	public Point2f getLeftmostCoordinate();
+	/**
+	 * @return the point most to the right
+	 */
+	public Point2f getRightmostCoordinate();
+	/**
+	 * @return the upper point
+	 */
+	public Point2f getTopmostCoordinate();
+	/**
+	 * @return the point at the bottom
+	 */
+	public Point2f getBottommostCoordinate();
 }
