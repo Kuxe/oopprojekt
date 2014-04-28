@@ -7,30 +7,15 @@
 package controller;
 
 import com.whathappensingandalf.howdoiflythisthing.Spaceship;
-import java.util.Set;
-import org.lwjgl.input.Keyboard;
 
 /**
  *
- * @author Martin
+ * @author Martin Nilsson
  */
 public class PlayerState implements IUserState{
 	
 	private Spaceship spaceship;
-	//private Set<Integer> listOfPressedKeys;
-	//private Set<Integer> listOfReleasedKeys;
-	//private boolean leftHold, mainHold, rightHold, fireHold;
-	//private int left, main, right, fire;
 	
-	
-	public PlayerState(Set<Integer> listOfPressedKeys, Set<Integer> listOfReleasedKeys){
-		//this.listOfPressedKeys=listOfPressedKeys;
-		//this.listOfReleasedKeys=listOfReleasedKeys;
-		//this.left=Keyboard.KEY_A;
-		//this.main=Keyboard.KEY_W;
-		//this.right=Keyboard.KEY_D;
-		//this.fire=Keyboard.KEY_SPACE;
-	}
 	public void setSpaceship(Spaceship spaceship){
 		this.spaceship=spaceship;
 	}
