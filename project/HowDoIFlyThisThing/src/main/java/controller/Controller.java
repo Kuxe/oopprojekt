@@ -66,6 +66,7 @@ public class Controller{
 		user2.setLeftButton(Keyboard.KEY_LEFT);
 		user2.setRightButton(Keyboard.KEY_RIGHT);
 		user2.setMainButton(Keyboard.KEY_UP);
+		user2.setFireButton(Keyboard.KEY_NUMPAD0);
 		
 		viewThread.getView().getContainer().getInput().addKeyListener(user1);
 		viewThread.getView().getContainer().getInput().addKeyListener(user2);
