@@ -1,13 +1,14 @@
 package controller;
 
-import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.HashSet;
 import java.util.Set;
+
+import javax.vecmath.Point2f;
+
 import org.lwjgl.input.Keyboard;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.KeyListener;
+
+import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 
 /**
  *
@@ -54,6 +55,10 @@ public class User implements PropertyChangeListener{
 		state.mainHold(listOfHoldKeys.contains(main));
 		state.leftHold(listOfHoldKeys.contains(left));
 		state.rightHold(listOfHoldKeys.contains(right));
+	}
+	
+	public Point2f getSpaceshipPoint() {
+		return state.getSpaceshipPosition();
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {

@@ -6,6 +6,8 @@
 
 package controller;
 
+import javax.vecmath.Point2f;
+
 import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 
 /**
@@ -48,6 +50,10 @@ public class PlayerState implements IUserState{
 		if(held){
 			spaceship.fireWeapon();
 		}
+	}
+
+	public Point2f getSpaceshipPosition() {
+		return spaceship.getPosition();
 	}
 	
 }

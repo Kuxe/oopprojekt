@@ -81,7 +81,7 @@ public class Controller implements KeyListener{
 	private void update() {
 		manageInput();		
 		model.update(listOfHoldKeys);
-		viewThread.getView().setCamera(new Point2f(0, 0));
+		viewThread.getView().setCamera(model.getSpaceshipPoint(127001));
 		setRenderObjects(model.getIDrawables());	
 	}
 	

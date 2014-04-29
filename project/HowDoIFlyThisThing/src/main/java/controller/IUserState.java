@@ -1,5 +1,7 @@
 package controller;
 
+import javax.vecmath.Point2f;
+
 /**
  *
  * @author Martin Nilsson
@@ -14,4 +16,5 @@ public interface IUserState {
 	
 	public void fireHold(boolean held);
 	
+	public Point2f getSpaceshipPosition();
 }

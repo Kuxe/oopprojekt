@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import javax.vecmath.Point2f;
+
 import controller.User;
 
 public class Session {
@@ -36,4 +38,7 @@ public class Session {
 		return round.getIDrawables();
 	}
 	
+	public Point2f getSpaceshipPoint(int ip) {
+		return users.get(ip).getSpaceshipPoint();
+	}
 }

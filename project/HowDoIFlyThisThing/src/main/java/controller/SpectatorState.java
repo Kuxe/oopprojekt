@@ -6,6 +6,8 @@
 
 package controller;
 
+import javax.vecmath.Point2f;
+
 /**
  *
  * @author Martin Nilsson
@@ -26,6 +28,13 @@ public class SpectatorState implements IUserState{
 
 	public void fireHold(boolean held) {
 		//To change body of generated methods, choose Tools | Templates.
+	}
+
+	/**
+	 * No spaceship avaiable so returns (0, 0)
+	 */
+	public Point2f getSpaceshipPosition() {
+		return new Point2f(0, 0);
 	}
 
 }
