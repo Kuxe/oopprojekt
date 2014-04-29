@@ -36,6 +36,7 @@ public class Controller implements KeyListener{
 		model = new HowDoIFlyThisThing();
 		
 		model.host();
+		model.TEST_addUser2();
 		
 		listOfPressedKeys = new HashSet();
 		listOfReleasedKeys = new HashSet();

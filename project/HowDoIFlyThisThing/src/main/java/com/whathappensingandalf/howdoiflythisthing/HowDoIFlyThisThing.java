@@ -28,6 +28,10 @@ public class HowDoIFlyThisThing {
 		session.addUser(ip);
 	}
 	
+	public void TEST_addUser2() {
+		session.TEST_addUser2();
+	}
+	
 	public void host() {
 		session = new Session();
 		addUser(127001);

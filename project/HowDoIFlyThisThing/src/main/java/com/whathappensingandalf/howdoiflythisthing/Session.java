@@ -6,6 +6,8 @@ import java.util.Set;
 
 import javax.vecmath.Point2f;
 
+import org.lwjgl.input.Keyboard;
+
 import controller.User;
 
 public class Session {
@@ -21,6 +23,22 @@ public class Session {
 	public void addUser(int ip) {
 		User user = new User();
 		users.put(ip, user);
+		round.addUser(user);
+		if(users.size() == 2) {
+			round.start();
+		}
+	}
+	
+	/**
+	 * Method used for simulating added user
+	 */
+	public void TEST_addUser2() {
+		User user = new User();
+		user.setFireButton(Keyboard.KEY_RCONTROL);
+		user.setLeftButton(Keyboard.KEY_J);
+		user.setRightButton(Keyboard.KEY_L);
+		user.setMainButton(Keyboard.KEY_I);
+		users.put(0000, user);
 		round.addUser(user);
 		if(users.size() == 2) {
 			round.start();
