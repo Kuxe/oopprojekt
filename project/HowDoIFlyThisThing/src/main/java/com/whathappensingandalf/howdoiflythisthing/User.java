@@ -15,16 +15,18 @@ public class User implements PropertyChangeListener{
 	private IUserState state;
 	private final SpectatorState spectatorState;
 	private final PlayerState playerState;
-	private int left, main, right, fire;
+	//private int left, main, right, fire;
+	private final Keybindings keybindings;
 	
 	public User(){
 		spectatorState = new SpectatorState();
 		playerState = new PlayerState();
 		state = spectatorState;
-		left=Keyboard.KEY_A;
-		main=Keyboard.KEY_W;
-		right=Keyboard.KEY_D;
-		fire=Keyboard.KEY_SPACE;
+		keybindings = new Keybindings();
+		keybindings.setLeft(Keyboard.KEY_A);
+		keybindings.setMain(Keyboard.KEY_W);
+		keybindings.setRight(Keyboard.KEY_D);
+		keybindings.setFire(Keyboard.KEY_SPACE);
 	}
 	
 	public void setSpaceship(Spaceship spaceship){
@@ -34,23 +36,23 @@ public class User implements PropertyChangeListener{
 	}
 	
 	public void setLeftButton(int key){
-		this.left=key;
+		keybindings.setLeft(key);
 	}
 	public void setRightButton(int key){
-		this.right=key;
+		keybindings.setRight(key);
 	}
 	public void setMainButton(int key){
-		this.main=key;
+		keybindings.setMain(key);
 	}
 	public void setFireButton(int key){
-		this.fire=key;
+		keybindings.setFire(key);
 	}
 	
 	public void executeInput(Set<Integer> listOfHoldKeys) {
-		state.fireHold(listOfHoldKeys.contains(fire));
-		state.mainHold(listOfHoldKeys.contains(main));
-		state.leftHold(listOfHoldKeys.contains(left));
-		state.rightHold(listOfHoldKeys.contains(right));
+		state.fireHold(listOfHoldKeys.contains(keybindings.getFire()));
+		state.mainHold(listOfHoldKeys.contains(keybindings.getMain()));
+		state.leftHold(listOfHoldKeys.contains(keybindings.getLeft()));
+		state.rightHold(listOfHoldKeys.contains(keybindings.getRight()));
 	}
 	
 	public Point2f getSpaceshipPoint() {
