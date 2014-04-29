@@ -1,11 +1,10 @@
-package controller;
+package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Set;
 import javax.vecmath.Point2f;
 import org.lwjgl.input.Keyboard;
-import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 
 /**
  *

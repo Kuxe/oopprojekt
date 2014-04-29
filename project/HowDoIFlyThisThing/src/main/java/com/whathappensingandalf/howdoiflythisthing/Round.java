@@ -7,7 +7,6 @@ import javax.vecmath.Vector2f;
 
 import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
-import controller.User;
 
 public class Round {
 

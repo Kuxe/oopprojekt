@@ -8,7 +8,6 @@ import javax.vecmath.Point2f;
 
 import org.lwjgl.input.Keyboard;
 
-import controller.User;
 
 public class Session {
 
