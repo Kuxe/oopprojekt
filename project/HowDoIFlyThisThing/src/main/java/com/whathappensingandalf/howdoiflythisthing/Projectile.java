@@ -60,7 +60,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	
 	/**
 	 * Deep copy-ctor
-	 * @param spaceship
+	 * @param projectile
 	 */
 	public Projectile(Projectile projectile) {
 		this(
@@ -173,7 +173,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	}
 
 	public void visit(Spaceship spaceship) {
-		//this.remove();
+		this.remove();
 	}
 
 	public void visit(Projectile projectile) {
