@@ -48,7 +48,7 @@ public class Keybindings {
 	public int getMain(){
 		return this.main;
 	}
-	public int getRight(int key){
+	public int getRight(){
 		return this.right;
 	}
 	public int getFire(){
