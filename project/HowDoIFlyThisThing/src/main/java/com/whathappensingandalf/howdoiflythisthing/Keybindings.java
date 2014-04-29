@@ -42,5 +42,16 @@ public class Keybindings {
 	public void setFire(int key){
 		this.fire=key;
 	}
-	
+	public int getLeft(){
+		return this.left;
+	}
+	public int getMain(){
+		return this.main;
+	}
+	public int getRight(int key){
+		return this.right;
+	}
+	public int getFire(){
+		return this.fire;
+	}
 }
