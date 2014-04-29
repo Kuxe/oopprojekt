@@ -3,11 +3,8 @@ package controller;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.Set;
-
 import javax.vecmath.Point2f;
-
 import org.lwjgl.input.Keyboard;
-
 import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 
 /**
@@ -17,8 +14,8 @@ import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 public class User implements PropertyChangeListener{
 	
 	private IUserState state;
-	private SpectatorState spectatorState;
-	private PlayerState playerState;
+	private final SpectatorState spectatorState;
+	private final PlayerState playerState;
 	private int left, main, right, fire;
 	
 	public User(){
