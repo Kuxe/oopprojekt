@@ -19,7 +19,10 @@ public class CollidableComponent implements ICollidableComponent{
 	private Vector2f betaVector;
 	private Vector2f ex;
 	private Vector2f ey;
-	private Point2f calc;
+	private Point2f calcLeft;
+	private Point2f calcRight;
+	private Point2f calcTop;
+	private Point2f calcBottom;
 	private float alfa;
 	private float beta;
 	
@@ -40,7 +43,10 @@ public class CollidableComponent implements ICollidableComponent{
 		betaVector= new Vector2f(0, 0);
 		alfa= 0.0f;
 		beta= 0.0f;
-		calc= new Point2f(0, 0);
+		calcLeft= new Point2f(0, 0);
+		calcRight= new Point2f(0, 0);
+		calcTop= new Point2f(0, 0);
+		calcBottom= new Point2f(0, 0);
 	}
 	/**
 	 * {@inheritDoc}
@@ -70,12 +76,10 @@ public class CollidableComponent implements ICollidableComponent{
 				if(getLeftmostCoordinate().y > rhs.getRightmostCoordinate().y){
 					betaVector.sub(getTopmostCoordinate(), getLeftmostCoordinate());
 					beta= ex.angle(betaVector);
-					
 					return beta- alfa > 0;
 				}else{
 					betaVector.sub(getBottommostCoordinate(), getLeftmostCoordinate());
 					beta= ex.angle(betaVector);
-					
 					return beta- alfa > 0;
 				}
 			}else if(getRightmostCoordinate().x < rhs.getLeftmostCoordinate().x){
@@ -129,63 +133,63 @@ public class CollidableComponent implements ICollidableComponent{
 	 * @return the point most to the left (lowest x- value)
 	 */
 	public Point2f getLeftmostCoordinate(){
-		calc.set(position.x, position.y);
+		calcLeft.set(position.x, position.y);
 		if(distanceToTop.x<0){
-			calc.add(distanceToTop);
+			calcLeft.add(distanceToTop);
 		}else{
-			calc.sub(distanceToTop);
+			calcLeft.sub(distanceToTop);
 		}if(distanceToSide.x<0){
-			calc.add(distanceToSide);
+			calcLeft.add(distanceToSide);
 		}else{
-			calc.sub(distanceToSide);
-		}return calc;
+			calcLeft.sub(distanceToSide);
+		}return calcLeft;
 	}
 	/**
 	 * @return the point most to the right (highest x- value)
 	 */
 	public Point2f getRightmostCoordinate(){
-		calc.set(position.x, position.y);
+		calcRight.set(position.x, position.y);
 		if(distanceToTop.x>0){
-			calc.add(distanceToTop);
+			calcRight.add(distanceToTop);
 		}else{
-			calc.sub(distanceToTop);
+			calcRight.sub(distanceToTop);
 		}if(distanceToSide.x>0){
-			calc.add(distanceToSide);
+			calcRight.add(distanceToSide);
 		}else{
-			calc.sub(distanceToSide);
+			calcRight.sub(distanceToSide);
 		}
-		return calc;
+		return calcRight;
 	}
 	/**
 	 * @return the point in the upper corner (with the lowest y- value)
 	 */
 	public Point2f getTopmostCoordinate(){
-		calc.set(position.x, position.y);
+		calcTop.set(position.x, position.y);
 		if(distanceToTop.y<0){
-			calc.add(distanceToTop);
+			calcTop.add(distanceToTop);
 		}else{
-			calc.sub(distanceToTop);
+			calcTop.sub(distanceToTop);
 		}if(distanceToSide.y<0){
-			calc.add(distanceToSide);
+			calcTop.add(distanceToSide);
 		}else{
-			calc.sub(distanceToSide);
+			calcTop.sub(distanceToSide);
 		}
-		return calc;
+		return calcTop;
 	}
 	/**
 	 * @return the point in the down corner (with the highest y- value)
 	 */
 	public Point2f getBottommostCoordinate(){
-		calc.set(position.x,position.y);
+		calcBottom.set(position.x,position.y);
 		if(distanceToTop.y>0){
-			calc.add(distanceToTop);
+			calcBottom.add(distanceToTop);
 		}else{
-			calc.sub(distanceToTop);
+			calcBottom.sub(distanceToTop);
 		}if(distanceToSide.y>0){
-			calc.add(distanceToSide);
+			calcBottom.add(distanceToSide);
 		}else{
-			calc.sub(distanceToSide);
+			calcBottom.sub(distanceToSide);
 		}
-		return calc;
+		return calcBottom;
 	}
 }//end CollidableComponent

@@ -8,6 +8,8 @@ import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
 import org.lwjgl.input.Keyboard;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.KeyListener;
 
 import View.ViewThread;
 
@@ -19,14 +21,16 @@ import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 import com.whathappensingandalf.howdoiflythisthing.factorys.AsteroidFactory;
 import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
-public class Controller{
+public class Controller implements KeyListener{
 	
 	private HowDoIFlyThisThing model;
 	private ViewThread viewThread;
 	
+	
+	
 	private Set<Integer> listOfPressedKeys;
 	private Set<Integer> listOfReleasedKeys;
-	boolean aHold, wHold, dHold, spaceHold;
+	private Set<Integer> listOfHoldKeys;
 	
 	public Controller(){
 		model = new HowDoIFlyThisThing();
@@ -35,6 +39,7 @@ public class Controller{
 		
 		listOfPressedKeys = new HashSet();
 		listOfReleasedKeys = new HashSet();
+		listOfHoldKeys = new HashSet();
 		
 		viewThread=new ViewThread();
 		viewThread.start();
@@ -45,6 +50,25 @@ public class Controller{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		viewThread.getView().getContainer().getInput().addKeyListener(this);
+	}
+	
+	/**
+	 * Set booleans representing if a key is held down or not
+	 * If a key is inside pressedKeys (someone pressed a key), set the boolean to true
+	 * If a key is inside releasedkeys (someone released a key), set the boolean to false
+	 */
+	public synchronized void manageInput() {
+		for(int key : listOfPressedKeys) {
+			listOfHoldKeys.add(key);
+		}
+		
+		for(int key : listOfReleasedKeys) {
+			listOfHoldKeys.remove(key);
+		}
+		
+		listOfPressedKeys.clear();
+		listOfReleasedKeys.clear();
 	}
 	
 	public void start() {
@@ -55,7 +79,8 @@ public class Controller{
 	}
 	
 	private void update() {
-		model.update();
+		manageInput();		
+		model.update(listOfHoldKeys);
 		viewThread.getView().setCamera(new Point2f(0, 0));
 		setRenderObjects(model.getIDrawables());	
 	}
@@ -66,6 +91,28 @@ public class Controller{
 	
 	private void shutdown() {
 		System.exit(0);
+	}
+
+	public synchronized void keyPressed(int key, char c) {
+		listOfPressedKeys.add(key);
+	}
+
+	public synchronized void keyReleased(int key, char c) {
+		listOfReleasedKeys.add(key);
+	}
+
+	public void setInput(Input input) {
+		// TODO Auto-generated method stub
+	}
+	public boolean isAcceptingInput() {
+		// TODO Auto-generated method stub
+		return true;
+	}
+	public void inputEnded() {
+		// TODO Auto-generated method stub
+	}
+	public void inputStarted() {
+		// TODO Auto-generated method stub
 	}
 }
 

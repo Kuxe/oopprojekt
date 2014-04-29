@@ -2,6 +2,7 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 import controller.User;
 
@@ -24,8 +25,11 @@ public class Session {
 		}
 	}
 	
-	public void update() {
+	public void update(Set<Integer> listOfHoldKeys) {
 		round.update();
+		for(User user : users.values()) {
+			user.executeInput(listOfHoldKeys);
+		}
 	}
 
 	public Map<Object, IDrawable> getIDrawables() {

@@ -13,20 +13,14 @@ import org.newdawn.slick.KeyListener;
  *
  * @author Martin Nilsson
  */
-public class User implements KeyListener,PropertyChangeListener{
+public class User implements PropertyChangeListener{
 	
 	private IUserState state;
 	private SpectatorState spectatorState;
 	private PlayerState playerState;
-	private Set<Integer> listOfPressedKeys;
-	private Set<Integer> listOfReleasedKeys;
-	private boolean leftHold, mainHold, rightHold, fireHold;
 	private int left, main, right, fire;
-	//boolean aHold, wHold, dHold, spaceHold;
 	
 	public User(){
-		listOfPressedKeys = new HashSet();
-		listOfReleasedKeys = new HashSet();
 		spectatorState = new SpectatorState();
 		playerState = new PlayerState();
 		state = spectatorState;
@@ -54,76 +48,12 @@ public class User implements KeyListener,PropertyChangeListener{
 	public void setFireButton(int key){
 		this.fire=key;
 	}
-	/**
-	 * Set booleans representing if a key is held down or not
-	 * If a key is inside pressedKeys (someone pressed a key), set the boolean to true
-	 * If a key is inside releasedkeys (someone released a key), set the boolean to false
-	 */
-	public synchronized void manageInput() {
-		for(int key : listOfPressedKeys) {
-			if (key == left) {
-				leftHold = true;
-			}
-			else if (key == main) {
-				mainHold = true;
-			}
-			else if (key == right) {
-				rightHold = true;
-			}
-			else if (key == fire) {
-				fireHold = true;
-			}
-		}
-		
-		for(int key : listOfReleasedKeys) {
-			if (key == left) {
-				leftHold = false;
-			}
-			else if (key == main) {
-				mainHold = false;
-			}
-			else if (key == right) {
-				rightHold = false;
-			}
-			else if (key == fire) {
-				fireHold = false;
-			}
-		}
-		
-		listOfPressedKeys.clear();
-		listOfReleasedKeys.clear();
-	}
 	
-	public void executeInput() {
-		state.fireHold(fireHold);
-			
-		state.mainHold(mainHold);
-			
-		state.leftHold(leftHold);
-			
-		state.rightHold(rightHold);
-	}
-
-	public synchronized void keyPressed(int key, char c) {
-		listOfPressedKeys.add(key);
-	}
-
-	public synchronized void keyReleased(int key, char c) {
-		listOfReleasedKeys.add(key);
-	}
-
-	public void setInput(Input input) {
-		// TODO Auto-generated method stub
-	}
-	public boolean isAcceptingInput() {
-		// TODO Auto-generated method stub
-		return true;
-	}
-	public void inputEnded() {
-		// TODO Auto-generated method stub
-	}
-	public void inputStarted() {
-		// TODO Auto-generated method stub
+	public void executeInput(Set<Integer> listOfHoldKeys) {
+		state.fireHold(listOfHoldKeys.contains(fire));
+		state.mainHold(listOfHoldKeys.contains(main));
+		state.leftHold(listOfHoldKeys.contains(left));
+		state.rightHold(listOfHoldKeys.contains(right));
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {

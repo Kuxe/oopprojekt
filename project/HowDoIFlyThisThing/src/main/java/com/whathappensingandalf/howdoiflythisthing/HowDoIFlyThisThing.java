@@ -1,9 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
-import java.util.HashSet;
 import java.util.Map;
-
-import controller.User;
+import java.util.Set;
 
 /**
  * 
@@ -37,8 +35,8 @@ public class HowDoIFlyThisThing {
 		//TODO: Connect to server
 	}
 	
-	public void update() {
-		session.update();
+	public void update(Set<Integer> listOfHoldKeys) {
+		session.update(listOfHoldKeys);
 	}
 	
 	public Map<Object, IDrawable> getIDrawables() {
