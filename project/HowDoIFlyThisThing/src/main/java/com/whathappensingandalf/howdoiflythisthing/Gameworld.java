@@ -240,4 +240,8 @@ public class Gameworld implements PropertyChangeListener{
 			}
 		}
 	}
+	
+	public WorldBorder getBorder() {
+		return worldBorder;
+	}
 }
