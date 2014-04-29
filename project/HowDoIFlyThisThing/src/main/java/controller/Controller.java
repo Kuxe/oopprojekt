@@ -4,22 +4,13 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javax.vecmath.Point2f;
-import javax.vecmath.Vector2f;
-
-import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 
 import View.ViewThread;
 
-import com.whathappensingandalf.howdoiflythisthing.Asteroid;
-import com.whathappensingandalf.howdoiflythisthing.Gameworld;
 import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
 import com.whathappensingandalf.howdoiflythisthing.IDrawable;
-import com.whathappensingandalf.howdoiflythisthing.Spaceship;
-import com.whathappensingandalf.howdoiflythisthing.factorys.AsteroidFactory;
-import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
 public class Controller implements KeyListener{
 	

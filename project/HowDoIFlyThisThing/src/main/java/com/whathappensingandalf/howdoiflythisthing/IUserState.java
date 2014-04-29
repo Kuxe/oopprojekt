@@ -1,4 +1,4 @@
-package controller;
+package com.whathappensingandalf.howdoiflythisthing;
 
 import javax.vecmath.Point2f;
 

@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package controller;
+package com.whathappensingandalf.howdoiflythisthing;
 
 import javax.vecmath.Point2f;
 
