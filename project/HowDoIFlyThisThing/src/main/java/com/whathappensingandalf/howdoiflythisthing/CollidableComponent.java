@@ -18,23 +18,23 @@ public class CollidableComponent implements ICollidableComponent{
 	private Point2f position;
 	private int width;
 	private int height;
-	private int radius;
+	private double radius;
 	private Vector2f distance= new Vector2f(0 ,0);
 	
-	public CollidableComponent(Point2f position, int radius){
+	public CollidableComponent(Point2f position, double radius){
 		this.position= position;
 		this.radius= radius;
 	}
 	
 	public CollidableComponent(Point2f position, int width, int height){
 		this.position= position;
-		this.width= width;
-		this.height= height;
-		radius= width;
+		this.width= width/2;
+		this.height= height/2;
+		radius= (width/2) * 1.3;
 	}
 	
 	public boolean collideDetection(ICollidable rhs){
 		distance.sub(position, rhs.getPosition());
-		return (radius+ rhs.getWidth()) < distance.length();
+		return (radius+ rhs.getWidth()/2) > distance.length();
 	}
 }//end CollidableComponent
