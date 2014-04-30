@@ -107,6 +107,8 @@ public class SpaceshipTest {
 
 	@Test
 	public void testSetRotVelocity() {
+		s.setRotVelocity(50);
+		assertTrue(s.getRotVelocity()==50);
 	}
 
 	@Test
