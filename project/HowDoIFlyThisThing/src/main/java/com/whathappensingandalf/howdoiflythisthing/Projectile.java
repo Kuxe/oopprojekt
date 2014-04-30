@@ -54,7 +54,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 		this.width = width;
 		this.height = height;
 		mC= new MoveComponent(position, velocity, acceleration, direction, new TypeWrapper(0.0f),new TypeWrapper(0.0f));
-		colliComp = new CollidableComponent(position, direction, width, height);
+		colliComp = new CollidableComponent(position, /*direction,*/ width, height);
 		pcs = new PropertyChangeSupport(this);
 	}
 	
@@ -204,25 +204,30 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	/**
 	 * {@inheritDoc}
 	 */
+	/*
 	public Point2f getLeftmostCoordinate() {
 		return colliComp.getLeftmostCoordinate();
 	}
 	/**
 	 * {@inheritDoc}
 	 */
+	/*
 	public Point2f getRightmostCoordinate() {
 		return colliComp.getRightmostCoordinate();
 	}
 	/**
 	 * {@inheritDoc}
 	 */
+	/*
 	public Point2f getTopmostCoordinate() {
 		return colliComp.getTopmostCoordinate();
 	}
 	/**
 	 * {@inheritDoc}
 	 */
+	/*
 	public Point2f getBottommostCoordinate() {
 		return colliComp.getBottommostCoordinate();
 	}
+	*/
 }//end Projectile

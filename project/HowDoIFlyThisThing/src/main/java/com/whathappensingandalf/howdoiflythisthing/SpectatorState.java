@@ -37,4 +37,9 @@ public class SpectatorState implements IUserState{
 		return new Point2f(0, 0);
 	}
 
+	public Spaceship getSpaceship() {
+		//Has no spaceship
+		return null;
+	}
+
 }

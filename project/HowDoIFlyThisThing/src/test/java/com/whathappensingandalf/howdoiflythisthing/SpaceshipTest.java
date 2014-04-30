@@ -242,7 +242,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 	@Test
 	public void testDeactivateRightThruster() {
 	}
-
+/*
 	@Test
 	public void testGetLeftmostCoordinate() {
 		Spaceship ship = new Spaceship(new Point2f(10, 10), new Vector2f(1,0), 70, 50);
@@ -270,7 +270,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 		float f = ship.getBottommostCoordinate().y;
 		assertTrue(f==35);
 	}
-	
+*/	
 	@Test
 	public void testEquals() {
 		Spaceship st1 = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50);
