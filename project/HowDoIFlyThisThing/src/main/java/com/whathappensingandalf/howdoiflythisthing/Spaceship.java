@@ -318,4 +318,24 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	public Point2f getBottommostCoordinate() {
 		return colliComp.getBottommostCoordinate();
 	}
+	public boolean equals(Object rhs){
+		if(rhs==this){
+			return true;
+		}else if(!(rhs instanceof Spaceship)){
+			return false;
+		}else{
+			Spaceship other = (Spaceship)rhs;
+			return this.WEAPON_PIPE_POSITION.equals(other.WEAPON_PIPE_POSITION)&&
+					this.acceleration.equals(other.acceleration)&&
+					this.direction.equals(other.direction)&&
+					this.height==other.height&&
+					this.hull==other.hull&&
+					this.position.equals(other.position)&&
+					this.rotationAcceleration.equals(other.rotationAcceleration)&&
+					this.rotationVelocity.equals(other.rotationVelocity)&&
+					this.timer.equals(other.timer)&&
+					this.velocity.equals(other.velocity)&&
+					this.width==other.width;
+		}
+	}
 }
