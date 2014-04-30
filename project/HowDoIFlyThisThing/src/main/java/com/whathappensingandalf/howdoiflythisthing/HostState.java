@@ -62,7 +62,7 @@ public class HostState implements ModelNetworkState{
 				
 				//If someone sends his input, execute it.
 				if(object instanceof HoldKeysNetworkPacket) {
-					users.get(connection.getRemoteAddressTCP()).executeInput(((HoldKeysNetworkPacket) object).listOfHoldKeys);
+					users.get(connection.getRemoteAddressTCP()).setListOfHoldKeys(((HoldKeysNetworkPacket) object).listOfHoldKeys);
 				}
 			}
 			
@@ -73,8 +73,7 @@ public class HostState implements ModelNetworkState{
 		});
 		
 		client.start();
-		addUser(myIp);
-		myUser = users.get(myIp);
+		
 		
 		try {
 			myIp = new InetSocketAddress(InetAddress.getLocalHost(), 5000);
@@ -82,6 +81,8 @@ public class HostState implements ModelNetworkState{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		addUser(myIp);
+		myUser = users.get(myIp);
 	}
 	
 	public void stop() {
@@ -99,8 +100,9 @@ public class HostState implements ModelNetworkState{
 	
 	public void update(Set<Integer> listOfHoldKeys) {
 		round.update();
+		myUser.setListOfHoldKeys(listOfHoldKeys);
 		for(User user : users.values()) {
-			user.executeInput(listOfHoldKeys);
+			user.executeInput(user.getListOfHoldKeys());
 		}
 		
 		//Send images to all clients
