@@ -22,7 +22,7 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 		this.position = position;
 		this.width = width;
 		this.height = height;
-		this.colliComp = new CollidableComponent(position, new Vector2f(1,0), width, height);
+		this.colliComp = new CollidableComponent(position, /*new Vector2f(1,0),*/ width, height);
 	}
 	
 	/**
@@ -78,25 +78,30 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 	/**
 	 * {@inheritDoc}
 	 */
+	/*
 	public Point2f getLeftmostCoordinate() {
 		return colliComp.getLeftmostCoordinate();
 	}
 	/**
 	 * {@inheritDoc}
 	 */
+	/*
 	public Point2f getRightmostCoordinate() {
 		return colliComp.getRightmostCoordinate();
 	}
 	/**
 	 * {@inheritDoc}
 	 */
+	/*
 	public Point2f getTopmostCoordinate() {
 		return colliComp.getTopmostCoordinate();
 	}
 	/**
 	 * {@inheritDoc}
 	 */
+	/*
 	public Point2f getBottommostCoordinate() {
 		return colliComp.getBottommostCoordinate();
 	}
+	*/
 }

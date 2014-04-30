@@ -51,17 +51,17 @@ public interface ICollidable extends IListable{
 	/**
 	 * @return the point most to the left
 	 */
-	public Point2f getLeftmostCoordinate();
+//	public Point2f getLeftmostCoordinate();
 	/**
 	 * @return the point most to the right
 	 */
-	public Point2f getRightmostCoordinate();
+//	public Point2f getRightmostCoordinate();
 	/**
 	 * @return the upper point
 	 */
-	public Point2f getTopmostCoordinate();
+//	public Point2f getTopmostCoordinate();
 	/**
 	 * @return the point at the bottom
 	 */
-	public Point2f getBottommostCoordinate();
+//	public Point2f getBottommostCoordinate();
 }
