@@ -1,8 +1,12 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import java.awt.geom.Area;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
+
+import org.jbox2d.dynamics.World;
+
 import utils.VecmathUtils.*;
 
 /**
@@ -25,7 +29,7 @@ public class CollidableComponent implements ICollidableComponent{
 	private Point2f calcBottom;
 	private float alfa;
 	private float beta;
-	
+
 	/**
 	 * @param position - a point describing the center of the component
 	 * @param direction - a vector describing the direction of the component
@@ -59,7 +63,7 @@ public class CollidableComponent implements ICollidableComponent{
 		/*
 		if(getLeftmostCoordinate().x > rhs.getRightmostCoordinate().x || getRightmostCoordinate().x < rhs.getLeftmostCoordinate().x ||
 				getTopmostCoordinate().y > rhs.getBottommostCoordinate().y || getBottommostCoordinate().y < rhs.getTopmostCoordinate().y){
- */
+		 */
 		if(getLeftmostCoordinate().x > rhs.getRightmostCoordinate().x ){
 			return false;
 		}else if(getRightmostCoordinate().x < rhs.getLeftmostCoordinate().x){
@@ -82,18 +86,18 @@ public class CollidableComponent implements ICollidableComponent{
 					beta= ex.angle(betaVector);
 					return beta- alfa > 0;
 				}
-			}else if(getRightmostCoordinate().x < rhs.getLeftmostCoordinate().x){
+			}else if(getRightmostCoordinate().x > rhs.getLeftmostCoordinate().x){
 				alfaVector.sub(rhs.getLeftmostCoordinate(), getRightmostCoordinate());
 				alfa= ex.angle(alfaVector);
 				if(getRightmostCoordinate().y > rhs.getLeftmostCoordinate().y){
 					betaVector.sub(getTopmostCoordinate(), getRightmostCoordinate());
 					beta= ex.angle(betaVector);
-					
+
 					return alfa- beta > 0;
 				}else{
 					betaVector.sub(getBottommostCoordinate(), getRightmostCoordinate());
 					beta= ex.angle(betaVector);
-					
+
 					return alfa- beta > 0;
 				}
 			}else if(getTopmostCoordinate().y < rhs.getBottommostCoordinate().y){
@@ -102,12 +106,12 @@ public class CollidableComponent implements ICollidableComponent{
 				if(getTopmostCoordinate().x > rhs.getBottommostCoordinate().x){
 					betaVector.sub(getLeftmostCoordinate(), getTopmostCoordinate());
 					beta= ey.angle(betaVector);
-					
+
 					return beta- alfa > 0;
 				}else{
 					betaVector.sub(getRightmostCoordinate(), getTopmostCoordinate());
 					beta= ey.angle(betaVector);
-					
+
 					return beta- alfa > 0;
 				}
 			}else if(getBottommostCoordinate().y > rhs.getTopmostCoordinate().y){
@@ -116,17 +120,17 @@ public class CollidableComponent implements ICollidableComponent{
 				if(getBottommostCoordinate().x > rhs.getTopmostCoordinate().x){
 					betaVector.sub(getLeftmostCoordinate(), getBottommostCoordinate());
 					beta= ey.angle(betaVector);
-					
+
 					return alfa- beta > 0;
 				}else{
 					betaVector.sub(getRightmostCoordinate(), getBottommostCoordinate());
 					beta= ey.angle(betaVector);
-					
+
 					return alfa- beta > 0;
 				}
 			}
 		}
-//		throw new UnsupportedOperationException("Not supported yet.");
+		//		throw new UnsupportedOperationException("Not supported yet.");
 		return false;
 	}
 	/**
