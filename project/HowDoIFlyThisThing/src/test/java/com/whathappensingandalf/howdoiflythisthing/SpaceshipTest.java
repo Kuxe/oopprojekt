@@ -113,6 +113,8 @@ public class SpaceshipTest {
 
 	@Test
 	public void testSetRotAcceleration() {
+		s.setRotAcceleration(10);
+		assertTrue(s.getRotAcceleration()==10);
 	}
 
 	@Test
