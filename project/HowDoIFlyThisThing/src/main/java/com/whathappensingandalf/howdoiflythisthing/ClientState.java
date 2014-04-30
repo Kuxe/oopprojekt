@@ -9,6 +9,7 @@ import javax.vecmath.Point2f;
 
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
 
 /**
  * 
@@ -19,9 +20,18 @@ import com.esotericsoftware.kryonet.Connection;
 public class ClientState implements ModelNetworkState {
 
 	private Client client;
+	Map<Object, IDrawable> drawables;
 	
 	public ClientState(String ip) {
 		Client client = new Client();
+		client.addListener(new Listener() {
+			public void recieved(Connection connection, Object message) {
+				if(message instanceof IDrawableNetworkPackage) {
+					drawables = ((IDrawableNetworkPackage)message).drawables;
+				}
+			}
+		});
+	
 	    client.start();
 	    try {
 			client.connect(5000, ip, 5000);
@@ -45,8 +55,7 @@ public class ClientState implements ModelNetworkState {
 	}
 
 	public Map<Object, IDrawable> getIDrawables() {
-		
-		return null;
+		return drawables;
 	}
 
 	public Point2f getSpaceshipPoint() {

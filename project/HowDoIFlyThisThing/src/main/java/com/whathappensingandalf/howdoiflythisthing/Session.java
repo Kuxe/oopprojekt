@@ -67,6 +67,9 @@ public class Session {
 		for(User user : users.values()) {
 			user.executeInput(listOfHoldKeys);
 		}
+		
+		//Send images to all clients
+		server.sendToAllTCP(round.getIDrawables());
 	}
 
 	public Map<Object, IDrawable> getIDrawables() {
