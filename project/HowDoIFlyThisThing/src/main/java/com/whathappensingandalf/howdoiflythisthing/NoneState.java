@@ -1,9 +1,12 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.Set;
 
 import javax.vecmath.Point2f;
+
+import com.esotericsoftware.kryonet.Connection;
 
 /**
  * 
@@ -23,7 +26,7 @@ public class NoneState implements ModelNetworkState {
 		return null;
 	}
 
-	public void addUser(int ip) {
+	public void addUser(InetSocketAddress ip) {
 		// TODO Auto-generated method stub
 
 	}
@@ -38,9 +41,8 @@ public class NoneState implements ModelNetworkState {
 		return null;
 	}
 
-	public Point2f getSpaceshipPoint(int ip) {
+	public Point2f getSpaceshipPoint() {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

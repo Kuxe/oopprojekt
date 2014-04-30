@@ -1,9 +1,15 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
 import java.util.Map;
 import java.util.Set;
 
 import javax.vecmath.Point2f;
+
+import com.esotericsoftware.kryonet.Client;
+import com.esotericsoftware.kryonet.Connection;
 
 /**
  * 
@@ -14,34 +20,31 @@ import javax.vecmath.Point2f;
 public class HostState implements ModelNetworkState {
 	
 	private Session session;
+	private Client client;
+	private InetSocketAddress myIp;
 	
 	public HostState() {
-		session = new Session();
-	}
-	
-	public void update() {
-		// TODO Auto-generated method stub
+		try {
+			myIp = new InetSocketAddress(InetAddress.getLocalHost(), 5000);
+		} catch (UnknownHostException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public ModelNetworkState.state getState() {
 		return ModelNetworkState.state.HOST;
 	}
 	
-	public void addUser(int ip) {
-		session.addUser(ip);
-	}
-	
-	public void TEST_addUser2() {
-		session.TEST_addUser2();
+	public void addUser(InetSocketAddress connection) {
+		session.addUser(connection);
 	}
 	
 	public void host() {
 		session = new Session();
-		addUser(127001);
-	}
-	
-	public void join(int ip) {
-		//TODO: Connect to server
+		client = new Client(); 
+		client.start();
+		addUser(myIp);
 	}
 	
 	public void update(Set<Integer> listOfHoldKeys) {
@@ -59,7 +62,7 @@ public class HostState implements ModelNetworkState {
 	 *  null.
 	 * @return Point of spaceship beloning to ip
 	 */
-	public Point2f getSpaceshipPoint(int ip) {
-		return session.getSpaceshipPoint(ip); 
+	public Point2f getSpaceshipPoint() {
+		return session.getSpaceshipPoint(myIp); 
 	}
 }

@@ -1,5 +1,8 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.net.InetAddress;
+import java.net.InetSocketAddress;
+import java.net.UnknownHostException;
 import java.util.Map;
 import java.util.Set;
 
@@ -26,17 +29,17 @@ public class HowDoIFlyThisThing {
 	 *  
 	 * @param spaceship
 	 */
-	public void addUser(int ip) {
+	public void addUser(InetSocketAddress ip) {
 		state.addUser(ip);
 	}
 	
 	public void host() {
 		state = new HostState();
-		state.addUser(127001);
+		((HostState)state).host();
 	}
 	
-	public void join(int ip) {
-		state = new ClientState();
+	public void join(String ip) {
+		state = new ClientState(ip);
 	}
 	
 	public void update(Set<Integer> listOfHoldKeys) {
@@ -47,7 +50,7 @@ public class HowDoIFlyThisThing {
 		return state.getIDrawables();
 	}
 	
-	public Point2f getSpaceshipPoint(int ip) {
-		return state.getSpaceshipPoint(ip);
+	public Point2f getSpaceshipPoint() {
+		return state.getSpaceshipPoint();
 	}
 }

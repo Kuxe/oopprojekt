@@ -13,7 +13,14 @@ import View.View;
  */
 public class Main {
 	public static void main(String argc[]){
-		Controller controller = new Controller();
+		
+		Controller controller;
+		
+		if(argc.length == 1) {
+			controller = new Controller(argc[0]);
+		} else {
+			controller = new Controller();
+		}
 		controller.start();
 	}
 }

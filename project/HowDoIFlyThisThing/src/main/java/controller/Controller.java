@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import javax.vecmath.Point2f;
+
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 
@@ -11,6 +13,7 @@ import View.ViewThread;
 
 import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
 import com.whathappensingandalf.howdoiflythisthing.IDrawable;
+import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 
 public class Controller implements KeyListener{
 	
@@ -23,10 +26,33 @@ public class Controller implements KeyListener{
 	private Set<Integer> listOfReleasedKeys;
 	private Set<Integer> listOfHoldKeys;
 	
+	private Point2f mySpaceshipPoint;
+	
 	public Controller(){
 		model = new HowDoIFlyThisThing();
 		
 		model.host();
+		
+		listOfPressedKeys = new HashSet();
+		listOfReleasedKeys = new HashSet();
+		listOfHoldKeys = new HashSet();
+		
+		viewThread=new ViewThread();
+		viewThread.start();
+		try {
+			//HOWTO: make this thread sleep until a certain point in viewThread is reached?
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		viewThread.getView().getContainer().getInput().addKeyListener(this);
+	}
+	
+	public Controller(String ip){
+		model = new HowDoIFlyThisThing();
+		
+		model.join(ip);
 		
 		listOfPressedKeys = new HashSet();
 		listOfReleasedKeys = new HashSet();
@@ -72,7 +98,7 @@ public class Controller implements KeyListener{
 	private void update() {
 		manageInput();		
 		model.update(listOfHoldKeys);
-		viewThread.getView().setCamera(model.getSpaceshipPoint(127001));
+		viewThread.getView().setCamera(model.getSpaceshipPoint());
 		setRenderObjects(model.getIDrawables());	
 	}
 	

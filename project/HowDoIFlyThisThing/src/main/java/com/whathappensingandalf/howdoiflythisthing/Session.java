@@ -1,5 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.io.IOException;
+import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -8,38 +10,52 @@ import javax.vecmath.Point2f;
 
 import org.lwjgl.input.Keyboard;
 
+import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
+import com.esotericsoftware.kryonet.Server;
+
 
 public class Session {
 
 	private Round round;
-	private HashMap<Integer, User> users;
-	
+	private HashMap<InetSocketAddress, User> users;
+	private Server server;
 	
 	
 	public Session() {
 		round = new Round();
 		users = new HashMap();
+		server = new Server();
 	}
 	
-	public void addUser(int ip) {
-		User user = new User();
-		users.put(ip, user);
-		round.addUser(user);
-		if(users.size() == 2) {
-			round.start();
-		}
+	public void start() {
+		server.start();
+		try {
+			server.bind(5000);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			server.stop();
+		} //5000 default TCP-port
+		
+		server.addListener(new Listener() {
+			public void recieved(Connection connection, Object object) {
+				if(object instanceof inputMessage) {
+					object = (inputMessage)object;
+					users.get(connection.getRemoteAddressTCP());
+				}
+			}
+		});
+		
 	}
 	
-	/**
-	 * Method used for simulating added user
-	 */
-	public void TEST_addUser2() {
+	public void stop() {
+		server.stop();
+	}
+	
+	public void addUser(InetSocketAddress connection) {
 		User user = new User();
-		user.setFireButton(Keyboard.KEY_RCONTROL);
-		user.setLeftButton(Keyboard.KEY_J);
-		user.setRightButton(Keyboard.KEY_L);
-		user.setMainButton(Keyboard.KEY_I);
-		users.put(0000, user);
+		users.put(connection, user);
 		round.addUser(user);
 		if(users.size() == 2) {
 			round.start();
@@ -57,7 +73,7 @@ public class Session {
 		return round.getIDrawables();
 	}
 	
-	public Point2f getSpaceshipPoint(int ip) {
+	public Point2f getSpaceshipPoint(InetSocketAddress ip) {
 		return users.get(ip).getSpaceshipPoint();
 	}
 }
