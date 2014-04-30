@@ -6,6 +6,8 @@
 
 package com.whathappensingandalf.howdoiflythisthing;
 
+import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -19,7 +21,10 @@ import static org.junit.Assert.*;
  */
 public class SpaceshipTest {
 	
+	private Spaceship s = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 50, 50);
+	
 	public SpaceshipTest() {
+		
 	}
 	
 	@BeforeClass
@@ -56,6 +61,7 @@ public class SpaceshipTest {
 
 	@Test
 	public void testGetPosition() {
+		assertTrue(s.getPosition().equals(new Point2f(10, 10)));
 	}
 
 	@Test
@@ -148,10 +154,6 @@ public class SpaceshipTest {
 
 	@Test
 	public void testCollideDetection() {
-	}
-
-	@Test
-	public void testGetPossition() {
 	}
 
 	@Test
