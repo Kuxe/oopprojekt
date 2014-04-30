@@ -222,4 +222,11 @@ public class SpaceshipTest {
 	public void testGetBottommostCoordinate() {
 	}
 	
+	@Test
+	public void testEquals() {
+		Spaceship st1 = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50);
+		Spaceship st2 = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50);
+		assertTrue(st1.equals(st2));
+	}
+	
 }
