@@ -29,6 +29,7 @@ public class ClientState implements ModelNetworkState {
 		Kryo kryo = client.getKryo();
 		kryo.register(HoldKeysNetworkPacket.class);
 		kryo.register(IDrawableNetworkPacket.class);
+		kryo.register(RequestUserNetworkPacket.class);
 		
 		
 		client.addListener(new Listener() {
@@ -46,6 +47,8 @@ public class ClientState implements ModelNetworkState {
 			client.stop();
 			e.printStackTrace();
 		}
+	    
+	    client.sendTCP(new RequestUserNetworkPacket());
 	}
 	
 	public state getState() {
