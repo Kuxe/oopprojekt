@@ -12,7 +12,9 @@ import org.lwjgl.input.Keyboard;
 public class Session {
 
 	private Round round;
-	HashMap<Integer, User> users;
+	private HashMap<Integer, User> users;
+	
+	
 	
 	public Session() {
 		round = new Round();

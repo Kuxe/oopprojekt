@@ -10,9 +10,9 @@ import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
 public class Round {
 
-	Gameworld world;
+	private Gameworld world;
 	
-	Roundstate state;
+	private Roundstate state;
 	
 	public Round() {
 		world = new Gameworld();
