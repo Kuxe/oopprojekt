@@ -37,12 +37,10 @@ public class HostState implements ModelNetworkState{
 		Kryo serverKryo = server.getKryo();
 		serverKryo.register(HoldKeysNetworkPacket.class);
 		serverKryo.register(IDrawableNetworkPacket.class);
-		serverKryo.register(RequestUserNetworkPacket.class);
 		
 		Kryo clientKryo = client.getKryo();
 		clientKryo.register(HoldKeysNetworkPacket.class);
 		clientKryo.register(IDrawableNetworkPacket.class);
-		clientKryo.register(RequestUserNetworkPacket.class);
 		
 		server.start();
 		try {
@@ -53,15 +51,18 @@ public class HostState implements ModelNetworkState{
 		} //5000 default TCP-port
 		
 		server.addListener(new Listener() {
+			
+			public void connected(Connection connection) {
+				//Grant new connections an user
+				addUser(connection.getRemoteAddressTCP());
+			}
+			
+			//Called whenever a client sends a packet
 			public void recieved(Connection connection, Object object) {
 				
 				//If someone sends his input, execute it.
 				if(object instanceof HoldKeysNetworkPacket) {
 					users.get(connection.getRemoteAddressTCP()).executeInput(((HoldKeysNetworkPacket) object).listOfHoldKeys);
-				}
-				//If someone requested an user, grant him an user.
-				if(object instanceof RequestUserNetworkPacket) {
-					addUser(connection.getRemoteAddressTCP());
 				}
 			}
 		});
