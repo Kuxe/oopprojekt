@@ -129,6 +129,7 @@ public class SpaceshipTest {
 
 	@Test
 	public void testGetType() {
+		assertTrue(s.getType().equals("SPACESHIP"));
 	}
 
 	@Test
