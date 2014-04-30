@@ -101,6 +101,7 @@ public class SpaceshipTest {
 
 	@Test
 	public void testGetRotAcceleration() {
+		assertTrue(s.getRotAcceleration()==0);
 	}
 
 	@Test
