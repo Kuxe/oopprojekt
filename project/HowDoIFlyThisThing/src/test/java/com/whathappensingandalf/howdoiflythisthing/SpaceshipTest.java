@@ -222,6 +222,9 @@ public class SpaceshipTest {
 
 	@Test
 	public void testGetTopmostCoordinate() {
+		Spaceship ship = new Spaceship(new Point2f(10, 10), new Vector2f(1,0), 70, 50);
+		float f = ship.getTopmostCoordinate().y;
+		assertTrue(f==-15);
 	}
 
 	@Test
