@@ -178,6 +178,8 @@ public class SpaceshipTest {
 
 	@Test
 	public void testClone() {
+		Spaceship s2 = s.clone();
+		assertTrue(s.equals(s2)&&(!(s==s2)));
 	}
 
 	@Test
