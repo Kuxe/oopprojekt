@@ -91,6 +91,8 @@ public class SpaceshipTest {
 
 	@Test
 	public void testSetPosition() {
+		s.setPosition(new Point2f(98, 41));
+		assertTrue(s.getPosition().equals(new Point2f(98, 41)));
 	}
 
 	@Test
