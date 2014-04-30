@@ -79,6 +79,8 @@ public class SpaceshipTest {
 
 	@Test
 	public void testSetAcceleration() {
+		s.setAcceleration(new Vector2f(77, 56));
+		assertTrue(s.getAcceleration().equals(new Vector2f(77, 56)));
 	}
 
 	@Test
