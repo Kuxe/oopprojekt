@@ -10,6 +10,7 @@ import javax.vecmath.Point2f;
 
 import org.lwjgl.input.Keyboard;
 
+import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
@@ -26,6 +27,10 @@ public class Session {
 		round = new Round();
 		users = new HashMap();
 		server = new Server();
+		
+		Kryo kryo = server.getKryo();
+		kryo.register(HoldKeysNetworkPacket.class);
+		kryo.register(IDrawableNetworkPacket.class);
 	}
 	
 	public void start() {
