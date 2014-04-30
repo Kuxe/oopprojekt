@@ -53,6 +53,7 @@ public class SpaceshipTest {
 
 	@Test
 	public void testGetAcceleration() {
+		assertTrue(s.getAcceleration().equals(new Vector2f(0, 0)));
 	}
 
 	@Test
