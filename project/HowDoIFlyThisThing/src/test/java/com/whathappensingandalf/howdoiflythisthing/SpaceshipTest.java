@@ -215,6 +215,9 @@ public class SpaceshipTest {
 
 	@Test
 	public void testGetRightmostCoordinate() {
+		Spaceship ship = new Spaceship(new Point2f(10, 10), new Vector2f(1,0), 70, 50);
+		float f = ship.getRightmostCoordinate().x;
+		assertTrue(f==45);
 	}
 
 	@Test
