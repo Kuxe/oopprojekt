@@ -57,6 +57,7 @@ public class SpaceshipTest {
 
 	@Test
 	public void testGetDirection() {
+		assertTrue(s.getDirection().equals(new Vector2f(1, 1)));
 	}
 
 	@Test
