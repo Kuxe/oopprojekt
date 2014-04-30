@@ -271,9 +271,6 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		return colliComp.collideDetection(rhs);
 	}
 	
-	public synchronized Point2f getPossition() {
-		return this.position;
-	}
 	@Override
 	public Spaceship clone() {
 		return new Spaceship(this);
