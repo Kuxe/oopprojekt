@@ -191,6 +191,11 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testRemovePropertyChangeListener() {
+		s.addPropertyChangeListener(this);
+		s.removePropertyChangeListener(this);
+		s.remove();
+		isOk=false;
+		assertFalse(isOk);
 	}
 
 	@Test
