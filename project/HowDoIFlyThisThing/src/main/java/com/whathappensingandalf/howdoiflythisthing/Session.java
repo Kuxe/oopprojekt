@@ -40,9 +40,8 @@ public class Session {
 		
 		server.addListener(new Listener() {
 			public void recieved(Connection connection, Object object) {
-				if(object instanceof inputMessage) {
-					object = (inputMessage)object;
-					users.get(connection.getRemoteAddressTCP());
+				if(object instanceof HoldKeysNetworkPacket) {
+					users.get(connection.getRemoteAddressTCP()).executeInput(((HoldKeysNetworkPacket) object).listOfHoldKeys);
 				}
 			}
 		});

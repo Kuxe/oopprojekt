@@ -51,7 +51,7 @@ public class ClientState implements ModelNetworkState {
 
 	public void update(Set<Integer> listOfHoldKeys) {
 		//Send listOfHoldKeys to server
-		client.sendTCP(listOfHoldKeys);
+		client.sendTCP(new HoldKeysNetworkPacket(listOfHoldKeys));
 	}
 
 	public Map<Object, IDrawable> getIDrawables() {
