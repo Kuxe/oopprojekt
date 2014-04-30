@@ -124,6 +124,7 @@ public class SpaceshipTest {
 
 	@Test
 	public void testGetWidth() {
+		assertTrue(s.getWidth()==70);
 	}
 
 	@Test
