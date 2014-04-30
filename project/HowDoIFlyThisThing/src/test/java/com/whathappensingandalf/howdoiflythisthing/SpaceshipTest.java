@@ -73,6 +73,8 @@ public class SpaceshipTest {
 
 	@Test
 	public void testSetVelocity() {
+		s.setVelocity(new Vector2f(67, 80));
+		assertTrue(s.getVelocity().equals(new Vector2f(67, 80)));
 	}
 
 	@Test
