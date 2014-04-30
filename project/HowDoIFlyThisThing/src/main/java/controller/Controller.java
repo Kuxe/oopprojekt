@@ -26,8 +26,6 @@ public class Controller implements KeyListener{
 	private Set<Integer> listOfReleasedKeys;
 	private Set<Integer> listOfHoldKeys;
 	
-	private Point2f mySpaceshipPoint;
-	
 	public Controller(){
 		model = new HowDoIFlyThisThing();
 		

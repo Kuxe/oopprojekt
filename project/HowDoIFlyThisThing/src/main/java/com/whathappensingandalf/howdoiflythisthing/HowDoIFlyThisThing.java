@@ -35,7 +35,6 @@ public class HowDoIFlyThisThing {
 	
 	public void host() {
 		state = new HostState();
-		((HostState)state).host();
 	}
 	
 	public void join(String ip) {
