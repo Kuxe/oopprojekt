@@ -45,6 +45,16 @@ public class SpaceshipTest {
 
 	@Test
 	public void testMove() {
+		Spaceship ship = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		ship.setVelocity(new Vector2f(100,0));
+		Timestep t = new Timestep();
+		t.start();
+		t.end();
+		t.calculateDeltatime();
+		ship.move(t);
+		System.out.println(ship.getPosition().x);
+		System.out.println(t.getDelta());
+		assertTrue(ship.getPosition().x>100);
 	}
 
 	@Test
