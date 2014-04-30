@@ -65,6 +65,11 @@ public class HostState implements ModelNetworkState{
 					users.get(connection.getRemoteAddressTCP()).executeInput(((HoldKeysNetworkPacket) object).listOfHoldKeys);
 				}
 			}
+			
+			public void disconnected(Connection connection) {
+				round.removeUser(users.get(connection.getRemoteAddressTCP()));
+				users.remove(connection.getRemoteAddressTCP());
+			}
 		});
 		
 		client.start();

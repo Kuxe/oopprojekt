@@ -29,6 +29,10 @@ public class User implements PropertyChangeListener{
 		keybindings.setFire(Keyboard.KEY_SPACE);
 	}
 	
+	public Spaceship getSpaceship() {
+		return state.getSpaceship();
+	}
+	
 	public void setSpaceship(Spaceship spaceship){
 		this.state=playerState;
 		this.playerState.setSpaceship(spaceship);
