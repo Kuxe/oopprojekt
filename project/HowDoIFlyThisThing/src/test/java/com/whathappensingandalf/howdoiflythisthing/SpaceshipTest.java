@@ -21,7 +21,7 @@ import static org.junit.Assert.*;
  */
 public class SpaceshipTest {
 	
-	private Spaceship s = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 50, 50);
+	private Spaceship s = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50);
 	
 	public SpaceshipTest() {
 		
@@ -119,6 +119,7 @@ public class SpaceshipTest {
 
 	@Test
 	public void testGetHeight() {
+		assertTrue(s.getHeight()==50);
 	}
 
 	@Test
