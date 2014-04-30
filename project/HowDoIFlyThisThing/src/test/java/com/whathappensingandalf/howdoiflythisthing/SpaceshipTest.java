@@ -23,7 +23,8 @@ import static org.junit.Assert.*;
  */
 public class SpaceshipTest implements PropertyChangeListener{
 	
-	private boolean isOk= false;
+	private boolean isRemoved= false;
+	private boolean isFireing= false;
 	private Spaceship s = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50);
 	
 	public SpaceshipTest() {
@@ -64,7 +65,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 	public void testRemove() {
 		s.addPropertyChangeListener(this);
 		s.remove();
-		assertTrue(isOk);
+		assertTrue(isRemoved);
 	}
 
 	@Test
@@ -164,6 +165,10 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testFireWeapon() {
+		s.addPropertyChangeListener(this);
+		isFireing=false;
+		s.fireWeapon();
+		assertTrue(isFireing);
 	}
 
 	@Test
@@ -190,18 +195,18 @@ public class SpaceshipTest implements PropertyChangeListener{
 	public void testAddPropertyChangeListener() {
 		s.addPropertyChangeListener(this);
 		s.remove();
-		boolean tmp = isOk;
+		boolean tmp = isRemoved;
 		s.fireWeapon();
-		assertTrue(tmp||isOk);
+		assertTrue(isRemoved||isFireing);
 	}
 
 	@Test
 	public void testRemovePropertyChangeListener() {
+		isRemoved=false;
 		s.addPropertyChangeListener(this);
 		s.removePropertyChangeListener(this);
 		s.remove();
-		isOk=false;
-		assertFalse(isOk);
+		assertFalse(isRemoved);
 	}
 
 	@Test
@@ -274,7 +279,8 @@ public class SpaceshipTest implements PropertyChangeListener{
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
-		isOk = evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString());
+		this.isRemoved = evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString());
+		this.isFireing = evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_FIRE.toString());
 	}
 	
 }
