@@ -150,6 +150,9 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetWeapon() {
+		ArmsComponent armsComponent = new ArmsComponent(s.getPosition(), s.getVelocity(),s.getAcceleration(), s.getDirection(), new Vector2f(0.0f, s.getHeight()/2 + 30.0f));
+		ArmsComponent ac2 = s.getWeapon();
+		assertTrue(armsComponent.equals(ac2));
 	}
 
 	@Test
