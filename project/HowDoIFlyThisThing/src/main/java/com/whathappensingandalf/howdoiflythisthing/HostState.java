@@ -99,6 +99,12 @@ public class HostState implements ModelNetworkState{
 		
 		//Send images to all clients
 		server.sendToAllTCP(round.getIDrawables());
+		
+		//Send each spaceship point associated with each connection to the connected client
+		for(Connection connection : server.getConnections()) {
+			connection.sendTCP(users.get(connection.getRemoteAddressTCP()).getSpaceshipPoint());
+		}
+		
 	}
 
 	public Map<Object, IDrawable> getIDrawables() {

@@ -22,8 +22,12 @@ public class ClientState implements ModelNetworkState {
 
 	private Client client;
 	Map<Object, IDrawable> drawables;
+	Point2f spaceshipPoint;
 	
 	public ClientState(String ip) {
+		
+		spaceshipPoint = new Point2f(0, 0);
+		
 		Client client = new Client();
 		
 		Kryo kryo = client.getKryo();
@@ -36,6 +40,9 @@ public class ClientState implements ModelNetworkState {
 			public void recieved(Connection connection, Object message) {
 				if(message instanceof IDrawableNetworkPacket) {
 					drawables = ((IDrawableNetworkPacket)message).drawables;
+				}
+				if(message instanceof Point2f) {
+					spaceshipPoint = (Point2f)message;
 				}
 			}
 		});
@@ -69,7 +76,6 @@ public class ClientState implements ModelNetworkState {
 	}
 
 	public Point2f getSpaceshipPoint() {
-		//Request spaceshippoint from server
-		return null;
+		return spaceshipPoint;
 	}
 }
