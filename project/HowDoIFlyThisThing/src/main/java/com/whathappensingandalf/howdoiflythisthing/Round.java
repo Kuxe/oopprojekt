@@ -11,7 +11,6 @@ import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 public class Round {
 
 	private Gameworld world;
-	
 	private Roundstate state;
 	
 	public Round() {
