@@ -16,4 +16,14 @@ public class TypeWrapper {
 	public float getValue(){
 		return this.value;
 	}
+	public boolean equals(Object rhs){
+		if(rhs==this){
+			return true;
+		}else if(!(rhs instanceof TypeWrapper)){
+			return false;
+		}else{
+			TypeWrapper other = (TypeWrapper)rhs;
+			return this.value==other.value;
+		}
+	}
 }
