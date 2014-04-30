@@ -6,6 +6,8 @@
 
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 import org.junit.After;
@@ -19,8 +21,9 @@ import static org.junit.Assert.*;
  *
  * @author Martin
  */
-public class SpaceshipTest {
+public class SpaceshipTest implements PropertyChangeListener{
 	
+	private boolean isOk= false;
 	private Spaceship s = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50);
 	
 	public SpaceshipTest() {
@@ -59,6 +62,9 @@ public class SpaceshipTest {
 
 	@Test
 	public void testRemove() {
+		s.addPropertyChangeListener(this);
+		s.remove();
+		assertTrue(isOk);
 	}
 
 	@Test
@@ -249,6 +255,10 @@ public class SpaceshipTest {
 		Spaceship st1 = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50);
 		Spaceship st2 = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50);
 		assertTrue(st1.equals(st2));
+	}
+
+	public void propertyChange(PropertyChangeEvent evt) {
+		isOk = evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString());
 	}
 	
 }
