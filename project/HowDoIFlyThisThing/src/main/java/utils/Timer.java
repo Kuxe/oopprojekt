@@ -36,4 +36,8 @@ public class Timer {
 		timerLength=length;
 	}
 	
+	public int getTimerLength(){
+		return timerLength;
+	}
+	
 }
