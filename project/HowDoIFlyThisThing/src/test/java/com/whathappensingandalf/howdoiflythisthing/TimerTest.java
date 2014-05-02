@@ -12,13 +12,11 @@ public class TimerTest {
 
 	@Test
 	public void testTimer() {
-//		Timer t=new Timer();
-//		assertTrue(t.getTimerLength()==0);
-//		Date d=new Date(0);
-//		assertTrue(t.getStartTime().getTime()==d.getTime());
-		assertTrue(true);
+		Timer t=new Timer(0);
+		assertTrue(t.getTimerLength()==0);
+		Date d=new Date(0);
+		assertTrue(t.getStartTime().getTime()==d.getTime());
 	}
-
 
 	@Test
 	public void testStart() {
