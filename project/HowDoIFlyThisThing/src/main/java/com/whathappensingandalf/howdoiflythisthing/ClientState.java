@@ -8,6 +8,8 @@ import java.util.Set;
 
 import javax.vecmath.Point2f;
 
+import utils.NetworkUtils;
+
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
@@ -32,9 +34,7 @@ public class ClientState implements ModelNetworkState {
 		client = new Client();
 		drawables = new HashMap();
 		
-		Kryo kryo = client.getKryo();
-		kryo.register(HoldKeysNetworkPacket.class);
-		kryo.register(IDrawableNetworkPacket.class);
+		NetworkUtils.registerClasses(client.getKryo());
 		
 		
 		client.addListener(new Listener() {

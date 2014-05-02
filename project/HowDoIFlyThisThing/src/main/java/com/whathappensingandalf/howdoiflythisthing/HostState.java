@@ -13,6 +13,7 @@ import javax.vecmath.Point2f;
 import org.lwjgl.input.Keyboard;
 
 import services.SoundEffects;
+import utils.NetworkUtils;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
@@ -34,9 +35,7 @@ public class HostState implements ModelNetworkState{
 		users = new HashMap();
 		server = new Server();
 		
-		Kryo serverKryo = server.getKryo();
-		serverKryo.register(HoldKeysNetworkPacket.class);
-		serverKryo.register(IDrawableNetworkPacket.class);
+		NetworkUtils.registerClasses(server.getKryo());
 		
 		start();
 	}
