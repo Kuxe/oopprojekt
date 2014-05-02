@@ -51,6 +51,7 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testRemove(){
+		isRemoved= false;
 		pro.addPropertyChangeListener(this);
 		pro.remove();
 		assertTrue(isRemoved);
@@ -154,39 +155,54 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testVisitSpaceship() {
-//		TODO
-		assertTrue(true);
+		pro.addPropertyChangeListener(this);
+		isRemoved= false;
+		pro.visit(ss);
+		assertTrue(isRemoved);
 	}
 
 	@Test
 	public void testVisitProjectile() {
-//		TODO
-		assertTrue(true);
+		pro.visit(pro);
+		assertTrue(pro.equals(pro2));
 	}
 
 	@Test
 	public void testVisitAsteroid() {
-//		TODO
-		assertTrue(true);
+		pro.addPropertyChangeListener(this);
+		isRemoved= false;
+		pro.visit(ast);
+		assertTrue(isRemoved);
 	}
 
 	@Test
 	public void testAddPropertyChangeListener() {
-		assertTrue(true);
+		pro.addPropertyChangeListener(this);
+		isRemoved= false;
+		pro.remove();
+		assertTrue(isRemoved);
 	}
 
 	@Test
 	public void testRemovePropertyChangeListener() {
-		assertTrue(true);
+		pro.removePropertyChangeListener(this);
+		isRemoved= false;
+		pro.remove();;
+		assertTrue(!isRemoved);
 	}
 
 	@Test
 	public void testClone() {
 		Projectile p= pro.clone();
-		assertTrue(true);
+		assertTrue(p.equals(pro) && (p!=pro));
 	}
 
 	public void propertyChange(PropertyChangeEvent e) {
 		isRemoved= e.getPropertyName().equals(Message.PROJECTILE_DIE.toString());
+	}
+	
+	@Test
+	public void testEquals(){
+		assertTrue(pro.equals(pro2));
 	}
 }//end ProjectileTest
