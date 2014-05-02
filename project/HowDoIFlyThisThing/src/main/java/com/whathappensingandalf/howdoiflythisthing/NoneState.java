@@ -45,4 +45,9 @@ public class NoneState implements ModelNetworkState {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	public void cleanup() {
+		// TODO Auto-generated method stub
+		
+	}
 }

@@ -22,4 +22,5 @@ public interface ModelNetworkState {
 	public void update(Set<Integer> listOfHoldKeys);
 	public Map<Object, IDrawable> getIDrawables();
 	public Point2f getSpaceshipPoint();
+	public void cleanup();
 }

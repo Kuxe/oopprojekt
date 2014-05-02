@@ -234,7 +234,6 @@ public class Gameworld implements PropertyChangeListener{
 			listOfObjectsToBeRemoved.add(evt.getSource());
 			pcs.firePropertyChange("SpaceshipDie", 0, 1);
 		}
-		
 	}
 	
 	private void worldBounderyCheck(){
