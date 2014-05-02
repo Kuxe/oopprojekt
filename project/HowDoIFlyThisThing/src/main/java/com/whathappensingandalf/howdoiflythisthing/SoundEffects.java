@@ -2,17 +2,21 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.applet.Applet;
 import java.applet.AudioClip;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
 
-public class SoundEffects{
+public class SoundEffects implements PropertyChangeListener{
 
+	private Gameworld gameworld;
 	private AudioClip projectileSound;
 	private AudioClip backgroundMusic;
 
-	public SoundEffects(){
+	public SoundEffects(Gameworld gameworld){
+		this.gameworld= gameworld;
 		createProjectileSound();
 		createBackgroundMusic();
 	}
@@ -39,14 +43,7 @@ public class SoundEffects{
 		}
 	}
 
-	public void playProjectileSound(){
-		projectileSound.play();
-	}
-	public void playBackgroundMusic(){
-		backgroundMusic.loop();;
-	}
-	public void playAllSounds(){
-		playBackgroundMusic();
-		playProjectileSound();
+	public void propertyChange(PropertyChangeEvent e) {
+		
 	}
 }//end SoundEffects
