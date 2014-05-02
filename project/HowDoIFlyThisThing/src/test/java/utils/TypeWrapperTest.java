@@ -55,6 +55,9 @@ public class TypeWrapperTest {
 
 	@Test
 	public void testEquals() {
+		TypeWrapper tw2 = new TypeWrapper(defaultFloat);
+		tw.setValue(defaultFloat);
+		assertTrue(tw.equals(tw2));
 	}
 	
 }
