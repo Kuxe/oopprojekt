@@ -183,10 +183,15 @@ public class ProjectileTest implements PropertyChangeListener{
 	@Test
 	public void testClone() {
 		Projectile p= pro.clone();
-		assertTrue(true);
+		assertTrue(p.equals(pro));
 	}
 
 	public void propertyChange(PropertyChangeEvent e) {
 		isRemoved= e.getPropertyName().equals(Message.PROJECTILE_DIE.toString());
+	}
+	
+	@Test
+	public void testEquals(){
+		assertTrue(pro.equals(pro2));
 	}
 }//end ProjectileTest
