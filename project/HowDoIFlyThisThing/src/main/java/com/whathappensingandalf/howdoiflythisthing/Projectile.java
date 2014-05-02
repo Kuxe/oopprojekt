@@ -201,6 +201,21 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	public Projectile clone() {
 		return new Projectile(this);
 	}
+	@Override
+	public boolean equals(Object obj){
+		if(this== obj){
+			return true;
+		}
+		if(obj== null){
+			return false;
+		}
+		if(this.getClass()!= obj.getClass()){
+			return false;
+		}
+		Projectile p= (Projectile)obj;
+		return width== p.width && height== p.height && velocity.equals(p.velocity) && acceleration.equals(p.acceleration) &&
+				direction.equals(p.direction) && position.equals(position) && damage== p.damage;
+	}
 	/**
 	 * {@inheritDoc}
 	 */

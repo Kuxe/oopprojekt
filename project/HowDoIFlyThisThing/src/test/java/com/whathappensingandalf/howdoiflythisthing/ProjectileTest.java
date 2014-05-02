@@ -15,6 +15,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.whathappensingandalf.howdoiflythisthing.Projectile.Message;
+import com.whathappensingandalf.howdoiflythisthing.factorys.AsteroidFactory;
+import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
 public class ProjectileTest implements PropertyChangeListener{
 	
@@ -23,8 +25,8 @@ public class ProjectileTest implements PropertyChangeListener{
 	private Projectile pro= new Projectile(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
 	private Projectile pro2= new Projectile(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
 //											position, velocity, acceleration, direction, width, height
-	
-//	assertTrue(true);
+	private Spaceship ss= SpaceshipFactory.create(new Point2f(1, 1), vec, 50, 50);
+	private Asteroid ast= AsteroidFactory.create(new Point2f(1, 1), 100, 100);
 
 	@Test
 	public void testProjectilePoint2fVector2fVector2fVector2fIntInt(){
@@ -146,21 +148,25 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testAccept() {
+//		TODO
 		assertTrue(true);
 	}
 
 	@Test
 	public void testVisitSpaceship() {
+//		TODO
 		assertTrue(true);
 	}
 
 	@Test
 	public void testVisitProjectile() {
+//		TODO
 		assertTrue(true);
 	}
 
 	@Test
 	public void testVisitAsteroid() {
+//		TODO
 		assertTrue(true);
 	}
 
@@ -176,6 +182,7 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testClone() {
+		Projectile p= pro.clone();
 		assertTrue(true);
 	}
 
