@@ -149,8 +149,10 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testAccept() {
-//		TODO
-		assertTrue(true);
+		pro.addPropertyChangeListener(this);
+		isRemoved= false;
+		pro.accept(pro2);
+		assertTrue(!isRemoved);
 	}
 
 	@Test

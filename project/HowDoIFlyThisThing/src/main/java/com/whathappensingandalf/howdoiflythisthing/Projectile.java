@@ -80,7 +80,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 		mC.move(timestep);
 	}
 	/**
-	 * Removes all referenses to this component.
+	 * Removes all references to this component.
 	 */
 	public void remove(){
 		this.pcs.firePropertyChange(Message.PROJECTILE_DIE.toString(), this, true);
