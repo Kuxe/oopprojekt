@@ -1,9 +1,9 @@
 package utils;
 
 import com.esotericsoftware.kryo.Kryo;
+import com.whathappensingandalf.howdoiflythisthing.DrawableData;
+import com.whathappensingandalf.howdoiflythisthing.DrawableDataNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.HoldKeysNetworkPacket;
-import com.whathappensingandalf.howdoiflythisthing.IDrawableNetworkPacket;
-import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 
 /**
  * 
@@ -22,9 +22,10 @@ public class NetworkUtils {
 	 */
 	public static void registerClasses(Kryo kryo) {
 		kryo.register(HoldKeysNetworkPacket.class);
-		kryo.register(IDrawableNetworkPacket.class);
-		kryo.register(java.util.HashMap.class);
-		kryo.register(Object.class);
-		kryo.register(Spaceship.class);
+		kryo.register(DrawableDataNetworkPacket.class);
+		kryo.register(DrawableData.class);
+		kryo.register(java.util.HashSet.class);
+		kryo.register(javax.vecmath.Vector2f.class);
+		kryo.register(javax.vecmath.Point2f.class);
 	}
 }

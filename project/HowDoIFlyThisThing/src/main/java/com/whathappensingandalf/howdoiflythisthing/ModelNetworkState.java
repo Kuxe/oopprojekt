@@ -21,7 +21,7 @@ public interface ModelNetworkState {
 	public state getState();
 	public void addUser(InetSocketAddress connection);	
 	public void update(Set<Integer> listOfHoldKeys);
-	public Set<IDrawable> getIDrawables();
+	public Set<DrawableData> getDrawableData();
 	public Point2f getSpaceshipPoint();
 	public void cleanup();
 }

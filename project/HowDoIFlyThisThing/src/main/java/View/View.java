@@ -21,6 +21,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 
+import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.IDrawable;
 
 public class View extends BasicGame implements ApplicationListener{
@@ -28,7 +29,7 @@ public class View extends BasicGame implements ApplicationListener{
 	private AppGameContainer container;
 //	private GameWindow game;
 	
-	private Set<IDrawable> renderObjects;
+	private Set<DrawableData> renderObjects;
 	private SpriteSheet spaceship,shott,asteroid;
 	private Image background;
 	private Color colorFilter;
@@ -47,7 +48,7 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	public View(String title){
 		super(title);
-		renderObjects = new HashSet<IDrawable>();
+		renderObjects = new HashSet<DrawableData>();
 		try{
 			container=new AppGameContainer(this);
 			container.setDisplayMode(windowWidth, windowHeight, false);
@@ -88,7 +89,7 @@ public class View extends BasicGame implements ApplicationListener{
 		}
 	}
 	
-	public void setRenderObjects(Set<IDrawable> set){
+	public void setRenderObjects(Set<DrawableData> set){
 		renderObjects=Collections.synchronizedSet(set);
 	}
 	
@@ -132,7 +133,7 @@ public class View extends BasicGame implements ApplicationListener{
 //		g.rotate(25, 25, f);
 //		f++;
 		drawScrollingImage(arg0, g, background, 1.0f);
-		for(IDrawable comp: renderObjects){
+		for(DrawableData comp: renderObjects){
 			
 //			System.out.println();
 //			System.out.println("Name: "+comp.getType());

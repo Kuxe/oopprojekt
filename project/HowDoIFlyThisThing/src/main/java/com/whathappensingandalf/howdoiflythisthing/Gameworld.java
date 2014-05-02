@@ -67,10 +67,14 @@ public class Gameworld implements PropertyChangeListener{
 		timestep = new Timestep();
 	}
 	
-	public Set<IDrawable> getIDrawables() {
-		HashSet<IDrawable> set = new HashSet();
+	public Set<DrawableData> getDrawableData() {
+		HashSet<DrawableData> set = new HashSet();
 		for(IDrawable drawable : drawables.values()) {
-			set.add(drawable);
+			set.add(new DrawableData(	drawable.getPosition(),
+										drawable.getWidth(),
+										drawable.getHeight(),
+										drawable.getDirection(),
+										drawable.getType()));
 		}
 		return set;
 	}
