@@ -60,7 +60,7 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetAcceleration() {
-		assertTrue(true);
+		assertTrue(pro.getAcceleration().x== 5 && pro.getAcceleration().y== 5);
 	}
 
 	@Test
