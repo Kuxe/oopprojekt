@@ -22,7 +22,7 @@ import com.esotericsoftware.kryonet.Listener;
 public class ClientState implements ModelNetworkState {
 
 	private Client client;
-	HashSet<IDrawable> drawables;
+	HashSet<DrawableData> drawables;
 	Point2f spaceshipPoint;
 	
 	public ClientState(String ip) {
@@ -38,8 +38,8 @@ public class ClientState implements ModelNetworkState {
 		client.addListener(new Listener() {
 			public void recieved(Connection connection, Object message) {
 				System.out.println("Recieved packet:" + message.toString());
-				if(message instanceof IDrawableNetworkPacket) {
-					drawables = ((IDrawableNetworkPacket)message).drawables;
+				if(message instanceof DrawableDataNetworkPacket) {
+					drawables = ((DrawableDataNetworkPacket)message).drawables;
 				}
 				if(message instanceof Point2f) {
 					spaceshipPoint = (Point2f)message;
@@ -69,7 +69,7 @@ public class ClientState implements ModelNetworkState {
 		client.sendTCP(new HoldKeysNetworkPacket(listOfHoldKeys));
 	}
 
-	public HashSet<IDrawable> getIDrawables() {
+	public HashSet<DrawableData> getDrawableData() {
 		return drawables;
 	}
 

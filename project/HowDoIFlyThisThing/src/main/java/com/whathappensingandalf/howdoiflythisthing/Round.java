@@ -49,7 +49,7 @@ public class Round {
 		world.update();
 	}
 
-	public Set<IDrawable> getIDrawables() {
-		return world.getIDrawables();
+	public Set<DrawableData> getDrawableData() {
+		return world.getDrawableData();
 	}
 }

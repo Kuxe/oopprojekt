@@ -15,15 +15,18 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.whathappensingandalf.howdoiflythisthing.Projectile.Message;
+import com.whathappensingandalf.howdoiflythisthing.factorys.AsteroidFactory;
+import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
 public class ProjectileTest implements PropertyChangeListener{
 	
 	private boolean isRemoved= false;
 	private Vector2f vec= new Vector2f(5, 5);
 	private Projectile pro= new Projectile(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
+	private Projectile pro2= new Projectile(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
 //											position, velocity, acceleration, direction, width, height
-	
-//	assertTrue(true);
+	private Spaceship ss= SpaceshipFactory.create(new Point2f(1, 1), vec, 50, 50);
+	private Asteroid ast= AsteroidFactory.create(new Point2f(1, 1), 100, 100);
 
 	@Test
 	public void testProjectilePoint2fVector2fVector2fVector2fIntInt(){
@@ -97,6 +100,7 @@ public class ProjectileTest implements PropertyChangeListener{
 		assertTrue(pro.getPosition().x== 2 && pro.getPosition().y== 2);
 	}
 
+	/*
 	@Test
 	public void testGetRotVelocity() {
 		assertTrue(true);
@@ -116,49 +120,53 @@ public class ProjectileTest implements PropertyChangeListener{
 	public void testSetRotAcceleration() {
 		assertTrue(true);
 	}
-
+	*/
 	@Test
 	public void testGetDamage() {
-		assertTrue(true);
+		assertTrue(pro.getDamage()== 1);
 	}
 
 	@Test
 	public void testGetHeight() {
-		assertTrue(true);
+		assertTrue(pro.getHeight()== 3);
 	}
 
 	@Test
 	public void testGetWidth() {
-		assertTrue(true);
+		assertTrue(pro.getWidth()== 3);
 	}
 
 	@Test
 	public void testGetType() {
-		assertTrue(true);
+		assertTrue(pro.getType().equals("PROJECTILE"));
 	}
 
 	@Test
 	public void testCollideDetection() {
-		assertTrue(true);
+		assertTrue(pro.collideDetection(pro2));
 	}
 
 	@Test
 	public void testAccept() {
+//		TODO
 		assertTrue(true);
 	}
 
 	@Test
 	public void testVisitSpaceship() {
+//		TODO
 		assertTrue(true);
 	}
 
 	@Test
 	public void testVisitProjectile() {
+//		TODO
 		assertTrue(true);
 	}
 
 	@Test
 	public void testVisitAsteroid() {
+//		TODO
 		assertTrue(true);
 	}
 
@@ -174,6 +182,7 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testClone() {
+		Projectile p= pro.clone();
 		assertTrue(true);
 	}
 
