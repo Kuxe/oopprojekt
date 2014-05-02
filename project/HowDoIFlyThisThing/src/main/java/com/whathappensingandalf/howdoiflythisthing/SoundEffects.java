@@ -57,12 +57,16 @@ public class SoundEffects implements PropertyChangeListener{
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
+		System.out.println("whate eveve");
 		if(evt.getPropertyName().equals("SpaceShipFire")){
+			System.out.println("fire");
 			spaceshipFireSound.play();
 		}else if(evt.getPropertyName().equals("ProjectileDie")){
 			projectileDieSound.play();
+			System.out.println("prodie");
 		}else if(evt.getPropertyName().equals("SpaceshipDie")){
 			spaceshipDieSound.play();
+			System.out.println("ssDie");
 		}
 	}
 }//end SoundEffects
