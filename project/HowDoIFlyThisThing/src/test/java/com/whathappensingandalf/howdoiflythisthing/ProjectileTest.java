@@ -162,8 +162,8 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testVisitProjectile() {
-//		TODO
-		assertTrue(true);
+		pro.visit(pro);
+		assertTrue(pro.equals(pro2));
 	}
 
 	@Test
