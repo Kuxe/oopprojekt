@@ -24,7 +24,10 @@ public class TimerTest {
 
 	@Test
 	public void testStart() {
-		fail("Not yet implemented");
+		Timer t=new Timer();
+		Date d=new Date(0);
+		t.start();
+		assertTrue(t.getStartTime().getTime()>d.getTime());
 	}
 
 	@Test
