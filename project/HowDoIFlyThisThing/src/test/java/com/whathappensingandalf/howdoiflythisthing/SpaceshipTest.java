@@ -197,6 +197,11 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testVisit_Asteroid() {
+		Asteroid a = new Asteroid(new Point2f(0,0), 5, 5);
+		s.addPropertyChangeListener(this);
+		this.isRemoved=false;
+		s.visit(a);
+		assertTrue(isRemoved);
 	}
 
 	@Test
