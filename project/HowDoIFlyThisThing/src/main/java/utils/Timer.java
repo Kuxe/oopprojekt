@@ -3,8 +3,8 @@ package utils;
 import java.util.Date;
 
 public class Timer {
-	Date startTime;
-	int timerLength;
+	private Date startTime;
+	private int timerLength;
 	
 	public Timer(){
 		new Timer(0);
@@ -34,6 +34,14 @@ public class Timer {
 	
 	public void setTimerLength(int length){
 		timerLength=length;
+	}
+	
+	public int getTimerLength(){
+		return timerLength;
+	}
+	
+	public Date getStartTime(){
+		return startTime;
 	}
 	
 }
