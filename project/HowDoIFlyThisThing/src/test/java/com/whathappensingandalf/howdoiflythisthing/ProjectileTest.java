@@ -168,8 +168,10 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testVisitAsteroid() {
-//		TODO
-		assertTrue(true);
+		pro.addPropertyChangeListener(this);
+		isRemoved= false;
+		pro.visit(ast);
+		assertTrue(isRemoved);
 	}
 
 	@Test
