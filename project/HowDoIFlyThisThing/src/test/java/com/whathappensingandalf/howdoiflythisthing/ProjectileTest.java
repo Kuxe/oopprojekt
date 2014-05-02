@@ -21,6 +21,7 @@ public class ProjectileTest implements PropertyChangeListener{
 	private boolean isRemoved= false;
 	private Vector2f vec= new Vector2f(5, 5);
 	private Projectile pro= new Projectile(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
+	private Projectile pro2= new Projectile(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
 //											position, velocity, acceleration, direction, width, height
 	
 //	assertTrue(true);
@@ -140,7 +141,7 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testCollideDetection() {
-		assertTrue(true);
+		assertTrue(pro.collideDetection(pro2));
 	}
 
 	@Test
