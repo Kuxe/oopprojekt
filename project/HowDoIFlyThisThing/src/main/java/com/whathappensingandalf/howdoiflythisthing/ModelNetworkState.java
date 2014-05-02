@@ -1,6 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import java.net.InetSocketAddress;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -20,7 +21,7 @@ public interface ModelNetworkState {
 	public state getState();
 	public void addUser(InetSocketAddress connection);	
 	public void update(Set<Integer> listOfHoldKeys);
-	public Map<Object, IDrawable> getIDrawables();
+	public Set<IDrawable> getIDrawables();
 	public Point2f getSpaceshipPoint();
 	public void cleanup();
 }

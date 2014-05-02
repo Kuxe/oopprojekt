@@ -1,10 +1,11 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.util.HashSet;
 import java.util.Map;
 
 public class IDrawableNetworkPacket {
-	public Map<Object, IDrawable> drawables;
-	public IDrawableNetworkPacket(Map<Object, IDrawable> drawables) {
+	public HashSet<IDrawable> drawables;
+	public IDrawableNetworkPacket(HashSet<IDrawable> drawables) {
 		this.drawables = drawables;
 	}
 }

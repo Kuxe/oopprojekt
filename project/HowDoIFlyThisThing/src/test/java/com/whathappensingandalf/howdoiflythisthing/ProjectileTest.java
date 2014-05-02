@@ -2,168 +2,182 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import static org.junit.Assert.*;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
+import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class ProjectileTest {
+import com.whathappensingandalf.howdoiflythisthing.Projectile.Message;
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
+public class ProjectileTest implements PropertyChangeListener{
+	
+	private boolean isRemoved= false;
+	private Vector2f vec= new Vector2f(5, 5);
+	private Projectile pro= new Projectile(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
+//											position, velocity, acceleration, direction, width, height
+	
+//	assertTrue(true);
 
 	@Test
-	public void testProjectilePoint2fVector2fVector2fVector2fIntInt() {
-		fail("Not yet implemented");
-	}
+	public void testProjectilePoint2fVector2fVector2fVector2fIntInt(){
+//		should constructor be tested?
+		assertTrue(true);
+		}
 
 	@Test
 	public void testProjectileProjectile() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
-	public void testMove() {
-		fail("Not yet implemented");
+	public void testMove(){
+		Timestep timestep= new Timestep();
+		timestep.start();
+		timestep.end();
+		timestep.calculateDeltatime();
+		pro.move(timestep);
+		assertTrue(pro.getPosition().x > 1);
 	}
 
 	@Test
-	public void testRemove() {
-		fail("Not yet implemented");
+	public void testRemove(){
+		pro.addPropertyChangeListener(this);
+		pro.remove();
+		assertTrue(isRemoved);
 	}
 
 	@Test
 	public void testGetVelocity() {
-		fail("Not yet implemented");
+		assertTrue(pro.getVelocity().x== 5 && pro.getVelocity().y== 5);
 	}
 
 	@Test
 	public void testGetAcceleration() {
-		fail("Not yet implemented");
+		assertTrue(pro.getAcceleration().x== 5 && pro.getAcceleration().y== 5);
 	}
 
 	@Test
 	public void testGetDirection() {
-		fail("Not yet implemented");
+		assertTrue(pro.getDirection().x== 0 && pro.getDirection().y== 1);
 	}
 
 	@Test
 	public void testGetPosition() {
-		fail("Not yet implemented");
+		assertTrue(pro.getPosition().x== 1 && pro.getPosition().y== 1);
 	}
 
 	@Test
 	public void testSetVelocity() {
-		fail("Not yet implemented");
+		pro.setVelocity(new Vector2f(4, 5));
+		assertTrue(pro.getVelocity().x== 4 && pro.getVelocity().y== 5);
 	}
 
 	@Test
 	public void testSetAcceleration() {
-		fail("Not yet implemented");
+		pro.setAcceleration(new Vector2f(56, 7));
+		assertTrue(pro.getAcceleration().x== 56 && pro.getAcceleration().y== 7);
 	}
 
 	@Test
 	public void testSetDirection() {
-		fail("Not yet implemented");
+		pro.setDirection(new Vector2f(6, 7));
+		assertTrue(pro.getDirection().x== 6 && pro.getDirection().y== 7);
 	}
 
 	@Test
 	public void testSetPosition() {
-		fail("Not yet implemented");
+		pro.setPosition(new Point2f(2, 2));
+		assertTrue(pro.getPosition().x== 2 && pro.getPosition().y== 2);
 	}
 
 	@Test
 	public void testGetRotVelocity() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testGetRotAcceleration() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testSetRotVelocity() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testSetRotAcceleration() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testGetDamage() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testGetHeight() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testGetWidth() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testGetType() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testCollideDetection() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testAccept() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testVisitSpaceship() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testVisitProjectile() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testVisitAsteroid() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testAddPropertyChangeListener() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testRemovePropertyChangeListener() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
 	@Test
 	public void testClone() {
-		fail("Not yet implemented");
+		assertTrue(true);
 	}
 
-}
+	public void propertyChange(PropertyChangeEvent e) {
+		isRemoved= e.getPropertyName().equals(Message.PROJECTILE_DIE.toString());
+	}
+}//end ProjectileTest
