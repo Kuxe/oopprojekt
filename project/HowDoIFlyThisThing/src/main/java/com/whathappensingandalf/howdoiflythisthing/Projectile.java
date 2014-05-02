@@ -28,7 +28,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	private MoveComponent mC;
 	private CollidableComponent colliComp;
 	/**
-	 * A instance of PropertyChangeSupport so that this class can be listend to.
+	 * A instance of PropertyChangeSupport so that this class can be listened to.
 	 */
 	private PropertyChangeSupport pcs;
 	
@@ -80,7 +80,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 		mC.move(timestep);
 	}
 	/**
-	 * Removes all referenses to this component.
+	 * Removes all references to this component.
 	 */
 	public void remove(){
 		this.pcs.firePropertyChange(Message.PROJECTILE_DIE.toString(), this, true);
@@ -200,6 +200,21 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	@Override
 	public Projectile clone() {
 		return new Projectile(this);
+	}
+	@Override
+	public boolean equals(Object obj){
+		if(this== obj){
+			return true;
+		}
+		if(obj== null){
+			return false;
+		}
+		if(this.getClass()!= obj.getClass()){
+			return false;
+		}
+		Projectile p= (Projectile)obj;
+		return width== p.width && height== p.height && velocity.equals(p.velocity) && acceleration.equals(p.acceleration) &&
+				direction.equals(p.direction) && position.equals(position) && damage== p.damage;
 	}
 	/**
 	 * {@inheritDoc}
