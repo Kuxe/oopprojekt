@@ -40,4 +40,8 @@ public class Timer {
 		return timerLength;
 	}
 	
+	public Date getStartTime(){
+		return startTime;
+	}
+	
 }
