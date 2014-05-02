@@ -2,6 +2,9 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import static org.junit.Assert.*;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
@@ -11,10 +14,13 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class ProjectileTest{
+import com.whathappensingandalf.howdoiflythisthing.Projectile.Message;
+
+public class ProjectileTest implements PropertyChangeListener{
 	
+	private boolean isRemoved= false;
 	private Vector2f vec= new Vector2f(5, 5);
-	private Projectile pro= new Projectile(new Point2f(0, 0), vec, vec, new Vector2f(0, 1), 3, 3);
+	private Projectile pro= new Projectile(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
 //											position, velocity, acceleration, direction, width, height
 	
 //	assertTrue(true);
@@ -37,52 +43,58 @@ public class ProjectileTest{
 		timestep.end();
 		timestep.calculateDeltatime();
 		pro.move(timestep);
-		assertTrue(pro.getPosition().x > 0);
+		assertTrue(pro.getPosition().x > 1);
 	}
 
 	@Test
-	public void testRemove() {
-		assertTrue(true);
+	public void testRemove(){
+		pro.addPropertyChangeListener(this);
+		pro.remove();
+		assertTrue(isRemoved);
 	}
 
 	@Test
 	public void testGetVelocity() {
-		assertTrue(true);
+		assertTrue(pro.getVelocity().x== 5 && pro.getVelocity().y== 5);
 	}
 
 	@Test
 	public void testGetAcceleration() {
-		assertTrue(true);
+		assertTrue(pro.getAcceleration().x== 5 && pro.getAcceleration().y== 5);
 	}
 
 	@Test
 	public void testGetDirection() {
-		assertTrue(true);
+		assertTrue(pro.getDirection().x== 0 && pro.getDirection().y== 1);
 	}
 
 	@Test
 	public void testGetPosition() {
-		assertTrue(true);
+		assertTrue(pro.getPosition().x== 1 && pro.getPosition().y== 1);
 	}
 
 	@Test
 	public void testSetVelocity() {
-		assertTrue(true);
+		pro.setVelocity(new Vector2f(4, 5));
+		assertTrue(pro.getVelocity().x== 4 && pro.getVelocity().y== 5);
 	}
 
 	@Test
 	public void testSetAcceleration() {
-		assertTrue(true);
+		pro.setAcceleration(new Vector2f(56, 7));
+		assertTrue(pro.getAcceleration().x== 56 && pro.getAcceleration().y== 7);
 	}
 
 	@Test
 	public void testSetDirection() {
-		assertTrue(true);
+		pro.setDirection(new Vector2f(6, 7));
+		assertTrue(pro.getDirection().x== 6 && pro.getDirection().y== 7);
 	}
 
 	@Test
 	public void testSetPosition() {
-		assertTrue(true);
+		pro.setPosition(new Point2f(2, 2));
+		assertTrue(pro.getPosition().x== 2 && pro.getPosition().y== 2);
 	}
 
 	@Test
@@ -163,5 +175,9 @@ public class ProjectileTest{
 	@Test
 	public void testClone() {
 		assertTrue(true);
+	}
+
+	public void propertyChange(PropertyChangeEvent e) {
+		isRemoved= e.getPropertyName().equals(Message.PROJECTILE_DIE.toString());
 	}
 }//end ProjectileTest
