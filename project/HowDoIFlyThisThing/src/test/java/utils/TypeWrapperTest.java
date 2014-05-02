@@ -44,6 +44,8 @@ public class TypeWrapperTest {
 
 	@Test
 	public void testSetValue() {
+		tw.setValue(7);
+		assertTrue(tw.getValue()==7);
 	}
 
 	@Test
