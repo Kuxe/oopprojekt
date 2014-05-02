@@ -1,10 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package View;
+
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 /**
  *
@@ -12,11 +9,34 @@ package View;
  */
 public class HDIFTT_Launcher extends javax.swing.JFrame {
 
+	private PropertyChangeSupport pcs;
+	
+	public static enum Message{
+		HDIFTT_HOST,
+		HDIFTT_JOIN
+	}
+	
 	/**
 	 * Creates new form HDIFTT_Launcher
 	 */
 	public HDIFTT_Launcher() {
 		initComponents();
+		this.pcs = new PropertyChangeSupport(this);
+	}
+	
+	/**
+	 * Adds a listener to this object.
+	 * @param pcl
+	 */
+    public void addPropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.addPropertyChangeListener(pcl);
+	}
+	/**
+	 * Adds a listener to this object.
+	 * @param pcl
+	 */
+    public void removePropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.removePropertyChangeListener(pcl);
 	}
 
 	/**
@@ -28,76 +48,83 @@ public class HDIFTT_Launcher extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        hostButton = new javax.swing.JButton();
+        joinButton = new javax.swing.JButton();
+        ipTextField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("How do I fly this thing?!");
 
-        jButton1.setText("jButton1");
+        hostButton.setText("HOST");
+        hostButton.setToolTipText("Host a game");
+        hostButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hostButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("jButton2");
+        joinButton.setText("JOIN");
+        joinButton.setToolTipText("Join a game");
+        joinButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joinButtonActionPerformed(evt);
+            }
+        });
+
+        ipTextField.setToolTipText("IP adress to server");
+
+        jLabel1.setText("HOW DO I FLY THIS THING?!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(129, 129, 129)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(145, 145, 145)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(hostButton)
+                            .addComponent(joinButton))))
+                .addContainerGap(132, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(70, 70, 70)
-                .addComponent(jButton1)
-                .addGap(65, 65, 65)
-                .addComponent(jButton2)
-                .addContainerGap(119, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(45, 45, 45)
+                .addComponent(hostButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(joinButton)
+                .addGap(96, 96, 96))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(HDIFTT_Launcher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(HDIFTT_Launcher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(HDIFTT_Launcher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(HDIFTT_Launcher.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-        //</editor-fold>
+    private void hostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostButtonActionPerformed
+        pcs.firePropertyChange(Message.HDIFTT_HOST.toString(), 0, 1);
+    }//GEN-LAST:event_hostButtonActionPerformed
 
-		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new HDIFTT_Launcher().setVisible(true);
-			}
-		});
+    private void joinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinButtonActionPerformed
+        pcs.firePropertyChange(Message.HDIFTT_JOIN.toString(), 0, 1);
+    }//GEN-LAST:event_joinButtonActionPerformed
+	public String getIP(){
+		return this.ipTextField.getText();
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton hostButton;
+    private javax.swing.JTextField ipTextField;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton joinButton;
     // End of variables declaration//GEN-END:variables
 }
