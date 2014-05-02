@@ -20,7 +20,6 @@ public class HostState implements ModelNetworkState{
 
 	private Round round;
 	private HashMap<InetSocketAddress, User> users;
-	private HashMap<InetSocketAddress, User> pendingUsers;
 	private User myUser;
 	private Server server;
 	private InetSocketAddress myIp;
@@ -28,7 +27,6 @@ public class HostState implements ModelNetworkState{
 	public HostState() {
 		round = new Round();
 		users = new HashMap();
-		pendingUsers = new HashMap();
 		server = new Server();
 		
 		NetworkUtils.registerClasses(server.getKryo());
@@ -49,9 +47,9 @@ public class HostState implements ModelNetworkState{
 			
 			public void connected(Connection connection) {
 				//Grant new connections an user
-				System.out.println(connection.getRemoteAddressTCP() + " is connecting...");
+				System.out.print(connection.getRemoteAddressTCP() + " is connecting...");
 				addUser(connection.getRemoteAddressTCP());
-				System.out.println(connection.getRemoteAddressTCP() + " done!");
+				System.out.println(" done!");
 			}
 			
 			//Called whenever a client sends a packet
@@ -77,42 +75,41 @@ public class HostState implements ModelNetworkState{
 			e.printStackTrace();
 		}
 		addUser(myIp);
-		myUser = pendingUsers.get(myIp);
+		myUser = users.get(myIp);
 	}
 	
-	public void addUser(InetSocketAddress connection) {
+	public synchronized void addUser(InetSocketAddress ip) {
 		User user = new User();
-		pendingUsers.put(connection, user);
+		users.put(ip, user);
+		round.addUser(user);
+		if(users.size() == 2) {
+			round.start();
+		}
 	}
 	
 	public void update(Set<Integer> listOfHoldKeys) {
-		
-		//Lazy add to users in order to prevent concurrency issues
-		//Here it is guaranteed that the main thread doesnt iterate
-		//through any game-related list as this is the main thread...
-		for(InetSocketAddress ip : pendingUsers.keySet()) {
-			round.addUser(pendingUsers.get(ip));
-			if(users.size() == 2) {
-				round.start();
-			}
-			users.put(ip, pendingUsers.get(ip));
-		}
-		pendingUsers.clear();
-		
 		round.update();
 		myUser.setListOfHoldKeys(listOfHoldKeys);
 		for(User user : users.values()) {
+			//TODO: FIX THIS STUPID SHIT
 			user.executeInput(user.getListOfHoldKeys());
-		}
-		
+		}		
+		//Send data packets to clients
+		sendPackets();
+	}
+	
+	public synchronized void sendPackets() {
 		//Send images to all clients
 		server.sendToAllTCP(round.getDrawableData());
 		
 		//Send each spaceship point associated with each connection to the connected client
 		for(Connection connection : server.getConnections()) {
+			System.out.println("Connection: " + connection.getRemoteAddressTCP());
+			//if(users.get(connection.getRemoteAddressTCP()) == null) System.out.println("OJOJOJ");
+			//if(users.get(connection.getRemoteAddressTCP()).getSpaceshipPoint() == null) System.out.println("SUPEROJ");
+			
 			connection.sendTCP(users.get(connection.getRemoteAddressTCP()).getSpaceshipPoint());
 		}
-		
 	}
 
 	public Set<DrawableData> getDrawableData() {
