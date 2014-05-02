@@ -49,4 +49,19 @@ public class ArmsComponent {
 		baseSpeed.add(velocity);
 		return ProjectileFactory.create(tempPoint, baseSpeed, acceleration, direction, 1, 1);
 	}
+	public boolean equals(Object rhs){
+		if(rhs==this){
+			return true;
+		}else if(!(rhs instanceof ArmsComponent)){
+			return false;
+		}else{
+			ArmsComponent other = (ArmsComponent)rhs;
+			return 	this.acceleration.equals(other.acceleration)&&
+					this.direction.equals(other.direction)&&
+					this.point.equals(other.point)&&
+					this.velocity.equals(other.velocity)&&
+					this.weaponPipePosition.equals(other.weaponPipePosition);
+		}
+	}
+	
 }

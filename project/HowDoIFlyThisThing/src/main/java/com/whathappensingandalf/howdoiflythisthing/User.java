@@ -17,6 +17,8 @@ public class User implements PropertyChangeListener{
 	private final PlayerState playerState;
 	//private int left, main, right, fire;
 	private final Keybindings keybindings;
+	private Set<Integer> listOfHoldKeys;
+	
 	
 	public User(){
 		spectatorState = new SpectatorState();
@@ -27,6 +29,18 @@ public class User implements PropertyChangeListener{
 		keybindings.setMain(Keyboard.KEY_W);
 		keybindings.setRight(Keyboard.KEY_D);
 		keybindings.setFire(Keyboard.KEY_SPACE);
+	}
+	
+	public Set<Integer> getListOfHoldKeys() {
+		return listOfHoldKeys;
+	}
+	
+	public void setListOfHoldKeys(Set<Integer> list) {
+		this.listOfHoldKeys = list;
+	}
+	
+	public Spaceship getSpaceship() {
+		return state.getSpaceship();
 	}
 	
 	public void setSpaceship(Spaceship spaceship){

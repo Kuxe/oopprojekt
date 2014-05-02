@@ -53,5 +53,9 @@ public class PlayerState implements IUserState{
 	public Point2f getSpaceshipPosition() {
 		return spaceship.getPosition();
 	}
+
+	public Spaceship getSpaceship() {
+		return spaceship;
+	}
 	
 }

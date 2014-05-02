@@ -271,9 +271,6 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		return colliComp.collideDetection(rhs);
 	}
 	
-	public synchronized Point2f getPossition() {
-		return this.position;
-	}
 	@Override
 	public Spaceship clone() {
 		return new Spaceship(this);
@@ -326,4 +323,17 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		return colliComp.getBottommostCoordinate();
 	}
 	*/
+	public boolean equals(Object rhs){
+		if(rhs==this){
+			return true;
+		}else if(!(rhs instanceof Spaceship)){
+			return false;
+		}else{
+			Spaceship other = (Spaceship)rhs;
+			return 	this.direction.equals(other.direction)&&
+					this.height==other.height&&
+					this.position.equals(other.position)&&
+					this.width==other.width;
+		}
+	}
 }

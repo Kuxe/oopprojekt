@@ -35,6 +35,10 @@ public class Round {
 		user.setSpaceship(ss);
 		world.addAsteroid(ss2);
 	}
+	
+	public void removeUser(User user) {
+		world.slateObjectForRemoval(user.getSpaceship());
+	}
 
 	public void start() {
 		state = new ActiveRound();
