@@ -11,6 +11,7 @@ import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 public class Round {
 
 	private Gameworld world;
+	
 	private Roundstate state;
 	
 	public Round() {
@@ -19,7 +20,6 @@ public class Round {
 	}
 	
 	public void addUser(User user) {
-		
 		Spaceship ss = SpaceshipFactory.create(
 				new Point2f(
 						(float)Math.random() * world.getBorder().getWorldWidth(),
