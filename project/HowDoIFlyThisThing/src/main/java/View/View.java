@@ -19,6 +19,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Circle;
 
 import com.whathappensingandalf.howdoiflythisthing.*;
@@ -29,7 +30,9 @@ public class View extends BasicGame implements ApplicationListener{
 //	private GameWindow game;
 	
 	private Map<Object,IDrawable> renderObjects;
-	private Image spaceship,shott,asteroid, background;
+	private SpriteSheet spaceship,shott,asteroid;
+	private Image background;
+	private Color colorFilter;
 	private int backgroundWidth, backgroundHeight;
 	private Float f=0f;
 	
@@ -137,10 +140,11 @@ public class View extends BasicGame implements ApplicationListener{
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
+		colorFilter=new Color(255,0,255);
 		try {
-			spaceship=new Image("resources/Spaceship.png");
-			shott=new Image("resources/Shott.png");
-			asteroid=new Image("resources/Asteroid.png");
+			spaceship=new SpriteSheet("resources/Spaceship.png",50,50, colorFilter);
+			shott=new SpriteSheet("resources/Shott.png",3,3, colorFilter);
+			asteroid=new SpriteSheet("resources/Asteroid.png",100,100, colorFilter);
 			background = new Image("resources/scrollingbackgroundLarge.png");
 		} catch (SlickException e) {
 			e.printStackTrace();
