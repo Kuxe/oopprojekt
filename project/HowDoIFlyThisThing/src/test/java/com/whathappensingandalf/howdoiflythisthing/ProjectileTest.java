@@ -2,6 +2,9 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import static org.junit.Assert.*;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
@@ -11,8 +14,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class ProjectileTest{
+import com.whathappensingandalf.howdoiflythisthing.Projectile.Message;
+
+public class ProjectileTest implements PropertyChangeListener{
 	
+	private boolean isRemoved= false;
 	private Vector2f vec= new Vector2f(5, 5);
 	private Projectile pro= new Projectile(new Point2f(0, 0), vec, vec, new Vector2f(0, 1), 3, 3);
 //											position, velocity, acceleration, direction, width, height
@@ -41,13 +47,15 @@ public class ProjectileTest{
 	}
 
 	@Test
-	public void testRemove() {
-		assertTrue(true);
+	public void testRemove(){
+		pro.addPropertyChangeListener(this);
+		pro.remove();
+		assertTrue(isRemoved);
 	}
 
 	@Test
 	public void testGetVelocity() {
-		assertTrue(true);
+		assertTrue(pro.getVelocity().x== 5 && pro.getVelocity().y== 5);
 	}
 
 	@Test
@@ -163,5 +171,9 @@ public class ProjectileTest{
 	@Test
 	public void testClone() {
 		assertTrue(true);
+	}
+
+	public void propertyChange(PropertyChangeEvent e) {
+		isRemoved= e.getPropertyName().equals(Message.PROJECTILE_DIE.toString());
 	}
 }//end ProjectileTest
