@@ -7,6 +7,7 @@ import com.esotericsoftware.kryonet.Server;
 
 import controller.Controller;
 import View.View;
+import controller.LauncherController;
 /**
  * 
  * @author Kuxe
@@ -18,6 +19,9 @@ public class Main {
 		
 		Controller controller;
 		
+		LauncherController lc = new LauncherController();
+		
+		/*
 		if(argc.length == 1) {
 			controller = new Controller(argc[0]);
 		} else {
@@ -25,6 +29,6 @@ public class Main {
 		}
 		controller.start();
 		controller.cleanup();
-		System.exit(0);
+		System.exit(0);*/
 	}
 }
