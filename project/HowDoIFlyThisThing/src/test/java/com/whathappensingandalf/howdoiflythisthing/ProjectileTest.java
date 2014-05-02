@@ -154,8 +154,10 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testVisitSpaceship() {
-//		TODO
-		assertTrue(true);
+		pro.addPropertyChangeListener(this);
+		isRemoved= false;
+		pro.visit(ss);
+		assertTrue(isRemoved);
 	}
 
 	@Test
@@ -172,18 +174,20 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testAddPropertyChangeListener() {
+		pro.addPropertyChangeListener(this);
 		assertTrue(true);
 	}
 
 	@Test
 	public void testRemovePropertyChangeListener() {
+//		TODO
 		assertTrue(true);
 	}
 
 	@Test
 	public void testClone() {
 		Projectile p= pro.clone();
-		assertTrue(p.equals(pro));
+		assertTrue(p.equals(pro) && (p!=pro));
 	}
 
 	public void propertyChange(PropertyChangeEvent e) {
