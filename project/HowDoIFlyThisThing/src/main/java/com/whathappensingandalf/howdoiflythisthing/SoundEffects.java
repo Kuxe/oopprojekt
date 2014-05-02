@@ -11,39 +11,58 @@ import java.net.URL;
 
 public class SoundEffects implements PropertyChangeListener{
 
-	private Gameworld gameworld;
-	private AudioClip projectileSound;
-	private AudioClip backgroundMusic;
+	private AudioClip spaceshipFireSound;
+	private AudioClip projectileDieSound;
+	private AudioClip spaceshipDieSound;
 
 	public SoundEffects(Gameworld gameworld){
-		this.gameworld= gameworld;
-		createProjectileSound();
-		createBackgroundMusic();
+		gameworld.addObserver(this);
+		createSpaceshipFireSound();
+		createProjectileDieSound();
+		createSpaceshipDieSound();
 	}
-	public void createProjectileSound(){
+	
+	public void createSpaceshipFireSound(){
 		File file= new File("sounds/Gun_Shot.wav");
 		URI uri= file.toURI();
 		URL url;
 		try {
 			url = uri.toURL();
-			projectileSound= Applet.newAudioClip(url);
+			spaceshipFireSound= Applet.newAudioClip(url);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
 	}
-	public void createBackgroundMusic(){
+	public void createProjectileDieSound(){
+		File file= new File("sounds/Gun_Shot.wav");
+		URI uri= file.toURI();
+		URL url;
+		try {
+			url = uri.toURL();
+			projectileDieSound= Applet.newAudioClip(url);
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void createSpaceshipDieSound(){
 		File file= new File("sounds/Dove.wav");
 		URI uri= file.toURI();
 		URL url;
 		try {
 			url = uri.toURL();
-			backgroundMusic= Applet.newAudioClip(url);
+			spaceshipDieSound= Applet.newAudioClip(url);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
 	}
 
-	public void propertyChange(PropertyChangeEvent e) {
-		
+	public void propertyChange(PropertyChangeEvent evt) {
+		if(evt.getPropertyName().equals("SpaceShipFire")){
+			spaceshipFireSound.play();
+		}else if(evt.getPropertyName().equals("ProjectileDie")){
+			projectileDieSound.play();
+		}else if(evt.getPropertyName().equals("SpaceshipDie")){
+			spaceshipDieSound.play();
+		}
 	}
 }//end SoundEffects
