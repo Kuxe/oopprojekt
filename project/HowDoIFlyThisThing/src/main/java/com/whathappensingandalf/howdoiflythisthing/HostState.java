@@ -20,6 +20,7 @@ public class HostState implements ModelNetworkState{
 
 	private Round round;
 	private HashMap<InetSocketAddress, User> users;
+	private HashMap<InetSocketAddress, User> pendingUsers;
 	private User myUser;
 	private Server server;
 	private InetSocketAddress myIp;
@@ -27,6 +28,7 @@ public class HostState implements ModelNetworkState{
 	public HostState() {
 		round = new Round();
 		users = new HashMap();
+		pendingUsers = new HashMap();
 		server = new Server();
 		
 		NetworkUtils.registerClasses(server.getKryo());
@@ -57,7 +59,7 @@ public class HostState implements ModelNetworkState{
 				
 				//If someone sends his input, execute it.
 				if(object instanceof HoldKeysNetworkPacket) {
-					System.out.println("Recieved HoldKeysNetworkPacket from: " + connection.getRemoteAddressTCP());
+					//System.out.println("Recieved HoldKeysNetworkPacket from: " + connection.getRemoteAddressTCP());
 					users.get(connection.getRemoteAddressTCP()).setListOfHoldKeys(((HoldKeysNetworkPacket) object).listOfHoldKeys);
 				}
 			}
@@ -75,19 +77,28 @@ public class HostState implements ModelNetworkState{
 			e.printStackTrace();
 		}
 		addUser(myIp);
-		myUser = users.get(myIp);
+		myUser = pendingUsers.get(myIp);
 	}
 	
 	public void addUser(InetSocketAddress connection) {
 		User user = new User();
-		users.put(connection, user);
-		round.addUser(user);
-		if(users.size() == 2) {
-			round.start();
-		}
+		pendingUsers.put(connection, user);
 	}
 	
 	public void update(Set<Integer> listOfHoldKeys) {
+		
+		//Lazy add to users in order to prevent concurrency issues
+		//Here it is guaranteed that the main thread doesnt iterate
+		//through any game-related list as this is the main thread...
+		for(InetSocketAddress ip : pendingUsers.keySet()) {
+			round.addUser(pendingUsers.get(ip));
+			if(users.size() == 2) {
+				round.start();
+			}
+			users.put(ip, pendingUsers.get(ip));
+		}
+		pendingUsers.clear();
+		
 		round.update();
 		myUser.setListOfHoldKeys(listOfHoldKeys);
 		for(User user : users.values()) {

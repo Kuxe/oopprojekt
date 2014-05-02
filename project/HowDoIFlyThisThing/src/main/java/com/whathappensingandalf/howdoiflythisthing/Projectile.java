@@ -191,7 +191,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 		this.pcs.addPropertyChangeListener(pcl);
 	}
 	/**
-	 * Adds a listener to this object.
+	 * Remove a listener to this object.
 	 * @param pcl
 	 */
     public void removePropertyChangeListener(PropertyChangeListener pcl){
