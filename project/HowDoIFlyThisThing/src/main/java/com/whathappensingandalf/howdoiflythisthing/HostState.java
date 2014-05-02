@@ -58,13 +58,13 @@ public class HostState implements ModelNetworkState{
 				//to iterating through list and indexing hashmap with null key. DO NOT TOUCH!!!!!!
 				addUser(connection.getRemoteAddressTCP());
 				connections.add(connection);
-				//END OF PROHIBITION
-				
+				//END OF PROHIBITION			
 				System.out.println(" done!");
 			}
 			
 			//Called whenever a client sends a packet
 			public void recieved(Connection connection, Object object) {
+				System.out.println("Recieved packet from " + connection.getRemoteAddressTCP() + ": " + object.toString());
 				//If someone sends his input, execute it.
 				if(object instanceof HoldKeysNetworkPacket) {
 					//System.out.println("Recieved HoldKeysNetworkPacket from: " + connection.getRemoteAddressTCP());
@@ -96,6 +96,8 @@ public class HostState implements ModelNetworkState{
 		if(users.size() == 2) {
 			round.start();
 		}
+		//To prevent executng input before recieved from client causing nullptr
+		users.get(ip).setListOfHoldKeys(new HashSet<Integer>());
 	}
 	
 	public void update(Set<Integer> listOfHoldKeys) {
