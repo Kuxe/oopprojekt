@@ -20,7 +20,7 @@ import com.esotericsoftware.kryonet.Server;
 public class HostState implements ModelNetworkState{
 
 	private Round round;
-	private HashMap<InetSocketAddress, User> users;
+	private HashMap<Integer, User> users;
 	private User myUser;
 	private Server server;
 	private InetSocketAddress myIp;
@@ -56,9 +56,7 @@ public class HostState implements ModelNetworkState{
 				//DO NOT TOUCH THIS ORDER
 				//addUser is synchronized. It prevents nasty nullpointer errors related
 				//to iterating through list and indexing hashmap with null key. DO NOT TOUCH!!!!!!
-				addUser(connection.getRemoteAddressTCP());
-				connections.add(connection);
-				//END OF PROHIBITION			
+				addUser(connection.getID());			
 				System.out.println(" done!");
 			}
 			
@@ -68,39 +66,35 @@ public class HostState implements ModelNetworkState{
 				//If someone sends his input, execute it.
 				if(object instanceof HoldKeysNetworkPacket) {
 					//System.out.println("Recieved HoldKeysNetworkPacket from: " + connection.getRemoteAddressTCP());
-					users.get(connection.getRemoteAddressTCP()).setListOfHoldKeys(((HoldKeysNetworkPacket) object).listOfHoldKeys);
+					users.get(connection.getID()).setListOfHoldKeys(((HoldKeysNetworkPacket) object).listOfHoldKeys);
 				}
 			}
 			
 			public void disconnected(Connection connection) {
-				round.removeUser(users.get(connection.getRemoteAddressTCP()));
-				users.remove(connection.getRemoteAddressTCP());
+				System.out.println(connection);
+				System.out.println(connection.getID() + " disconnected");
+				round.removeUser(users.get(connection.getID()));
+				users.remove(connection.getID());
 				connections.remove(connection);
 			}
 		});	
-		
-		try {
-			myIp = new InetSocketAddress(InetAddress.getLocalHost(), 5000);
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		addUser(myIp);
-		myUser = users.get(myIp);
+		addUser(0);
+		myUser = users.get(0);
+		myUser.setListOfHoldKeys(new HashSet<Integer>());
 	}
 	
-	public synchronized void addUser(InetSocketAddress ip) {
+	public synchronized void addUser(int id) {
 		User user = new User();
-		users.put(ip, user);
+		users.put(id, user);
 		round.addUser(user);
 		if(users.size() == 2) {
 			round.start();
 		}
 		//To prevent executng input before recieved from client causing nullptr
-		users.get(ip).setListOfHoldKeys(new HashSet<Integer>());
+		users.get(id).setListOfHoldKeys(new HashSet<Integer>());
 	}
 	
-	public void update(Set<Integer> listOfHoldKeys) {
+	public synchronized void update(Set<Integer> listOfHoldKeys) {
 		round.update();
 		myUser.setListOfHoldKeys(listOfHoldKeys);
 		for(User user : users.values()) {

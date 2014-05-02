@@ -26,7 +26,7 @@ public class NoneState implements ModelNetworkState {
 		return null;
 	}
 
-	public void addUser(InetSocketAddress ip) {
+	public void addUser(int id) {
 		// TODO Auto-generated method stub
 
 	}

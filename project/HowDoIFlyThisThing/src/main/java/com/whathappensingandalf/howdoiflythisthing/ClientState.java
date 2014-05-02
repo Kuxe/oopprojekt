@@ -60,7 +60,7 @@ public class ClientState implements ModelNetworkState {
 		return ModelNetworkState.state.CLIENT;
 	}
 
-	public void addUser(InetSocketAddress connection) {
+	public void addUser(int id) {
 		//Illegal
 	}
 

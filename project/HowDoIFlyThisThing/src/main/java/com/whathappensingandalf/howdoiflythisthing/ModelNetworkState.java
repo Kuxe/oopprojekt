@@ -19,7 +19,7 @@ public interface ModelNetworkState {
 	}
 	
 	public state getState();
-	public void addUser(InetSocketAddress connection);	
+	public void addUser(int id);	
 	public void update(Set<Integer> listOfHoldKeys);
 	public Set<DrawableData> getDrawableData();
 	public Point2f getSpaceshipPoint();
