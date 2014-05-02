@@ -13,25 +13,29 @@ public class LauncherController implements PropertyChangeListener{
 	private HDIFTT_Launcher launcher;
 	
 	public LauncherController(){
-		//launcher = new HDIFTT_Launcher();
-		//launcher.addPropertyChangeListener(this);
-		//launcher.setVisible(true);
-		controller = new Controller();
-		controller.start();
+		launcher = new HDIFTT_Launcher();
+		launcher.addPropertyChangeListener(this);
+		launcher.setVisible(true);
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
-		
-		this.launcher.dispose();
-		
-		if(evt.getPropertyName().toString().equals(HDIFTT_Launcher.Message.HDIFTT_HOST.toString())){
-			System.out.println("Host");
+		if(evt.getPropertyName().equals(HDIFTT_Launcher.Message.HDIFTT_HOST.toString())){
+			launcher.dispose();
 			controller = new Controller();
-		}else if(evt.getPropertyName().toString().equals(HDIFTT_Launcher.Message.HDIFTT_JOIN.toString())){
-			System.out.println("Join");
+			controller.start();
+			controller.cleanup();
+			System.exit(0);
+		}else if(evt.getPropertyName().equals(HDIFTT_Launcher.Message.HDIFTT_JOIN.toString())){
+			launcher.dispose();
 			controller = new Controller(launcher.getIP());
+			controller.start();
+			controller.cleanup();
+			System.exit(0);
 		}
-		controller.start();
-		
 	}
+	public void launchControllerStop(){
+			controller.cleanup();
+			System.exit(0);
+	}
+	
 }
