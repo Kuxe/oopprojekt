@@ -25,22 +25,16 @@ public class HostState implements ModelNetworkState{
 	private HashMap<InetSocketAddress, User> users;
 	private User myUser;
 	private Server server;
-	private Client client;
 	private InetSocketAddress myIp;
 	
 	public HostState() {
 		round = new Round();
 		users = new HashMap();
 		server = new Server();
-		client = new Client();
 		
 		Kryo serverKryo = server.getKryo();
 		serverKryo.register(HoldKeysNetworkPacket.class);
 		serverKryo.register(IDrawableNetworkPacket.class);
-		
-		Kryo clientKryo = client.getKryo();
-		clientKryo.register(HoldKeysNetworkPacket.class);
-		clientKryo.register(IDrawableNetworkPacket.class);
 		
 		server.start();
 		try {
@@ -73,10 +67,7 @@ public class HostState implements ModelNetworkState{
 				round.removeUser(users.get(connection.getRemoteAddressTCP()));
 				users.remove(connection.getRemoteAddressTCP());
 			}
-		});
-		
-		client.start();
-		
+		});	
 		
 		try {
 			myIp = new InetSocketAddress(InetAddress.getLocalHost(), 5000);
