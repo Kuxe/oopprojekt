@@ -2,13 +2,19 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import static org.junit.Assert.*;
 
+import java.sql.Date;
+
+import utils.Timer;
+
 import org.junit.Test;
 
 public class TimerTest {
 
 	@Test
 	public void testTimer() {
-		fail("Not yet implemented");
+		Timer t=new Timer();
+		Date d=new Date(0);
+		assertTrue(t.getTimerLength()==0 && t.getStartTime().getTime()==d.getTime());
 	}
 
 	@Test
