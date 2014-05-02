@@ -32,7 +32,10 @@ public class TimerTest {
 
 	@Test
 	public void testIsTimerDone() {
-		fail("Not yet implemented");
+		Timer t=new Timer(60000);
+		t.start();
+		assertTrue(t.isTimerDone());
+		assertTrue(!t.isTimerDone());
 	}
 
 	@Test
