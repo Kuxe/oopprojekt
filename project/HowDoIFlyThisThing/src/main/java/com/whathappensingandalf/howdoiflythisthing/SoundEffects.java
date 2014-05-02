@@ -45,4 +45,8 @@ public class SoundEffects{
 	public void playBackgroundMusic(){
 		backgroundMusic.loop();;
 	}
-}
+	public void playAllSounds(){
+		playBackgroundMusic();
+		playProjectileSound();
+	}
+}//end SoundEffects

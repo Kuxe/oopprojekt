@@ -20,7 +20,10 @@ public class Round {
 	}
 	
 	public void addUser(User user) {
-		
+		SoundEffects sound= new SoundEffects();
+		System.out.println("Sound start");
+		sound.playAllSounds();
+		System.out.println("Sound stop");
 		Spaceship ss = SpaceshipFactory.create(
 				new Point2f(
 						(float)Math.random() * world.getBorder().getWorldWidth(),
