@@ -45,7 +45,7 @@ public class HowDoIFlyThisThing {
 		state.update(listOfHoldKeys);
 	}
 	
-	public Map<Object, IDrawable> getIDrawables() {
+	public Set<IDrawable> getIDrawables() {
 		return state.getIDrawables();
 	}
 	

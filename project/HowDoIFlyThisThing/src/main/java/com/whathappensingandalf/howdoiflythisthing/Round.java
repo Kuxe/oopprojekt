@@ -1,6 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import java.util.Map;
+import java.util.Set;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
@@ -48,7 +49,7 @@ public class Round {
 		world.update();
 	}
 
-	public Map<Object, IDrawable> getIDrawables() {
+	public Set<IDrawable> getIDrawables() {
 		return world.getIDrawables();
 	}
 }
