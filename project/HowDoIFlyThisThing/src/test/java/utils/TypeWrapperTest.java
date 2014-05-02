@@ -48,6 +48,7 @@ public class TypeWrapperTest {
 
 	@Test
 	public void testGetValue() {
+		assertTrue(tw.getValue()==this.defaultFloat);
 	}
 
 	@Test
