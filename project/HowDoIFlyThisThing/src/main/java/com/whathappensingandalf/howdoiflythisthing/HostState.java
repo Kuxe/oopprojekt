@@ -106,7 +106,7 @@ public class HostState implements ModelNetworkState{
 		}
 		
 		//Send images to all clients
-		server.sendToAllTCP(round.getIDrawables());
+		server.sendToAllTCP(round.getDrawableData());
 		
 		//Send each spaceship point associated with each connection to the connected client
 		for(Connection connection : server.getConnections()) {
@@ -115,8 +115,8 @@ public class HostState implements ModelNetworkState{
 		
 	}
 
-	public Set<IDrawable> getIDrawables() {
-		return round.getIDrawables();
+	public Set<DrawableData> getDrawableData() {
+		return round.getDrawableData();
 	}
 	
 	public Point2f getSpaceshipPoint(InetSocketAddress ip) {

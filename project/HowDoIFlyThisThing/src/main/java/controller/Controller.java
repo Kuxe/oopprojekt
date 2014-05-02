@@ -13,6 +13,7 @@ import View.View;
 import services.SoundEffects;
 import View.ViewThread;
 
+import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
 import com.whathappensingandalf.howdoiflythisthing.IDrawable;
 
@@ -101,10 +102,10 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		manageInput();		
 		model.update(listOfHoldKeys);
 		viewThread.getView().setCamera(model.getSpaceshipPoint());
-		setRenderObjects(model.getIDrawables());
+		setRenderObjects(model.getDrawableData());
 	}
 	
-	public void setRenderObjects(Set<IDrawable> set){
+	public void setRenderObjects(Set<DrawableData> set){
 		viewThread.getView().setRenderObjects(set);
 	}
 	

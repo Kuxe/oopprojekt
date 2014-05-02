@@ -45,8 +45,8 @@ public class HowDoIFlyThisThing {
 		state.update(listOfHoldKeys);
 	}
 	
-	public Set<IDrawable> getIDrawables() {
-		return state.getIDrawables();
+	public Set<DrawableData> getDrawableData() {
+		return state.getDrawableData();
 	}
 	
 	public Point2f getSpaceshipPoint() {
