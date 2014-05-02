@@ -8,4 +8,7 @@ public class DrawableDataNetworkPacket {
 	public DrawableDataNetworkPacket(HashSet<DrawableData> drawables) {
 		this.drawables = drawables;
 	}
+	public DrawableDataNetworkPacket() {
+		
+	}
 }

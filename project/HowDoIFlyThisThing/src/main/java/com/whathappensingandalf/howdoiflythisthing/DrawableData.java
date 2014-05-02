@@ -29,6 +29,10 @@ public class DrawableData {
 		this.type = type;
 	}
 	
+	public DrawableData() {
+		
+	}
+	
 	public Point2f getPosition() {
 		return position;
 	}

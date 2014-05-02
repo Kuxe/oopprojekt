@@ -7,4 +7,7 @@ public class HoldKeysNetworkPacket {
 	public HoldKeysNetworkPacket(Set<Integer> listOfHoldKeys) {
 		this.listOfHoldKeys = listOfHoldKeys;
 	}
+	public HoldKeysNetworkPacket() {
+		
+	}
 }
