@@ -2,6 +2,7 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -28,7 +29,8 @@ public class ClientState implements ModelNetworkState {
 		
 		spaceshipPoint = new Point2f(0, 0);
 		
-		Client client = new Client();
+		client = new Client();
+		drawables = new HashMap();
 		
 		Kryo kryo = client.getKryo();
 		kryo.register(HoldKeysNetworkPacket.class);
@@ -37,6 +39,7 @@ public class ClientState implements ModelNetworkState {
 		
 		client.addListener(new Listener() {
 			public void recieved(Connection connection, Object message) {
+				System.out.println("Recieved packet:" + message.toString());
 				if(message instanceof IDrawableNetworkPacket) {
 					drawables = ((IDrawableNetworkPacket)message).drawables;
 				}
