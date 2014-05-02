@@ -215,6 +215,10 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
     public ArmsComponent getWeapon() {
         return this.armsComponent;
     }
+	
+	public int getHull(){
+		return this.hull;
+	}
 
     public void setWeapon(ArmsComponent weapon) {
         this.armsComponent=weapon;

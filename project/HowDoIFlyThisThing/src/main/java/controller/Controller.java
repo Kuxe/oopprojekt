@@ -10,6 +10,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 
 import View.View;
+import services.SoundEffects;
 import View.ViewThread;
 
 import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
