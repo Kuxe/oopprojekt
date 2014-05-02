@@ -54,7 +54,9 @@ public class HostState implements ModelNetworkState{
 			
 			public void connected(Connection connection) {
 				//Grant new connections an user
+				System.out.println(connection.getRemoteAddressTCP() + " is connecting...");
 				addUser(connection.getRemoteAddressTCP());
+				System.out.println(connection.getRemoteAddressTCP() + " done!");
 			}
 			
 			//Called whenever a client sends a packet
@@ -62,6 +64,7 @@ public class HostState implements ModelNetworkState{
 				
 				//If someone sends his input, execute it.
 				if(object instanceof HoldKeysNetworkPacket) {
+					System.out.println("Recieved HoldKeysNetworkPacket from: " + connection.getRemoteAddressTCP());
 					users.get(connection.getRemoteAddressTCP()).setListOfHoldKeys(((HoldKeysNetworkPacket) object).listOfHoldKeys);
 				}
 			}
