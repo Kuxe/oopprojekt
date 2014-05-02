@@ -12,6 +12,8 @@ import javax.vecmath.Point2f;
 
 import org.lwjgl.input.Keyboard;
 
+import services.SoundEffects;
+
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
@@ -25,23 +27,21 @@ public class HostState implements ModelNetworkState{
 	private HashMap<InetSocketAddress, User> users;
 	private User myUser;
 	private Server server;
-	private Client client;
 	private InetSocketAddress myIp;
 	
 	public HostState() {
 		round = new Round();
 		users = new HashMap();
 		server = new Server();
-		client = new Client();
 		
 		Kryo serverKryo = server.getKryo();
 		serverKryo.register(HoldKeysNetworkPacket.class);
 		serverKryo.register(IDrawableNetworkPacket.class);
 		
-		Kryo clientKryo = client.getKryo();
-		clientKryo.register(HoldKeysNetworkPacket.class);
-		clientKryo.register(IDrawableNetworkPacket.class);
-		
+		start();
+	}
+	
+	public void start() {
 		server.start();
 		try {
 			server.bind(5000);
@@ -73,10 +73,7 @@ public class HostState implements ModelNetworkState{
 				round.removeUser(users.get(connection.getRemoteAddressTCP()));
 				users.remove(connection.getRemoteAddressTCP());
 			}
-		});
-		
-		client.start();
-		
+		});	
 		
 		try {
 			myIp = new InetSocketAddress(InetAddress.getLocalHost(), 5000);
@@ -86,10 +83,6 @@ public class HostState implements ModelNetworkState{
 		}
 		addUser(myIp);
 		myUser = users.get(myIp);
-	}
-	
-	public void stop() {
-		server.stop();
 	}
 	
 	public void addUser(InetSocketAddress connection) {
@@ -138,5 +131,11 @@ public class HostState implements ModelNetworkState{
 	 */
 	public Point2f getSpaceshipPoint() {
 		return myUser.getSpaceshipPoint();
+	}
+
+	public void cleanup() {
+		System.out.print("Terminating server...");
+		server.stop();
+		System.out.println(" done!");
 	}
 }

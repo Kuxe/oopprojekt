@@ -1,9 +1,10 @@
 package View;
 
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,7 +15,6 @@ import javax.vecmath.Vector2f;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.Game;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -22,7 +22,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.geom.Circle;
 
-import com.whathappensingandalf.howdoiflythisthing.*;
+import com.whathappensingandalf.howdoiflythisthing.IDrawable;
 
 public class View extends BasicGame implements ApplicationListener{
 	
@@ -40,14 +40,20 @@ public class View extends BasicGame implements ApplicationListener{
 	private final int windowWidth = 800;
 	private final int windowHeight = 600;
 	
+	private PropertyChangeSupport pcs;
+	
+	public static enum message {
+		VIEW_CLOSE
+	}
+	
 	public View(String title){
 		super(title);
-		
 		renderObjects=new HashMap<Object,IDrawable>();
 		try{
 			container=new AppGameContainer(this);
 			container.setDisplayMode(windowWidth, windowHeight, false);
 			container.setTargetFrameRate(60);
+			container.setForceExit(false);
 		}catch(SlickException ex){
 			Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -55,6 +61,23 @@ public class View extends BasicGame implements ApplicationListener{
 		//Camera default to coordiante (0, 0)
 		camera = new Point2f(0, 0);
 		
+		pcs = new PropertyChangeSupport(this);
+		
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		pcs.addPropertyChangeListener(listener);
+	}
+	
+	/**
+	 * Called upon crossing the window or somehow terminating it
+	 * returning true means that Slick2D will terminate the window
+	 */
+	@Override
+	public boolean closeRequested() {
+		System.out.println("Window sending VIEW_CLOSE event");
+		pcs.firePropertyChange(message.VIEW_CLOSE.name(), false, true);
+		return true;
 	}
 	
 	public void start(){

@@ -78,4 +78,10 @@ public class ClientState implements ModelNetworkState {
 	public Point2f getSpaceshipPoint() {
 		return spaceshipPoint;
 	}
+
+	public void cleanup() {
+		System.out.println("Terminating client...");
+		client.stop();
+		System.out.println(" done!");
+	}
 }

@@ -56,8 +56,6 @@ public class SpaceshipTest implements PropertyChangeListener{
 		t.end();
 		t.calculateDeltatime();
 		ship.move(t);
-		System.out.println(ship.getPosition().x);
-		System.out.println(t.getDelta());
 		assertTrue(ship.getPosition().x>100);
 	}
 
@@ -155,6 +153,12 @@ public class SpaceshipTest implements PropertyChangeListener{
 		ArmsComponent ac2 = s.getWeapon();
 		assertTrue(armsComponent.equals(ac2));
 	}
+	
+	@Test
+	public void testGetHull() {
+		Spaceship s2 = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		assertTrue(s2.getHull()==100);
+	}
 
 	@Test
 	public void testSetWeapon() {
@@ -173,22 +177,50 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testCalculateThrust() {
+		s.setAcceleration(new Vector2f(0,70));
+		s.setVelocity(new Vector2f(0,10));
+		s.setRotAcceleration(5);
+		Timestep t = new Timestep();
+		t.start();
+		t.end();
+		t.calculateDeltatime();
+		s.calculateThrust(t);
+		
+		assertTrue(s.getAcceleration().equals(new Vector2f(0,0))&&s.getVelocity().equals(new Vector2f(0,10))&&s.getRotAcceleration()==0);
 	}
 
 	@Test
 	public void testAccept() {
+		s.addPropertyChangeListener(this);
+		this.isRemoved=false;
+		s.accept(s);
+		assertTrue(isRemoved);
 	}
 
 	@Test
 	public void testVisit_Spaceship() {
+		Spaceship s2 = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		s.addPropertyChangeListener(this);
+		this.isRemoved=false;
+		s.visit(s2);
+		assertTrue(isRemoved);
 	}
 
 	@Test
 	public void testVisit_Projectile() {
+		Projectile p = new Projectile(null, null, null, null, 5, 5);
+		int h = s.getHull();
+		s.visit(p);
+		assertTrue(s.getHull()<h);
 	}
 
 	@Test
 	public void testVisit_Asteroid() {
+		Asteroid a = new Asteroid(new Point2f(0,0), 5, 5);
+		s.addPropertyChangeListener(this);
+		this.isRemoved=false;
+		s.visit(a);
+		assertTrue(isRemoved);
 	}
 
 	@Test
@@ -211,6 +243,10 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testCollideDetection() {
+		Spaceship ship1 = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		ship1.addPropertyChangeListener(this);
+		Spaceship ship2 = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		assertTrue(ship1.collideDetection(ship2));
 	}
 
 	@Test
@@ -221,26 +257,78 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testActivateMainThruste() {
+		Spaceship ship = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		ship.activateMainThruste();
+		Timestep t = new Timestep();
+		t.start();
+		t.end();
+		t.calculateDeltatime();
+		ship.calculateThrust(t);
+		assertTrue(!(ship.getAcceleration().equals(new Vector2f(0,0))));
 	}
 
 	@Test
 	public void testActivateLeftThruste() {
+		Spaceship ship = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		ship.activateLeftThruste();
+		Timestep t = new Timestep();
+		t.start();
+		t.end();
+		t.calculateDeltatime();
+		ship.calculateThrust(t);
+		assertTrue(!(ship.getAcceleration().equals(new Vector2f(0,0)))&&ship.getRotAcceleration()>0);
 	}
 
 	@Test
 	public void testActivateRightThruste() {
+		Spaceship ship = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		ship.activateRightThruste();
+		Timestep t = new Timestep();
+		t.start();
+		t.end();
+		t.calculateDeltatime();
+		ship.calculateThrust(t);
+		System.out.println(ship.getRotAcceleration());
+		assertTrue(!(ship.getAcceleration().equals(new Vector2f(0,0)))&&ship.getRotAcceleration()<0);
 	}
 
 	@Test
 	public void testDeactivateMainThruster() {
+		Spaceship ship = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		ship.activateMainThruste();
+		ship.deactivateMainThruster();
+		Timestep t = new Timestep();
+		t.start();
+		t.end();
+		t.calculateDeltatime();
+		ship.calculateThrust(t);
+		assertTrue(ship.getAcceleration().equals(new Vector2f(0,0)));
 	}
 
 	@Test
 	public void testDeactivateLeftThruster() {
+		Spaceship ship = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		ship.activateLeftThruste();
+		ship.deactivateLeftThruster();
+		Timestep t = new Timestep();
+		t.start();
+		t.end();
+		t.calculateDeltatime();
+		ship.calculateThrust(t);
+		assertTrue(ship.getAcceleration().equals(new Vector2f(0,0))&&ship.getRotAcceleration()==0);
 	}
 
 	@Test
 	public void testDeactivateRightThruster() {
+		Spaceship ship = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		ship.activateRightThruste();
+		ship.deactivateRightThruster();
+		Timestep t = new Timestep();
+		t.start();
+		t.end();
+		t.calculateDeltatime();
+		ship.calculateThrust(t);
+		assertTrue(ship.getAcceleration().equals(new Vector2f(0,0))&&ship.getRotAcceleration()==0);
 	}
 /*
 	@Test

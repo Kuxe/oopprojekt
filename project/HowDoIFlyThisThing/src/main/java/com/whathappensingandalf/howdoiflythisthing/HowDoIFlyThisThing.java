@@ -52,4 +52,13 @@ public class HowDoIFlyThisThing {
 	public Point2f getSpaceshipPoint() {
 		return state.getSpaceshipPoint();
 	}
+	
+	/**
+	 * Should always be called when program is exiting
+	 * it stops clients and servers, does all the 
+	 * cleaning work
+	 */
+	public void cleanup() {
+		state.cleanup();
+	}
 }

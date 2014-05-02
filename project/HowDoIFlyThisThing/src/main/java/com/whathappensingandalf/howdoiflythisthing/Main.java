@@ -24,5 +24,7 @@ public class Main {
 			controller = new Controller();
 		}
 		controller.start();
+		controller.cleanup();
+		System.exit(0);
 	}
 }
