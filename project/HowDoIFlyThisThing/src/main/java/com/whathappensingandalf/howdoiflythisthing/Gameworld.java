@@ -2,6 +2,7 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -39,6 +40,7 @@ public class Gameworld implements PropertyChangeListener{
 	private Map<Object, IMovable> moveables;
 	private Map<Object, ICollidable> collidables;
 	private Map<Object, IDrawable> drawables;
+	private PropertyChangeSupport pcs= new PropertyChangeSupport(this);
 	
 	/**
 	 * HashMap which is unlocked by any gameworld object, ie spaceship.
@@ -243,5 +245,11 @@ public class Gameworld implements PropertyChangeListener{
 	
 	public WorldBorder getBorder() {
 		return worldBorder;
+	}
+	public void addObserver(PropertyChangeListener listener){
+		pcs.addPropertyChangeListener(listener);
+	}
+	public void removeObserver(PropertyChangeListener listener){
+		pcs.removePropertyChangeListener(listener);
 	}
 }
