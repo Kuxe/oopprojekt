@@ -97,6 +97,7 @@ public class ProjectileTest implements PropertyChangeListener{
 		assertTrue(pro.getPosition().x== 2 && pro.getPosition().y== 2);
 	}
 
+	/*
 	@Test
 	public void testGetRotVelocity() {
 		assertTrue(true);
@@ -116,10 +117,10 @@ public class ProjectileTest implements PropertyChangeListener{
 	public void testSetRotAcceleration() {
 		assertTrue(true);
 	}
-
+	*/
 	@Test
 	public void testGetDamage() {
-		assertTrue(true);
+		assertTrue(pro.getDamage()== 1);
 	}
 
 	@Test
