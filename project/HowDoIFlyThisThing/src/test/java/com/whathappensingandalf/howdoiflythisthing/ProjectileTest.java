@@ -65,7 +65,7 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetDirection() {
-		assertTrue(true);
+		assertTrue(pro.getDirection().x== 0 && pro.getDirection().y== 1);
 	}
 
 	@Test
