@@ -192,12 +192,16 @@ public class SpaceshipTest implements PropertyChangeListener{
 		Spaceship s2 = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
 		s.addPropertyChangeListener(this);
 		this.isRemoved=false;
-		s.visit(s);
+		s.visit(s2);
 		assertTrue(isRemoved);
 	}
 
 	@Test
 	public void testVisit_Projectile() {
+		Projectile p = new Projectile(null, null, null, null, 5, 5);
+		int h = s.getHull();
+		s.visit(p);
+		assertTrue(s.getHull()<h);
 	}
 
 	@Test
