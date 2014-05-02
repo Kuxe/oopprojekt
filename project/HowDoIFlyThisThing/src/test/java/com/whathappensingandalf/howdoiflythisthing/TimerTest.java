@@ -13,8 +13,7 @@ public class TimerTest {
 	@Test
 	public void testTimer() {
 		Timer t=new Timer();
-		Date d=new Date(0);
-		assertTrue(t.getTimerLength()==0 && t.getStartTime().getTime()==d.getTime());
+		assertTrue(t.getTimerLength()==0 && t.getStartTime().getTime()==0);
 	}
 
 	@Test
@@ -33,8 +32,8 @@ public class TimerTest {
 	@Test
 	public void testIsTimerDone() {
 		Timer t=new Timer(60000);
-		t.start();
 		assertTrue(t.isTimerDone());
+		t.start();
 		assertTrue(!t.isTimerDone());
 	}
 
