@@ -28,7 +28,7 @@ public class ClientState implements ModelNetworkState {
 		
 		spaceshipPoint = new Point2f(0, 0);
 		
-		Client client = new Client();
+		client = new Client();
 		
 		Kryo kryo = client.getKryo();
 		kryo.register(HoldKeysNetworkPacket.class);
