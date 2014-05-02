@@ -75,17 +75,20 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testSetVelocity() {
-		assertTrue(true);
+		pro.setVelocity(new Vector2f(4, 5));
+		assertTrue(pro.getVelocity().x== 4 && pro.getVelocity().y== 5);
 	}
 
 	@Test
 	public void testSetAcceleration() {
-		assertTrue(true);
+		pro.setAcceleration(new Vector2f(56, 7));
+		assertTrue(pro.getAcceleration().x== 56 && pro.getAcceleration().y== 7);
 	}
 
 	@Test
 	public void testSetDirection() {
-		assertTrue(true);
+		pro.setAcceleration(new Vector2f(6, 7));
+		assertTrue(pro.getDirection().x== 6 && pro.getDirection().y== 7);
 	}
 
 	@Test
