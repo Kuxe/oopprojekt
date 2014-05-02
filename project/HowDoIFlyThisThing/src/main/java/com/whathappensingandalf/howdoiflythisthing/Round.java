@@ -51,7 +51,4 @@ public class Round {
 	public Map<Object, IDrawable> getIDrawables() {
 		return world.getIDrawables();
 	}
-	public Gameworld getGameworld(){
-		return world;
-	}
 }

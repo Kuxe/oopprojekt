@@ -12,6 +12,8 @@ import javax.vecmath.Point2f;
 
 import org.lwjgl.input.Keyboard;
 
+import services.SoundEffects;
+
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
