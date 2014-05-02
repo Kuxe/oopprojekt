@@ -28,7 +28,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	private MoveComponent mC;
 	private CollidableComponent colliComp;
 	/**
-	 * A instance of PropertyChangeSupport so that this class can be listend to.
+	 * A instance of PropertyChangeSupport so that this class can be listened to.
 	 */
 	private PropertyChangeSupport pcs;
 	

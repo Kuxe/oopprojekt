@@ -125,17 +125,17 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetHeight() {
-		assertTrue(true);
+		assertTrue(pro.getHeight()== 3);
 	}
 
 	@Test
 	public void testGetWidth() {
-		assertTrue(true);
+		assertTrue(pro.getWidth()== 3);
 	}
 
 	@Test
 	public void testGetType() {
-		assertTrue(true);
+		assertTrue(pro.getType().equals("PROJECTILE"));
 	}
 
 	@Test

@@ -47,7 +47,7 @@ public class ArmsComponent {
 		baseSpeed.normalize();
 		baseSpeed.scale(baseSpeedMagnitude);
 		baseSpeed.add(velocity);
-		return ProjectileFactory.create(tempPoint, baseSpeed, acceleration, direction, 1, 1);
+		return ProjectileFactory.create(tempPoint, baseSpeed, acceleration, direction, 3, 3);
 	}
 	public boolean equals(Object rhs){
 		if(rhs==this){
