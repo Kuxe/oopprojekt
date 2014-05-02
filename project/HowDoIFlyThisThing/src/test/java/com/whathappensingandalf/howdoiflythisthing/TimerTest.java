@@ -37,7 +37,9 @@ public class TimerTest {
 
 	@Test
 	public void testSetTimerLength() {
-		fail("Not yet implemented");
+		Timer t= new Timer(0);
+		t.setTimerLength(10);
+		assertTrue(t.getTimerLength()==10);
 	}
 
 }
