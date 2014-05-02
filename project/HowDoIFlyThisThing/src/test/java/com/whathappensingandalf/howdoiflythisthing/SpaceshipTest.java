@@ -219,6 +219,10 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testCollideDetection() {
+		Spaceship ship1 = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		ship1.addPropertyChangeListener(this);
+		Spaceship ship2 = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		assertTrue(ship1.collideDetection(ship2));
 	}
 
 	@Test
