@@ -18,8 +18,12 @@ import static org.junit.Assert.*;
  * @author Martin
  */
 public class TypeWrapperTest {
+	private TypeWrapper tw;
+	private float defaultFloat;
 	
 	public TypeWrapperTest() {
+		defaultFloat = 5;
+		tw = new TypeWrapper(defaultFloat);
 	}
 	
 	@BeforeClass
