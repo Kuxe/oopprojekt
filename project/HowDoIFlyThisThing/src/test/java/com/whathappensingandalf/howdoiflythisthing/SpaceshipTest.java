@@ -173,6 +173,14 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testCalculateThrust() {
+		s.setAcceleration(new Vector2f(0,70));
+		s.setVelocity(new Vector2f(0,10));
+		Timestep t = new Timestep();
+		t.start();
+		t.end();
+		t.calculateDeltatime();
+		s.calculateThrust(t);
+		assertTrue(s.getAcceleration().equals(new Vector2f(0,0))&&s.getVelocity().equals(new Vector2f(0,10)));
 	}
 
 	@Test
