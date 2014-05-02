@@ -104,8 +104,8 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		setRenderObjects(model.getIDrawables());
 	}
 	
-	public void setRenderObjects(Map<Object,IDrawable> list){
-		viewThread.getView().setRenderObjects(list);
+	public void setRenderObjects(Set<IDrawable> set){
+		viewThread.getView().setRenderObjects(set);
 	}
 	
 	public void cleanup() {

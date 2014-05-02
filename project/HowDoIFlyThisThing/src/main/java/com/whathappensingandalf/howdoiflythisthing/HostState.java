@@ -5,18 +5,12 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Set;
 
 import javax.vecmath.Point2f;
 
-import org.lwjgl.input.Keyboard;
-
-import services.SoundEffects;
 import utils.NetworkUtils;
 
-import com.esotericsoftware.kryo.Kryo;
-import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
@@ -110,7 +104,7 @@ public class HostState implements ModelNetworkState{
 		
 	}
 
-	public Map<Object, IDrawable> getIDrawables() {
+	public Set<IDrawable> getIDrawables() {
 		return round.getIDrawables();
 	}
 	

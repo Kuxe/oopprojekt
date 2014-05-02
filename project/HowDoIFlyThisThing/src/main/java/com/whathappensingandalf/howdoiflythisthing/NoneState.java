@@ -36,7 +36,7 @@ public class NoneState implements ModelNetworkState {
 
 	}
 
-	public Map<Object, IDrawable> getIDrawables() {
+	public Set<IDrawable> getIDrawables() {
 		// TODO Auto-generated method stub
 		return null;
 	}

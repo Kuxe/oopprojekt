@@ -4,8 +4,8 @@ package View;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,7 +20,6 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
-import org.newdawn.slick.geom.Circle;
 
 import com.whathappensingandalf.howdoiflythisthing.IDrawable;
 
@@ -29,7 +28,7 @@ public class View extends BasicGame implements ApplicationListener{
 	private AppGameContainer container;
 //	private GameWindow game;
 	
-	private Map<Object,IDrawable> renderObjects;
+	private Set<IDrawable> renderObjects;
 	private SpriteSheet spaceship,shott,asteroid;
 	private Image background;
 	private Color colorFilter;
@@ -48,7 +47,7 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	public View(String title){
 		super(title);
-		renderObjects=new HashMap<Object,IDrawable>();
+		renderObjects = new HashSet<IDrawable>();
 		try{
 			container=new AppGameContainer(this);
 			container.setDisplayMode(windowWidth, windowHeight, false);
@@ -89,8 +88,8 @@ public class View extends BasicGame implements ApplicationListener{
 		}
 	}
 	
-	public void setRenderObjects(Map<Object,IDrawable> list){
-		renderObjects=Collections.synchronizedMap(list);
+	public void setRenderObjects(Set<IDrawable> set){
+		renderObjects=Collections.synchronizedSet(set);
 	}
 	
 	/**
@@ -133,7 +132,7 @@ public class View extends BasicGame implements ApplicationListener{
 //		g.rotate(25, 25, f);
 //		f++;
 		drawScrollingImage(arg0, g, background, 1.0f);
-		for(IDrawable comp: renderObjects.values()){
+		for(IDrawable comp: renderObjects){
 			
 //			System.out.println();
 //			System.out.println("Name: "+comp.getType());

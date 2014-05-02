@@ -2,15 +2,13 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.vecmath.Point2f;
 
 import utils.NetworkUtils;
 
-import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -24,7 +22,7 @@ import com.esotericsoftware.kryonet.Listener;
 public class ClientState implements ModelNetworkState {
 
 	private Client client;
-	Map<Object, IDrawable> drawables;
+	HashSet<IDrawable> drawables;
 	Point2f spaceshipPoint;
 	
 	public ClientState(String ip) {
@@ -32,7 +30,7 @@ public class ClientState implements ModelNetworkState {
 		spaceshipPoint = new Point2f(0, 0);
 		
 		client = new Client();
-		drawables = new HashMap();
+		drawables = new HashSet();
 		
 		NetworkUtils.registerClasses(client.getKryo());
 		
@@ -71,7 +69,7 @@ public class ClientState implements ModelNetworkState {
 		client.sendTCP(new HoldKeysNetworkPacket(listOfHoldKeys));
 	}
 
-	public Map<Object, IDrawable> getIDrawables() {
+	public HashSet<IDrawable> getIDrawables() {
 		return drawables;
 	}
 
