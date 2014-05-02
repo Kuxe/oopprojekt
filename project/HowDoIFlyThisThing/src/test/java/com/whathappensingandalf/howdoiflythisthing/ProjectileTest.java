@@ -20,7 +20,7 @@ public class ProjectileTest implements PropertyChangeListener{
 	
 	private boolean isRemoved= false;
 	private Vector2f vec= new Vector2f(5, 5);
-	private Projectile pro= new Projectile(new Point2f(0, 0), vec, vec, new Vector2f(0, 1), 3, 3);
+	private Projectile pro= new Projectile(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
 //											position, velocity, acceleration, direction, width, height
 	
 //	assertTrue(true);
@@ -43,7 +43,7 @@ public class ProjectileTest implements PropertyChangeListener{
 		timestep.end();
 		timestep.calculateDeltatime();
 		pro.move(timestep);
-		assertTrue(pro.getPosition().x > 0);
+		assertTrue(pro.getPosition().x > 1);
 	}
 
 	@Test
@@ -70,7 +70,7 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetPosition() {
-		assertTrue(true);
+		assertTrue(pro.getPosition().x== 1 && pro.getPosition().y== 1);
 	}
 
 	@Test
