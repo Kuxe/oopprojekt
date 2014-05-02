@@ -1,26 +1,26 @@
 package controller;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import javax.vecmath.Point2f;
-
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 
+import View.View;
 import View.ViewThread;
 
 import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
 import com.whathappensingandalf.howdoiflythisthing.IDrawable;
-import com.whathappensingandalf.howdoiflythisthing.Spaceship;
 
-public class Controller implements KeyListener{
+public class Controller implements KeyListener, PropertyChangeListener{
 	
 	private HowDoIFlyThisThing model;
 	private ViewThread viewThread;
 	
-	
+	boolean running = false;
 	
 	private Set<Integer> listOfPressedKeys;
 	private Set<Integer> listOfReleasedKeys;
@@ -45,6 +45,8 @@ public class Controller implements KeyListener{
 			e.printStackTrace();
 		}
 		viewThread.getView().getContainer().getInput().addKeyListener(this);
+		viewThread.getView().addPropertyChangeListener(this);
+		
 	}
 	
 	public Controller(String ip){
@@ -66,6 +68,7 @@ public class Controller implements KeyListener{
 			e.printStackTrace();
 		}
 		viewThread.getView().getContainer().getInput().addKeyListener(this);
+		viewThread.getView().addPropertyChangeListener(this);
 	}
 	
 	/**
@@ -87,7 +90,7 @@ public class Controller implements KeyListener{
 	}
 	
 	public void start() {
-		boolean running = true;
+		running = true;
 		while(running) {
 			update();
 		}
@@ -97,15 +100,15 @@ public class Controller implements KeyListener{
 		manageInput();		
 		model.update(listOfHoldKeys);
 		viewThread.getView().setCamera(model.getSpaceshipPoint());
-		setRenderObjects(model.getIDrawables());	
+		setRenderObjects(model.getIDrawables());
 	}
 	
 	public void setRenderObjects(Map<Object,IDrawable> list){
 		viewThread.getView().setRenderObjects(list);
 	}
 	
-	private void shutdown() {
-		System.exit(0);
+	public void cleanup() {
+		model.cleanup();
 	}
 
 	public synchronized void keyPressed(int key, char c) {
@@ -129,5 +132,13 @@ public class Controller implements KeyListener{
 	public void inputStarted() {
 		// TODO Auto-generated method stub
 	}
+
+	public void propertyChange(PropertyChangeEvent event) {
+		System.out.println("Controller recieved event: " + event.getPropertyName());
+		if(event.getPropertyName().equals(View.message.VIEW_CLOSE.toString())) {
+			running = false;
+		}		
+	}
+
 }
 

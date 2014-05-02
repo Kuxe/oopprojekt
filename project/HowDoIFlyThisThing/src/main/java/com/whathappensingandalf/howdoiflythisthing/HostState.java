@@ -36,6 +36,10 @@ public class HostState implements ModelNetworkState{
 		serverKryo.register(HoldKeysNetworkPacket.class);
 		serverKryo.register(IDrawableNetworkPacket.class);
 		
+		start();
+	}
+	
+	public void start() {
 		server.start();
 		try {
 			server.bind(5000);
@@ -77,10 +81,6 @@ public class HostState implements ModelNetworkState{
 		}
 		addUser(myIp);
 		myUser = users.get(myIp);
-	}
-	
-	public void stop() {
-		server.stop();
 	}
 	
 	public void addUser(InetSocketAddress connection) {
@@ -129,5 +129,11 @@ public class HostState implements ModelNetworkState{
 	 */
 	public Point2f getSpaceshipPoint() {
 		return myUser.getSpaceshipPoint();
+	}
+
+	public void cleanup() {
+		System.out.print("Terminating server...");
+		server.stop();
+		System.out.println(" done!");
 	}
 }
