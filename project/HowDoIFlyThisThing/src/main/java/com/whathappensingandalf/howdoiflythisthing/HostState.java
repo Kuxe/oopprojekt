@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.vecmath.Point2f;
@@ -23,11 +24,13 @@ public class HostState implements ModelNetworkState{
 	private User myUser;
 	private Server server;
 	private InetSocketAddress myIp;
+	private Set<Connection> connections;
 	
 	public HostState() {
 		round = new Round();
 		users = new HashMap();
 		server = new Server();
+		connections = new HashSet();
 		
 		NetworkUtils.registerClasses(server.getKryo());
 		
@@ -46,15 +49,22 @@ public class HostState implements ModelNetworkState{
 		server.addListener(new Listener() {
 			
 			public void connected(Connection connection) {
+				
 				//Grant new connections an user
 				System.out.print(connection.getRemoteAddressTCP() + " is connecting...");
+				
+				//DO NOT TOUCH THIS ORDER
+				//addUser is synchronized. It prevents nasty nullpointer errors related
+				//to iterating through list and indexing hashmap with null key. DO NOT TOUCH!!!!!!
 				addUser(connection.getRemoteAddressTCP());
+				connections.add(connection);
+				//END OF PROHIBITION
+				
 				System.out.println(" done!");
 			}
 			
 			//Called whenever a client sends a packet
 			public void recieved(Connection connection, Object object) {
-				
 				//If someone sends his input, execute it.
 				if(object instanceof HoldKeysNetworkPacket) {
 					//System.out.println("Recieved HoldKeysNetworkPacket from: " + connection.getRemoteAddressTCP());
@@ -65,6 +75,7 @@ public class HostState implements ModelNetworkState{
 			public void disconnected(Connection connection) {
 				round.removeUser(users.get(connection.getRemoteAddressTCP()));
 				users.remove(connection.getRemoteAddressTCP());
+				connections.remove(connection);
 			}
 		});	
 		
@@ -101,13 +112,8 @@ public class HostState implements ModelNetworkState{
 	public synchronized void sendPackets() {
 		//Send images to all clients
 		server.sendToAllTCP(round.getDrawableData());
-		
 		//Send each spaceship point associated with each connection to the connected client
-		for(Connection connection : server.getConnections()) {
-			System.out.println("Connection: " + connection.getRemoteAddressTCP());
-			//if(users.get(connection.getRemoteAddressTCP()) == null) System.out.println("OJOJOJ");
-			//if(users.get(connection.getRemoteAddressTCP()).getSpaceshipPoint() == null) System.out.println("SUPEROJ");
-			
+		for(Connection connection : connections) {
 			connection.sendTCP(users.get(connection.getRemoteAddressTCP()).getSpaceshipPoint());
 		}
 	}
