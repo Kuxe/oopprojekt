@@ -5,6 +5,7 @@ import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.vecmath.Point2f;
@@ -19,17 +20,17 @@ import com.esotericsoftware.kryonet.Server;
 public class HostState implements ModelNetworkState{
 
 	private Round round;
-	private HashMap<InetSocketAddress, User> users;
-	private HashMap<InetSocketAddress, User> pendingUsers;
+	private HashMap<Integer, User> users;
 	private User myUser;
 	private Server server;
 	private InetSocketAddress myIp;
+	private Set<Connection> connections;
 	
 	public HostState() {
 		round = new Round();
 		users = new HashMap();
-		pendingUsers = new HashMap();
 		server = new Server();
+		connections = new HashSet();
 		
 		NetworkUtils.registerClasses(server.getKryo());
 		
@@ -48,71 +49,68 @@ public class HostState implements ModelNetworkState{
 		server.addListener(new Listener() {
 			
 			public void connected(Connection connection) {
+				
 				//Grant new connections an user
-				System.out.println(connection.getRemoteAddressTCP() + " is connecting...");
-				addUser(connection.getRemoteAddressTCP());
-				System.out.println(connection.getRemoteAddressTCP() + " done!");
+				System.out.print(connection.getRemoteAddressTCP() + " is connecting...");
+				
+				//DO NOT TOUCH THIS ORDER
+				//addUser is synchronized. It prevents nasty nullpointer errors related
+				//to iterating through list and indexing hashmap with null key. DO NOT TOUCH!!!!!!
+				addUser(connection.getID());			
+				System.out.println(" done!");
 			}
 			
 			//Called whenever a client sends a packet
 			public void recieved(Connection connection, Object object) {
-				
+				System.out.println("Recieved packet from " + connection.getRemoteAddressTCP() + ": " + object.toString());
 				//If someone sends his input, execute it.
 				if(object instanceof HoldKeysNetworkPacket) {
 					//System.out.println("Recieved HoldKeysNetworkPacket from: " + connection.getRemoteAddressTCP());
-					users.get(connection.getRemoteAddressTCP()).setListOfHoldKeys(((HoldKeysNetworkPacket) object).listOfHoldKeys);
+					users.get(connection.getID()).setListOfHoldKeys(((HoldKeysNetworkPacket) object).listOfHoldKeys);
 				}
 			}
 			
 			public void disconnected(Connection connection) {
-				round.removeUser(users.get(connection.getRemoteAddressTCP()));
-				users.remove(connection.getRemoteAddressTCP());
+				System.out.println(connection.getID() + " disconnected");
+				round.removeUser(users.get(connection.getID()));
+				users.remove(connection.getID());
+				connections.remove(connection);
 			}
 		});	
-		
-		try {
-			myIp = new InetSocketAddress(InetAddress.getLocalHost(), 5000);
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		addUser(myIp);
-		myUser = pendingUsers.get(myIp);
+		addUser(0);
+		myUser = users.get(0);
+		myUser.setListOfHoldKeys(new HashSet<Integer>());
 	}
 	
-	public void addUser(InetSocketAddress connection) {
+	public synchronized void addUser(int id) {
 		User user = new User();
-		pendingUsers.put(connection, user);
+		users.put(id, user);
+		round.addUser(user);
+		if(users.size() == 2) {
+			round.start();
+		}
+		//To prevent executng input before recieved from client causing nullptr
+		users.get(id).setListOfHoldKeys(new HashSet<Integer>());
 	}
 	
-	public void update(Set<Integer> listOfHoldKeys) {
-		
-		//Lazy add to users in order to prevent concurrency issues
-		//Here it is guaranteed that the main thread doesnt iterate
-		//through any game-related list as this is the main thread...
-		for(InetSocketAddress ip : pendingUsers.keySet()) {
-			round.addUser(pendingUsers.get(ip));
-			if(users.size() == 2) {
-				round.start();
-			}
-			users.put(ip, pendingUsers.get(ip));
-		}
-		pendingUsers.clear();
-		
+	public synchronized void update(Set<Integer> listOfHoldKeys) {
 		round.update();
 		myUser.setListOfHoldKeys(listOfHoldKeys);
 		for(User user : users.values()) {
+			//TODO: FIX THIS STUPID SHIT
 			user.executeInput(user.getListOfHoldKeys());
-		}
-		
+		}		
+		//Send data packets to clients
+		sendPackets();
+	}
+	
+	public synchronized void sendPackets() {
 		//Send images to all clients
 		server.sendToAllTCP(round.getDrawableData());
-		
 		//Send each spaceship point associated with each connection to the connected client
-		for(Connection connection : server.getConnections()) {
+		for(Connection connection : connections) {
 			connection.sendTCP(users.get(connection.getRemoteAddressTCP()).getSpaceshipPoint());
 		}
-		
 	}
 
 	public Set<DrawableData> getDrawableData() {

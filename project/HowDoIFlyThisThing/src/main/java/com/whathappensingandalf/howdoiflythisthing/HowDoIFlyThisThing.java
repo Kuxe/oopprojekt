@@ -1,14 +1,10 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
-import java.net.InetAddress;
-import java.net.InetSocketAddress;
-import java.net.UnknownHostException;
-import java.util.Map;
 import java.util.Set;
 
 import javax.vecmath.Point2f;
 
-import com.whathappensingandalf.howdoiflythisthing.ModelNetworkState.state;
+import com.esotericsoftware.kryonet.Connection;
 
 /**
  * 
@@ -29,8 +25,8 @@ public class HowDoIFlyThisThing {
 	 *  
 	 * @param spaceship
 	 */
-	public void addUser(InetSocketAddress ip) {
-		state.addUser(ip);
+	public void addUser(Connection connection) {
+		state.addUser(connection.getID());
 	}
 	
 	public void host() {
