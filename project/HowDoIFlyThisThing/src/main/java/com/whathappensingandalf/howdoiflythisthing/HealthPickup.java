@@ -7,12 +7,13 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
 
 /**
  *
  * @author Martin
  */
-public class HealthPickup implements ICollidable{
+public class HealthPickup implements ICollidable, IGameObject, IDrawable, Cloneable{
 	
 	private CollidableComponent collidableComp;
 	private Point2f position;
@@ -41,7 +42,7 @@ public class HealthPickup implements ICollidable{
 	}
 
 	public String getType() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return type.HEALTH_PICKUP.toString();
 	}
 
 	public void accept(ICollidable visitor) {
@@ -57,6 +58,14 @@ public class HealthPickup implements ICollidable{
 	}
 
 	public void visit(Asteroid asteroid) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public Vector2f getDirection() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public IDrawable clone() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 	
