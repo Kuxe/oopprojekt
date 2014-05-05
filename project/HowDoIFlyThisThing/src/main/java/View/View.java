@@ -135,6 +135,8 @@ public class View extends BasicGame implements ApplicationListener{
 		drawScrollingImage(arg0, g, background, 1.0f);
 		for(DrawableData comp: renderObjects){
 			
+			System.out.println(comp.getType());
+			
 //			System.out.println();
 //			System.out.println("Name: "+comp.getType());
 //			System.out.println("Pos X: "+comp.getPossition().x);
@@ -143,9 +145,9 @@ public class View extends BasicGame implements ApplicationListener{
 //			System.out.println("Dir X: "+comp.getDirection().y);
 			float tmpX,tmpY;
 			Image tmpImg;
-			if(comp.getType()=="SPACESHIP"){
+			if(comp.getType().equals("SPACESHIP")){
 				tmpImg=spaceship.copy();
-			}else if(comp.getType()=="ASTEROID"){
+			}else if(comp.getType().equals("ASTEROID")){
 				tmpImg=asteroid.copy();
 			}else{
 				tmpImg=shott.copy();
