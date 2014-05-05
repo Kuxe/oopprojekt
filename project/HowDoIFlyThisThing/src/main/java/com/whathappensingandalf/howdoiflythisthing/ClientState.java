@@ -44,7 +44,7 @@ public class ClientState implements ModelNetworkState {
 		
 		
 		client.addListener(new Listener() {
-			public void recieved(Connection connection, Object message) {
+			public void received(Connection connection, Object message) {
 				System.out.println("Recieved packet:" + message.toString());
 				if(message instanceof DrawableDataNetworkPacket) {
 					drawables = ((DrawableDataNetworkPacket)message).drawables;

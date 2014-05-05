@@ -69,7 +69,7 @@ public class HostState implements ModelNetworkState{
 			}
 			
 			//Called whenever a client sends a packet
-			public void recieved(Connection connection, Object object) {
+			public void received(Connection connection, Object object) {
 				System.out.println("Recieved packet from " + connection.getRemoteAddressTCP() + ": " + object.toString());
 				//If someone sends his input, execute it.
 				if(object instanceof HoldKeysNetworkPacket) {
