@@ -118,6 +118,8 @@ public class HostState implements ModelNetworkState{
 		if(timerStop - timerStart > timerInterval) {			
 			//Send images to all clients
 			server.sendToAllTCP(new DrawableDataNetworkPacket(round.getDrawableData()));
+			//Send sounds to all clients
+			server.sendToAllTCP(new SoundNetworkPacket(round.getListOfSounds()));
 			//Send each spaceship point associated with each connection to the connected client
 			for(Connection connection : connections) {
 				connection.sendTCP(users.get(connection.getID()).getSpaceshipPoint());
