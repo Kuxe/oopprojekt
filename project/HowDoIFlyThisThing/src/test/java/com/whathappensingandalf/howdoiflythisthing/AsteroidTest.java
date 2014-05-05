@@ -76,7 +76,9 @@ public class AsteroidTest {
 
 	@Test
 	public void testGetDirection() {
-		fail("Not yet implemented");
+		Asteroid testAsteroid=new Asteroid(new Point2f(30,40),10,20);
+		assertTrue(testAsteroid.getDirection().x==0 &&
+				testAsteroid.getDirection().y==1);
 	}
 
 	@Test
