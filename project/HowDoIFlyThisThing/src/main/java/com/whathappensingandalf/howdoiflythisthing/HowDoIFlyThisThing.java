@@ -57,4 +57,7 @@ public class HowDoIFlyThisThing {
 	public void cleanup() {
 		state.cleanup();
 	}
+	public Set<String> getListOfSounds(){
+		return state.getListOfSounds();
+	}
 }

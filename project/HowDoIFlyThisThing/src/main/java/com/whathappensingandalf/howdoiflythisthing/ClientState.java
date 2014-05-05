@@ -22,8 +22,12 @@ import com.esotericsoftware.kryonet.Listener;
 public class ClientState implements ModelNetworkState {
 
 	private Client client;
-	HashSet<DrawableData> drawables;
-	Point2f spaceshipPoint;
+	private Set<DrawableData> drawables;
+	private Point2f spaceshipPoint;
+	
+	private long timerStart;
+	private long timerStop;
+	private final long timerInterval;
 	
 	public ClientState(String ip) {
 		
@@ -32,16 +36,20 @@ public class ClientState implements ModelNetworkState {
 		client = new Client();
 		drawables = new HashSet();
 		
+		timerStart = System.nanoTime();
+		timerStop = System.nanoTime();
+		timerInterval = 20000000; //20ms in nanoseconds
+		
 		NetworkUtils.registerClasses(client.getKryo());
 		
 		
 		client.addListener(new Listener() {
-			public void recieved(Connection connection, Object message) {
-				System.out.println("Recieved packet:" + message.toString());
+			public void received(Connection connection, Object message) {
+				//System.out.println("Recieved packet:" + message.toString());
 				if(message instanceof DrawableDataNetworkPacket) {
 					drawables = ((DrawableDataNetworkPacket)message).drawables;
 				}
-				if(message instanceof Point2f) {
+				else if(message instanceof Point2f) {
 					spaceshipPoint = (Point2f)message;
 				}
 			}
@@ -65,11 +73,17 @@ public class ClientState implements ModelNetworkState {
 	}
 
 	public void update(Set<Integer> listOfHoldKeys) {
-		//Send listOfHoldKeys to server
-		client.sendTCP(new HoldKeysNetworkPacket(listOfHoldKeys));
+		
+		
+		if(timerStop - timerStart > timerInterval) {
+			//Send listOfHoldKeys to server
+			client.sendTCP(new HoldKeysNetworkPacket(listOfHoldKeys));
+			timerStart = System.nanoTime();
+		}
+		timerStop = System.nanoTime();
 	}
 
-	public HashSet<DrawableData> getDrawableData() {
+	public Set<DrawableData> getDrawableData() {
 		return drawables;
 	}
 
@@ -81,5 +95,10 @@ public class ClientState implements ModelNetworkState {
 		System.out.println("Terminating client...");
 		client.stop();
 		System.out.println(" done!");
+	}
+
+	public Set<String> getListOfSounds() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

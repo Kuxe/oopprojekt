@@ -26,11 +26,19 @@ public class HostState implements ModelNetworkState{
 	private InetSocketAddress myIp;
 	private Set<Connection> connections;
 	
+	private long timerStart;
+	private long timerStop;
+	private final long timerInterval;
+	
 	public HostState() {
 		round = new Round();
 		users = new HashMap();
 		server = new Server();
 		connections = new HashSet();
+		
+		timerStart = System.nanoTime();
+		timerStop = System.nanoTime();
+		timerInterval = 20000000; //20ms in nanoseconds
 		
 		NetworkUtils.registerClasses(server.getKryo());
 		
@@ -56,13 +64,14 @@ public class HostState implements ModelNetworkState{
 				//DO NOT TOUCH THIS ORDER
 				//addUser is synchronized. It prevents nasty nullpointer errors related
 				//to iterating through list and indexing hashmap with null key. DO NOT TOUCH!!!!!!
-				addUser(connection.getID());			
+				addUser(connection.getID());
+				connections.add(connection);
 				System.out.println(" done!");
 			}
 			
 			//Called whenever a client sends a packet
-			public void recieved(Connection connection, Object object) {
-				System.out.println("Recieved packet from " + connection.getRemoteAddressTCP() + ": " + object.toString());
+			public void received(Connection connection, Object object) {
+				//System.out.println("Recieved packet from " + connection.getRemoteAddressTCP() + ": " + object.toString());
 				//If someone sends his input, execute it.
 				if(object instanceof HoldKeysNetworkPacket) {
 					//System.out.println("Recieved HoldKeysNetworkPacket from: " + connection.getRemoteAddressTCP());
@@ -105,12 +114,17 @@ public class HostState implements ModelNetworkState{
 	}
 	
 	public synchronized void sendPackets() {
-		//Send images to all clients
-		server.sendToAllTCP(round.getDrawableData());
-		//Send each spaceship point associated with each connection to the connected client
-		for(Connection connection : connections) {
-			connection.sendTCP(users.get(connection.getRemoteAddressTCP()).getSpaceshipPoint());
+		
+		if(timerStop - timerStart > timerInterval) {			
+			//Send images to all clients
+			server.sendToAllTCP(new DrawableDataNetworkPacket(round.getDrawableData()));
+			//Send each spaceship point associated with each connection to the connected client
+			for(Connection connection : connections) {
+				connection.sendTCP(users.get(connection.getID()).getSpaceshipPoint());
+			}			
+			timerStart = System.nanoTime();
 		}
+		timerStop = System.nanoTime();
 	}
 
 	public Set<DrawableData> getDrawableData() {
@@ -139,5 +153,9 @@ public class HostState implements ModelNetworkState{
 		System.out.print("Terminating server...");
 		server.stop();
 		System.out.println(" done!");
+	}
+
+	public Set<String> getListOfSounds(){
+		return round.getListOfSounds();
 	}
 }
