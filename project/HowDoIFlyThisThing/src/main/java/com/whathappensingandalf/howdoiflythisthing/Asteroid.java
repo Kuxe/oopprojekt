@@ -57,11 +57,15 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 		visitor.visit(this);
 	}
 
+	public void visit(HealthPickup healthPickup) {
+		//Nothing should happen.	
+	}
+
 	public void visit(Spaceship spaceship) {
 		//Nothing should happen.
 	}
 
-	public void visit(Projectile projectile) {
+	public void visit(IProjectile projectile) {
 		//Nothing should happen.
 	}
 	

@@ -2,7 +2,8 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
-import com.whathappensingandalf.howdoiflythisthing.factorys.ProjectileFactory;
+
+import com.whathappensingandalf.howdoiflythisthing.factorys.BulletFactory;
 
 /**
  *
@@ -10,7 +11,7 @@ import com.whathappensingandalf.howdoiflythisthing.factorys.ProjectileFactory;
  */
 public class ArmsComponent {
     
-	private Projectile equipedProjectile;
+	private IProjectile equipedProjectile;
 	private Point2f point;
 	private Vector2f velocity;
 	private Vector2f acceleration;
@@ -38,7 +39,7 @@ public class ArmsComponent {
 	 * 
 	 * @return Projectile that the weapon fires
 	 */
-	public Projectile fire(){
+	public IProjectile fire(){
 		Point2f tempPoint = new Point2f(point.x, point.y);
 		tempPoint.add(weaponPipePosition);
 		
@@ -47,7 +48,7 @@ public class ArmsComponent {
 		baseSpeed.normalize();
 		baseSpeed.scale(baseSpeedMagnitude);
 		baseSpeed.add(velocity);
-		return ProjectileFactory.create(tempPoint, baseSpeed, acceleration, direction, 3, 3);
+		return BulletFactory.create(tempPoint, baseSpeed, acceleration, direction, 3, 3);
 	}
 	public boolean equals(Object rhs){
 		if(rhs==this){

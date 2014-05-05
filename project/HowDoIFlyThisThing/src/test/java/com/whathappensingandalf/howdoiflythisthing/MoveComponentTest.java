@@ -15,62 +15,49 @@ import utils.TypeWrapper;
 
 public class MoveComponentTest {
 
-	private Vector2f vec= new Vector2f(0, 1);
+	private Point2f pos= new Point2f(0, 0);
+	private Vector2f vel= new Vector2f(0, 1);
+	private Vector2f acc= new Vector2f(0, 1);
+	private Vector2f dir= new Vector2f(0, 1);
 	private TypeWrapper wrapper= new TypeWrapper(0.0f);
-	private MoveComponent mc= new MoveComponent(new Point2f(0, 0), vec, vec, vec, wrapper, wrapper);
+	private MoveComponent mc= new MoveComponent(pos, vel, acc, dir, wrapper, wrapper);
 //										position, velocity, acceleration, direction, rotationVelocity, rotationAcceleration
-	
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	@Test
-	public void testMoveComponent() {
-		Point2f pos= new Point2f(0, 0);
-		Vector2f vel= new Vector2f(1, 1);
-		Vector2f acc= new Vector2f(0, 0);
-		Vector2f dir= new Vector2f(-1, -1);
-		TypeWrapper tw1= new TypeWrapper(0.0f);
-		TypeWrapper tw2= new TypeWrapper(1.0f);
-		MoveComponent mc= new MoveComponent(pos, vel, acc, dir, tw1, tw2);
-//		TODO- how to test without getters?
-		assertTrue(true);
-	}
 
 	@Test
 	public void testMove() {
-		assertTrue(true);
+		Timestep t= new Timestep();
+		t.start();
+		t.end();
+		t.calculateDeltatime();
+		mc.move(t);
+		assertTrue(!pos.equals(new Point2f(5, 6)));
 	}
 
 	@Test
 	public void testSetVelocity() {
-		assertTrue(true);
+		Vector2f vec= new Vector2f(2, 3);
+		mc.setVelocity(vec);
+		assertTrue(vel.equals(vec));
 	}
 
 	@Test
 	public void testSetAcceleration() {
-		assertTrue(true);
+		Vector2f vec= new Vector2f(3, 3);
+		mc.setAcceleration(vec);
+		assertTrue(acc.equals(vec));
 	}
 
 	@Test
 	public void testSetDirection() {
-		assertTrue(true);
+		Vector2f vec= new Vector2f(4, 3);
+		mc.setDirection(vec);
+		assertTrue(dir.equals(vec));
 	}
 
 	@Test
 	public void testSetPosition() {
-		assertTrue(true);
+		Point2f point= new Point2f(67, 3);
+		mc.setPosition(point);
+		assertTrue(pos.equals(point));
 	}
 }

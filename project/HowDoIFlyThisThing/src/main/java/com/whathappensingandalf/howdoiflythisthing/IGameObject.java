@@ -9,7 +9,8 @@ public interface IGameObject {
 		SPACESHIP,
 		PROJECTILE,
 		ASTEROID,
-		PICKUP
+		PICKUP,
+		HEALTH_PICKUP
 	}
 	public String getType();
 }

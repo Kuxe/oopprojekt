@@ -73,7 +73,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         rotationAcceleration = new TypeWrapper(0.0f);
         rotationVelocity = new TypeWrapper(0.0f);        
         this.WEAPON_PIPE_POSITION = new Vector2f(0.0f, height/2 + 30.0f); //Should fire from middle of spaceships just infront of it
-        this.hull=100;
+        this.hull=10;
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, this.rotationVelocity, this.rotationAcceleration);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
 		this.armsComponent = new ArmsComponent(this.position, velocity, new Vector2f(0,0), this.direction, WEAPON_PIPE_POSITION);
@@ -250,7 +250,10 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		this.remove();
 	}
 
-	public void visit(Projectile projectile) {
+	public void visit(HealthPickup healthPickup) {
+		this.hull+=healthPickup.getHealth();
+	}
+	public void visit(IProjectile projectile) {
 		this.hurt(projectile.getDamage());
 	}
 	

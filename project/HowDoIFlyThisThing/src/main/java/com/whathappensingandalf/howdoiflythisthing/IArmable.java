@@ -9,5 +9,5 @@ import java.beans.PropertyChangeListener;
 public interface IArmable {
     public ArmsComponent getWeapon();
     public void setWeapon(ArmsComponent weapon);
-    public Projectile fireWeapon();
+    public IProjectile fireWeapon();
 }
