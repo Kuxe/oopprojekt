@@ -80,4 +80,14 @@ class ThrusterComponent {
 	public void deactivateRightThruster(){
 		this.rightThruster.deactivate();
 	}
+	
+	public boolean isMainThusterActive(){
+		return mainThruster.isThrusterActive();
+	}
+	public boolean isLeftThusterActive(){
+		return leftThruster.isThrusterActive();
+	}
+	public boolean isRightThusterActive(){
+		return rightThruster.isThrusterActive();
+	}
 }
