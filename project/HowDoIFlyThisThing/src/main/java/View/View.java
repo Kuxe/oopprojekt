@@ -29,7 +29,7 @@ public class View extends BasicGame implements ApplicationListener{
 	private AppGameContainer container;
 	
 	private Set<DrawableData> renderObjects;
-	private SpriteSheet spaceship,shott,asteroid;
+	private SpriteSheet spaceship,shott,asteroid,healthPack;
 	private Image background;
 	private Color colorFilter;
 	private int backgroundWidth, backgroundHeight;
@@ -155,6 +155,7 @@ public class View extends BasicGame implements ApplicationListener{
 			spaceship=new SpriteSheet("resources/Spaceship.png",50,50, colorFilter);
 			shott=new SpriteSheet("resources/Shott.png",3,3, colorFilter);
 			asteroid=new SpriteSheet("resources/Asteroid.png",100,100, colorFilter);
+			healthPack=new SpriteSheet("resources/HealthPack.png",25,25, colorFilter);
 			background = new Image("resources/scrollingbackgroundLarge.png");
 		} catch (SlickException e) {
 			e.printStackTrace();
