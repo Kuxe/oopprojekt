@@ -15,29 +15,29 @@ import javax.vecmath.Point2f;
 public class HealthPickup implements ICollidable{
 	
 	private CollidableComponent collidableComp;
-	private Point2f possition;
+	private Point2f position;
 	private int radius;
 	
-	public HealthPickup(Point2f possition, int radius){
-		this.possition=new Point2f();
+	public HealthPickup(Point2f position, int radius){
+		this.position=new Point2f();
 		this.radius=radius;
-		collidableComp = new CollidableComponent(possition, radius);
+		collidableComp = new CollidableComponent(position, radius);
 	}
 
 	public boolean collideDetection(ICollidable rhs) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.collidableComp.collideDetection(rhs);
 	}
 
 	public int getHeight() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.radius;
 	}
 
 	public int getWidth() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.radius;
 	}
 
 	public Point2f getPosition() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return new Point2f(this.position);
 	}
 
 	public String getType() {
