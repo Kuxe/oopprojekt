@@ -13,6 +13,8 @@ import java.util.Set;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
+import services.SoundEffects;
+
 import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
 
@@ -54,12 +56,15 @@ public class Gameworld implements PropertyChangeListener{
 	
 	private WorldBorder worldBorder;
 	
+	private Set<String> soundSet;
+	
 	public Gameworld(){
 		moveables = 					new HashMap();
 		collidables =					new HashMap();
 		removalMap = 					new HashMap();
 		listOfObjectsToBeRemoved = 		new HashSet();
 		drawables =						new HashMap();
+		soundSet= 						new HashSet();
 		
 		worldBorder=new WorldBorder(540,1080);
 		
@@ -253,10 +258,13 @@ public class Gameworld implements PropertyChangeListener{
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_FIRE.toString())) {
 			addProjectile((Projectile)evt.getOldValue());
+			soundSet.add(SoundEffects.sound.SPACESHIP_FIRE.toString());
 		} else if(evt.getPropertyName().equals(Projectile.Message.PROJECTILE_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
+			soundSet.add(SoundEffects.sound.PROJECTILE_DIE.toString());
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
+			soundSet.add(SoundEffects.sound.SPACESHIP_DIE.toString());
 		}
 	}
 	
@@ -271,5 +279,9 @@ public class Gameworld implements PropertyChangeListener{
 	
 	public WorldBorder getBorder() {
 		return worldBorder;
+	}
+	
+	public Set<String> getSoundSet(){
+		return soundSet;
 	}
 }
