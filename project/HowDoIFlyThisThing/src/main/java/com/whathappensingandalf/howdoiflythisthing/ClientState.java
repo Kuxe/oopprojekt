@@ -83,7 +83,7 @@ public class ClientState implements ModelNetworkState {
 		System.out.println(" done!");
 	}
 
-	public Set<String> getSoundSet() {
+	public Set<String> getListOfSounds() {
 		// TODO Auto-generated method stub
 		return null;
 	}

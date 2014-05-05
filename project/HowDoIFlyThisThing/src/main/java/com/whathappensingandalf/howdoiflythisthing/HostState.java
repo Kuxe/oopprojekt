@@ -141,8 +141,7 @@ public class HostState implements ModelNetworkState{
 		System.out.println(" done!");
 	}
 
-	public Set<String> getSoundSet() {
-		// TODO Auto-generated method stub
-		return null;
+	public Set<String> getListOfSounds(){
+		return round.getListOfSounds();
 	}
 }

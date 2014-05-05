@@ -21,7 +21,7 @@ public class SoundEffects implements PropertyChangeListener{
 		SPACESHIP_DIE, SPACESHIP_FIRE, PROJECTILE_DIE
 	}
 
-	public SoundEffects(Gameworld gameworld){
+	public SoundEffects(){
 		createSpaceshipFireSound();
 		createProjectileDieSound();
 		createSpaceshipDieSound();

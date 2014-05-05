@@ -51,7 +51,7 @@ public class NoneState implements ModelNetworkState {
 		
 	}
 
-	public Set<String> getSoundSet() {
+	public Set<String> getListOfSounds() {
 		// TODO Auto-generated method stub
 		return null;
 	}
