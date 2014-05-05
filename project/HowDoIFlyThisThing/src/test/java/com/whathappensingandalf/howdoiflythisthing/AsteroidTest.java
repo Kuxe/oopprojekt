@@ -10,16 +10,22 @@ public class AsteroidTest {
 
 	@Test
 	public void testAsteroidPoint2fIntInt() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAsteroidAsteroid() {
 		Asteroid testAsteroid=new Asteroid(new Point2f(30,40),10,20);
 		assertTrue(testAsteroid.getPosition().x==30 &&
 				testAsteroid.getPosition().y==40 &&
 				testAsteroid.getWidth()==10 &&
 				testAsteroid.getHeight()==20);
+	}
+
+	@Test
+	public void testAsteroidAsteroid() {
+		Asteroid testAsteroid=new Asteroid(new Point2f(30,40),10,20);
+		Asteroid testAsteroid2=new Asteroid(testAsteroid);
+		assertTrue(testAsteroid2.getPosition()==testAsteroid.getPosition() &&
+				testAsteroid2.getPosition().x==30 &&
+				testAsteroid2.getPosition().y==40 &&
+				testAsteroid2.getWidth()==10 &&
+				testAsteroid2.getHeight()==20);
 	}
 
 	@Test
