@@ -50,7 +50,8 @@ public class AsteroidTest {
 
 	@Test
 	public void testGetType() {
-		fail("Not yet implemented");
+		Asteroid testAsteroid=new Asteroid(new Point2f(30,40),10,20);
+		assertTrue(testAsteroid.getType().equals("ASTEROID"));
 	}
 
 	@Test
