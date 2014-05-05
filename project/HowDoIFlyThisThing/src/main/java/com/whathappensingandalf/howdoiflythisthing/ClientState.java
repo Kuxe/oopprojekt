@@ -23,6 +23,7 @@ public class ClientState implements ModelNetworkState {
 
 	private Client client;
 	private Set<DrawableData> drawables;
+	private Set<String> sounds;
 	private Point2f spaceshipPoint;
 	
 	private long timerStart;
@@ -35,6 +36,7 @@ public class ClientState implements ModelNetworkState {
 		
 		client = new Client();
 		drawables = new HashSet();
+		sounds = new HashSet();
 		
 		timerStart = System.nanoTime();
 		timerStop = System.nanoTime();
@@ -98,7 +100,6 @@ public class ClientState implements ModelNetworkState {
 	}
 
 	public Set<String> getListOfSounds() {
-		// TODO Auto-generated method stub
-		return null;
+		return sounds;
 	}
 }
