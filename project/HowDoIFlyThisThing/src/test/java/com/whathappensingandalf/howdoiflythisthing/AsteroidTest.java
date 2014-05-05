@@ -51,7 +51,8 @@ public class AsteroidTest {
 	public void testGetPosition() {
 		Point2f testPoint=new Point2f(30,40);
 		Asteroid testAsteroid=new Asteroid(testPoint,10,20);
-		assertTrue(testAsteroid.getPosition()==testPoint);
+		assertTrue(testAsteroid.getPosition().x==testPoint.x &&
+				testAsteroid.getPosition().y==testPoint.y);
 	}
 
 	@Test
