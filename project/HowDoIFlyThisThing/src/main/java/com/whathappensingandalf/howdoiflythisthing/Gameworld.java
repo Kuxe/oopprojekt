@@ -119,9 +119,10 @@ public class Gameworld implements PropertyChangeListener{
 	 * @param object
 	 */
 	public void slateObjectForRemoval(Object object) {
-		listOfObjectsToBeRemoved.add(object);
+		if(object != null) {
+			listOfObjectsToBeRemoved.add(object);
+		}
 	}
-	
 	/**
 	 * Method for removing an object from all HashMaps which it has been placed into
 	 * Should ALWAYS be called whenever a gameworld object is destroyed or killed
