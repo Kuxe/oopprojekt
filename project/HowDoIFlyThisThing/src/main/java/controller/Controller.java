@@ -21,6 +21,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	
 	private HowDoIFlyThisThing model;
 	private ViewThread viewThread;
+	private SoundEffects soundEffects;
 	
 	boolean running = false;
 	
@@ -49,6 +50,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		viewThread.getView().getContainer().getInput().addKeyListener(this);
 		viewThread.getView().addPropertyChangeListener(this);
 		
+		soundEffects= new SoundEffects();
 	}
 	
 	public Controller(String ip){
@@ -141,6 +143,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 			running = false;
 		}		
 	}
-
+	public Set<String> getListOfSounds(){
+		return model.getListOfSounds();
+	}
 }
-

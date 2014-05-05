@@ -24,4 +24,5 @@ public interface ModelNetworkState {
 	public Set<DrawableData> getDrawableData();
 	public Point2f getSpaceshipPoint();
 	public void cleanup();
+	public Set<String> getListOfSounds();
 }

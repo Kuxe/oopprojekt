@@ -153,4 +153,8 @@ public class HostState implements ModelNetworkState{
 		server.stop();
 		System.out.println(" done!");
 	}
+
+	public Set<String> getListOfSounds(){
+		return round.getListOfSounds();
+	}
 }

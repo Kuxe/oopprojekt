@@ -52,4 +52,7 @@ public class Round {
 	public Set<DrawableData> getDrawableData() {
 		return world.getDrawableData();
 	}
+	public Set<String> getListOfSounds(){
+		return world.getListOfSounds();
+	}
 }
