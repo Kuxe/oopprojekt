@@ -83,7 +83,18 @@ public class AsteroidTest {
 
 	@Test
 	public void testClone() {
-		fail("Not yet implemented");
+		Asteroid testAsteroid=new Asteroid(new Point2f(30,40),10,20);
+		Asteroid testAsteroidClone=testAsteroid.clone();
+		assertTrue(
+				testAsteroid!=testAsteroidClone &&
+				testAsteroid.getDirection()!=testAsteroidClone.getDirection() &&
+				testAsteroid.getDirection().x==testAsteroidClone.getDirection().x &&
+				testAsteroid.getDirection().y==testAsteroidClone.getDirection().y &&
+				testAsteroid.getPosition()!=testAsteroidClone.getPosition() &&
+				testAsteroid.getPosition().x==testAsteroidClone.getPosition().x &&
+				testAsteroid.getPosition().y==testAsteroidClone.getPosition().y &&
+				testAsteroid.getWidth()==testAsteroidClone.getWidth() &&
+				testAsteroid.getHeight()==testAsteroidClone.getHeight());
 	}
 
 }
