@@ -73,6 +73,8 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		}
 		viewThread.getView().getContainer().getInput().addKeyListener(this);
 		viewThread.getView().addPropertyChangeListener(this);
+		
+		soundEffects= new SoundEffects();
 	}
 	
 	/**
