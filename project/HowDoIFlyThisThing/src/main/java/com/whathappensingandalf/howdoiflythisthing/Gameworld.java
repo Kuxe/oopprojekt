@@ -198,7 +198,7 @@ public class Gameworld implements PropertyChangeListener{
 	 * Adds param projectile to the world
 	 * @param projectile
 	 */
-	public void addProjectile(Projectile projectile) {
+	public void addProjectile(IProjectile projectile) {
 		projectile.addPropertyChangeListener(this);
 		moveables.put(projectile, projectile);
 		collidables.put(projectile, projectile);
@@ -265,9 +265,9 @@ public class Gameworld implements PropertyChangeListener{
 	 */
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_FIRE.toString())) {
-			addProjectile((Projectile)evt.getOldValue());
+			addProjectile((IProjectile)evt.getOldValue());
 			listOfSounds.add(SoundEffects.sound.SPACESHIP_FIRE.toString());
-		} else if(evt.getPropertyName().equals(Projectile.Message.PROJECTILE_DIE.toString())) {
+		} else if(evt.getPropertyName().equals(IProjectile.Message.PROJECTILE_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
 			listOfSounds.add(SoundEffects.sound.PROJECTILE_DIE.toString());
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {

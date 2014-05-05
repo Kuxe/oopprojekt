@@ -15,7 +15,7 @@ import utils.TypeWrapper;
  *
  */
 
-public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable, Cloneable {
+public class Bullet implements IProjectile {
 	
 	private int width;
 	private int height;
@@ -32,9 +32,9 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	 */
 	private PropertyChangeSupport pcs;
 	
-	public static enum Message{
-		PROJECTILE_DIE
-	}
+//	public static enum Message{
+//		PROJECTILE_DIE
+//	}
 	
 	/**
 	 * Contructs a projectile with a specified position, velocity, acceleration and direction
@@ -46,7 +46,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	 * @param width
 	 * @param height
 	 */
-	public Projectile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, int width, int height){
+	public Bullet(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, int width, int height){
 		this.velocity= velocity;
 		this.acceleration= acceleration;
 		this.direction= direction;
@@ -62,7 +62,7 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 	 * Deep copy-ctor
 	 * @param projectile
 	 */
-	public Projectile(Projectile projectile) {
+	public Bullet(Bullet projectile) {
 		this(
 				projectile.getPosition(), 
 				projectile.getVelocity(), 
@@ -176,12 +176,16 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 		this.remove();
 	}
 
-	public void visit(Projectile projectile) {
+	public void visit(IProjectile projectile) {
 		//Do nothing
 	}
 	
 	public void visit(Asteroid asteroid) {
 		this.remove();
+	}
+	
+	public void visit(HealthPickup healthPickup) {
+		//Do nothing
 	}
 	/**
 	 * Adds a listener to this object.
@@ -198,8 +202,8 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 		this.pcs.removePropertyChangeListener(pcl);
 	}  
 	@Override
-	public Projectile clone() {
-		return new Projectile(this);
+	public Bullet clone() {
+		return new Bullet(this);
 	}
 	@Override
 	public boolean equals(Object obj){
@@ -212,10 +216,11 @@ public class Projectile implements IMovable, ICollidable, IGameObject, IDrawable
 		if(this.getClass()!= obj.getClass()){
 			return false;
 		}
-		Projectile p= (Projectile)obj;
+		Bullet p= (Bullet)obj;
 		return width== p.width && height== p.height && velocity.equals(p.velocity) && acceleration.equals(p.acceleration) &&
 				direction.equals(p.direction) && position.equals(position) && damage== p.damage;
 	}
+
 	/**
 	 * {@inheritDoc}
 	 */
