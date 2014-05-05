@@ -24,7 +24,9 @@ public class AsteroidTest {
 
 	@Test
 	public void testCollideDetection() {
-		fail("Not yet implemented");
+		Asteroid testAsteroid=new Asteroid(new Point2f(30,40),10,20);
+		Asteroid testAsteroid2=new Asteroid(new Point2f(30,30),10,20);
+		assertTrue(testAsteroid.collideDetection(testAsteroid2));
 	}
 
 	@Test
