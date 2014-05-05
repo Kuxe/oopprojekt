@@ -48,6 +48,8 @@ public interface ICollidable extends IListable{
 	 * @param asteroid
 	 */
 	public void visit(Asteroid asteroid);
+	
+	public void visit(HealthPickup healthPickup);
 	/**
 	 * @return the point most to the left
 	 */
