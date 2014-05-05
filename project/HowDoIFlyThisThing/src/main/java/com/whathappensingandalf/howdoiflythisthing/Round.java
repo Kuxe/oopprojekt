@@ -26,11 +26,9 @@ public class Round {
 						(float)Math.random() * world.getBorder().getWorldWidth(),
 						(float)Math.random() * world.getBorder().getWorldHeight()),
 				new Vector2f((float)Math.random(), (float)Math.random()));
-				
-		Asteroid ss2 = new Asteroid(new Point2f(500, 500), 100, 100);
+		
 		world.addSpaceship(ss);
 		user.setSpaceship(ss);
-		world.addAsteroid(ss2);
 	}
 	
 	public void removeUser(User user) {
