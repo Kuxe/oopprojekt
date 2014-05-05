@@ -50,4 +50,9 @@ public class NoneState implements ModelNetworkState {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public Set<String> getSoundSet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

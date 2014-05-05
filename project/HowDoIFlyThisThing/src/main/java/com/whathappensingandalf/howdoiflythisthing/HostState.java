@@ -140,4 +140,9 @@ public class HostState implements ModelNetworkState{
 		server.stop();
 		System.out.println(" done!");
 	}
+
+	public Set<String> getSoundSet() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
