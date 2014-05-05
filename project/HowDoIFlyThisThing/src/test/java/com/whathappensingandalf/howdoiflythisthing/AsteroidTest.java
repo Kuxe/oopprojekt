@@ -38,12 +38,14 @@ public class AsteroidTest {
 	@Test
 	public void testGetWidth() {
 		Asteroid testAsteroid=new Asteroid(new Point2f(30,40),10,20);
-		assertTrue(testAsteroid.getWidth()==20);
+		assertTrue(testAsteroid.getWidth()==10);
 	}
 
 	@Test
 	public void testGetPosition() {
-		fail("Not yet implemented");
+		Point2f testPoint=new Point2f(30,40);
+		Asteroid testAsteroid=new Asteroid(testPoint,10,20);
+		assertTrue(testAsteroid.getPosition()==testPoint);
 	}
 
 	@Test
