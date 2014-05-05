@@ -22,8 +22,9 @@ import com.esotericsoftware.kryonet.Listener;
 public class ClientState implements ModelNetworkState {
 
 	private Client client;
-	HashSet<DrawableData> drawables;
-	Point2f spaceshipPoint;
+	private HashSet<DrawableData> drawables;
+	private Point2f spaceshipPoint;
+	
 	
 	public ClientState(String ip) {
 		
