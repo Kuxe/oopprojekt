@@ -18,7 +18,7 @@ public class SoundEffects implements PropertyChangeListener{
 	private AudioClip spaceshipDieSound;
 
 	public SoundEffects(Gameworld gameworld){
-		gameworld.addObserver(this);
+//		gameworld.addObserver(this);
 		createSpaceshipFireSound();
 		createProjectileDieSound();
 		createSpaceshipDieSound();

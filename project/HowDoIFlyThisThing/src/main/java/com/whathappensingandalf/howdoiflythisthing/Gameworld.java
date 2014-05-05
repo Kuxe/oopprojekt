@@ -40,7 +40,6 @@ public class Gameworld implements PropertyChangeListener{
 	private Map<Object, IMovable> moveables;
 	private Map<Object, ICollidable> collidables;
 	private Map<Object, IDrawable> drawables;
-	private PropertyChangeSupport pcs= new PropertyChangeSupport(this);
 	
 	/**
 	 * HashMap which is unlocked by any gameworld object, ie spaceship.
@@ -70,30 +69,35 @@ public class Gameworld implements PropertyChangeListener{
 	public Set<DrawableData> getDrawableData() {
 		HashSet<DrawableData> set = new HashSet();
 		for(IDrawable drawable : drawables.values()) {
-			if(drawable.getType().equals("SPACESHIP")){
-				
-				set.add(new DrawableData(
-						new Point2f(drawable.getPosition().x-drawable.getDirection().x*25,
-						drawable.getPosition().y-drawable.getDirection().y*25),
-						3,
-						3,
-						drawable.getDirection(),
-						""));
-				set.add(new DrawableData(
-						new Point2f(drawable.getPosition().x-drawable.getDirection().x*25-drawable.getDirection().y*10,
-						drawable.getPosition().y-drawable.getDirection().y*25+drawable.getDirection().x*10),
-						3,
-						3,
-						drawable.getDirection(),
-						""));
-				set.add(new DrawableData(
-						new Point2f(drawable.getPosition().x-drawable.getDirection().x*25+drawable.getDirection().y*10,
-						drawable.getPosition().y-drawable.getDirection().y*25-drawable.getDirection().x*10),
-						3,
-						3,
-						drawable.getDirection(),
-						""));
-			}
+//			if(drawable.getType().equals("SPACESHIP")){
+//				if(((Spaceship)drawable).isMainThusterActive()){
+//					set.add(new DrawableData(
+//							new Point2f(drawable.getPosition().x-drawable.getDirection().x*25,
+//							drawable.getPosition().y-drawable.getDirection().y*25),
+//							3,
+//							3,
+//							drawable.getDirection(),
+//							""));
+//				}
+//				if(((Spaceship)drawable).isRightThusterActive()){
+//					set.add(new DrawableData(
+//							new Point2f(drawable.getPosition().x-drawable.getDirection().x*25-drawable.getDirection().y*10,
+//							drawable.getPosition().y-drawable.getDirection().y*25+drawable.getDirection().x*10),
+//							3,
+//							3,
+//							drawable.getDirection(),
+//							""));
+//				}
+//				if(((Spaceship)drawable).isLeftThusterActive()){
+//					set.add(new DrawableData(
+//							new Point2f(drawable.getPosition().x-drawable.getDirection().x*25+drawable.getDirection().y*10,
+//							drawable.getPosition().y-drawable.getDirection().y*25-drawable.getDirection().x*10),
+//							3,
+//							3,
+//							drawable.getDirection(),
+//							""));
+//				}
+//			}
 			set.add(new DrawableData(	drawable.getPosition(),
 										drawable.getWidth(),
 										drawable.getHeight(),
@@ -254,13 +258,10 @@ public class Gameworld implements PropertyChangeListener{
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_FIRE.toString())) {
 			addProjectile((Projectile)evt.getOldValue());
-			pcs.firePropertyChange("SpaceShipFire", 0, 1);
 		} else if(evt.getPropertyName().equals(Projectile.Message.PROJECTILE_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
-			pcs.firePropertyChange("ProjectileDie", 0, 1);
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
-			pcs.firePropertyChange("SpaceshipDie", 0, 1);
 		}
 	}
 	
@@ -275,11 +276,5 @@ public class Gameworld implements PropertyChangeListener{
 	
 	public WorldBorder getBorder() {
 		return worldBorder;
-	}
-	public void addObserver(PropertyChangeListener listener){
-		pcs.addPropertyChangeListener(listener);
-	}
-	public void removeObserver(PropertyChangeListener listener){
-		pcs.removePropertyChangeListener(listener);
 	}
 }

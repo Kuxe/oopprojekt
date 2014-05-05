@@ -28,15 +28,41 @@ public class ProjectileTest implements PropertyChangeListener{
 	private Spaceship ss= SpaceshipFactory.create(new Point2f(1, 1), vec, 50, 50);
 	private Asteroid ast= AsteroidFactory.create(new Point2f(1, 1), 100, 100);
 
+	@Before
+	public void setUp() {
+		isRemoved= false;
+	}
+	
+	@After
+	public void tearDown() {
+		pro.removePropertyChangeListener(this);
+	}
+	
 	@Test
 	public void testProjectilePoint2fVector2fVector2fVector2fIntInt(){
-//		should constructor be tested?
-		assertTrue(true);
+		Point2f pos= new Point2f(1, 1);
+		Vector2f vel= new Vector2f(2, 2);
+		Vector2f acc= new Vector2f(3, 3);
+		Vector2f dir= new Vector2f(4, 4);
+		int w= 10;
+		int h= 7;
+		Projectile p= new Projectile(pos, vel, acc, dir, w, h);
+		assertTrue(p.getPosition().equals(pos) && p.getVelocity().equals(vel) && p.getAcceleration().equals(acc) &&
+				p.getDirection().equals(dir) && p.getWidth()== w && p.getHeight()== h);
 		}
 
 	@Test
 	public void testProjectileProjectile() {
-		assertTrue(true);
+		Point2f pos= new Point2f(1, 1);
+		Vector2f vel= new Vector2f(2, 2);
+		Vector2f acc= new Vector2f(3, 3);
+		Vector2f dir= new Vector2f(4, 4);
+		int w= 10;
+		int h= 7;
+		Projectile p= new Projectile(pos, vel, acc, dir, w, h);
+		Projectile pr= new Projectile(p);
+		assertTrue(pr.getPosition().equals(pos) && pr.getVelocity().equals(vel) && pr.getAcceleration().equals(acc) &&
+				pr.getDirection().equals(dir) && pr.getWidth()== w && pr.getHeight()== h);
 	}
 
 	@Test
@@ -51,7 +77,8 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testRemove(){
-		isRemoved= false;
+//		isRemoved= false;
+		System.out.println(isRemoved);
 		pro.addPropertyChangeListener(this);
 		pro.remove();
 		assertTrue(isRemoved);
@@ -149,16 +176,16 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testAccept() {
+//		isRemoved= false;
 		pro.addPropertyChangeListener(this);
-		isRemoved= false;
 		pro.accept(pro2);
 		assertTrue(!isRemoved);
 	}
 
 	@Test
 	public void testVisitSpaceship() {
+//		isRemoved= false;
 		pro.addPropertyChangeListener(this);
-		isRemoved= false;
 		pro.visit(ss);
 		assertTrue(isRemoved);
 	}
@@ -171,24 +198,24 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testVisitAsteroid() {
+//		isRemoved= false;
 		pro.addPropertyChangeListener(this);
-		isRemoved= false;
 		pro.visit(ast);
 		assertTrue(isRemoved);
 	}
 
 	@Test
 	public void testAddPropertyChangeListener() {
+//		isRemoved= false;
 		pro.addPropertyChangeListener(this);
-		isRemoved= false;
 		pro.remove();
 		assertTrue(isRemoved);
 	}
 
 	@Test
 	public void testRemovePropertyChangeListener() {
+//		isRemoved= false;
 		pro.removePropertyChangeListener(this);
-		isRemoved= false;
 		pro.remove();;
 		assertTrue(!isRemoved);
 	}
