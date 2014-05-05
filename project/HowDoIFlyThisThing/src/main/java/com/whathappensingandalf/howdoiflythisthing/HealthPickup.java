@@ -18,11 +18,16 @@ public class HealthPickup implements ICollidable, IGameObject, IDrawable, Clonea
 	private CollidableComponent collidableComp;
 	private Point2f position;
 	private int radius;
+	private int health;
 	
-	public HealthPickup(Point2f position, int radius){
+	public HealthPickup(Point2f position, int radius, int health){
 		this.position=new Point2f();
 		this.radius=radius;
+		this.health = health;
 		collidableComp = new CollidableComponent(position, radius);
+	}
+	public int getHealth(){
+		return this.health;
 	}
 
 	public boolean collideDetection(ICollidable rhs) {
@@ -66,6 +71,10 @@ public class HealthPickup implements ICollidable, IGameObject, IDrawable, Clonea
 	}
 
 	public IDrawable clone() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public void visit(HealthPickup healthPickup) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 	
