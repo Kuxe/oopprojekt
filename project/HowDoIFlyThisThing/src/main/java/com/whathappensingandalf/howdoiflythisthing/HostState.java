@@ -26,11 +26,19 @@ public class HostState implements ModelNetworkState{
 	private InetSocketAddress myIp;
 	private Set<Connection> connections;
 	
+	private long timerStart;
+	private long timerStop;
+	private final long timerInterval;
+	
 	public HostState() {
 		round = new Round();
 		users = new HashMap();
 		server = new Server();
 		connections = new HashSet();
+		
+		timerStart = System.nanoTime();
+		timerStop = System.nanoTime();
+		timerInterval = 20000000; //20ms in nanoseconds
 		
 		NetworkUtils.registerClasses(server.getKryo());
 		
@@ -105,12 +113,23 @@ public class HostState implements ModelNetworkState{
 	}
 	
 	public synchronized void sendPackets() {
-		//Send images to all clients
-		server.sendToAllTCP(round.getDrawableData());
-		//Send each spaceship point associated with each connection to the connected client
-		for(Connection connection : connections) {
-			connection.sendTCP(users.get(connection.getRemoteAddressTCP()).getSpaceshipPoint());
+		
+		if(timerStop - timerStart > timerInterval) {
+			
+			System.out.print("Host sending packets...");
+			
+			//Send images to all clients
+			server.sendToAllTCP(round.getDrawableData());
+			//Send each spaceship point associated with each connection to the connected client
+			for(Connection connection : connections) {
+				connection.sendTCP(users.get(connection.getRemoteAddressTCP()).getSpaceshipPoint());
+			}
+			
+			System.out.println(" done!");
+			
+			timerStart = System.nanoTime();
 		}
+		timerStop = System.nanoTime();
 	}
 
 	public Set<DrawableData> getDrawableData() {

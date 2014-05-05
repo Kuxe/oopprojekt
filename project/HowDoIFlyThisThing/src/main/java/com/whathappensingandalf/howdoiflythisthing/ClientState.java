@@ -25,6 +25,9 @@ public class ClientState implements ModelNetworkState {
 	private HashSet<DrawableData> drawables;
 	private Point2f spaceshipPoint;
 	
+	private long timerStart;
+	private long timerStop;
+	private final long timerInterval;
 	
 	public ClientState(String ip) {
 		
@@ -32,6 +35,10 @@ public class ClientState implements ModelNetworkState {
 		
 		client = new Client();
 		drawables = new HashSet();
+		
+		timerStart = System.nanoTime();
+		timerStop = System.nanoTime();
+		timerInterval = 20000000; //20ms in nanoseconds
 		
 		NetworkUtils.registerClasses(client.getKryo());
 		
@@ -66,8 +73,16 @@ public class ClientState implements ModelNetworkState {
 	}
 
 	public void update(Set<Integer> listOfHoldKeys) {
-		//Send listOfHoldKeys to server
-		client.sendTCP(new HoldKeysNetworkPacket(listOfHoldKeys));
+		
+		
+		if(timerStop - timerStart > timerInterval) {
+			//Send listOfHoldKeys to server
+			System.out.print("Client sending packets...");
+			client.sendTCP(new HoldKeysNetworkPacket(listOfHoldKeys));
+			System.out.println(" done!");
+			timerStart = System.nanoTime();
+		}
+		timerStop = System.nanoTime();
 	}
 
 	public HashSet<DrawableData> getDrawableData() {
