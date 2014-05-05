@@ -31,7 +31,7 @@ public class Round {
 		user.setSpaceship(ss);
 	}
 	
-	public void removeUser(User user) {
+	public void removeUserSpaceship(User user) {
 		world.slateObjectForRemoval(user.getSpaceship());
 	}
 

@@ -42,11 +42,15 @@ public class WeaponPickup implements ICollidable{
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
-	public void visit(Projectile projectile) {
+	public void visit(Asteroid asteroid) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
-	public void visit(Asteroid asteroid) {
+	public void visit(IProjectile projectile) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public void visit(HealthPickup healthPickup) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 	

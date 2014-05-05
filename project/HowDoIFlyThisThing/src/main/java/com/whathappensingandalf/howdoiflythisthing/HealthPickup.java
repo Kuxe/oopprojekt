@@ -65,7 +65,7 @@ public class HealthPickup implements ICollidable, IGameObject, IDrawable, Clonea
 		this.remove();
 	}
 
-	public void visit(Projectile projectile) {
+	public void visit(IProjectile projectile) {
 		//Nothing should happen.	
 	}
 

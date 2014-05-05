@@ -30,34 +30,17 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	private Set<Integer> listOfHoldKeys;
 	
 	public Controller(){
-		model = new HowDoIFlyThisThing();
-		
+		sharedCTOR();
 		model.host();
-		
-		listOfPressedKeys = new HashSet();
-		listOfReleasedKeys = new HashSet();
-		listOfHoldKeys = new HashSet();
-		
-		viewThread=new ViewThread();
-		viewThread.start();
-		try {
-			//HOWTO: make this thread sleep until a certain point in viewThread is reached?
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		viewThread.getView().getContainer().getInput().addKeyListener(this);
-		viewThread.getView().addPropertyChangeListener(this);
-		
-		soundEffects= new SoundEffects();
 	}
 	
 	public Controller(String ip){
-		model = new HowDoIFlyThisThing();
-		
+		sharedCTOR();
 		model.join(ip);
-		
+	}
+	
+	private void sharedCTOR() {
+		model = new HowDoIFlyThisThing();	
 		listOfPressedKeys = new HashSet();
 		listOfReleasedKeys = new HashSet();
 		listOfHoldKeys = new HashSet();
