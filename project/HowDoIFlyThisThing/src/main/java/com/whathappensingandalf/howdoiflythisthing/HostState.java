@@ -71,7 +71,6 @@ public class HostState implements ModelNetworkState{
 			}
 			
 			public void disconnected(Connection connection) {
-				System.out.println(connection);
 				System.out.println(connection.getID() + " disconnected");
 				round.removeUser(users.get(connection.getID()));
 				users.remove(connection.getID());
