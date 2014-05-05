@@ -29,9 +29,15 @@ public class View extends BasicGame implements ApplicationListener{
 	private AppGameContainer container;
 	
 	private Set<DrawableData> renderObjects;
-	private SpriteSheet spaceship,shott,asteroid,healthPack, nBackground;
+	private SpriteSheet spaceship,shott,asteroid,healthPack;
 
-	private SpriteSheet background;
+	private SpriteSheet background_1,
+						background_2,
+						background_3;
+	
+	private SpriteSheet planet_1;
+						
+						
 	private Color colorFilter;
 	private int backgroundWidth, backgroundHeight;
 	private Float f=0f;
@@ -114,11 +120,11 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	
 	private void drawScrollingImageForceDimension(GameContainer arg0, Graphics g, SpriteSheet image, float speed, int imageWidth, int imageHeight) {
-		int modx = (int) ((camera.x*speed + windowWidth/2) / (image.getWidth()/2));
-		int mody = (int) ((camera.y*speed + windowHeight/2) / (image.getHeight()/2));
+		int modx = (int) ((camera.x*speed + windowWidth/2) / (imageWidth/2));
+		int mody = (int) ((camera.y*speed + windowHeight/2) / (imageHeight/2));
 		g.drawImage(image, 
-					-windowWidth/2 + modx * image.getWidth()/2  - camera.x*speed,
-					-windowHeight/2 + mody * image.getHeight()/2 - camera.y*speed);
+					-windowWidth/2 + modx * imageWidth/2  - camera.x*speed,
+					-windowHeight/2 + mody * imageHeight/2 - camera.y*speed);
 	}
 	
 	/**
@@ -133,8 +139,8 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
-		drawScrollingImage(arg0, g, background, 0.05f);
-		drawScrollingImage(arg0, g, nBackground, 0.15f);
+		drawScrollingImage(arg0, g, background_1, 0.05f);
+		drawScrollingImage(arg0, g, background_2, 0.15f);
 
 		for(DrawableData comp: renderObjects){
 			
@@ -163,8 +169,11 @@ public class View extends BasicGame implements ApplicationListener{
 			shott=new SpriteSheet("resources/Shott.png",3,3, colorFilter);
 			asteroid=new SpriteSheet("resources/Asteroid.png",100,100, colorFilter);
 			healthPack=new SpriteSheet("resources/HealthPack.png",25,25, colorFilter);
-			nBackground = new SpriteSheet("resources/scrollingbackground_nth_layer.png", 1280, 960, colorFilter);
-			background = new SpriteSheet("resources/scrollingbackground_1st_layer.png", 1280, 960, colorFilter);
+			background_1 = new SpriteSheet("resources/scrollingbackground_1st_layer.png", 1280, 960, colorFilter);
+			background_2 = new SpriteSheet("resources/scrollingbackground_2nd_layer.png", 1280, 960, colorFilter);
+			background_3 = new SpriteSheet("resources/scrollingbackground_3rd_layer.png", 1280, 960, colorFilter);
+			
+			planet_1 = new SpriteSheet("resources/planet_1.png", 100, 100, colorFilter);
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}		
