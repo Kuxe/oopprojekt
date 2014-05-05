@@ -6,6 +6,8 @@
 
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
@@ -14,11 +16,14 @@ import javax.vecmath.Vector2f;
  * @author Martin
  */
 public class HealthPickup implements ICollidable, IGameObject, IDrawable, Cloneable{
-	
+	public static enum Message{
+		PICKUP_DIE
+	}
 	private CollidableComponent collidableComp;
 	private Point2f position;
 	private int radius;
 	private int health;
+	private PropertyChangeSupport pcs;
 	
 	public HealthPickup(Point2f position, int radius, int health){
 		this.position=new Point2f();
@@ -29,7 +34,9 @@ public class HealthPickup implements ICollidable, IGameObject, IDrawable, Clonea
 	public int getHealth(){
 		return this.health;
 	}
-
+	public void remove(){
+		this.pcs.firePropertyChange(HealthPickup.Message.PICKUP_DIE.toString(), this, true);
+	}
 	public boolean collideDetection(ICollidable rhs) {
 		return this.collidableComp.collideDetection(rhs);
 	}
@@ -55,7 +62,7 @@ public class HealthPickup implements ICollidable, IGameObject, IDrawable, Clonea
 	}
 
 	public void visit(Spaceship spaceship) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		this.remove();
 	}
 
 	public void visit(Projectile projectile) {
@@ -76,6 +83,20 @@ public class HealthPickup implements ICollidable, IGameObject, IDrawable, Clonea
 
 	public void visit(HealthPickup healthPickup) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+	/**
+	 * Adds a listener to this object.
+	 * @param pcl
+	 */
+    public void addPropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.addPropertyChangeListener(pcl);
+	}
+	/**
+	 * Adds a listener to this object.
+	 * @param pcl
+	 */
+    public void removePropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.removePropertyChangeListener(pcl);
 	}
 	
 }
