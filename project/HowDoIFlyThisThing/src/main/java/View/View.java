@@ -36,8 +36,8 @@ public class View extends BasicGame implements ApplicationListener{
 	private Float f=0f;
 	
 	private Point2f camera;
-	private final int windowWidth = 800;
-	private final int windowHeight = 600;
+	private final int windowWidth = 640;
+	private final int windowHeight = 480;
 	
 	private PropertyChangeSupport pcs;
 	
@@ -109,6 +109,10 @@ public class View extends BasicGame implements ApplicationListener{
 	 * Lower means slower (feels like object is farther from camera).
 	 */
 	private void drawScrollingImage(GameContainer arg0, Graphics g, Image image, float speed) {
+		drawScrollingImageForceDimension(arg0, g, image, speed, image.getWidth(), image.getHeight());
+	}
+	
+	private void drawScrollingImageForceDimension(GameContainer arg0, Graphics g, Image image, float speed, int imageWidth, int imageHeight) {
 		int modx = (int) ((camera.x*speed + windowWidth/2) / (image.getWidth()/2));
 		int mody = (int) ((camera.y*speed + windowHeight/2) / (image.getHeight()/2));
 		g.drawImage(background, 
@@ -128,7 +132,7 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
-		drawScrollingImage(arg0, g, background, 1.0f);
+		drawScrollingImage(arg0, g, background, 0.1f);
 		for(DrawableData comp: renderObjects){
 			
 			float tmpX,tmpY;
@@ -156,7 +160,7 @@ public class View extends BasicGame implements ApplicationListener{
 			shott=new SpriteSheet("resources/Shott.png",3,3, colorFilter);
 			asteroid=new SpriteSheet("resources/Asteroid.png",100,100, colorFilter);
 			healthPack=new SpriteSheet("resources/HealthPack.png",25,25, colorFilter);
-			background = new Image("resources/scrollingbackgroundLarge.png");
+			background = new Image("resources/scrollingbackground_1st_layer.png");
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
