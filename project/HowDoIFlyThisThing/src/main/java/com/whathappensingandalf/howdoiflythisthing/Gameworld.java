@@ -248,6 +248,8 @@ public class Gameworld implements PropertyChangeListener{
 	public void update(){
 		timestep.start();
 		
+		listOfSounds.clear();
+		
 		movableUpdate();
 		worldBounderyCheck();
 		collisionUpdate();
