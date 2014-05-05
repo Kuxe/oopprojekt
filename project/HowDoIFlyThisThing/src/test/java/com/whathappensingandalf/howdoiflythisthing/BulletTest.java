@@ -14,16 +14,15 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import com.whathappensingandalf.howdoiflythisthing.Projectile.Message;
 import com.whathappensingandalf.howdoiflythisthing.factorys.AsteroidFactory;
 import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
-public class ProjectileTest implements PropertyChangeListener{
+public class BulletTest implements PropertyChangeListener{
 	
 	private boolean isRemoved= false;
 	private Vector2f vec= new Vector2f(5, 5);
-	private Projectile pro= new Projectile(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
-	private Projectile pro2= new Projectile(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
+	private Bullet pro= new Bullet(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
+	private Bullet pro2= new Bullet(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
 //											position, velocity, acceleration, direction, width, height
 	private Spaceship ss= SpaceshipFactory.create(new Point2f(1, 1), vec, 50, 50);
 	private Asteroid ast= AsteroidFactory.create(new Point2f(1, 1), 100, 100);
@@ -46,7 +45,7 @@ public class ProjectileTest implements PropertyChangeListener{
 		Vector2f dir= new Vector2f(4, 4);
 		int w= 10;
 		int h= 7;
-		Projectile p= new Projectile(pos, vel, acc, dir, w, h);
+		Bullet p= new Bullet(pos, vel, acc, dir, w, h);
 		assertTrue(p.getPosition().equals(pos) && p.getVelocity().equals(vel) && p.getAcceleration().equals(acc) &&
 				p.getDirection().equals(dir) && p.getWidth()== w && p.getHeight()== h);
 		}
@@ -59,8 +58,8 @@ public class ProjectileTest implements PropertyChangeListener{
 		Vector2f dir= new Vector2f(4, 4);
 		int w= 10;
 		int h= 7;
-		Projectile p= new Projectile(pos, vel, acc, dir, w, h);
-		Projectile pr= new Projectile(p);
+		Bullet p= new Bullet(pos, vel, acc, dir, w, h);
+		Bullet pr= new Bullet(p);
 		assertTrue(pr.getPosition().equals(pos) && pr.getVelocity().equals(vel) && pr.getAcceleration().equals(acc) &&
 				pr.getDirection().equals(dir) && pr.getWidth()== w && pr.getHeight()== h);
 	}
@@ -222,12 +221,12 @@ public class ProjectileTest implements PropertyChangeListener{
 
 	@Test
 	public void testClone() {
-		Projectile p= pro.clone();
+		Bullet p= pro.clone();
 		assertTrue(p.equals(pro) && (p!=pro));
 	}
 
 	public void propertyChange(PropertyChangeEvent e) {
-		isRemoved= e.getPropertyName().equals(Message.PROJECTILE_DIE.toString());
+		isRemoved= e.getPropertyName().equals(IProjectile.Message.PROJECTILE_DIE.toString());
 	}
 	
 	@Test
