@@ -77,9 +77,7 @@ public class ClientState implements ModelNetworkState {
 		
 		if(timerStop - timerStart > timerInterval) {
 			//Send listOfHoldKeys to server
-			System.out.print("Client sending packets...");
 			client.sendTCP(new HoldKeysNetworkPacket(listOfHoldKeys));
-			System.out.println(" done!");
 			timerStart = System.nanoTime();
 		}
 		timerStop = System.nanoTime();

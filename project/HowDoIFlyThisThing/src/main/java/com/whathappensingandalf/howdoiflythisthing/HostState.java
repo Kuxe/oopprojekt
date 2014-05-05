@@ -114,19 +114,13 @@ public class HostState implements ModelNetworkState{
 	
 	public synchronized void sendPackets() {
 		
-		if(timerStop - timerStart > timerInterval) {
-			
-			System.out.print("Host sending packets...");
-			
+		if(timerStop - timerStart > timerInterval) {			
 			//Send images to all clients
 			server.sendToAllTCP(round.getDrawableData());
 			//Send each spaceship point associated with each connection to the connected client
 			for(Connection connection : connections) {
 				connection.sendTCP(users.get(connection.getRemoteAddressTCP()).getSpaceshipPoint());
-			}
-			
-			System.out.println(" done!");
-			
+			}			
 			timerStart = System.nanoTime();
 		}
 		timerStop = System.nanoTime();
