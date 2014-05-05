@@ -8,15 +8,17 @@ import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URL;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.whathappensingandalf.howdoiflythisthing.Gameworld;
 
-public class SoundEffects implements PropertyChangeListener{
+public class SoundEffects{
 
 	private AudioClip spaceshipFireSound;
 	private AudioClip projectileDieSound;
 	private AudioClip spaceshipDieSound;
-	
+
 	public enum sound{
 		SPACESHIP_DIE, SPACESHIP_FIRE, PROJECTILE_DIE
 	}
@@ -26,7 +28,7 @@ public class SoundEffects implements PropertyChangeListener{
 		createProjectileDieSound();
 		createSpaceshipDieSound();
 	}
-	
+
 	public void createSpaceshipFireSound(){
 		File file= new File("sounds/Gun_Shot.wav");
 		URI uri= file.toURI();
@@ -58,6 +60,20 @@ public class SoundEffects implements PropertyChangeListener{
 			spaceshipDieSound= Applet.newAudioClip(url);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
+		}
+	}
+	public void playSound(Set<String> listOfSounds){
+		if(listOfSounds== null){
+
+		}
+		for(String s: listOfSounds){
+			if (sound.SPACESHIP_FIRE.toString().equals(s)) {
+				spaceshipFireSound.play();
+			} else if (sound.PROJECTILE_DIE.toString().equals(s)) {
+				projectileDieSound.play();
+			} else if (sound.SPACESHIP_DIE.toString().equals(s)) {
+				spaceshipDieSound.play();
+			}
 		}
 	}
 }//end SoundEffects
