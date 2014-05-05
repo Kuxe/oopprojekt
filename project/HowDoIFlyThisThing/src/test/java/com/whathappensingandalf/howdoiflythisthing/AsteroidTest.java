@@ -21,11 +21,14 @@ public class AsteroidTest {
 	public void testAsteroidAsteroid() {
 		Asteroid testAsteroid=new Asteroid(new Point2f(30,40),10,20);
 		Asteroid testAsteroid2=new Asteroid(testAsteroid);
-		assertTrue(testAsteroid2.getPosition()==testAsteroid.getPosition() &&
-				testAsteroid2.getPosition().x==30 &&
+		assertTrue(testAsteroid2.getPosition().x==30 &&
 				testAsteroid2.getPosition().y==40 &&
 				testAsteroid2.getWidth()==10 &&
-				testAsteroid2.getHeight()==20);
+				testAsteroid2.getHeight()==20 &&
+				testAsteroid2.getPosition().x==testAsteroid.getPosition().x &&
+				testAsteroid2.getPosition().y==testAsteroid.getPosition().y &&
+				testAsteroid2.getWidth()==testAsteroid.getWidth() &&
+				testAsteroid2.getHeight()==testAsteroid.getHeight());
 	}
 
 	@Test
