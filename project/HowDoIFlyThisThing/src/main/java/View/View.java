@@ -134,9 +134,8 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 		drawScrollingImage(arg0, g, background, 0.05f);
-		for(float f = 0.1f; f < 1.0f; f += 0.001f) {
-			drawScrollingImage(arg0, g, nBackground, f);
-		}
+		drawScrollingImage(arg0, g, nBackground, 0.15f);
+
 		for(DrawableData comp: renderObjects){
 			
 			float tmpX,tmpY;
