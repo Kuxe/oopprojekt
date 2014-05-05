@@ -8,7 +8,8 @@ public class WorldBorderTest {
 
 	@Test
 	public void testWorldBorder() {
-		fail("Not yet implemented");
+		WorldBorder border=new WorldBorder(10,20);
+		assertTrue(border.getWorldHeight()==10 && border.getWorldWidth()==20);
 	}
 
 }
