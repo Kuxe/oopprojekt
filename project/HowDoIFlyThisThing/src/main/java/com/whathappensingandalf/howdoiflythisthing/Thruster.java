@@ -90,4 +90,8 @@ public class Thruster {
 			return 0.0f;
 		}
 	}
+	
+	public boolean isThrusterActive(){
+		return active;
+	}
 }
