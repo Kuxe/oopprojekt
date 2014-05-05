@@ -46,7 +46,7 @@ public class HealthPickup implements ICollidable, IGameObject, IDrawable, Clonea
 	}
 
 	public void accept(ICollidable visitor) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		visitor.visit(this);
 	}
 
 	public void visit(Spaceship spaceship) {
