@@ -86,7 +86,7 @@ public class HostState implements ModelNetworkState{
 				connections.remove(connection);
 			}
 		});	
-		addUser(0);
+		addUser(0); //Host ID is 0. Connection IDs start from 1 and go upward.
 		myUser = users.get(0);
 		myUser.setListOfHoldKeys(new HashSet<Integer>());
 	}
