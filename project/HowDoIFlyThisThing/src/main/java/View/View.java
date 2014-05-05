@@ -27,7 +27,6 @@ import com.whathappensingandalf.howdoiflythisthing.IDrawable;
 public class View extends BasicGame implements ApplicationListener{
 	
 	private AppGameContainer container;
-//	private GameWindow game;
 	
 	private Set<DrawableData> renderObjects;
 	private SpriteSheet spaceship,shott,asteroid;
@@ -129,20 +128,9 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
-//		g.translate(100, 100);
-//		g.rotate(25, 25, f);
-//		f++;
 		drawScrollingImage(arg0, g, background, 1.0f);
 		for(DrawableData comp: renderObjects){
 			
-			System.out.println(comp.getType());
-			
-//			System.out.println();
-//			System.out.println("Name: "+comp.getType());
-//			System.out.println("Pos X: "+comp.getPossition().x);
-//			System.out.println("Pos Y: "+comp.getPossition().y);
-//			System.out.println("Dir X: "+comp.getDirection().x);
-//			System.out.println("Dir X: "+comp.getDirection().y);
 			float tmpX,tmpY;
 			Image tmpImg;
 			if(comp.getType().equals("SPACESHIP")){
@@ -152,14 +140,11 @@ public class View extends BasicGame implements ApplicationListener{
 			}else{
 				tmpImg=shott.copy();
 			}
-//			System.out.println(comp.getWidth());
-//			System.out.println(comp.getDirection().x);
 			tmpX=comp.getPosition().x-comp.getWidth()/2;
 			tmpY=comp.getPosition().y-comp.getHeight()/2;
 			tmpImg.rotate(calculateRotation(comp.getDirection()));
 			g.drawImage(tmpImg, tmpX - camera.x + windowWidth/2, tmpY - camera.y + windowHeight/2);
 		}
-//		System.out.println("-------------------------------------------------");
 		drawBorder(arg0, g);
 	}
 
@@ -185,11 +170,7 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 
 	@Override
-	public void update(GameContainer arg0, int arg1) throws SlickException {
-//		for(IDrawable comp: renderObjects.values()){
-//			
-//		}
-		
+	public void update(GameContainer arg0, int arg1) throws SlickException {		
 	}
 	
 	private float calculateRotation(Vector2f vector){
@@ -203,7 +184,6 @@ public class View extends BasicGame implements ApplicationListener{
 		}else{
 			return this.radinanToDegrees((float)(2*Math.PI-f1));
 		}
-//		return radinanToDegrees(vector.angle(ex));
 	}
 	
 	private float radinanToDegrees(float angle){
