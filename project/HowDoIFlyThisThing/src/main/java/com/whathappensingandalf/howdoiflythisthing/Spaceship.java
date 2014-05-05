@@ -250,7 +250,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		this.remove();
 	}
 
-	public void visit(Projectile projectile) {
+	public void visit(IProjectile projectile) {
 		this.hurt(projectile.getDamage());
 	}
 	
