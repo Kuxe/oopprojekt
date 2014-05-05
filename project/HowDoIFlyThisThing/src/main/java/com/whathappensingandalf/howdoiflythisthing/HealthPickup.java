@@ -66,11 +66,11 @@ public class HealthPickup implements ICollidable, IGameObject, IDrawable, Clonea
 	}
 
 	public void visit(Projectile projectile) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//Nothing should happen.	
 	}
 
 	public void visit(Asteroid asteroid) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		this.remove();
 	}
 
 	public Vector2f getDirection() {
