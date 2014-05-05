@@ -2,6 +2,8 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import static org.junit.Assert.*;
 
+import javax.vecmath.Point2f;
+
 import org.junit.Test;
 
 public class AsteroidTest {
@@ -13,7 +15,11 @@ public class AsteroidTest {
 
 	@Test
 	public void testAsteroidAsteroid() {
-		fail("Not yet implemented");
+		Asteroid testAsteroid=new Asteroid(new Point2f(30,40),10,20);
+		assertTrue(testAsteroid.getPosition().x==30 &&
+				testAsteroid.getPosition().y==40 &&
+				testAsteroid.getWidth()==10 &&
+				testAsteroid.getHeight()==20);
 	}
 
 	@Test
