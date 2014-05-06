@@ -199,8 +199,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public void addPropertyChangeListener(PropertyChangeListener pcl) {
-		// TODO Auto-generated method stub
-		
+		this.pcs.addPropertyChangeListener(pcl);
 	}
 
 }
