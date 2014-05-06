@@ -49,7 +49,7 @@ public class WeaponPickup implements IPickup{
 	}
 
 	public Point2f getPosition() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return new Point2f(this.position);
 	}
 
 	public String getType() {
