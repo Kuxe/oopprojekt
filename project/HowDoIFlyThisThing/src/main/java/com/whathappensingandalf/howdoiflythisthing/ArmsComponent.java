@@ -48,7 +48,7 @@ public class ArmsComponent {
 		return this.type;
 	}
 	
-	public boolean isTimerDone(){
+	public boolean canFire(){
 		return timer.isTimerDone();
 	}
 	
