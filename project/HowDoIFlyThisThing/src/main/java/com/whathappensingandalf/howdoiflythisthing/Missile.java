@@ -73,8 +73,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public Vector2f getDirection() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Vector2f(this.direction.x,this.direction.y);
 	}
 
 	@Override
