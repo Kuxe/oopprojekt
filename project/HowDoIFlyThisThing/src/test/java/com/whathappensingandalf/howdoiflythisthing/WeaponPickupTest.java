@@ -45,6 +45,11 @@ public class WeaponPickupTest  implements PropertyChangeListener{
 
 	@Test
 	public void testAffectMe() {
+		Spaceship s = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50);
+		Missile projectile = new Missile(new Point2f(1,1), new Vector2f(1,1), new Vector2f(1,1), new Vector2f(1,1),5,5);
+		WeaponPickup wp2 = new WeaponPickup(new Point2f(100, 100), 5, projectile);
+		wp2.affectMe(s);
+		assertTrue(s.getWeapon().equals(projectile.getType()));
 	}
 
 	@Test
