@@ -147,8 +147,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public void accept(ICollidable visitor) {
-		// TODO Auto-generated method stub
-		
+		visitor.visit(this);
 	}
 
 	@Override
