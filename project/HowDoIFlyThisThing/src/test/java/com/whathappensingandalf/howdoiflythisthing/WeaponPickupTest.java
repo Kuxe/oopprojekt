@@ -61,6 +61,8 @@ public class WeaponPickupTest  implements PropertyChangeListener{
 
 	@Test
 	public void testCollideDetection() {
+		WeaponPickup wp2 = new WeaponPickup(new Point2f(102,102), 5, projectile);
+		assertTrue(wp.collideDetection(wp2));
 	}
 
 	@Test
