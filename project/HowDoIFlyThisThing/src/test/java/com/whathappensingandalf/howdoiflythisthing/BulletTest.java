@@ -165,7 +165,7 @@ public class BulletTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetType() {
-		assertTrue(pro.getType().equals("PROJECTILE"));
+		assertTrue(pro.getType().equals("BULLET"));
 	}
 
 	@Test
