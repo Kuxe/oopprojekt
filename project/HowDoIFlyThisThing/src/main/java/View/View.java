@@ -23,13 +23,14 @@ import org.newdawn.slick.SpriteSheet;
 
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.IDrawable;
+import com.whathappensingandalf.howdoiflythisthing.IGameObject;
 
 public class View extends BasicGame implements ApplicationListener{
 	
 	private AppGameContainer container;
 	
 	private Set<DrawableData> renderObjects;
-	private SpriteSheet spaceship,shott,missile,asteroid,healthPack;
+	private SpriteSheet spaceship,shott,missile,asteroid,healthPack,missingImage;
 
 	private SpriteSheet background_1,
 						background_2,
@@ -150,8 +151,10 @@ public class View extends BasicGame implements ApplicationListener{
 				tmpImg=spaceship.copy();
 			}else if(comp.getType().equals("ASTEROID")){
 				tmpImg=asteroid.copy();
-			}else{
+			}else if(comp.getType().equals("BULLET")){
 				tmpImg=shott.copy();
+			}else{
+				tmpImg=missingImage.copy();
 			}
 			tmpX=comp.getPosition().x-comp.getWidth()/2;
 			tmpY=comp.getPosition().y-comp.getHeight()/2;
@@ -170,6 +173,7 @@ public class View extends BasicGame implements ApplicationListener{
 			missile=new SpriteSheet("resources/Missile.png",3,3, colorFilter);
 			asteroid=new SpriteSheet("resources/Asteroid.png",100,100, colorFilter);
 			healthPack=new SpriteSheet("resources/HealthPack.png",25,25, colorFilter);
+			missingImage=new SpriteSheet("resources/MissingImage.png",25,25, colorFilter);
 			background_1 = new SpriteSheet("resources/scrollingbackground_1st_layer.png", 1280, 960, colorFilter);
 			background_2 = new SpriteSheet("resources/scrollingbackground_2nd_layer.png", 1280, 960, colorFilter);
 			background_3 = new SpriteSheet("resources/scrollingbackground_3rd_layer.png", 1280, 960, colorFilter);
