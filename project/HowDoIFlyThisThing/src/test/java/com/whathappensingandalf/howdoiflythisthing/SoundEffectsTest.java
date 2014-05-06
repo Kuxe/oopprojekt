@@ -2,6 +2,8 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import static org.junit.Assert.*;
 
+import java.applet.AudioClip;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,6 +15,7 @@ import services.SoundEffects;
 public class SoundEffectsTest {
 	
 	private SoundEffects soundEffects= new SoundEffects();
+	private AudioClip clip;
 	
 	@Test
 	public void testSoundEffects() {

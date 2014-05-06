@@ -65,14 +65,15 @@ public class SoundEffects{
 	public void playSound(Set<String> listOfSounds){
 		if(listOfSounds== null){
 
-		}
-		for(String s: listOfSounds){
-			if (sound.SPACESHIP_FIRE.toString().equals(s)) {
-				spaceshipFireSound.play();
-			} else if (sound.PROJECTILE_FIRE.toString().equals(s)) {
-				projectileDieSound.play();
-			} else if (sound.SPACESHIP_DIE.toString().equals(s)) {
-				spaceshipDieSound.play();
+		}else{
+			for(String s: listOfSounds){
+				if (sound.SPACESHIP_FIRE.toString().equals(s)) {
+					spaceshipFireSound.play();
+				} else if (sound.PROJECTILE_FIRE.toString().equals(s)) {
+					projectileDieSound.play();
+				} else if (sound.SPACESHIP_DIE.toString().equals(s)) {
+					spaceshipDieSound.play();
+				}
 			}
 		}
 	}
