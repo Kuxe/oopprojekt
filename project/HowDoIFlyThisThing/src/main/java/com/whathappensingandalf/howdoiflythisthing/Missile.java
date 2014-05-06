@@ -55,7 +55,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public void remove() {
-		// TODO Auto-generated method stub
+		pcs.firePropertyChange(Message.PROJECTILE_DIE.toString(),this,true);
 		
 	}
 
