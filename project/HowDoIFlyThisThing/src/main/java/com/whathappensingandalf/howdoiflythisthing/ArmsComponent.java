@@ -34,7 +34,7 @@ public class ArmsComponent {
 		this.acceleration 			= acceleration;
 		this.direction				= direction;
 		this.weaponPipePosition 	= weaponPipePosition;
-		this.type					= IGameObject.type.BULLET.toString();
+		this.type					= IGameObject.type.MISSILE.toString();
 		this.timer					= new Timer(1000); 
 	}
 	
@@ -49,7 +49,11 @@ public class ArmsComponent {
 	}
 	
 	public boolean canFire(){
-		return timer.isTimerDone();
+		if(timer.isTimerDone()){
+			timer.start();
+			return true;
+		}
+		return false;
 	}
 	
 	/**
