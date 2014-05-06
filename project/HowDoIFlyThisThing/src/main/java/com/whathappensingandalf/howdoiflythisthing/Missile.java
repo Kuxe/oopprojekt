@@ -184,5 +184,9 @@ public class Missile implements IProjectile{
 	public void addPropertyChangeListener(PropertyChangeListener pcl) {
 		this.pcs.addPropertyChangeListener(pcl);
 	}
+	
+	public Missile clone(){
+		return new Missile(this);
+	}
 
 }
