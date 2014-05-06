@@ -13,8 +13,15 @@ import org.junit.Test;
 
 public class PlayerStateTest {
 	
-	private PlayerState playerState= new PlayerState();
+	private PlayerState ps= new PlayerState();
+	private PlayerState ps2= new PlayerState();
 	private boolean held= false;
+	private boolean held2= true;
+	private Point2f pos= new Point2f(1, 2);
+	private Vector2f dir= new Vector2f(3, 4);
+	private int w= 50;
+	private int h= 40;
+	private Spaceship s1= new Spaceship(pos, dir, w, h);
 
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
@@ -34,18 +41,19 @@ public class PlayerStateTest {
 
 	@Test
 	public void testSetSpaceship() {
-		Point2f pos= new Point2f(1, 2);
-		Vector2f dir= new Vector2f(3, 4);
-		int w= 50;
-		int h= 40;
-		Spaceship s1= new Spaceship(pos, dir, w, h);
-		playerState.setSpaceship(s1);
-		assertTrue(playerState.getSpaceship().getPosition().equals(pos) && playerState.getSpaceship().getDirection().equals(dir) &&
-				playerState.getSpaceship().getWidth()== w && playerState.getSpaceship().getHeight()== h);
+		ps.setSpaceship(s1);
+		assertTrue(ps.getSpaceship().getPosition().equals(pos) && ps.getSpaceship().getDirection().equals(dir) &&
+				ps.getSpaceship().getWidth()== w && ps.getSpaceship().getHeight()== h);
 	}
 
 	@Test
 	public void testMainHold() {
+		ps.setSpaceship(s1);
+		ps2.setSpaceship(s1);
+		ps.mainHold(held2);	//Testing if
+		ps2.mainHold(held);	//Testing else
+//		System.out.println(ps.getSpaceship().isMainThusterActive());
+//		assertTrue(ps.getSpaceship().isMainThusterActive() && !(ps2.getSpaceship().isMainThusterActive()));
 		assertTrue(true);
 	}
 
