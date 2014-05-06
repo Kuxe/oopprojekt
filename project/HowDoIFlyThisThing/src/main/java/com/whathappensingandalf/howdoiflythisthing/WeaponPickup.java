@@ -28,6 +28,11 @@ public class WeaponPickup implements ICollidable{
 		pcs				=	new PropertyChangeSupport(this);
 		collidableComp	=	new CollidableComponent(position, radius);
 	}
+	public void affectMe(Spaceship spaceship) {
+	}
+	public void remove(){
+		this.pcs.firePropertyChange(IPickup.Message.PICKUP_DIE.toString(), this, true);
+	}
 	
 	public boolean collideDetection(ICollidable rhs) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
