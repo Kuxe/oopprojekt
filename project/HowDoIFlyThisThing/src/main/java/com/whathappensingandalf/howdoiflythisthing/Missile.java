@@ -152,14 +152,12 @@ public class Missile implements IProjectile{
 
 	@Override
 	public void visit(Spaceship spaceship) {
-		// TODO Auto-generated method stub
-		
+		this.remove();
 	}
 
 	@Override
 	public void visit(IProjectile projectile) {
-		// TODO Auto-generated method stub
-		
+		//Do nothing
 	}
 
 	@Override
