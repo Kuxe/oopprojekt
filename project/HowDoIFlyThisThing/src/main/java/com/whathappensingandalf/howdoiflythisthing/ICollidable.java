@@ -50,20 +50,4 @@ public interface ICollidable extends IListable{
 	public void visit(Asteroid asteroid);
 	
 	public void visit(IPickup iPickup);
-	/**
-	 * @return the point most to the left
-	 */
-//	public Point2f getLeftmostCoordinate();
-	/**
-	 * @return the point most to the right
-	 */
-//	public Point2f getRightmostCoordinate();
-	/**
-	 * @return the upper point
-	 */
-//	public Point2f getTopmostCoordinate();
-	/**
-	 * @return the point at the bottom
-	 */
-//	public Point2f getBottommostCoordinate();
 }
