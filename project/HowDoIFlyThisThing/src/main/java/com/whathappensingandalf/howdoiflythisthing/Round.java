@@ -45,6 +45,7 @@ public class Round implements PropertyChangeListener{
 	}
 	
 	public synchronized void removeUser(User user) {
+		user.removePropertyChangeListener(this);
 		user.suicide();
 		state.removeUser(user);
 		if(users.size() == 1) {

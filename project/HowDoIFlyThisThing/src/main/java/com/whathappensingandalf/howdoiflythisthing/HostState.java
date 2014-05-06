@@ -106,7 +106,7 @@ public class HostState implements ModelNetworkState{
 	/**
 	 * Not thread safe
 	 */
-	public synchronized void addUser(int id) {
+	public void addUser(int id) {
 		User user = new User();
 		users.put(id, user);
 		round.addUser(user);

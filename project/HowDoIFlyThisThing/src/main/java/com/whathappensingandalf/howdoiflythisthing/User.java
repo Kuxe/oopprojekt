@@ -89,6 +89,10 @@ public class User implements PropertyChangeListener{
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		pcs.addPropertyChangeListener(listener);
 	}
+	
+	public void removePropertyChangeListener(PropertyChangeListener listener) {
+		pcs.removePropertyChangeListener(listener);
+	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {

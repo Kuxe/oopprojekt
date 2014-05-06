@@ -11,7 +11,6 @@ public class ActiveRound implements Roundstate {
 	private PropertyChangeSupport pcs;
 	
 	public ActiveRound(Gameworld world, Set<User> users) {
-		System.out.println("Starting round");
 		this.world = world;
 		this.users = users;
 		
