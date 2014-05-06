@@ -139,8 +139,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.getHeight();
 	}
 
 	@Override
