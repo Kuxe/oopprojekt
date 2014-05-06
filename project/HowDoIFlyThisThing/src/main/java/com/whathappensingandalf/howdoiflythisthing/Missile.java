@@ -18,6 +18,8 @@ public class Missile implements IProjectile{
 	private Point2f position;
 	private int damage = 1;  //@TODO
 	//private Damage damage= new Damage();
+	private TypeWrapper rotationVelocity;
+	private TypeWrapper rotationAcceleration;
 	private MoveComponent mC;
 	private CollidableComponent colliComp;
 	
