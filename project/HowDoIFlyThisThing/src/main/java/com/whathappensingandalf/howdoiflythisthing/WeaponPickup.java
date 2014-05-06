@@ -6,6 +6,7 @@
 
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
@@ -84,4 +85,18 @@ public class WeaponPickup implements IPickup{
 		return new WeaponPickup(this.position, this.radius, this.projectile);
 	}
 	
+	/**
+	 * Adds a listener to this object.
+	 * @param pcl
+	 */
+    public void addPropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.addPropertyChangeListener(pcl);
+	}
+	/**
+	 * Adds a listener to this object.
+	 * @param pcl
+	 */
+    public void removePropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.removePropertyChangeListener(pcl);
+	}
 }
