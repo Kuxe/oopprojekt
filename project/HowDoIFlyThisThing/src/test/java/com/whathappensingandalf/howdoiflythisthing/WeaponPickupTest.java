@@ -77,6 +77,7 @@ public class WeaponPickupTest  implements PropertyChangeListener{
 
 	@Test
 	public void testGetPosition() {
+		assertTrue(wp.getPosition().equals(new Point2f(100,100)));
 	}
 
 	@Test
