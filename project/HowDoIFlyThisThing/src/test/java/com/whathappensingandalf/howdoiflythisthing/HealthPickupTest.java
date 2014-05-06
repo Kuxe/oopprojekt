@@ -1,6 +1,9 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -12,9 +15,10 @@ import static org.junit.Assert.*;
  *
  * @author Martin Nilsson
  */
-public class HealthPickupTest {
+public class HealthPickupTest implements PropertyChangeListener{
 	
 	private HealthPickup hp;
+	private Boolean isRemoved;
 	
 	public HealthPickupTest() {
 	}
@@ -30,6 +34,7 @@ public class HealthPickupTest {
 	@Before
 	public void setUp() {
 		hp = new HealthPickup(new Point2f(100,100), 5, 10);
+		isRemoved = false;
 	}
 	
 	@After
@@ -43,10 +48,16 @@ public class HealthPickupTest {
 
 	@Test
 	public void testAffectMe() {
+		Spaceship s = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50);
+		hp.affectMe(s);
+		assertTrue(s.getHull()==20);
 	}
 
 	@Test
 	public void testRemove() {
+		hp.addPropertyChangeListener(this);
+		hp.remove();
+		assertTrue(isRemoved);
 	}
 
 	@Test
@@ -103,6 +114,10 @@ public class HealthPickupTest {
 
 	@Test
 	public void testRemovePropertyChangeListener() {
+	}
+
+	public void propertyChange(PropertyChangeEvent evt) {
+		this.isRemoved = evt.getPropertyName().equals(HealthPickup.Message.PICKUP_DIE.toString());
 	}
 	
 }

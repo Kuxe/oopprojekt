@@ -30,6 +30,7 @@ public class HealthPickup implements IPickup{
 		this.position=new Point2f();
 		this.radius=radius;
 		this.health = health;
+		pcs = new PropertyChangeSupport(this);
 		collidableComp = new CollidableComponent(position, radius);
 	}
 	public int getHealth(){
