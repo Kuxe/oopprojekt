@@ -131,7 +131,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public int getHeight() {
-		return this.getHeight();
+		return this.height;
 	}
 
 	@Override
