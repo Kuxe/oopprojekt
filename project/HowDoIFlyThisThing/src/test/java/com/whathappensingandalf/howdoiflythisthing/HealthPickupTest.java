@@ -78,6 +78,7 @@ public class HealthPickupTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetPosition() {
+		assertTrue(hp.getPosition().equals(new Point2f(100,100)));
 	}
 
 	@Test
