@@ -90,8 +90,9 @@ public class PlayerStateTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetSpaceshipPosition() {
-//		TODO
-		assertTrue(true);
+		ps.setSpaceship(s1);
+		ps.getSpaceship().setPosition(new Point2f(34, 58));
+		assertTrue(ps.getSpaceshipPosition().equals(new Point2f(34, 58)));
 	}
 
 	@Test
