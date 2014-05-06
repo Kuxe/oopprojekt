@@ -225,6 +225,12 @@ public class SpaceshipTest implements PropertyChangeListener{
 		s.visit(a);
 		assertTrue(isRemoved);
 	}
+	public void testVisit_IPickup(){
+		HealthPickup hp = new HealthPickup(new Point2f(0,0), 5, 10);
+		int h = s.getHull();
+		s.visit(hp);
+		assertTrue(s.getHull()>h);
+	}
 
 	@Test
 	public void testAddPropertyChangeListener() {
