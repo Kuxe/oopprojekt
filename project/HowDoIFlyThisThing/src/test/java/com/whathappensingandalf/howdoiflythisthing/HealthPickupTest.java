@@ -127,6 +127,10 @@ public class HealthPickupTest implements PropertyChangeListener{
 
 	@Test
 	public void testRemovePropertyChangeListener() {
+		hp.addPropertyChangeListener(this);
+		hp.removePropertyChangeListener(this);
+		hp.remove();
+		assertFalse(this.isRemoved);
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
