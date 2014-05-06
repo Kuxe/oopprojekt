@@ -35,7 +35,9 @@ public class HealthPickup implements IPickup{
 	public int getHealth(){
 		return this.health;
 	}
-	
+	public void affectMe(Spaceship spaceship) {
+		spaceship.repair(this.health);
+	}
 	public void remove(){
 		this.pcs.firePropertyChange(HealthPickup.Message.PICKUP_DIE.toString(), this, true);
 	}
