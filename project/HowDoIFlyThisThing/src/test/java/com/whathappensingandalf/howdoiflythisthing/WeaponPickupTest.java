@@ -54,6 +54,9 @@ public class WeaponPickupTest  implements PropertyChangeListener{
 
 	@Test
 	public void testRemove() {
+		wp.addPropertyChangeListener(this);
+		wp.remove();
+		assertTrue(isRemoved);
 	}
 
 	@Test
@@ -105,7 +108,7 @@ public class WeaponPickupTest  implements PropertyChangeListener{
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		this.isRemoved = evt.getPropertyName().equals(HealthPickup.Message.PICKUP_DIE.toString());
 	}
 	
 }
