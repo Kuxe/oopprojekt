@@ -2,6 +2,9 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import static org.junit.Assert.*;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
@@ -11,12 +14,12 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class PlayerStateTest {
+public class PlayerStateTest implements PropertyChangeListener{
 	
 	private PlayerState ps= new PlayerState();
 	private PlayerState ps2= new PlayerState();
-	private boolean held= false;
-	private boolean held2= true;
+	private boolean bo1= false;
+	private boolean bo2= true;
 	private Point2f pos= new Point2f(1, 2);
 	private Vector2f dir= new Vector2f(3, 4);
 	private int w= 50;
@@ -55,8 +58,8 @@ public class PlayerStateTest {
 	public void testMainHold() {
 		ps.setSpaceship(s1);
 		ps2.setSpaceship(s2);
-		ps.mainHold(held2);	//Testing if
-		ps2.mainHold(held);	//Testing else
+		ps.mainHold(bo2);	//Testing if
+		ps2.mainHold(bo1);	//Testing else
 		assertTrue(ps.getSpaceship().isMainThusterActive() && !(ps2.getSpaceship().isMainThusterActive()));
 	}
 
@@ -64,8 +67,8 @@ public class PlayerStateTest {
 	public void testLeftHold() {
 		ps.setSpaceship(s1);
 		ps2.setSpaceship(s2);
-		ps.leftHold(held2);	//Testing if
-		ps2.leftHold(held);	//Testing else
+		ps.leftHold(bo2);	//Testing if
+		ps2.leftHold(bo1);	//Testing else
 		assertTrue(ps.getSpaceship().isLeftThusterActive() && !(ps2.getSpaceship().isLeftThusterActive()));
 	}
 
@@ -73,13 +76,15 @@ public class PlayerStateTest {
 	public void testRightHold() {
 		ps.setSpaceship(s1);
 		ps2.setSpaceship(s2);
-		ps.rightHold(held2);	//Testing if
-		ps2.rightHold(held);	//Testing else
+		ps.rightHold(bo2);	//Testing if
+		ps2.rightHold(bo1);	//Testing else
 		assertTrue(ps.getSpaceship().isRightThusterActive() && !(ps2.getSpaceship().isRightThusterActive()));
 	}
 
 	@Test
 	public void testFireHold() {
+//		TODO
+//		ps.getSpaceship().addPropertyChangeListener(this);
 		assertTrue(true);
 	}
 
@@ -91,6 +96,14 @@ public class PlayerStateTest {
 	@Test
 	public void testGetSpaceship() {
 		assertTrue(true);
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if(evt.getPropertyName().equals("SPACESHIP_FIRE")){
+			bo1= true;
+		}
+		
 	}
 
 }
