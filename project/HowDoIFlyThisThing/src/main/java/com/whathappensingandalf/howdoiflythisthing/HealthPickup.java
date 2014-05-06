@@ -73,6 +73,10 @@ public class HealthPickup implements ICollidable, IGameObject, IDrawable, Clonea
 		this.remove();
 	}
 
+	public void visit(HealthPickup healthPickup) {
+		//Nothing should happen.
+	}
+	
 	public Vector2f getDirection() {
 		return new Vector2f(1,0);
 	}
@@ -81,9 +85,6 @@ public class HealthPickup implements ICollidable, IGameObject, IDrawable, Clonea
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 
-	public void visit(HealthPickup healthPickup) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
 	/**
 	 * Adds a listener to this object.
 	 * @param pcl
