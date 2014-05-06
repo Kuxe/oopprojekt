@@ -109,14 +109,12 @@ public class Missile implements IProjectile{
 
 	@Override
 	public void setDirection(Vector2f direction) {
-		// TODO Auto-generated method stub
-		
+		this.direction=direction;
 	}
 
 	@Override
 	public void setPosition(Point2f position) {
 		this.position=position;
-		
 	}
 
 	@Override
