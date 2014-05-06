@@ -103,6 +103,7 @@ public class HealthPickupTest implements PropertyChangeListener{
 
 	@Test
 	public void testVisit_IProjectile() {
+		//Nothing should happen.
 	}
 
 	@Test
@@ -115,6 +116,7 @@ public class HealthPickupTest implements PropertyChangeListener{
 
 	@Test
 	public void testVisit_IPickup() {
+		//Nothing should happen.
 	}
 
 	@Test
