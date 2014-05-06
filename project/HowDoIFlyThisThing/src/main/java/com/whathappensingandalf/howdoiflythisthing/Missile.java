@@ -126,8 +126,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public boolean collideDetection(ICollidable rhs) {
-		// TODO Auto-generated method stub
-		return false;
+		return this.colliComp.collideDetection(rhs);
 	}
 
 	@Override
