@@ -34,8 +34,8 @@ public class ArmsComponent {
 		this.acceleration 			= acceleration;
 		this.direction				= direction;
 		this.weaponPipePosition 	= weaponPipePosition;
-		this.type					= IGameObject.type.MISSILE.toString();
-		this.timer					= new Timer(1000); 
+		this.type					= IGameObject.type.BULLET.toString();
+		this.timer					= new Timer(1000);
 	}
 	
 	public void setWeaponPipePosition(Vector2f weaponPipePosition) {
@@ -43,6 +43,11 @@ public class ArmsComponent {
 	}
 	public void setWeapon(IProjectile weapon){
 		this.type = weapon.getType();
+		if(type.equals("BULLET")){
+			this.timer.setTimerLength(1000);
+		}else if(type.equals("MISSILE")){
+			this.timer.setTimerLength(2000);
+		}
 	}
 	public String getWeapon(){
 		return this.type;
