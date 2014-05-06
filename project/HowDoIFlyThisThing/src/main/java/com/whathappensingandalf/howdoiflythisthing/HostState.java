@@ -1,9 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import java.io.IOException;
-import java.net.InetAddress;
 import java.net.InetSocketAddress;
-import java.net.UnknownHostException;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,6 +18,8 @@ import com.esotericsoftware.kryonet.Server;
 public class HostState implements ModelNetworkState{
 
 	private Round round;
+	private HashSet<Connection> lazyAddUsers;
+	private HashSet<Connection> lazyRemoveUsers;
 	private HashMap<Integer, User> users;
 	private User myUser;
 	private Server server;
@@ -35,6 +35,9 @@ public class HostState implements ModelNetworkState{
 		users = new HashMap();
 		server = new Server();
 		connections = new HashSet();
+		
+		lazyAddUsers = new HashSet();
+		lazyRemoveUsers = new HashSet();
 
 		timerStart = System.nanoTime();
 		timerStop = System.nanoTime();
@@ -60,12 +63,7 @@ public class HostState implements ModelNetworkState{
 
 				//Grant new connections an user
 				System.out.print(connection.getRemoteAddressTCP() + " is connecting...");
-
-				//DO NOT TOUCH THIS ORDER
-				//addUser is synchronized. It prevents nasty nullpointer errors related
-				//to iterating through list and indexing hashmap with null key. DO NOT TOUCH!!!!!!
-				addUser(connection.getID());
-				connections.add(connection);
+				lazyAddUsers.add(connection);
 				System.out.println(" done!");
 			}
 
@@ -81,16 +79,33 @@ public class HostState implements ModelNetworkState{
 
 			public void disconnected(Connection connection) {
 				System.out.println(connection.getID() + " disconnected");
-				round.removeUser(users.get(connection.getID()));
-				users.remove(connection.getID());
-				connections.remove(connection);
+				lazyRemoveUsers.add(connection);
 			}
 		});	
 		addUser(0); //Host ID is 0. Connection IDs start from 1 and go upward.
 		myUser = users.get(0);
 		myUser.setListOfHoldKeys(new HashSet<Integer>());
 	}
+	
+	/**
+	 * Thread-safe addUser()
+	 * @param id
+	 */
+	public synchronized void lazyAddUser(Connection connection) {
+		lazyAddUsers.add(connection);
+	}
 
+	/**
+	 * Thread-safe removeUser()
+	 * @param id
+	 */
+	public synchronized void lazyRemoveUser(Connection connection) {
+		lazyRemoveUsers.add(connection);
+	}
+	
+	/**
+	 * Not thread safe
+	 */
 	public synchronized void addUser(int id) {
 		User user = new User();
 		users.put(id, user);
@@ -108,6 +123,39 @@ public class HostState implements ModelNetworkState{
 		}		
 		//Send data packets to clients
 		sendPackets();
+		
+		processLazyAddUser();
+		processLazyRemoveUser();
+	}
+	
+	/**
+	 * Must be called on main-thread. Will add users from lazyAddUsers-set to
+	 * actual set of users
+	 */
+	private synchronized void processLazyAddUser() {
+		//Add newly connected cliens via main-thread
+		for(Connection connection : lazyAddUsers) {
+			//DO NOT TOUCH THIS ORDER
+			//addUser is synchronized. It prevents nasty nullpointer errors related
+			//to iterating through list and indexing hashmap with null key. DO NOT TOUCH!!!!!!
+			addUser(connection.getID());
+			connections.add(connection);
+		}
+		lazyAddUsers.clear();
+	}
+	
+	/**
+	 * Must be called on main-thread. Will remove users defined in
+	 * lazyRemoveUsers from actual set of users
+	 */
+	private synchronized void processLazyRemoveUser() {
+		//Add newly connected cliens via main-thread
+		for(Connection connection : lazyRemoveUsers) {
+			round.removeUser(users.get(connection.getID()));
+			users.remove(connection.getID());
+			connections.remove(connection);
+		}
+		lazyRemoveUsers.clear();
 	}
 
 	public synchronized void sendPackets() {
