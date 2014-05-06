@@ -302,35 +302,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	public void deactivateRightThruster(){
 		this.thrusterComponent.deactivateRightThruster();
 	}
-	/**
-	 * {@inheritDoc}
-	 */
-	/*
-	public Point2f getLeftmostCoordinate() {
-		return colliComp.getLeftmostCoordinate();
-	}
-	/**
-	 * {@inheritDoc}
-	 */
-	/*
-	public Point2f getRightmostCoordinate() {
-		return colliComp.getRightmostCoordinate();
-	}
-	/**
-	 * {@inheritDoc}
-	 */
-	/*
-	public Point2f getTopmostCoordinate() {
-		return colliComp.getTopmostCoordinate();
-	}
-	/**
-	 * {@inheritDoc}
-	 */
-	/*
-	public Point2f getBottommostCoordinate() {
-		return colliComp.getBottommostCoordinate();
-	}
-	*/
+
 	public boolean equals(Object rhs){
 		if(rhs==this){
 			return true;
