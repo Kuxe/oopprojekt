@@ -88,6 +88,7 @@ public class HealthPickupTest implements PropertyChangeListener{
 
 	@Test
 	public void testAccept() {
+		
 	}
 
 	@Test
@@ -108,10 +109,13 @@ public class HealthPickupTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetDirection() {
+		//Is irrelevant.
 	}
 
 	@Test
 	public void testClone() {
+		HealthPickup hp2 = (HealthPickup)hp.clone();
+		assertTrue(hp.equals(hp2)&&hp!=hp2);
 	}
 
 	@Test
