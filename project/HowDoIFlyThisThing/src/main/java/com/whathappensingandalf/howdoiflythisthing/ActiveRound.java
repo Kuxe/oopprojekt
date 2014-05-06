@@ -20,12 +20,11 @@ public class ActiveRound implements Roundstate {
 	
 	@Override
 	public void addUser(User user) {
-		//Do nothing - round is already running!
+		users.add(user);
 	}
 
 	@Override
 	public void removeUser(User user) {
-		world.slateObjectForRemoval(user.getSpaceship());
 		users.remove(user);
 	}
 	

@@ -67,6 +67,7 @@ public class Gameworld implements PropertyChangeListener{
 		pcs = new PropertyChangeSupport(this);
 	}
 	
+	
 	public Set<DrawableData> getDrawableData() {
 		HashSet<DrawableData> set = new HashSet();
 		for(IDrawable drawable : drawables.values()) {
@@ -152,7 +153,7 @@ public class Gameworld implements PropertyChangeListener{
 	/**
 	 * Adds a spaceship to the world
 	 */
-	public synchronized void addSpaceship(Point2f point){
+	public void addSpaceship(Point2f point){
 		//Temporary hardcoded direction set to 1, 1
 		addSpaceship(SpaceshipFactory.create(point, new Vector2f(1, 1)));
 	}
@@ -160,7 +161,7 @@ public class Gameworld implements PropertyChangeListener{
 	/**
 	 * Adds a spaceship to the world
 	 */
-	public synchronized void addSpaceship(Spaceship spaceship){
+	public void addSpaceship(Spaceship spaceship){
 		//Make gameworld listen to spaceship
 		spaceship.addPropertyChangeListener(this);
 		
@@ -179,7 +180,7 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap.put(spaceship, listOfHashMaps);
 	}
 	
-	private synchronized void addObjectToHashMaps(List<HashMap<Object, Object>> list, Object object) {
+	private void addObjectToHashMaps(List<HashMap<Object, Object>> list, Object object) {
 		for(HashMap<Object, Object> item : list) {
 			item.put(object, object);
 		}
@@ -194,7 +195,7 @@ public class Gameworld implements PropertyChangeListener{
 	 * Adds param projectile to the world
 	 * @param projectile
 	 */
-	public synchronized void addProjectile(IProjectile projectile) {
+	public void addProjectile(IProjectile projectile) {
 		projectile.addPropertyChangeListener(this);
 		moveables.put(projectile, projectile);
 		collidables.put(projectile, projectile);
@@ -206,7 +207,7 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap.put(projectile, listOfHashMaps);
 	}
 	
-	public synchronized void addAsteroid(Asteroid asteroid) {
+	public void addAsteroid(Asteroid asteroid) {
 		collidables.put(asteroid, asteroid);
 		drawables.put(asteroid, asteroid);
 		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();

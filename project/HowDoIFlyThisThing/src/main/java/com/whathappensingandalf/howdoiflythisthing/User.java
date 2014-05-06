@@ -82,6 +82,10 @@ public class User implements PropertyChangeListener{
 		return state.getSpaceshipPosition();
 	}
 	
+	public void suicide() {
+		state.suicide();
+	}
+	
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		pcs.addPropertyChangeListener(listener);
 	}

@@ -42,4 +42,9 @@ public class SpectatorState implements IUserState{
 		return null;
 	}
 
+	@Override
+	public void suicide() {
+		//Ship already dead
+	}
+
 }

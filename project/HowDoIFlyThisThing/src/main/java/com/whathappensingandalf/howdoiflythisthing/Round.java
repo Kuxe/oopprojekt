@@ -28,13 +28,11 @@ public class Round implements PropertyChangeListener{
 	private Gameworld world;
 	private Roundstate state;
 	private Set<User> users;
-	private Set<Spaceship> spaceships;
+	private int usersAlive = 0;
 		
 	public Round() {
 		world = new Gameworld();
 		world.addPropertyChangeListener(this);
-		
-		spaceships = new HashSet();
 		
 		users = new HashSet();
 		state = new InactiveRound(world, users);
@@ -47,6 +45,7 @@ public class Round implements PropertyChangeListener{
 	}
 	
 	public void removeUser(User user) {
+		user.suicide();
 		state.removeUser(user);
 		if(users.size() == 1) {
 			end();
@@ -61,7 +60,6 @@ public class Round implements PropertyChangeListener{
 	 * @param users
 	 */
 	public synchronized void start() {
-		System.out.println(Thread.currentThread().getName());
 		end();
 		world = new Gameworld();
 		world.addPropertyChangeListener(this);
@@ -72,11 +70,10 @@ public class Round implements PropertyChangeListener{
 							(float)Math.random() * world.getBorder().getWorldHeight()),
 					new Vector2f((float)Math.random(), (float)Math.random()));
 			
-			System.out.println("setting spaceship");
 			user.setSpaceship(ss);
 			world.addSpaceship(ss);
-			spaceships.add(ss);
 		}
+		usersAlive = users.size();
 		state = new ActiveRound(world, users);
 		state.addListener(this);
 	}
@@ -104,19 +101,16 @@ public class Round implements PropertyChangeListener{
 			start();
 		}
 		
-		//If any spaceship exploded
-		else if (evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
-			spaceships.remove((Spaceship)evt.getSource());
-			
-			//If round is active with one ship, start new round
-			if (state.getState().equals(Roundstate.state.ACTIVE) &&
-				spaceships.size() == 1) {
-				start();
-			}			
-		}
-		
 		//Is user lost his spaceship...
 		else if (evt.getPropertyName().equals(User.message.LOST_SPACESHIP.toString())) {
+			
+			//One user died...
+			usersAlive -= 1;
+			
+			//If last man standing and round is active, start new round
+			if(usersAlive == 1 && state.getState().equals(Roundstate.state.ACTIVE)) {
+				start();
+			}
 			
 			//If round is inactive, give a new ship to user
 			if (state.getState().equals(Roundstate.state.INACTIVE)) {
@@ -129,7 +123,6 @@ public class Round implements PropertyChangeListener{
 				
 				user.setSpaceship(ss);
 				world.addSpaceship(ss);
-				spaceships.add(ss);
 			}
 		}
 	}

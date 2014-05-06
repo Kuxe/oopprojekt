@@ -48,10 +48,7 @@ public class InactiveRound implements Roundstate {
 
 	@Override
 	public void removeUser(User user) {
-		if(user != null) {
-			users.remove(user);
-			world.slateObjectForRemoval(user.getSpaceship());
-		}
+		users.remove(user);
 	}
 
 	@Override
