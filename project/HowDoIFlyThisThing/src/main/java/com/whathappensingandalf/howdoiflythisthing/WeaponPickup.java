@@ -77,7 +77,7 @@ public class WeaponPickup implements IPickup{
 	}
 
 	public Vector2f getDirection() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return new Vector2f(1,0);
 	}
 
 	public IDrawable clone() {
