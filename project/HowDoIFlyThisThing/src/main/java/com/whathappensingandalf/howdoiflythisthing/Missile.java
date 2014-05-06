@@ -49,8 +49,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public void move(Timestep timestep) {
-		// TODO Auto-generated method stub
-		
+		this.mC.move(timestep);
 	}
 
 	@Override
