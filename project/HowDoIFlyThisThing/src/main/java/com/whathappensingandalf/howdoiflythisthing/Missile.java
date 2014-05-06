@@ -97,8 +97,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public void setVelocity(Vector2f velocity) {
-		// TODO Auto-generated method stub
-		
+		this.velocity=velocity;
 	}
 
 	@Override
