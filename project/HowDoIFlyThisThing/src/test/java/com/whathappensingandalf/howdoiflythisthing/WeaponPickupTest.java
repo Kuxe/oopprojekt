@@ -2,6 +2,8 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,6 +16,10 @@ import static org.junit.Assert.*;
  * @author Martin Nilsson
  */
 public class WeaponPickupTest  implements PropertyChangeListener{
+	
+	private WeaponPickup wp;
+	private Boolean isRemoved;
+	private IProjectile projectile;
 	
 	public WeaponPickupTest() {
 	}
@@ -28,6 +34,9 @@ public class WeaponPickupTest  implements PropertyChangeListener{
 	
 	@Before
 	public void setUp() {
+		projectile = new Bullet(new Point2f(1,1), new Vector2f(1,1), new Vector2f(1,1), new Vector2f(1,1),5,5);
+		wp = new WeaponPickup(new Point2f(100,100), 5, projectile);
+		isRemoved = false;
 	}
 	
 	@After
