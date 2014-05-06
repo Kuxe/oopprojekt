@@ -53,6 +53,8 @@ public class ClientState implements ModelNetworkState {
 				}
 				else if(message instanceof Point2f) {
 					spaceshipPoint = (Point2f)message;
+				} else if(message instanceof SoundNetworkPacket) {
+					sounds = ((SoundNetworkPacket)message).sounds;
 				}
 			}
 		});

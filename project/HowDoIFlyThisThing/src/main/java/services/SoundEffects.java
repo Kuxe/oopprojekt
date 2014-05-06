@@ -20,7 +20,7 @@ public class SoundEffects{
 	private AudioClip spaceshipDieSound;
 
 	public enum sound{
-		SPACESHIP_DIE, SPACESHIP_FIRE, PROJECTILE_DIE
+		SPACESHIP_DIE, SPACESHIP_FIRE, PROJECTILE_FIRE
 	}
 
 	public SoundEffects(){
@@ -69,7 +69,7 @@ public class SoundEffects{
 		for(String s: listOfSounds){
 			if (sound.SPACESHIP_FIRE.toString().equals(s)) {
 				spaceshipFireSound.play();
-			} else if (sound.PROJECTILE_DIE.toString().equals(s)) {
+			} else if (sound.PROJECTILE_FIRE.toString().equals(s)) {
 				projectileDieSound.play();
 			} else if (sound.SPACESHIP_DIE.toString().equals(s)) {
 				spaceshipDieSound.play();

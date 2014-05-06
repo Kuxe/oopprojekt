@@ -29,15 +29,22 @@ public class View extends BasicGame implements ApplicationListener{
 	private AppGameContainer container;
 	
 	private Set<DrawableData> renderObjects;
-	private SpriteSheet spaceship,shott,asteroid;
-	private Image background;
+	private SpriteSheet spaceship,shott,asteroid,healthPack;
+
+	private SpriteSheet background_1,
+						background_2,
+						background_3;
+	
+	private SpriteSheet planet_1;
+						
+						
 	private Color colorFilter;
 	private int backgroundWidth, backgroundHeight;
 	private Float f=0f;
 	
 	private Point2f camera;
-	private final int windowWidth = 800;
-	private final int windowHeight = 600;
+	private final int windowWidth = 640;
+	private final int windowHeight = 480;
 	
 	private PropertyChangeSupport pcs;
 	
@@ -108,12 +115,16 @@ public class View extends BasicGame implements ApplicationListener{
 	 * Higher means faster (feels like object is closer to camera).
 	 * Lower means slower (feels like object is farther from camera).
 	 */
-	private void drawScrollingImage(GameContainer arg0, Graphics g, Image image, float speed) {
-		int modx = (int) ((camera.x*speed + windowWidth/2) / (image.getWidth()/2));
-		int mody = (int) ((camera.y*speed + windowHeight/2) / (image.getHeight()/2));
-		g.drawImage(background, 
-					-windowWidth/2 + modx * image.getWidth()/2  - camera.x*speed,
-					-windowHeight/2 + mody * image.getHeight()/2 - camera.y*speed);
+	private void drawScrollingImage(GameContainer arg0, Graphics g, SpriteSheet image, float speed) {
+		drawScrollingImageForceDimension(arg0, g, image, speed, image.getWidth(), image.getHeight());
+	}
+	
+	private void drawScrollingImageForceDimension(GameContainer arg0, Graphics g, SpriteSheet image, float speed, int imageWidth, int imageHeight) {
+		int modx = (int) ((camera.x*speed + windowWidth/2) / (imageWidth/2));
+		int mody = (int) ((camera.y*speed + windowHeight/2) / (imageHeight/2));
+		g.drawImage(image, 
+					-windowWidth/2 + modx * imageWidth/2  - camera.x*speed,
+					-windowHeight/2 + mody * imageHeight/2 - camera.y*speed);
 	}
 	
 	/**
@@ -128,7 +139,9 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
-		drawScrollingImage(arg0, g, background, 1.0f);
+		drawScrollingImage(arg0, g, background_1, 0.05f);
+		drawScrollingImage(arg0, g, background_2, 0.15f);
+
 		for(DrawableData comp: renderObjects){
 			
 			float tmpX,tmpY;
@@ -155,18 +168,15 @@ public class View extends BasicGame implements ApplicationListener{
 			spaceship=new SpriteSheet("resources/Spaceship.png",50,50, colorFilter);
 			shott=new SpriteSheet("resources/Shott.png",3,3, colorFilter);
 			asteroid=new SpriteSheet("resources/Asteroid.png",100,100, colorFilter);
-			background = new Image("resources/scrollingbackgroundLarge.png");
+			healthPack=new SpriteSheet("resources/HealthPack.png",25,25, colorFilter);
+			background_1 = new SpriteSheet("resources/scrollingbackground_1st_layer.png", 1280, 960, colorFilter);
+			background_2 = new SpriteSheet("resources/scrollingbackground_2nd_layer.png", 1280, 960, colorFilter);
+			background_3 = new SpriteSheet("resources/scrollingbackground_3rd_layer.png", 1280, 960, colorFilter);
+			
+			planet_1 = new SpriteSheet("resources/planet_1.png", 100, 100, colorFilter);
 		} catch (SlickException e) {
 			e.printStackTrace();
-		}
-		
-		if(background.getWidth()/2 < windowWidth) {
-			System.out.println("WARNING: backgroundWidth/2 is less than windowWidth. Scrolling will be broke!");
-		}
-		if(background.getHeight()/2 < windowHeight) {
-			System.out.println("WARNING: backgroundHeight/2 is less than windowHeight. Scrolling will be broke!");
-		}
-		
+		}		
 	}
 
 	@Override
