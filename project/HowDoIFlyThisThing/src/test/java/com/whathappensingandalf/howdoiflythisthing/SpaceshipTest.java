@@ -73,7 +73,9 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetDirection() {
-		assertTrue(s.getDirection().equals(new Vector2f(1, 1)));
+		Vector2f v2 = new Vector2f(1, 1);
+		v2.normalize();
+		assertTrue(s.getDirection().equals(v2));
 	}
 
 	@Test
