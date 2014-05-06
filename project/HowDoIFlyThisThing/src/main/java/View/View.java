@@ -153,6 +153,8 @@ public class View extends BasicGame implements ApplicationListener{
 				tmpImg=asteroid.copy();
 			}else if(comp.getType().equals("BULLET")){
 				tmpImg=shott.copy();
+			}else if(comp.getType().equals("MISSILE")){
+				tmpImg=missile.copy();
 			}else{
 				tmpImg=missingImage.copy();
 			}
@@ -170,7 +172,7 @@ public class View extends BasicGame implements ApplicationListener{
 		try {
 			spaceship=new SpriteSheet("resources/Spaceship.png",50,50, colorFilter);
 			shott=new SpriteSheet("resources/Shott.png",3,3, colorFilter);
-			missile=new SpriteSheet("resources/Missile.png",3,3, colorFilter);
+			missile=new SpriteSheet("resources/Missile.png",5,10, colorFilter);
 			asteroid=new SpriteSheet("resources/Asteroid.png",100,100, colorFilter);
 			healthPack=new SpriteSheet("resources/HealthPack.png",25,25, colorFilter);
 			missingImage=new SpriteSheet("resources/MissingImage.png",25,25, colorFilter);
