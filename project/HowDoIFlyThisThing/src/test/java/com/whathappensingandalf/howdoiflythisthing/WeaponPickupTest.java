@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,9 +11,9 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Martin
+ * @author Martin Nilsson
  */
-public class WeaponPickupTest {
+public class WeaponPickupTest  implements PropertyChangeListener{
 	
 	public WeaponPickupTest() {
 	}
@@ -92,6 +88,10 @@ public class WeaponPickupTest {
 
 	@Test
 	public void testClone() {
+	}
+
+	public void propertyChange(PropertyChangeEvent evt) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 	
 }
