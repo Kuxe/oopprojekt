@@ -17,9 +17,6 @@ import javax.vecmath.Vector2f;
  */
 public class HealthPickup implements IPickup{
 
-	public static enum Message{
-		PICKUP_DIE
-	}
 	private CollidableComponent collidableComp;
 	private Point2f position;
 	private int radius;
