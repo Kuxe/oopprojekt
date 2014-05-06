@@ -21,7 +21,7 @@ public class IProjectileFactory {
 
 	public static IProjectile create(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, String type) {
 		if(type.equals(IGameObject.type.MISSILE.toString())){
-			return new Missile(new Point2f(position), new Vector2f(velocity), new Vector2f(acceleration), new Vector2f(direction), 5, 10);
+			return new Missile(new Point2f(position), new Vector2f(velocity.x/2, velocity.y/2), new Vector2f(direction.x*100, direction.y*100), new Vector2f(direction), 5, 10);
 		}else{
 			return new Bullet(new Point2f(position), new Vector2f(velocity), new Vector2f(acceleration), new Vector2f(direction), 3, 3);
 		}
