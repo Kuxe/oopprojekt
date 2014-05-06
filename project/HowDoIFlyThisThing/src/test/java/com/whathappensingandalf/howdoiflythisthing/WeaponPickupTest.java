@@ -127,6 +127,8 @@ public class WeaponPickupTest  implements PropertyChangeListener{
 
 	@Test
 	public void testClone() {
+		WeaponPickup wp2 = (WeaponPickup)wp.clone();
+		assertTrue(wp.equals(wp2)&&wp!=wp2);
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
