@@ -49,12 +49,16 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private PropertyChangeSupport pcs;
 	
+	private final Object lock;
+	private boolean isReady = false;
+	
 	public static enum message {
 		VIEW_CLOSE
 	}
 	
-	public View(String title){
+	public View(String title, Object lock){
 		super(title);
+		this.lock = lock;
 		renderObjects = new HashSet<DrawableData>();
 		try{
 			container=new AppGameContainer(this);
@@ -70,6 +74,10 @@ public class View extends BasicGame implements ApplicationListener{
 		
 		pcs = new PropertyChangeSupport(this);
 		
+	}
+	
+	public boolean isReady() {
+		return isReady;
 	}
 	
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
@@ -183,7 +191,11 @@ public class View extends BasicGame implements ApplicationListener{
 			planet_1 = new SpriteSheet("resources/planet_1.png", 100, 100, colorFilter);
 		} catch (SlickException e) {
 			e.printStackTrace();
-		}		
+		}
+		synchronized(lock) {
+			isReady = true;
+			lock.notifyAll();
+		}
 	}
 
 	@Override

@@ -45,14 +45,18 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		listOfReleasedKeys = new HashSet();
 		listOfHoldKeys = new HashSet();
 		
-		viewThread=new ViewThread();
+		final Object lock = new Object();
+		viewThread=new ViewThread(lock);
 		viewThread.start();
-		try {
-			//HOWTO: make this thread sleep until a certain point in viewThread is reached?
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		synchronized(lock) {
+			while(!viewThread.isReady()) {
+				try {
+					lock.wait();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 		}
 		viewThread.getView().getContainer().getInput().addKeyListener(this); //This row may crash if View-thread havent created view yet
 		viewThread.getView().addPropertyChangeListener(this);
