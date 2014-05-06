@@ -82,7 +82,7 @@ public class HealthPickup implements ICollidable, IGameObject, IDrawable, Clonea
 	}
 
 	public IDrawable clone() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return new HealthPickup(this.position, this.radius, this.health);
 	}
 
 	/**
