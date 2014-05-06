@@ -16,7 +16,7 @@ public class Missile implements IProjectile{
 	private Vector2f acceleration;
 	private Vector2f direction;
 	private Point2f position;
-	private int damage = 1;  //@TODO
+	private int damage = 2;  //@TODO
 	//private Damage damage= new Damage();
 	private TypeWrapper rotationVelocity;
 	private TypeWrapper rotationAcceleration;
