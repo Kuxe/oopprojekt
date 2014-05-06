@@ -69,11 +69,11 @@ public class WeaponPickup implements IPickup{
 	}
 
 	public void visit(IProjectile projectile) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//Nothing should happen.		
 	}
 
 	public void visit(IPickup iPickup) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//Nothing should happen.		
 	}
 
 	public Vector2f getDirection() {
