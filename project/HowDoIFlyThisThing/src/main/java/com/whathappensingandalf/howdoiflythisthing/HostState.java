@@ -81,7 +81,7 @@ public class HostState implements ModelNetworkState{
 
 			public void disconnected(Connection connection) {
 				System.out.println(connection.getID() + " disconnected");
-				round.removeUserSpaceship(users.get(connection.getID()));
+				round.removeUser(users.get(connection.getID()));
 				users.remove(connection.getID());
 				connections.remove(connection);
 			}
@@ -95,9 +95,6 @@ public class HostState implements ModelNetworkState{
 		User user = new User();
 		users.put(id, user);
 		round.addUser(user);
-		if(users.size() == 2) {
-			round.start();
-		}
 		//To prevent executng input before recieved from client causing nullptr
 		users.get(id).setListOfHoldKeys(new HashSet<Integer>());
 	}
