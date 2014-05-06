@@ -67,6 +67,7 @@ public class WeaponPickupTest  implements PropertyChangeListener{
 
 	@Test
 	public void testGetHeight() {
+		assertTrue(wp.getHeight()==5);
 	}
 
 	@Test
