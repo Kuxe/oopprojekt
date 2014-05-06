@@ -81,7 +81,7 @@ public class WeaponPickup implements IPickup{
 	}
 
 	public IDrawable clone() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return new WeaponPickup(this.position, this.radius, this.projectile);
 	}
 	
 }
