@@ -34,6 +34,9 @@ public class ArmsComponent {
 	public void setWeaponPipePosition(Vector2f weaponPipePosition) {
 		this.weaponPipePosition = weaponPipePosition;
 	}
+	public void setWeapon(IProjectile weapon){
+		
+	}
 	
 	/**
 	 * 
