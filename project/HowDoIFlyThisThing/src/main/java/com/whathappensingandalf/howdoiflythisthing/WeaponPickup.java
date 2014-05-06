@@ -6,6 +6,7 @@
 
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.beans.PropertyChangeSupport;
 import javax.vecmath.Point2f;
 
 /**
@@ -14,6 +15,20 @@ import javax.vecmath.Point2f;
  */
 public class WeaponPickup implements ICollidable{
 
+	private CollidableComponent collidableComp;
+	private Point2f position;
+	private int radius;
+	private IProjectile projectile;
+	private PropertyChangeSupport pcs;
+	
+	public WeaponPickup(Point2f position, int radius, IProjectile projectile){
+		this.position		=	position;
+		this.radius			=	radius;
+		this.projectile		=	projectile;
+		pcs				=	new PropertyChangeSupport(this);
+		collidableComp	=	new CollidableComponent(position, radius);
+	}
+	
 	public boolean collideDetection(ICollidable rhs) {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
