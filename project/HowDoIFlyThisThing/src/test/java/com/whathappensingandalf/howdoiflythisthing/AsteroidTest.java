@@ -1,13 +1,18 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import static org.junit.Assert.*;
 
 import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
 
 import org.junit.Test;
 
-public class AsteroidTest {
+public class AsteroidTest implements PropertyChangeListener{
 
+	private boolean evtBool;
+	
 	@Test
 	public void testAsteroidPoint2fIntInt() {
 		Asteroid testAsteroid=new Asteroid(new Point2f(30,40),10,20);
@@ -66,22 +71,26 @@ public class AsteroidTest {
 
 	@Test
 	public void testAccept() {
-		fail("Not yet implemented");
+		Spaceship s2 = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		s2.addPropertyChangeListener(this);
+		Asteroid ta = new Asteroid(new Point2f(30,40),10,20);
+		ta.accept(s2);
+		assertTrue(this.evtBool);
 	}
 
 	@Test
 	public void testVisitSpaceship() {
-		fail("Not yet implemented");
+		//Nothing should happen.
 	}
 
 	@Test
 	public void testVisitProjectile() {
-		fail("Not yet implemented");
+		//Nothing should happen.
 	}
 
 	@Test
 	public void testVisitAsteroid() {
-		fail("Not yet implemented");
+		//Nothing should happen.
 	}
 
 	@Test
@@ -105,6 +114,10 @@ public class AsteroidTest {
 				testAsteroid.getPosition().y==testAsteroidClone.getPosition().y &&
 				testAsteroid.getWidth()==testAsteroidClone.getWidth() &&
 				testAsteroid.getHeight()==testAsteroidClone.getHeight());
+	}
+
+	public void propertyChange(PropertyChangeEvent evt) {
+		this.evtBool = evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString());
 	}
 
 }
