@@ -8,12 +8,13 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeSupport;
 import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
 
 /**
  *
  * @author Martin
  */
-public class WeaponPickup implements ICollidable{
+public class WeaponPickup implements IPickup{
 
 	private CollidableComponent collidableComp;
 	private Point2f position;
@@ -71,6 +72,14 @@ public class WeaponPickup implements ICollidable{
 	}
 
 	public void visit(IPickup iPickup) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public Vector2f getDirection() {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	public IDrawable clone() {
 		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 	
