@@ -86,8 +86,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public float getRotVelocity() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.rotationVelocity.getValue();
 	}
 
 	@Override
