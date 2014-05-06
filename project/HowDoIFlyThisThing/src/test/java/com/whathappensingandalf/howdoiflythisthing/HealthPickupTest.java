@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package com.whathappensingandalf.howdoiflythisthing;
 
+import javax.vecmath.Point2f;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -15,9 +10,11 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Martin
+ * @author Martin Nilsson
  */
 public class HealthPickupTest {
+	
+	private HealthPickup hp;
 	
 	public HealthPickupTest() {
 	}
@@ -32,6 +29,7 @@ public class HealthPickupTest {
 	
 	@Before
 	public void setUp() {
+		hp = new HealthPickup(new Point2f(100,100), 5, 10);
 	}
 	
 	@After
@@ -40,6 +38,7 @@ public class HealthPickupTest {
 
 	@Test
 	public void testGetHealth() {
+		assertTrue(hp.getHealth()==10);
 	}
 
 	@Test
