@@ -107,6 +107,10 @@ public class HealthPickupTest implements PropertyChangeListener{
 
 	@Test
 	public void testVisit_Asteroid() {
+		Asteroid a = new Asteroid(new Point2f(100, 100), 10, 10);
+		hp.addPropertyChangeListener(this);
+		hp.visit(a);
+		assertTrue(this.isRemoved);
 	}
 
 	@Test
