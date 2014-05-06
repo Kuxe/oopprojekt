@@ -4,6 +4,7 @@ import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
 import com.whathappensingandalf.howdoiflythisthing.factorys.BulletFactory;
+import com.whathappensingandalf.howdoiflythisthing.factorys.IProjectileFactory;
 
 /**
  *
