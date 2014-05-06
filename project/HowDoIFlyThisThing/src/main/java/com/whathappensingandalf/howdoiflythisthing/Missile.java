@@ -46,6 +46,8 @@ public class Missile implements IProjectile{
 		this.position= missile.getPosition();
 		this.width = missile.getWidth();
 		this.height = missile.getHeight();
+		this.rotationVelocity.setValue(missile.getRotVelocity());
+		this.rotationAcceleration.setValue(missile.getRotAcceleration());
 		mC= new MoveComponent(position, velocity, acceleration, direction, new TypeWrapper(0.0f),new TypeWrapper(0.0f));
 		colliComp = new CollidableComponent(position, width, height);
 		pcs = new PropertyChangeSupport(this);
