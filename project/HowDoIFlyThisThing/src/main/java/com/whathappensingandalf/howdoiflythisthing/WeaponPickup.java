@@ -81,6 +81,7 @@ public class WeaponPickup implements IPickup{
 		return new Vector2f(1,0);
 	}
 
+	@Override
 	public IDrawable clone() {
 		return new WeaponPickup(this.position, this.radius, this.projectile);
 	}
@@ -98,5 +99,19 @@ public class WeaponPickup implements IPickup{
 	 */
     public void removePropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.removePropertyChangeListener(pcl);
+	}
+	
+	@Override
+	public boolean equals(Object rhs){
+		if(rhs==this){
+			return true;
+		}else if(!(rhs instanceof WeaponPickup)){
+			return false;
+		}else{
+			WeaponPickup other = (WeaponPickup)rhs;
+			return 	this.projectile.getType().toString().equals(other.projectile.getType().toString())&&
+					this.position.equals(other.position)&&
+					this.radius==other.radius;
+		}
 	}
 }
