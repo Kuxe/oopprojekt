@@ -23,6 +23,7 @@ import org.newdawn.slick.SpriteSheet;
 
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.IDrawable;
+import com.whathappensingandalf.howdoiflythisthing.IGameObject;
 
 public class View extends BasicGame implements ApplicationListener{
 	
@@ -150,7 +151,7 @@ public class View extends BasicGame implements ApplicationListener{
 				tmpImg=spaceship.copy();
 			}else if(comp.getType().equals("ASTEROID")){
 				tmpImg=asteroid.copy();
-			}else if(comp.getType().equals("PROJECTILE")){
+			}else if(comp.getType().equals("BULLET")){
 				tmpImg=shott.copy();
 			}else{
 				tmpImg=missingImage.copy();
