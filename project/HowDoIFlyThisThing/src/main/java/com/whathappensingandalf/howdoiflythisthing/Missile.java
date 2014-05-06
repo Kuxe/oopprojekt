@@ -168,8 +168,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public void visit(HealthPickup healthPickup) {
-		// TODO Auto-generated method stub
-		
+		// Do nothing
 	}
 
 	@Override
