@@ -221,8 +221,8 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		return this.hull;
 	}
 
-    public void setWeapon(ArmsComponent weapon) {
-        this.armsComponent=weapon;
+    public void setWeapon(IProjectile weapon) {
+        this.armsComponent.setWeapon(weapon);
     }
     
     /**
@@ -255,7 +255,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 
 	public void visit(IPickup iPickup) {
-		//TODO this.hull+=healthPickup.getHealth();
+		iPickup.affectMe(this);
 	}
 	public void visit(IProjectile projectile) {
 		this.hurt(projectile.getDamage());
