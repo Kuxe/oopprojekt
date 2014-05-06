@@ -38,7 +38,10 @@ public class ArmsComponent {
 		this.weaponPipePosition = weaponPipePosition;
 	}
 	public void setWeapon(IProjectile weapon){
-		
+		this.type = weapon.getType();
+	}
+	public String getWeapon(){
+		return this.type;
 	}
 	
 	/**
