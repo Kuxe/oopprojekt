@@ -88,7 +88,9 @@ public class HealthPickupTest implements PropertyChangeListener{
 
 	@Test
 	public void testAccept() {
-		
+		Spaceship s2 = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		hp.accept(s2);
+		assertTrue(s2.getHull()>10);
 	}
 
 	@Test
