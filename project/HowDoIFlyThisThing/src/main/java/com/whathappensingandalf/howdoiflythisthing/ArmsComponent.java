@@ -16,6 +16,7 @@ public class ArmsComponent {
 	private Vector2f velocity;
 	private Vector2f acceleration;
 	private Vector2f direction;
+	private String projectile;
 	
 	//vector from armsComponent owner point to weapon pipe
 	//this is neccesary to calculate where the projectile should be shot
@@ -29,6 +30,7 @@ public class ArmsComponent {
 		this.acceleration 			= acceleration;
 		this.direction				= direction;
 		this.weaponPipePosition 	= weaponPipePosition;
+		this.projectile				= IGameObject.type.BULLET;
 	}
 	
 	public void setWeaponPipePosition(Vector2f weaponPipePosition) {
