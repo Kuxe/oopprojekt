@@ -53,7 +53,7 @@ public class WeaponPickup implements IPickup{
 	}
 
 	public String getType() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return type.WEAPON_PICKUP.toString();
 	}
 
 	public void accept(ICollidable visitor) {
