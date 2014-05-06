@@ -61,8 +61,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public Vector2f getVelocity() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Vector2f(this.velocity.x,this.velocity.y);
 	}
 
 	@Override
