@@ -75,7 +75,7 @@ public class HealthPickup implements IPickup{
 		this.remove();
 	}
 
-	public void visit(HealthPickup healthPickup) {
+	public void visit(IPickup iPickup) {
 		//Nothing should happen.
 	}
 	
