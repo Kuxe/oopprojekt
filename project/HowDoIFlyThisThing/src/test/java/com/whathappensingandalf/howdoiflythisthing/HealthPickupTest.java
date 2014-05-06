@@ -62,6 +62,8 @@ public class HealthPickupTest implements PropertyChangeListener{
 
 	@Test
 	public void testCollideDetection() {
+		HealthPickup hp2 = new HealthPickup(new Point2f(102,102), 5, 10);
+		assertTrue(hp.collideDetection(hp2));
 	}
 
 	@Test

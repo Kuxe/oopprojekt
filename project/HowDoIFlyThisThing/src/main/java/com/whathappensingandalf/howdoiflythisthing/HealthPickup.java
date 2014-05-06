@@ -27,8 +27,8 @@ public class HealthPickup implements IPickup{
 	private PropertyChangeSupport pcs;
 	
 	public HealthPickup(Point2f position, int radius, int health){
-		this.position=new Point2f();
-		this.radius=radius;
+		this.position = position;
+		this.radius = radius;
 		this.health = health;
 		pcs = new PropertyChangeSupport(this);
 		collidableComp = new CollidableComponent(position, radius);
