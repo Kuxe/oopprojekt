@@ -11,6 +11,7 @@ public interface IGameObject {
 		ASTEROID,
 		PICKUP,
 		HEALTH_PICKUP,
+		WEAPON_PICKUP,
 		MISSILE
 	}
 	public String getType();

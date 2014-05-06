@@ -30,7 +30,7 @@ public class CollidableComponent implements ICollidableComponent{
 		this.position= position;
 		this.width= width/2;
 		this.height= height/2;
-		radius= (width/2);
+		radius= ((height+ width)/2);
 	}
 	
 	public boolean collideDetection(ICollidable rhs){

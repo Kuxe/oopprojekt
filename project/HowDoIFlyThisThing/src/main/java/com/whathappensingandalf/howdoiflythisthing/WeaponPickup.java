@@ -6,52 +6,112 @@
 
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
 
 /**
  *
  * @author Martin
  */
-public class WeaponPickup implements ICollidable{
+public class WeaponPickup implements IPickup{
 
+	private CollidableComponent collidableComp;
+	private Point2f position;
+	private int radius;
+	private IProjectile projectile;
+	private PropertyChangeSupport pcs;
+	
+	public WeaponPickup(Point2f position, int radius, IProjectile projectile){
+		this.position		=	position;
+		this.radius			=	radius;
+		this.projectile		=	projectile;
+		pcs				=	new PropertyChangeSupport(this);
+		collidableComp	=	new CollidableComponent(position, radius);
+	}
+	public void affectMe(Spaceship spaceship) {
+		spaceship.setWeapon(projectile);
+	}
+	public void remove(){
+		this.pcs.firePropertyChange(IPickup.Message.PICKUP_DIE.toString(), this, true);
+	}
+	
 	public boolean collideDetection(ICollidable rhs) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.collidableComp.collideDetection(rhs);
 	}
 
 	public int getHeight() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.radius;
 	}
 
 	public int getWidth() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.radius;
 	}
 
 	public Point2f getPosition() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return new Point2f(this.position);
 	}
 
 	public String getType() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return type.WEAPON_PICKUP.toString();
 	}
 
 	public void accept(ICollidable visitor) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		visitor.visit(this);
 	}
 
 	public void visit(Spaceship spaceship) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		this.remove();
 	}
 
 	public void visit(Asteroid asteroid) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		this.remove();
 	}
 
 	public void visit(IProjectile projectile) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//Nothing should happen.		
 	}
 
 	public void visit(IPickup iPickup) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		//Nothing should happen.		
+	}
+
+	public Vector2f getDirection() {
+		return new Vector2f(1,0);
+	}
+
+	@Override
+	public IDrawable clone() {
+		return new WeaponPickup(this.position, this.radius, this.projectile);
 	}
 	
+	/**
+	 * Adds a listener to this object.
+	 * @param pcl
+	 */
+    public void addPropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.addPropertyChangeListener(pcl);
+	}
+	/**
+	 * Adds a listener to this object.
+	 * @param pcl
+	 */
+    public void removePropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.removePropertyChangeListener(pcl);
+	}
+	
+	@Override
+	public boolean equals(Object rhs){
+		if(rhs==this){
+			return true;
+		}else if(!(rhs instanceof WeaponPickup)){
+			return false;
+		}else{
+			WeaponPickup other = (WeaponPickup)rhs;
+			return 	this.projectile.getType().toString().equals(other.projectile.getType().toString())&&
+					this.position.equals(other.position)&&
+					this.radius==other.radius;
+		}
+	}
 }

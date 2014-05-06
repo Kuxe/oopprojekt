@@ -17,9 +17,6 @@ import javax.vecmath.Vector2f;
  */
 public class HealthPickup implements IPickup{
 
-	public static enum Message{
-		PICKUP_DIE
-	}
 	private CollidableComponent collidableComp;
 	private Point2f position;
 	private int radius;
@@ -27,9 +24,10 @@ public class HealthPickup implements IPickup{
 	private PropertyChangeSupport pcs;
 	
 	public HealthPickup(Point2f position, int radius, int health){
-		this.position=new Point2f();
-		this.radius=radius;
+		this.position = position;
+		this.radius = radius;
 		this.health = health;
+		pcs = new PropertyChangeSupport(this);
 		collidableComp = new CollidableComponent(position, radius);
 	}
 	public int getHealth(){
@@ -102,6 +100,19 @@ public class HealthPickup implements IPickup{
 	 */
     public void removePropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.removePropertyChangeListener(pcl);
+	}
+	
+	public boolean equals(Object rhs){
+		if(rhs==this){
+			return true;
+		}else if(!(rhs instanceof HealthPickup)){
+			return false;
+		}else{
+			HealthPickup other = (HealthPickup)rhs;
+			return 	this.health==other.health&&
+					this.position.equals(other.position)&&
+					this.radius==other.radius;
+		}
 	}
 	
 }

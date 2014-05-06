@@ -3,6 +3,8 @@ package com.whathappensingandalf.howdoiflythisthing;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
+import utils.Timer;
+
 import com.whathappensingandalf.howdoiflythisthing.factorys.BulletFactory;
 import com.whathappensingandalf.howdoiflythisthing.factorys.IProjectileFactory;
 
@@ -18,6 +20,7 @@ public class ArmsComponent {
 	private Vector2f acceleration;
 	private Vector2f direction;
 	private String type;
+	private Timer timer;
 	
 	//vector from armsComponent owner point to weapon pipe
 	//this is neccesary to calculate where the projectile should be shot
@@ -31,7 +34,8 @@ public class ArmsComponent {
 		this.acceleration 			= acceleration;
 		this.direction				= direction;
 		this.weaponPipePosition 	= weaponPipePosition;
-		this.type					= IGameObject.type.MISSILE.toString();
+		this.type					= IGameObject.type.BULLET.toString();
+		this.timer					= new Timer(1000);
 	}
 	
 	public void setWeaponPipePosition(Vector2f weaponPipePosition) {
@@ -39,9 +43,22 @@ public class ArmsComponent {
 	}
 	public void setWeapon(IProjectile weapon){
 		this.type = weapon.getType();
+		if(type.equals("BULLET")){
+			this.timer.setTimerLength(1000);
+		}else if(type.equals("MISSILE")){
+			this.timer.setTimerLength(2000);
+		}
 	}
 	public String getWeapon(){
 		return this.type;
+	}
+	
+	public boolean canFire(){
+		if(timer.isTimerDone()){
+			timer.start();
+			return true;
+		}
+		return false;
 	}
 	
 	/**

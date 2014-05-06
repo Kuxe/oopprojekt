@@ -220,34 +220,4 @@ public class Bullet implements IProjectile {
 		return width== p.width && height== p.height && velocity.equals(p.velocity) && acceleration.equals(p.acceleration) &&
 				direction.equals(p.direction) && position.equals(position) && damage== p.damage;
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	/*
-	public Point2f getLeftmostCoordinate() {
-		return colliComp.getLeftmostCoordinate();
-	}
-	/**
-	 * {@inheritDoc}
-	 */
-	/*
-	public Point2f getRightmostCoordinate() {
-		return colliComp.getRightmostCoordinate();
-	}
-	/**
-	 * {@inheritDoc}
-	 */
-	/*
-	public Point2f getTopmostCoordinate() {
-		return colliComp.getTopmostCoordinate();
-	}
-	/**
-	 * {@inheritDoc}
-	 */
-	/*
-	public Point2f getBottommostCoordinate() {
-		return colliComp.getBottommostCoordinate();
-	}
-	*/
 }//end Projectile

@@ -151,9 +151,6 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetWeapon() {
-		//ArmsComponent armsComponent = new ArmsComponent(s.getPosition(), s.getVelocity(),s.getAcceleration(), s.getDirection(), new Vector2f(0.0f, s.getHeight()/2 + 30.0f));
-		//ArmsComponent ac2 = s.getWeapon();
-		//assertTrue(armsComponent.equals(ac2));
 		assertTrue(s.getWeapon().equals(IGameObject.type.BULLET.toString()));
 	}
 	
@@ -225,6 +222,12 @@ public class SpaceshipTest implements PropertyChangeListener{
 		s.visit(a);
 		assertTrue(isRemoved);
 	}
+	public void testVisit_IPickup(){
+		HealthPickup hp = new HealthPickup(new Point2f(0,0), 5, 10);
+		int h = s.getHull();
+		s.visit(hp);
+		assertTrue(s.getHull()>h);
+	}
 
 	@Test
 	public void testAddPropertyChangeListener() {
@@ -261,7 +264,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 	@Test
 	public void testActivateMainThruste() {
 		Spaceship ship = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
-		ship.activateMainThruste();
+		ship.activateMainThruster();
 		Timestep t = new Timestep();
 		t.start();
 		t.end();
@@ -273,7 +276,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 	@Test
 	public void testActivateLeftThruste() {
 		Spaceship ship = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
-		ship.activateLeftThruste();
+		ship.activateLeftThruster();
 		Timestep t = new Timestep();
 		t.start();
 		t.end();
@@ -285,7 +288,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 	@Test
 	public void testActivateRightThruste() {
 		Spaceship ship = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
-		ship.activateRightThruste();
+		ship.activateRightThruster();
 		Timestep t = new Timestep();
 		t.start();
 		t.end();
@@ -298,7 +301,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 	@Test
 	public void testDeactivateMainThruster() {
 		Spaceship ship = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
-		ship.activateMainThruste();
+		ship.activateMainThruster();
 		ship.deactivateMainThruster();
 		Timestep t = new Timestep();
 		t.start();
@@ -311,7 +314,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 	@Test
 	public void testDeactivateLeftThruster() {
 		Spaceship ship = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
-		ship.activateLeftThruste();
+		ship.activateLeftThruster();
 		ship.deactivateLeftThruster();
 		Timestep t = new Timestep();
 		t.start();
@@ -324,7 +327,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 	@Test
 	public void testDeactivateRightThruster() {
 		Spaceship ship = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
-		ship.activateRightThruste();
+		ship.activateRightThruster();
 		ship.deactivateRightThruster();
 		Timestep t = new Timestep();
 		t.start();
@@ -333,35 +336,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 		ship.calculateThrust(t);
 		assertTrue(ship.getAcceleration().equals(new Vector2f(0,0))&&ship.getRotAcceleration()==0);
 	}
-/*
-	@Test
-	public void testGetLeftmostCoordinate() {
-		Spaceship ship = new Spaceship(new Point2f(10, 10), new Vector2f(1,0), 70, 50);
-		float f = ship.getLeftmostCoordinate().x;
-		assertTrue(f==-25);
-	}
-
-	@Test
-	public void testGetRightmostCoordinate() {
-		Spaceship ship = new Spaceship(new Point2f(10, 10), new Vector2f(1,0), 70, 50);
-		float f = ship.getRightmostCoordinate().x;
-		assertTrue(f==45);
-	}
-
-	@Test
-	public void testGetTopmostCoordinate() {
-		Spaceship ship = new Spaceship(new Point2f(10, 10), new Vector2f(1,0), 70, 50);
-		float f = ship.getTopmostCoordinate().y;
-		assertTrue(f==-15);
-	}
-
-	@Test
-	public void testGetBottommostCoordinate() {
-		Spaceship ship = new Spaceship(new Point2f(10, 10), new Vector2f(1,0), 70, 50);
-		float f = ship.getBottommostCoordinate().y;
-		assertTrue(f==35);
-	}
-*/	
+	
 	@Test
 	public void testEquals() {
 		Spaceship st1 = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50);
