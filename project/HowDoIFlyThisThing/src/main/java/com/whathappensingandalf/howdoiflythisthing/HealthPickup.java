@@ -15,7 +15,8 @@ import javax.vecmath.Vector2f;
  *
  * @author Martin
  */
-public class HealthPickup implements ICollidable, IGameObject, IDrawable, Cloneable{
+public class HealthPickup implements IPickup{
+
 	public static enum Message{
 		PICKUP_DIE
 	}
@@ -34,6 +35,7 @@ public class HealthPickup implements ICollidable, IGameObject, IDrawable, Clonea
 	public int getHealth(){
 		return this.health;
 	}
+	
 	public void remove(){
 		this.pcs.firePropertyChange(HealthPickup.Message.PICKUP_DIE.toString(), this, true);
 	}
