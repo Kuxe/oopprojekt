@@ -61,7 +61,7 @@ public class WeaponPickup implements IPickup{
 	}
 
 	public void visit(Spaceship spaceship) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		this.remove();
 	}
 
 	public void visit(Asteroid asteroid) {
