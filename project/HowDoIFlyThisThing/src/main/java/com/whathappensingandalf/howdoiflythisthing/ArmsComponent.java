@@ -31,7 +31,7 @@ public class ArmsComponent {
 		this.acceleration 			= acceleration;
 		this.direction				= direction;
 		this.weaponPipePosition 	= weaponPipePosition;
-		this.type					= IGameObject.type.MISSILE.toString();
+		this.type					= IGameObject.type.BULLET.toString();
 	}
 	
 	public void setWeaponPipePosition(Vector2f weaponPipePosition) {
