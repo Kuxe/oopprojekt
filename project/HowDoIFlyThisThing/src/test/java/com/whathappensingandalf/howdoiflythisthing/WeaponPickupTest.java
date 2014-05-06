@@ -96,6 +96,10 @@ public class WeaponPickupTest  implements PropertyChangeListener{
 
 	@Test
 	public void testVisit_Spaceship() {
+		Spaceship s2 = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
+		wp.addPropertyChangeListener(this);
+		wp.visit(s2);
+		assertTrue(this.isRemoved);
 	}
 
 	@Test
