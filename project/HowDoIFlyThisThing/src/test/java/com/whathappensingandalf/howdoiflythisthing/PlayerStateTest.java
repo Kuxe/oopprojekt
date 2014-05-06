@@ -31,16 +31,10 @@ public class PlayerStateTest implements PropertyChangeListener{
 	private Spaceship s1= new Spaceship(pos, dir, w, h);
 	private Spaceship s2= new Spaceship(pos2, dir2, w2, h2);
 
-	@BeforeClass
-	public static void setUpBeforeClass() throws Exception {
-	}
-
-	@AfterClass
-	public static void tearDownAfterClass() throws Exception {
-	}
-
 	@Before
 	public void setUp() throws Exception {
+		bo1= false;
+		bo2= true;
 	}
 
 	@After
@@ -83,9 +77,17 @@ public class PlayerStateTest implements PropertyChangeListener{
 
 	@Test
 	public void testFireHold() {
-//		TODO
-//		ps.getSpaceship().addPropertyChangeListener(this);
-		assertTrue(true);
+//		TODO- check time in spaceship
+		ps.setSpaceship(s1);
+		ps.getSpaceship().addPropertyChangeListener(this);
+		ps.fireHold(bo2);	//test true
+		System.out.println(bo1);
+		bo1= false;					//This two rows is just to check the timer, but I don't
+		System.out.println(bo1);	//know have to do a real test on it
+		ps.fireHold(bo2);
+		bo2= false;
+		ps.fireHold(bo2);
+//		assertTrue(bo1 && !bo2);
 	}
 
 	@Test
@@ -108,5 +110,4 @@ public class PlayerStateTest implements PropertyChangeListener{
 		}
 		
 	}
-
-}
+}//end PlayerStateTest
