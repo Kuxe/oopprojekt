@@ -141,7 +141,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public String getType() {
-		return type.PROJECTILE.toString();
+		return type.MISSILE.toString();
 	}
 
 	@Override
