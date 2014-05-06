@@ -213,7 +213,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		return type.SPACESHIP.toString();
 	}
 	
-    public ArmsComponent getWeapon() {
+    public String getWeapon() {
         return this.armsComponent.getWeapon();
     }
 	
