@@ -162,7 +162,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public void visit(Asteroid asteroid) {
-		// TODO Auto-generated method stub
+		this.remove();
 		
 	}
 
