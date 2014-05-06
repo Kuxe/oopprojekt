@@ -73,7 +73,9 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetDirection() {
-		assertTrue(s.getDirection().equals(new Vector2f(1, 1)));
+		Vector2f v2 = new Vector2f(1, 1);
+		v2.normalize();
+		assertTrue(s.getDirection().equals(v2));
 	}
 
 	@Test
@@ -149,22 +151,23 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetWeapon() {
-		ArmsComponent armsComponent = new ArmsComponent(s.getPosition(), s.getVelocity(),s.getAcceleration(), s.getDirection(), new Vector2f(0.0f, s.getHeight()/2 + 30.0f));
-		ArmsComponent ac2 = s.getWeapon();
-		assertTrue(armsComponent.equals(ac2));
+		//ArmsComponent armsComponent = new ArmsComponent(s.getPosition(), s.getVelocity(),s.getAcceleration(), s.getDirection(), new Vector2f(0.0f, s.getHeight()/2 + 30.0f));
+		//ArmsComponent ac2 = s.getWeapon();
+		//assertTrue(armsComponent.equals(ac2));
+		assertTrue(s.getWeapon().equals(IGameObject.type.BULLET.toString()));
 	}
 	
 	@Test
 	public void testGetHull() {
 		Spaceship s2 = new Spaceship(new Point2f(100, 100), new Vector2f(1,0), 10, 10);
-		assertTrue(s2.getHull()==100);
+		assertTrue(s2.getHull()==10);
 	}
 
 	@Test
 	public void testSetWeapon() {
-		ArmsComponent armsComponent = new ArmsComponent(new Point2f(5,9), new Vector2f(7,9),new Vector2f(3,6), new Vector2f(7,3), new Vector2f(0, 9));
-		s.setWeapon(armsComponent);
-		assertTrue(s.getWeapon().equals(armsComponent));
+		IProjectile projectile = new Missile(new Point2f(5,9), new Vector2f(7,9), new Vector2f(3,6), new Vector2f(7,3), 3, 3);
+		s.setWeapon(projectile);
+		assertTrue(s.getWeapon().equals(IGameObject.type.MISSILE.toString()));
 	}
 
 	@Test

@@ -54,7 +54,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		viewThread.getView().getContainer().getInput().addKeyListener(this);
+		viewThread.getView().getContainer().getInput().addKeyListener(this); //This row may crash if View-thread havent created view yet
 		viewThread.getView().addPropertyChangeListener(this);
 		
 		soundEffects= new SoundEffects();

@@ -4,6 +4,7 @@ import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
 import com.whathappensingandalf.howdoiflythisthing.factorys.BulletFactory;
+import com.whathappensingandalf.howdoiflythisthing.factorys.IProjectileFactory;
 
 /**
  *
@@ -16,6 +17,7 @@ public class ArmsComponent {
 	private Vector2f velocity;
 	private Vector2f acceleration;
 	private Vector2f direction;
+	private String type;
 	
 	//vector from armsComponent owner point to weapon pipe
 	//this is neccesary to calculate where the projectile should be shot
@@ -29,10 +31,17 @@ public class ArmsComponent {
 		this.acceleration 			= acceleration;
 		this.direction				= direction;
 		this.weaponPipePosition 	= weaponPipePosition;
+		this.type					= IGameObject.type.BULLET.toString();
 	}
 	
 	public void setWeaponPipePosition(Vector2f weaponPipePosition) {
 		this.weaponPipePosition = weaponPipePosition;
+	}
+	public void setWeapon(IProjectile weapon){
+		this.type = weapon.getType();
+	}
+	public String getWeapon(){
+		return this.type;
 	}
 	
 	/**
@@ -48,7 +57,7 @@ public class ArmsComponent {
 		baseSpeed.normalize();
 		baseSpeed.scale(baseSpeedMagnitude);
 		baseSpeed.add(velocity);
-		return BulletFactory.create(tempPoint, baseSpeed, acceleration, direction, 3, 3);
+		return IProjectileFactory.create(tempPoint, baseSpeed, acceleration, direction, type);
 	}
 	public boolean equals(Object rhs){
 		if(rhs==this){
