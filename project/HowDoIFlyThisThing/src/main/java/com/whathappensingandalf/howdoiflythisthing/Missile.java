@@ -115,7 +115,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public void setPosition(Point2f position) {
-		// TODO Auto-generated method stub
+		this.position=position;
 		
 	}
 
