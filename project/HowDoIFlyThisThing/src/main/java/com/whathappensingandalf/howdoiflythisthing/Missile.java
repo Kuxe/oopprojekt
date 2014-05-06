@@ -187,8 +187,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public int getDamage() {
-		// TODO Auto-generated method stub
-		return 0;
+		return this.damage;
 	}
 
 	@Override
