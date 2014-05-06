@@ -166,7 +166,7 @@ public class Missile implements IProjectile{
 	}
 
 	@Override
-	public void visit(HealthPickup healthPickup) {
+	public void visit(IPickup iPickup) {
 		// Do nothing
 	}
 

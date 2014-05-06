@@ -208,7 +208,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testVisit_Projectile() {
-		Bullet p = new Bullet(null, null, null, null, 5, 5);
+		IProjectile p = new Bullet(null, null, null, null, 5, 5);
 		int h = s.getHull();
 		s.visit(p);
 		assertTrue(s.getHull()<h);
