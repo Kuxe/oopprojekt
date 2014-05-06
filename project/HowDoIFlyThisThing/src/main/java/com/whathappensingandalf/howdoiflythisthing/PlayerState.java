@@ -22,7 +22,7 @@ public class PlayerState implements IUserState{
 
 	public void mainHold(boolean held) {
 		if(held){
-			spaceship.activateMainThruste();
+			spaceship.activateMainThruster();
 		}else{
 			spaceship.deactivateMainThruster();
 		}
@@ -30,7 +30,7 @@ public class PlayerState implements IUserState{
 
 	public void leftHold(boolean held) {
 		if(held){
-			spaceship.activateLeftThruste();
+			spaceship.activateLeftThruster();
 		}else{
 			spaceship.deactivateLeftThruster();
 		}
@@ -38,7 +38,7 @@ public class PlayerState implements IUserState{
 
 	public void rightHold(boolean held) {
 		if(held){
-			spaceship.activateRightThruste();
+			spaceship.activateRightThruster();
 		}else{
 			spaceship.deactivateRightThruster();
 		}
