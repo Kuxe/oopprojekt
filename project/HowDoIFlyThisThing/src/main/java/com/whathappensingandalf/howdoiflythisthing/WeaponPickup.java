@@ -30,6 +30,7 @@ public class WeaponPickup implements IPickup{
 		collidableComp	=	new CollidableComponent(position, radius);
 	}
 	public void affectMe(Spaceship spaceship) {
+		spaceship.setWeapon(projectile);
 	}
 	public void remove(){
 		this.pcs.firePropertyChange(IPickup.Message.PICKUP_DIE.toString(), this, true);
