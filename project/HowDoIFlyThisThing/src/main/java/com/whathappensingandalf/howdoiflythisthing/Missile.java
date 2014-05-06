@@ -1,11 +1,51 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
+import utils.TypeWrapper;
+
 public class Missile implements IProjectile{
+	
+	private int width;
+	private int height;
+	private Vector2f velocity;
+	private Vector2f acceleration;
+	private Vector2f direction;
+	private Point2f position;
+	private int damage = 1;  //@TODO
+	//private Damage damage= new Damage();
+	private MoveComponent mC;
+	private CollidableComponent colliComp;
+	
+	private PropertyChangeSupport pcs;
+	
+	public Missile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, int width, int height){
+		this.velocity= velocity;
+		this.acceleration= acceleration;
+		this.direction= direction;
+		this.position= position;
+		this.width = width;
+		this.height = height;
+		mC= new MoveComponent(position, velocity, acceleration, direction, new TypeWrapper(0.0f),new TypeWrapper(0.0f));
+		colliComp = new CollidableComponent(position, width, height);
+		pcs = new PropertyChangeSupport(this);
+	}
+	
+	public Missile(Missile missile){
+		this.velocity=missile.getVelocity();
+		this.acceleration= missile.getAcceleration();
+		this.direction= missile.getDirection();
+		this.position= missile.getPosition();
+		this.width = missile.getWidth();
+		this.height = missile.getHeight();
+		mC= new MoveComponent(position, velocity, acceleration, direction, new TypeWrapper(0.0f),new TypeWrapper(0.0f));
+		colliComp = new CollidableComponent(position, width, height);
+		pcs = new PropertyChangeSupport(this);
+	}
 
 	@Override
 	public void move(Timestep timestep) {
