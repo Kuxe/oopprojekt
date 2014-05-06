@@ -104,6 +104,10 @@ public class WeaponPickupTest  implements PropertyChangeListener{
 
 	@Test
 	public void testVisit_Asteroid() {
+		Asteroid a = new Asteroid(new Point2f(100, 100), 10, 10);
+		wp.addPropertyChangeListener(this);
+		wp.visit(a);
+		assertTrue(this.isRemoved);
 	}
 
 	@Test
