@@ -162,7 +162,7 @@ public class Bullet implements IProjectile {
 	}
 
 	public String getType() {
-		return type.PROJECTILE.toString();
+		return type.BULLET.toString();
 	}
 	public boolean collideDetection(ICollidable rhs) {
 		return colliComp.collideDetection(rhs);

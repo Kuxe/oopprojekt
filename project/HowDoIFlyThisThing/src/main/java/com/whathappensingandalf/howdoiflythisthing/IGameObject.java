@@ -7,10 +7,11 @@ package com.whathappensingandalf.howdoiflythisthing;
 public interface IGameObject {
 	public enum type{
 		SPACESHIP,
-		PROJECTILE,
+		BULLET,
 		ASTEROID,
 		PICKUP,
-		HEALTH_PICKUP
+		HEALTH_PICKUP,
+		MISSILE
 	}
 	public String getType();
 }
