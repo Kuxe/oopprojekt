@@ -105,4 +105,17 @@ public class HealthPickup implements IPickup{
 		this.pcs.removePropertyChangeListener(pcl);
 	}
 	
+	public boolean equals(Object rhs){
+		if(rhs==this){
+			return true;
+		}else if(!(rhs instanceof HealthPickup)){
+			return false;
+		}else{
+			HealthPickup other = (HealthPickup)rhs;
+			return 	this.health==other.health&&
+					this.position.equals(other.position)&&
+					this.radius==other.radius;
+		}
+	}
+	
 }
