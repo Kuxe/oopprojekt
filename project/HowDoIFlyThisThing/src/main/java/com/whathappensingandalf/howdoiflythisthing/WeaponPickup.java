@@ -45,7 +45,7 @@ public class WeaponPickup implements IPickup{
 	}
 
 	public int getWidth() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return this.radius;
 	}
 
 	public Point2f getPosition() {
