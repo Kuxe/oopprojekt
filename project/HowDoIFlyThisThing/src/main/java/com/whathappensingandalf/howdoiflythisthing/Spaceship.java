@@ -243,6 +243,10 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		this.thrusterComponent.calculateRotation(timestep);
 	}
 	
+	public void repair(int repair){
+		this.hull+=repair;
+	}
+	
 	public void accept(ICollidable visitor) {
 		visitor.visit(this);
 	}
