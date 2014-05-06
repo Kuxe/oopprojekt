@@ -73,6 +73,7 @@ public class HealthPickupTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetWidth() {
+		assertTrue(hp.getWidth()==5);
 	}
 
 	@Test
