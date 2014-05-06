@@ -49,14 +49,11 @@ public class Gameworld implements PropertyChangeListener{
 	 * to this spaceship from all lists upon spaceship destruction
 	 */
 	private Map<Object, List<Map<Object, ? extends IListable>>> removalMap;
-	
 	private Set<Object> listOfObjectsToBeRemoved;
-	
 	private Timestep timestep;
-	
 	private WorldBorder worldBorder;
-	
 	private Set<String> listOfSounds;
+	private PropertyChangeSupport pcs;
 	
 	public Gameworld(){
 		moveables = 					new HashMap();
@@ -64,20 +61,10 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap = 					new HashMap();
 		listOfObjectsToBeRemoved = 		new HashSet();
 		drawables =						new HashMap();
-		listOfSounds= 						new HashSet();
-		
+		listOfSounds= 					new HashSet();
 		worldBorder=new WorldBorder(540,1080);
-		
 		timestep = new Timestep();
-	}
-	
-	public void reset() {
-		moveables.clear();
-		collidables.clear();
-		drawables.clear();
-		removalMap.clear();
-		listOfObjectsToBeRemoved.clear();
-		listOfSounds.clear();
+		pcs = new PropertyChangeSupport(this);
 	}
 	
 	public Set<DrawableData> getDrawableData() {
@@ -165,7 +152,7 @@ public class Gameworld implements PropertyChangeListener{
 	/**
 	 * Adds a spaceship to the world
 	 */
-	public void addSpaceship(Point2f point){
+	public synchronized void addSpaceship(Point2f point){
 		//Temporary hardcoded direction set to 1, 1
 		addSpaceship(SpaceshipFactory.create(point, new Vector2f(1, 1)));
 	}
@@ -173,7 +160,7 @@ public class Gameworld implements PropertyChangeListener{
 	/**
 	 * Adds a spaceship to the world
 	 */
-	public void addSpaceship(Spaceship spaceship){
+	public synchronized void addSpaceship(Spaceship spaceship){
 		//Make gameworld listen to spaceship
 		spaceship.addPropertyChangeListener(this);
 		
@@ -192,7 +179,7 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap.put(spaceship, listOfHashMaps);
 	}
 	
-	private void addObjectToHashMaps(List<HashMap<Object, Object>> list, Object object) {
+	private synchronized void addObjectToHashMaps(List<HashMap<Object, Object>> list, Object object) {
 		for(HashMap<Object, Object> item : list) {
 			item.put(object, object);
 		}
@@ -207,7 +194,7 @@ public class Gameworld implements PropertyChangeListener{
 	 * Adds param projectile to the world
 	 * @param projectile
 	 */
-	public void addProjectile(IProjectile projectile) {
+	public synchronized void addProjectile(IProjectile projectile) {
 		projectile.addPropertyChangeListener(this);
 		moveables.put(projectile, projectile);
 		collidables.put(projectile, projectile);
@@ -219,7 +206,7 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap.put(projectile, listOfHashMaps);
 	}
 	
-	public void addAsteroid(Asteroid asteroid) {
+	public synchronized void addAsteroid(Asteroid asteroid) {
 		collidables.put(asteroid, asteroid);
 		drawables.put(asteroid, asteroid);
 		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
@@ -255,9 +242,8 @@ public class Gameworld implements PropertyChangeListener{
 	/**
 	 * Loop through all lists of interfaces and call their methods
 	 */
-	public void update(){
+	public synchronized void update(){
 		timestep.start();
-		
 		listOfSounds.clear();
 		
 		movableUpdate();
@@ -281,6 +267,7 @@ public class Gameworld implements PropertyChangeListener{
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
 			listOfSounds.add(SoundEffects.sound.SPACESHIP_DIE.toString());
+			pcs.firePropertyChange(evt); //Forward event
 		}
 	}
 	
@@ -299,5 +286,9 @@ public class Gameworld implements PropertyChangeListener{
 	
 	public Set<String> getListOfSounds(){
 		return listOfSounds;
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		pcs.addPropertyChangeListener(listener);
 	}
 }
