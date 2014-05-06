@@ -72,7 +72,7 @@ public class WeaponPickupTest  implements PropertyChangeListener{
 
 	@Test
 	public void testGetWidth() {
-		assertTrue(hp.getHeight()==5);
+		assertTrue(wp.getHeight()==5);
 	}
 
 	@Test
