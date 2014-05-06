@@ -15,7 +15,8 @@ import javax.vecmath.Vector2f;
  *
  * @author Martin
  */
-public class HealthPickup implements ICollidable, IGameObject, IDrawable, Cloneable{
+public class HealthPickup implements IPickup{
+
 	public static enum Message{
 		PICKUP_DIE
 	}
@@ -34,6 +35,7 @@ public class HealthPickup implements ICollidable, IGameObject, IDrawable, Clonea
 	public int getHealth(){
 		return this.health;
 	}
+	
 	public void remove(){
 		this.pcs.firePropertyChange(HealthPickup.Message.PICKUP_DIE.toString(), this, true);
 	}
@@ -73,17 +75,18 @@ public class HealthPickup implements ICollidable, IGameObject, IDrawable, Clonea
 		this.remove();
 	}
 
+	public void visit(IPickup iPickup) {
+		//Nothing should happen.
+	}
+	
 	public Vector2f getDirection() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return new Vector2f(1,0);
 	}
 
 	public IDrawable clone() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		return new HealthPickup(this.position, this.radius, this.health);
 	}
 
-	public void visit(HealthPickup healthPickup) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
 	/**
 	 * Adds a listener to this object.
 	 * @param pcl

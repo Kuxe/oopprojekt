@@ -184,7 +184,7 @@ public class Bullet implements IProjectile {
 		this.remove();
 	}
 	
-	public void visit(HealthPickup healthPickup) {
+	public void visit(IPickup iPickup) {
 		//Do nothing
 	}
 	/**

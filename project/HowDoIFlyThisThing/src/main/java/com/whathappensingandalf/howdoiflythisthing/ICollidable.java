@@ -49,7 +49,7 @@ public interface ICollidable extends IListable{
 	 */
 	public void visit(Asteroid asteroid);
 	
-	public void visit(HealthPickup healthPickup);
+	public void visit(IPickup iPickup);
 	/**
 	 * @return the point most to the left
 	 */

@@ -269,7 +269,6 @@ public class Gameworld implements PropertyChangeListener{
 			listOfSounds.add(SoundEffects.sound.SPACESHIP_FIRE.toString());
 		} else if(evt.getPropertyName().equals(IProjectile.Message.PROJECTILE_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
-			listOfSounds.add(SoundEffects.sound.PROJECTILE_DIE.toString());
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
 			listOfSounds.add(SoundEffects.sound.SPACESHIP_DIE.toString());
