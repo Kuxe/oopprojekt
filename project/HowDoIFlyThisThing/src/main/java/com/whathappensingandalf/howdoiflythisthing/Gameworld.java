@@ -71,6 +71,15 @@ public class Gameworld implements PropertyChangeListener{
 		timestep = new Timestep();
 	}
 	
+	public void reset() {
+		moveables.clear();
+		collidables.clear();
+		drawables.clear();
+		removalMap.clear();
+		listOfObjectsToBeRemoved.clear();
+		listOfSounds.clear();
+	}
+	
 	public Set<DrawableData> getDrawableData() {
 		HashSet<DrawableData> set = new HashSet();
 		for(IDrawable drawable : drawables.values()) {
