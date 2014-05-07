@@ -7,7 +7,7 @@ import javax.vecmath.Vector2f;
 
 import org.junit.Test;
 
-public class TestCollidableComponent {
+public class CollidableComponentTest {
 
 	@Test
 	public void testCollidableComponentPoint2fDouble() {
