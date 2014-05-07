@@ -18,33 +18,33 @@ import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
 import com.whathappensingandalf.howdoiflythisthing.IDrawable;
 
 public class Controller implements KeyListener, PropertyChangeListener{
-	
+
 	private HowDoIFlyThisThing model;
 	private ViewThread viewThread;
 	private SoundEffects soundEffects;
-	
+
 	boolean running = false;
-	
+
 	private Set<Integer> listOfPressedKeys;
 	private Set<Integer> listOfReleasedKeys;
 	private Set<Integer> listOfHoldKeys;
-	
+
 	public Controller(){
 		sharedCTOR();
 		model.host();
 	}
-	
+
 	public Controller(String ip){
 		sharedCTOR();
 		model.join(ip);
 	}
-	
+
 	private void sharedCTOR() {
 		model = new HowDoIFlyThisThing();	
 		listOfPressedKeys = new HashSet();
 		listOfReleasedKeys = new HashSet();
 		listOfHoldKeys = new HashSet();
-		
+
 		final Object lock = new Object();
 		viewThread=new ViewThread(lock);
 		viewThread.start();
@@ -60,10 +60,10 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		}
 		viewThread.getView().getContainer().getInput().addKeyListener(this); //This row may crash if View-thread havent created view yet
 		viewThread.getView().addPropertyChangeListener(this);
-		
+
 		soundEffects= new SoundEffects();
 	}
-	
+
 	/**
 	 * Set booleans representing if a key is held down or not
 	 * If a key is inside pressedKeys (someone pressed a key), set the boolean to true
@@ -73,22 +73,22 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		for(int key : listOfPressedKeys) {
 			listOfHoldKeys.add(key);
 		}
-		
+
 		for(int key : listOfReleasedKeys) {
 			listOfHoldKeys.remove(key);
 		}
-		
+
 		listOfPressedKeys.clear();
 		listOfReleasedKeys.clear();
 	}
-	
+
 	public void start() {
 		running = true;
 		while(running) {
 			update();
 		}
 	}
-	
+
 	private void update() {
 		manageInput();		
 		model.update(listOfHoldKeys);
@@ -96,11 +96,11 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		setRenderObjects(model.getDrawableData());
 		soundEffects.playSound(getListOfSounds());
 	}
-	
+
 	public void setRenderObjects(Set<DrawableData> set){
 		viewThread.getView().setRenderObjects(set);
 	}
-	
+
 	public void cleanup() {
 		model.cleanup();
 	}
@@ -135,7 +135,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	}
 	public Set<String> getListOfSounds(){
 		if(model.getListOfSounds().size()!= 0){
-		System.out.println(model.getListOfSounds());
+			System.out.println(model.getListOfSounds());
 		}
 		return model.getListOfSounds();
 	}

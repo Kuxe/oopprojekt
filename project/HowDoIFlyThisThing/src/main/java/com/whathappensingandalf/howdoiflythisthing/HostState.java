@@ -159,10 +159,19 @@ public class HostState implements ModelNetworkState{
 	}
 
 	public void sendPackets() {
-
+		
+//		if(getListOfSounds().size() != 0){
+//			System.out.println("listOfSounds " + getListOfSounds());
+//		}
+		
 		if(timerStop - timerStart > timerInterval) {			
 			//Send images to all clients
 			server.sendToAllTCP(new DrawableDataNetworkPacket(round.getDrawableData()));
+			
+//			TODO- round.getListOfSounds() always == 0
+			if(getListOfSounds().size() != 0){
+				System.out.println("in if " + getListOfSounds());
+			}
 			//Send sounds to all clients
 			server.sendToAllTCP(new SoundNetworkPacket(round.getListOfSounds()));
 			//Send each spaceship point associated with each connection to the connected client
@@ -171,6 +180,9 @@ public class HostState implements ModelNetworkState{
 			}			
 			timerStart = System.nanoTime();
 		}
+//		if(getListOfSounds().size() != 0){
+//			System.out.println("outside " + getListOfSounds());
+//		}
 		timerStop = System.nanoTime();
 	}
 

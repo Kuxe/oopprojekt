@@ -114,4 +114,9 @@ public class WeaponPickup implements IPickup{
 					this.radius==other.radius;
 		}
 	}
+	@Override
+	public int hashCode(){
+		return radius * 7919 + (int)Math.round(position.x) * 7907 + (int)Math.round(position.y) * 7901;
+		
+	}
 }
