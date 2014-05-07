@@ -156,7 +156,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public void visit(IProjectile projectile) {
-		//Do nothing
+		this.remove();
 	}
 
 	@Override
