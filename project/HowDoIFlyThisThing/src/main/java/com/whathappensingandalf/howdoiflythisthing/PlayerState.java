@@ -57,5 +57,10 @@ public class PlayerState implements IUserState{
 	public Spaceship getSpaceship() {
 		return spaceship;
 	}
+
+	@Override
+	public void suicide() {
+		spaceship.remove();
+	}
 	
 }

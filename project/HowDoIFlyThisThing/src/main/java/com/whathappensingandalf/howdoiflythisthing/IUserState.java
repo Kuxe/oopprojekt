@@ -18,4 +18,5 @@ public interface IUserState {
 	
 	public Point2f getSpaceshipPosition();
 	public Spaceship getSpaceship();
+	public void suicide();
 }

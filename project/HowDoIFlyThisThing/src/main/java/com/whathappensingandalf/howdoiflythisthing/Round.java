@@ -1,10 +1,13 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.swing.Timer;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
@@ -25,19 +28,25 @@ public class Round implements PropertyChangeListener{
 	private Gameworld world;
 	private Roundstate state;
 	private Set<User> users;
-	
+	private int usersAlive = 0;
+		
 	public Round() {
 		world = new Gameworld();
+		world.addPropertyChangeListener(this);
+		
 		users = new HashSet();
 		state = new InactiveRound(world, users);
 		state.addListener(this);
 	}
 	
-	public void addUser(User user) {
+	public synchronized void addUser(User user) {
 		state.addUser(user);
+		user.addPropertyChangeListener(this);
 	}
 	
-	public void removeUser(User user) {
+	public synchronized void removeUser(User user) {
+		user.removePropertyChangeListener(this);
+		user.suicide();
 		state.removeUser(user);
 		if(users.size() == 1) {
 			end();
@@ -51,9 +60,10 @@ public class Round implements PropertyChangeListener{
 	 * a restart of round if not already ended.
 	 * @param users
 	 */
-	public void start() {
+	public synchronized void start() {
 		end();
-		world.reset();
+		world = new Gameworld();
+		world.addPropertyChangeListener(this);
 		for(User user : users) {
 			Spaceship ss = SpaceshipFactory.create(
 					new Point2f(
@@ -61,9 +71,10 @@ public class Round implements PropertyChangeListener{
 							(float)Math.random() * world.getBorder().getWorldHeight()),
 					new Vector2f((float)Math.random(), (float)Math.random()));
 			
-			world.addSpaceship(ss);
 			user.setSpaceship(ss);
+			world.addSpaceship(ss);
 		}
+		usersAlive = users.size();
 		state = new ActiveRound(world, users);
 		state.addListener(this);
 	}
@@ -73,7 +84,7 @@ public class Round implements PropertyChangeListener{
 		state.addListener(this);
 	}
 
-	public void update() {
+	public synchronized void update() {
 		world.update();
 	}
 
@@ -86,8 +97,34 @@ public class Round implements PropertyChangeListener{
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
+		System.out.println(evt.getPropertyName());
 		if(evt.getPropertyName().equals(InactiveRound.message.START_ROUND.toString())) {
 			start();
+		}
+		
+		//Is user lost his spaceship...
+		else if (evt.getPropertyName().equals(User.message.LOST_SPACESHIP.toString())) {
+			
+			//One user died...
+			usersAlive -= 1;
+			
+			//If last man standing and round is active, start new round
+			if(usersAlive == 1 && state.getState().equals(Roundstate.state.ACTIVE)) {
+				start();
+			}
+			
+			//If round is inactive, give a new ship to user
+			if (state.getState().equals(Roundstate.state.INACTIVE)) {
+				User user = (User)evt.getSource();
+				Spaceship ss = SpaceshipFactory.create(
+						new Point2f(
+								(float)Math.random() * world.getBorder().getWorldWidth(),
+								(float)Math.random() * world.getBorder().getWorldHeight()),
+						new Vector2f((float)Math.random(), (float)Math.random()));
+				
+				user.setSpaceship(ss);
+				world.addSpaceship(ss);
+			}
 		}
 	}
 }

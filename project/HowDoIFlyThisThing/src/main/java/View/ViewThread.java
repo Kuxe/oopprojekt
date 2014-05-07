@@ -3,8 +3,8 @@ package View;
 public class ViewThread extends Thread implements Runnable{
 	public View v;
 	
-	public ViewThread(){
-		v=new View("How do i fly this?");
+	public ViewThread(Object lock){
+		v=new View("How do i fly this?", lock);
 	}
 	
 	
@@ -15,6 +15,7 @@ public class ViewThread extends Thread implements Runnable{
 	public View getView(){
 		return v;
 	}
-	
-	
+	public boolean isReady() {
+		return v.isReady();
+	}
 }

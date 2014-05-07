@@ -20,7 +20,6 @@ public class InactiveRound implements Roundstate {
 	private PropertyChangeSupport pcs;
 	
 	public InactiveRound(Gameworld world, Set<User> users) {
-		System.out.println("Ending round");
 		this.world = world;
 		this.users = users;
 		
@@ -39,8 +38,6 @@ public class InactiveRound implements Roundstate {
 		
 		world.addSpaceship(ss);
 		user.setSpaceship(ss);
-		System.out.println("users.size() = " + users.size());
-		
 		if(users.size() == 2) {
 			pcs.firePropertyChange(message.START_ROUND.toString(), false, true);
 		}
@@ -48,10 +45,7 @@ public class InactiveRound implements Roundstate {
 
 	@Override
 	public void removeUser(User user) {
-		if(user != null) {
-			users.remove(user);
-			world.slateObjectForRemoval(user.getSpaceship());
-		}
+		users.remove(user);
 	}
 
 	@Override

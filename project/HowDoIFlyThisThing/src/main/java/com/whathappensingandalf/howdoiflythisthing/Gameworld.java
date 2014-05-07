@@ -49,14 +49,11 @@ public class Gameworld implements PropertyChangeListener{
 	 * to this spaceship from all lists upon spaceship destruction
 	 */
 	private Map<Object, List<Map<Object, ? extends IListable>>> removalMap;
-	
 	private Set<Object> listOfObjectsToBeRemoved;
-	
 	private Timestep timestep;
-	
 	private WorldBorder worldBorder;
-	
 	private Set<String> listOfSounds;
+	private PropertyChangeSupport pcs;
 	
 	public Gameworld(){
 		moveables = 					new HashMap();
@@ -64,21 +61,12 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap = 					new HashMap();
 		listOfObjectsToBeRemoved = 		new HashSet();
 		drawables =						new HashMap();
-		listOfSounds= 						new HashSet();
-		
+		listOfSounds= 					new HashSet();
 		worldBorder=new WorldBorder(540,1080);
-		
 		timestep = new Timestep();
+		pcs = new PropertyChangeSupport(this);
 	}
 	
-	public void reset() {
-		moveables.clear();
-		collidables.clear();
-		drawables.clear();
-		removalMap.clear();
-		listOfObjectsToBeRemoved.clear();
-		listOfSounds.clear();
-	}
 	
 	public Set<DrawableData> getDrawableData() {
 		HashSet<DrawableData> set = new HashSet();
@@ -255,9 +243,8 @@ public class Gameworld implements PropertyChangeListener{
 	/**
 	 * Loop through all lists of interfaces and call their methods
 	 */
-	public void update(){
+	public synchronized void update(){
 		timestep.start();
-		
 		listOfSounds.clear();
 		
 		movableUpdate();
@@ -281,6 +268,7 @@ public class Gameworld implements PropertyChangeListener{
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
 			listOfSounds.add(SoundEffects.sound.SPACESHIP_DIE.toString());
+			pcs.firePropertyChange(evt); //Forward event
 		}
 	}
 	
@@ -299,5 +287,9 @@ public class Gameworld implements PropertyChangeListener{
 	
 	public Set<String> getListOfSounds(){
 		return listOfSounds;
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		pcs.addPropertyChangeListener(listener);
 	}
 }
