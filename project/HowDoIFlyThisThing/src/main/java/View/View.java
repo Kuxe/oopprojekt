@@ -163,6 +163,8 @@ public class View extends BasicGame implements ApplicationListener{
 				tmpImg=shott.copy();
 			}else if(comp.getType().equals("MISSILE")){
 				tmpImg=missile.copy();
+			}else if(comp.getType().equals("HEALTH_PICKUP")){
+				tmpImg=healthPack.copy();
 			}else{
 				tmpImg=missingImage.copy();
 			}
