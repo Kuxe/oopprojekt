@@ -216,6 +216,15 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap.put(asteroid, listOfHashMaps);
 	}
 	
+	public void addPickup(IPickup pickup){
+		collidables.put(pickup, pickup);
+		drawables.put(pickup, pickup);
+		
+		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
+		listOfHashMaps.add(collidables);
+		listOfHashMaps.add(drawables);
+	}
+	
 	/**
 	 * Moves all objects that implements IMoveable
 	 */
