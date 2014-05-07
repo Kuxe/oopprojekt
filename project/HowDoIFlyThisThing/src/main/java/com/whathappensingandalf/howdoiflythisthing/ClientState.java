@@ -7,6 +7,8 @@ import java.util.Set;
 
 import javax.vecmath.Point2f;
 
+import org.newdawn.slick.Sound;
+
 import utils.NetworkUtils;
 
 import com.esotericsoftware.kryonet.Client;
@@ -85,6 +87,7 @@ public class ClientState implements ModelNetworkState {
 			timerStart = System.nanoTime();
 		}
 		timerStop = System.nanoTime();
+		
 	}
 
 	public Set<DrawableData> getDrawableData() {
@@ -102,6 +105,11 @@ public class ClientState implements ModelNetworkState {
 	}
 
 	public Set<String> getListOfSounds() {
-		return sounds;
+		Set<String> soundsCopy= new HashSet<String>();
+		for(String string: sounds){
+			soundsCopy.add(string);
+		}
+		sounds.clear();
+		return soundsCopy;
 	}
 }
