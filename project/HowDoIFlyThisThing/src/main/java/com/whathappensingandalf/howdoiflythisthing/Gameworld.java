@@ -217,12 +217,16 @@ public class Gameworld implements PropertyChangeListener{
 	}
 	
 	public void addPickup(IPickup pickup){
+		pickup.addPropertyChangeListener(this);
+		
 		collidables.put(pickup, pickup);
 		drawables.put(pickup, pickup);
 		
 		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
 		listOfHashMaps.add(collidables);
 		listOfHashMaps.add(drawables);
+		
+		removalMap.put(pickup, listOfHashMaps);
 	}
 	
 	/**
@@ -277,6 +281,10 @@ public class Gameworld implements PropertyChangeListener{
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
 			listOfSounds.add(SoundEffects.sound.SPACESHIP_DIE.toString());
+			pcs.firePropertyChange(evt); //Forward event
+		} else if(evt.getPropertyName().equals(IPickup.Message.PICKUP_DIE.toString())) {
+			listOfObjectsToBeRemoved.add(evt.getSource());
+			//sound
 			pcs.firePropertyChange(evt); //Forward event
 		}
 	}
