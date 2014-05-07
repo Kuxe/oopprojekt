@@ -28,6 +28,7 @@ public class Round implements PropertyChangeListener{
 	private Gameworld world;
 	private Roundstate state;
 	private Set<User> users;
+	private Set<User> usersRequestingShips; //Lazy add of replacement spaceships of those lost during inactive round
 	private int usersAlive = 0;
 		
 	public Round() {
@@ -35,6 +36,7 @@ public class Round implements PropertyChangeListener{
 		world.addPropertyChangeListener(this);
 		
 		users = new HashSet();
+		usersRequestingShips = new HashSet();
 		state = new InactiveRound(world, users);
 		state.addListener(this);
 	}
@@ -48,6 +50,7 @@ public class Round implements PropertyChangeListener{
 		user.removePropertyChangeListener(this);
 		user.suicide();
 		state.removeUser(user);
+		usersAlive -= 1;
 		if(users.size() == 1) {
 			end();
 		}
@@ -61,10 +64,42 @@ public class Round implements PropertyChangeListener{
 	 * @param users
 	 */
 	public synchronized void start() {
-		end();
 		world = new Gameworld();
 		world.addPropertyChangeListener(this);
 		for(User user : users) {
+			usersRequestingShips.add(user);
+		}
+		usersAlive = users.size();
+		state = new ActiveRound(world, users);
+		state.addListener(this);
+	}
+	
+	public void end() {
+		System.out.println("END_ROUND");
+		state = new InactiveRound(world, users);
+		state.addListener(this);
+	}
+
+	public synchronized void update() {
+		processRequestedShips();
+		world.update();
+	}
+
+	public Set<DrawableData> getDrawableData() {
+		return world.getDrawableData();
+	}
+	public Set<String> getListOfSounds(){
+		return world.getListOfSounds();
+	}
+	
+	/**
+	 * Gives a spaceship to each user inside usersRequestingShips this tick
+	 * and clears this set of users afterwards. Spaceships should never be
+	 * added directly to gameWorld, use this instead.
+	 */
+	private void processRequestedShips() {
+		for(User user : usersRequestingShips) {
+			System.out.println("CREATING SPACESHIP FOR " + user);
 			Spaceship ss = SpaceshipFactory.create(
 					new Point2f(
 							(float)Math.random() * world.getBorder().getWorldWidth(),
@@ -74,25 +109,7 @@ public class Round implements PropertyChangeListener{
 			user.setSpaceship(ss);
 			world.addSpaceship(ss);
 		}
-		usersAlive = users.size();
-		state = new ActiveRound(world, users);
-		state.addListener(this);
-	}
-	
-	public void end() {
-		state = new InactiveRound(world, users);
-		state.addListener(this);
-	}
-
-	public synchronized void update() {
-		world.update();
-	}
-
-	public Set<DrawableData> getDrawableData() {
-		return world.getDrawableData();
-	}
-	public Set<String> getListOfSounds(){
-		return world.getListOfSounds();
+		usersRequestingShips.clear();
 	}
 
 	@Override
@@ -115,15 +132,7 @@ public class Round implements PropertyChangeListener{
 			
 			//If round is inactive, give a new ship to user
 			if (state.getState().equals(Roundstate.state.INACTIVE)) {
-				User user = (User)evt.getSource();
-				Spaceship ss = SpaceshipFactory.create(
-						new Point2f(
-								(float)Math.random() * world.getBorder().getWorldWidth(),
-								(float)Math.random() * world.getBorder().getWorldHeight()),
-						new Vector2f((float)Math.random(), (float)Math.random()));
-				
-				user.setSpaceship(ss);
-				world.addSpaceship(ss);
+				usersRequestingShips.add((User)evt.getSource());
 			}
 		}
 	}
