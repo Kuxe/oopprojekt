@@ -30,7 +30,7 @@ public class View extends BasicGame implements ApplicationListener{
 	private AppGameContainer container;
 	
 	private Set<DrawableData> renderObjects;
-	private SpriteSheet spaceship,shott,missile,asteroid,healthPack,missingImage;
+	private SpriteSheet spaceship,shott,missile,asteroid,healthPack,ammoPickup,missingImage;
 
 	private SpriteSheet background_1,
 						background_2,
@@ -183,6 +183,7 @@ public class View extends BasicGame implements ApplicationListener{
 			missile=new SpriteSheet("resources/Missile.png",5,10, colorFilter);
 			asteroid=new SpriteSheet("resources/Asteroid.png",100,100, colorFilter);
 			healthPack=new SpriteSheet("resources/HealthPack.png",25,25, colorFilter);
+			ammoPickup=new SpriteSheet("resources/AmmoPickup.png",25,25, colorFilter);
 			missingImage=new SpriteSheet("resources/MissingImage.png",25,25, colorFilter);
 			background_1 = new SpriteSheet("resources/scrollingbackground_1st_layer.png", 1280, 960, colorFilter);
 			background_2 = new SpriteSheet("resources/scrollingbackground_2nd_layer.png", 1280, 960, colorFilter);
