@@ -6,19 +6,38 @@
 
 package View;
 
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+
 /**
  *
  * @author Martin
  */
 public class StartPanel extends javax.swing.JPanel {
 
+	private PropertyChangeSupport pcs;
+	
 	/**
 	 * Creates new form StartPanel
 	 */
 	public StartPanel() {
 		initComponents();
+		this.pcs = new PropertyChangeSupport(this);
 	}
-
+/**
+	 * Adds a listener to this object.
+	 * @param pcl
+	 */
+    public void addPropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.addPropertyChangeListener(pcl);
+	}
+	/**
+	 * Adds a listener to this object.
+	 * @param pcl
+	 */
+    public void removePropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.removePropertyChangeListener(pcl);
+	}
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -35,6 +54,11 @@ public class StartPanel extends javax.swing.JPanel {
 
         hostButton.setText("Host");
         hostButton.setToolTipText("Host a game.");
+        hostButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hostButtonActionPerformed(evt);
+            }
+        });
 
         joinButton.setText("Join:");
 
@@ -69,6 +93,10 @@ public class StartPanel extends javax.swing.JPanel {
                 .addContainerGap(266, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void hostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_hostButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
