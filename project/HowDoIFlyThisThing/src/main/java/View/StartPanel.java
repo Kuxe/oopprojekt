@@ -110,11 +110,11 @@ public class StartPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_hostButtonActionPerformed
 
     private void joinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinButtonActionPerformed
-        pcs.firePropertyChange(HDIFTT_Launcher.Message.HDIFTT_JOIN.toString(), 0, 1);
+        pcs.firePropertyChange(Message.HDIFTT_JOIN.toString(), 0, 1);
     }//GEN-LAST:event_joinButtonActionPerformed
 
     private void optionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsButtonActionPerformed
-        pcs.firePropertyChange(HDIFTT_Launcher.Message.HDIFTT_OPTIONS.toString(), 0, 1);
+        pcs.firePropertyChange(Message.HDIFTT_OPTIONS.toString(), 0, 1);
     }//GEN-LAST:event_optionsButtonActionPerformed
 	public String getIP(){
 		return this.ipTextField.getText();
