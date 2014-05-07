@@ -134,6 +134,9 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		}		
 	}
 	public Set<String> getListOfSounds(){
+		if(model.getListOfSounds().size()!= 0){
+		System.out.println(model.getListOfSounds());
+		}
 		return model.getListOfSounds();
 	}
 }
