@@ -114,7 +114,7 @@ public class HostState implements ModelNetworkState{
 		users.get(id).setListOfHoldKeys(new HashSet<Integer>());
 	}
 
-	public synchronized void update(Set<Integer> listOfHoldKeys) {
+	public void update(Set<Integer> listOfHoldKeys) {
 		round.update();
 		myUser.setListOfHoldKeys(listOfHoldKeys);
 		for(User user : users.values()) {
@@ -158,7 +158,7 @@ public class HostState implements ModelNetworkState{
 		lazyRemoveUsers.clear();
 	}
 
-	public synchronized void sendPackets() {
+	public void sendPackets() {
 
 		if(timerStop - timerStart > timerInterval) {			
 			//Send images to all clients
