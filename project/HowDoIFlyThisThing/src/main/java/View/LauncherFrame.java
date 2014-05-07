@@ -6,6 +6,9 @@
 
 package View;
 
+import java.awt.Dimension;
+import java.awt.Toolkit;
+
 /**
  *
  * @author Martin
@@ -17,6 +20,10 @@ public class LauncherFrame extends javax.swing.JFrame {
 	 */
 	public LauncherFrame() {
 		initComponents();
+		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
+		int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
+		this.setLocation(x, y);
 	}
 
 	/**
