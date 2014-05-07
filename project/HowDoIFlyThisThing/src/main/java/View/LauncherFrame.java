@@ -8,6 +8,8 @@ package View;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 
 /**
  *
@@ -15,6 +17,13 @@ import java.awt.Toolkit;
  */
 public class LauncherFrame extends javax.swing.JFrame {
 
+	private PropertyChangeSupport pcs;
+	
+	public static enum Message{
+		HDIFTT_HOST,
+		HDIFTT_JOIN
+	}
+	
 	/**
 	 * Creates new form LauncherFrame
 	 */
@@ -24,8 +33,24 @@ public class LauncherFrame extends javax.swing.JFrame {
 		int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
 		int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
 		this.setLocation(x, y);
+		this.pcs = new PropertyChangeSupport(this);
 	}
 
+	/**
+	 * Adds a listener to this object.
+	 * @param pcl
+	 */
+    public void addPropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.addPropertyChangeListener(pcl);
+	}
+	/**
+	 * Adds a listener to this object.
+	 * @param pcl
+	 */
+    public void removePropertyChangeListener(PropertyChangeListener pcl){
+		this.pcs.removePropertyChangeListener(pcl);
+	}
+	
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
