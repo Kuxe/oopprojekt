@@ -6,6 +6,7 @@
 
 package View;
 
+import View.LauncherFrame.Message;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -61,10 +62,20 @@ public class StartPanel extends javax.swing.JPanel {
         });
 
         joinButton.setText("Join:");
+        joinButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                joinButtonActionPerformed(evt);
+            }
+        });
 
         ipTextField.setText("jTextField1");
 
         optionsButton.setText("Options");
+        optionsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optionsButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -95,9 +106,19 @@ public class StartPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void hostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostButtonActionPerformed
-        // TODO add your handling code here:
+        pcs.firePropertyChange(Message.HDIFTT_HOST.toString(), 0, 1);
     }//GEN-LAST:event_hostButtonActionPerformed
 
+    private void joinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinButtonActionPerformed
+        pcs.firePropertyChange(HDIFTT_Launcher.Message.HDIFTT_JOIN.toString(), 0, 1);
+    }//GEN-LAST:event_joinButtonActionPerformed
+
+    private void optionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsButtonActionPerformed
+        pcs.firePropertyChange(HDIFTT_Launcher.Message.HDIFTT_OPTIONS.toString(), 0, 1);
+    }//GEN-LAST:event_optionsButtonActionPerformed
+	public String getIP(){
+		return this.ipTextField.getText();
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton hostButton;

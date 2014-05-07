@@ -21,7 +21,8 @@ public class LauncherFrame extends javax.swing.JFrame {
 	
 	public static enum Message{
 		HDIFTT_HOST,
-		HDIFTT_JOIN
+		HDIFTT_JOIN,
+		HDIFTT_OPTIONS
 	}
 	
 	/**

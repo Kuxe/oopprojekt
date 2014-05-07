@@ -58,6 +58,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Join:"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="joinButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="ipTextField">
       <Properties>
@@ -68,6 +71,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Options"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="optionsButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
