@@ -31,7 +31,9 @@ public class ThrusterTest {
 
 	@Test
 	public void testSetMagnitude() {
-		fail("Not yet implemented");
+		Thruster t=new Thruster(10,20,50,1);
+		t.setMagnitude(100);
+		assertTrue(t.getDirection().length()==100);
 	}
 
 	@Test
