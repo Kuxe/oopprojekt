@@ -16,30 +16,13 @@ import java.beans.PropertyChangeSupport;
  */
 public class StartPanel extends javax.swing.JPanel {
 
-	private PropertyChangeSupport pcs;
 	
 	/**
 	 * Creates new form StartPanel
 	 */
 	public StartPanel() {
 		initComponents();
-		pcs = new PropertyChangeSupport(this);
 	}
-	/**
-	 * Adds a listener to this object.
-	 * @param pcl
-	 */
-    public void addAPropertyChangeListener(PropertyChangeListener pcl){
-		this.pcs.addPropertyChangeListener(pcl);
-	}
-	/**
-	 * Adds a listener to this object.
-	 * @param pcl
-	 */
-    public void removeAPropertyChangeListener(PropertyChangeListener pcl){
-		this.pcs.removePropertyChangeListener(pcl);
-	}
-	
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -114,11 +97,11 @@ public class StartPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_hostButtonActionPerformed
 
     private void joinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinButtonActionPerformed
-        pcs.firePropertyChange(Message.HDIFTT_JOIN.toString(), 0, 1);
+        this.firePropertyChange(Message.HDIFTT_JOIN.toString(), 0, 1);
     }//GEN-LAST:event_joinButtonActionPerformed
 
     private void optionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsButtonActionPerformed
-        pcs.firePropertyChange(Message.HDIFTT_OPTIONS.toString(), 0, 1);
+        this.firePropertyChange(Message.HDIFTT_OPTIONS.toString(), 0, 1);
     }//GEN-LAST:event_optionsButtonActionPerformed
 	public String getIP(){
 		return this.ipTextField.getText();

@@ -62,7 +62,7 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	}
 	
 	public void propertyChange(PropertyChangeEvent evt) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		System.out.println(evt.getPropertyName());
 	}
 	/**
 	 * This method is called from within the constructor to initialize the form.
