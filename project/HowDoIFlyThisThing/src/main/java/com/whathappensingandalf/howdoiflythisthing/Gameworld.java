@@ -71,35 +71,6 @@ public class Gameworld implements PropertyChangeListener{
 	public Set<DrawableData> getDrawableData() {
 		HashSet<DrawableData> set = new HashSet();
 		for(IDrawable drawable : drawables.values()) {
-//			if(drawable.getType().equals("SPACESHIP")){
-//				if(((Spaceship)drawable).isMainThusterActive()){
-//					set.add(new DrawableData(
-//							new Point2f(drawable.getPosition().x-drawable.getDirection().x*25,
-//							drawable.getPosition().y-drawable.getDirection().y*25),
-//							3,
-//							3,
-//							drawable.getDirection(),
-//							""));
-//				}
-//				if(((Spaceship)drawable).isRightThusterActive()){
-//					set.add(new DrawableData(
-//							new Point2f(drawable.getPosition().x-drawable.getDirection().x*25-drawable.getDirection().y*10,
-//							drawable.getPosition().y-drawable.getDirection().y*25+drawable.getDirection().x*10),
-//							3,
-//							3,
-//							drawable.getDirection(),
-//							""));
-//				}
-//				if(((Spaceship)drawable).isLeftThusterActive()){
-//					set.add(new DrawableData(
-//							new Point2f(drawable.getPosition().x-drawable.getDirection().x*25+drawable.getDirection().y*10,
-//							drawable.getPosition().y-drawable.getDirection().y*25-drawable.getDirection().x*10),
-//							3,
-//							3,
-//							drawable.getDirection(),
-//							""));
-//				}
-//			}
 			set.addAll(drawable.getCollectionDrawables());
 		}
 		return set;
