@@ -37,20 +37,19 @@ public class Round implements PropertyChangeListener{
 		
 		users = new HashSet();
 		usersRequestingShips = new HashSet();
-		state = new InactiveRound(world, users);
+		state = new InactiveRound(this, users);
 		state.addListener(this);
 	}
 	
 	public synchronized void addUser(User user) {
-		state.addUser(user);
 		user.addPropertyChangeListener(this);
+		state.addUser(user);
 	}
 	
 	public synchronized void removeUser(User user) {
+		state.removeUser(user);
 		user.removePropertyChangeListener(this);
 		user.suicide();
-		state.removeUser(user);
-		usersAlive -= 1;
 		if(users.size() == 1) {
 			end();
 		}
@@ -64,19 +63,20 @@ public class Round implements PropertyChangeListener{
 	 * @param users
 	 */
 	public synchronized void start() {
+		System.out.println("START_ROUND");
+		usersAlive = 0;
 		world = new Gameworld();
 		world.addPropertyChangeListener(this);
 		for(User user : users) {
-			usersRequestingShips.add(user);
+			user.requestSpaceship();
 		}
-		usersAlive = users.size();
-		state = new ActiveRound(world, users);
+		state = new ActiveRound(this, users);
 		state.addListener(this);
 	}
 	
 	public void end() {
 		System.out.println("END_ROUND");
-		state = new InactiveRound(world, users);
+		state = new InactiveRound(this, users);
 		state.addListener(this);
 	}
 
@@ -108,14 +108,30 @@ public class Round implements PropertyChangeListener{
 			
 			user.setSpaceship(ss);
 			world.addSpaceship(ss);
+			increaseUsersAlive();
 		}
 		usersRequestingShips.clear();
+	}
+	
+	public Gameworld getWorld() {
+		return world;
+	}
+	
+	public void increaseUsersAlive() {
+		usersAlive += 1;
+	}
+	
+	public void decreaseUsersAlive() {
+		usersAlive -= 1;
 	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		System.out.println(evt.getPropertyName());
-		if(evt.getPropertyName().equals(InactiveRound.message.START_ROUND.toString())) {
+		if(evt.getPropertyName().equals(User.message.REQUEST_SPACESHIP.toString())) {
+			usersRequestingShips.add((User)evt.getSource());
+		}
+		else if(evt.getPropertyName().equals(InactiveRound.message.START_ROUND.toString())) {
 			start();
 		}
 		
@@ -123,8 +139,7 @@ public class Round implements PropertyChangeListener{
 		else if (evt.getPropertyName().equals(User.message.LOST_SPACESHIP.toString())) {
 			
 			//One user died...
-			usersAlive -= 1;
-			
+			decreaseUsersAlive();
 			//If last man standing and round is active, start new round
 			if(usersAlive == 1 && state.getState().equals(Roundstate.state.ACTIVE)) {
 				start();
@@ -132,7 +147,7 @@ public class Round implements PropertyChangeListener{
 			
 			//If round is inactive, give a new ship to user
 			if (state.getState().equals(Roundstate.state.INACTIVE)) {
-				usersRequestingShips.add((User)evt.getSource());
+				((User)evt.getSource()).requestSpaceship();
 			}
 		}
 	}

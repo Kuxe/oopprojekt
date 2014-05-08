@@ -8,6 +8,13 @@ import javax.vecmath.Point2f;
  */
 public interface IUserState {
 	
+	public enum state {
+		PLAYER_STATE,
+		SPECTATOR_STATE
+	}
+	
+	public state getState();
+	
 	public void mainHold(boolean held);
 	
 	public void leftHold(boolean held);
