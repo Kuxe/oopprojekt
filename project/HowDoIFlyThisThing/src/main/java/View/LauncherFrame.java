@@ -22,7 +22,10 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	public static enum Message{
 		HDIFTT_HOST,
 		HDIFTT_JOIN,
-		HDIFTT_OPTIONS
+		HDIFTT_OPTIONS,
+		HDIFTT_OPTIONS_OK,
+		HDIFTT_OPTIONS_CANSEL,
+		HDOFTT_OPTIONS_RESET
 	}
 	
 	/**
