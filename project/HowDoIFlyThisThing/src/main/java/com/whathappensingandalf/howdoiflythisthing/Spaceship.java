@@ -305,7 +305,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	public void deactivateRightThruster(){
 		this.thrusterComponent.deactivateRightThruster();
 	}
-
+	@Override
 	public boolean equals(Object rhs){
 		if(rhs==this){
 			return true;

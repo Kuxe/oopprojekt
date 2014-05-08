@@ -241,4 +241,5 @@ public class Bullet implements IProjectile {
 				getType().toString()));
 		return returnSet;
 	}
+	
 }//end Projectile

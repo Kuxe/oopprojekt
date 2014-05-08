@@ -118,10 +118,12 @@ public class WeaponPickup implements IPickup{
 					this.radius==other.radius;
 		}
 	}
+	
 	@Override
 	public int hashCode(){
 		return radius * 7919 + (int)Math.round(position.x) * 7907 + (int)Math.round(position.y) * 7901;
 	}
+	
 	@Override
 	public Collection<? extends DrawableData> getCollectionDrawables() {
 		Set<DrawableData> returnSet=new HashSet<DrawableData>();
@@ -133,4 +135,5 @@ public class WeaponPickup implements IPickup{
 				getType().toString()));
 		return returnSet;
 	}
+	
 }
