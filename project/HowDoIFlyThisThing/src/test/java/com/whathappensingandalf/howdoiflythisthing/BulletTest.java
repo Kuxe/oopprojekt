@@ -225,8 +225,4 @@ public class BulletTest implements PropertyChangeListener{
 	public void testEquals(){
 		assertTrue(pro.equals(pro2) && pro.equals(pro));
 	}
-//	@Test
-//	public void testHashCode(){
-//		assertTrue(pro.hashCode() == pro2.hashCode());
-//	}
 }//end ProjectileTest
