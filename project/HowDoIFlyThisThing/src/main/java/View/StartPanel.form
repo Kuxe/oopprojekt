@@ -23,7 +23,7 @@
               <Component id="joinButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="ipTextField" min="-2" pref="100" max="-2" attributes="0"/>
-              <EmptySpace pref="89" max="32767" attributes="0"/>
+              <EmptySpace pref="49" max="32767" attributes="0"/>
               <Component id="optionsButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -57,6 +57,7 @@
     <Component class="javax.swing.JButton" name="joinButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Join:"/>
+        <Property name="toolTipText" type="java.lang.String" value="Join a game."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="joinButtonActionPerformed"/>
@@ -64,12 +65,13 @@
     </Component>
     <Component class="javax.swing.JTextField" name="ipTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="jTextField1"/>
+        <Property name="toolTipText" type="java.lang.String" value="IP to host."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="optionsButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="Options"/>
+        <Property name="toolTipText" type="java.lang.String" value="Change settings."/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="optionsButtonActionPerformed"/>

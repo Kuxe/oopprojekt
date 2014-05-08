@@ -23,22 +23,23 @@ public class StartPanel extends javax.swing.JPanel {
 	 */
 	public StartPanel() {
 		initComponents();
-		this.pcs = new PropertyChangeSupport(this);
+		pcs = new PropertyChangeSupport(this);
 	}
-/**
+	/**
 	 * Adds a listener to this object.
 	 * @param pcl
 	 */
-    public void addPropertyChangeListener(PropertyChangeListener pcl){
+    public void addAPropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.addPropertyChangeListener(pcl);
 	}
 	/**
 	 * Adds a listener to this object.
 	 * @param pcl
 	 */
-    public void removePropertyChangeListener(PropertyChangeListener pcl){
+    public void removeAPropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.removePropertyChangeListener(pcl);
 	}
+	
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -62,15 +63,17 @@ public class StartPanel extends javax.swing.JPanel {
         });
 
         joinButton.setText("Join:");
+        joinButton.setToolTipText("Join a game.");
         joinButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 joinButtonActionPerformed(evt);
             }
         });
 
-        ipTextField.setText("jTextField1");
+        ipTextField.setToolTipText("IP to host.");
 
         optionsButton.setText("Options");
+        optionsButton.setToolTipText("Change settings.");
         optionsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 optionsButtonActionPerformed(evt);
@@ -88,7 +91,7 @@ public class StartPanel extends javax.swing.JPanel {
                 .addComponent(joinButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(optionsButton)
                 .addContainerGap())
         );
@@ -106,7 +109,8 @@ public class StartPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void hostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostButtonActionPerformed
-        pcs.firePropertyChange(Message.HDIFTT_HOST.toString(), 0, 1);
+        //pcs.firePropertyChange(Message.HDIFTT_HOST.toString(), 0, 1);
+		this.firePropertyChange(Message.HDIFTT_HOST.toString(), 0, 1);
     }//GEN-LAST:event_hostButtonActionPerformed
 
     private void joinButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_joinButtonActionPerformed

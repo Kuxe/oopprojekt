@@ -8,6 +8,7 @@ package View;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
@@ -15,9 +16,11 @@ import java.beans.PropertyChangeSupport;
  *
  * @author Martin
  */
-public class LauncherFrame extends javax.swing.JFrame {
+public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeListener{
 
 	private PropertyChangeSupport pcs;
+	private StartPanel startPanel;
+
 	
 	public static enum Message{
 		HDIFTT_HOST,
@@ -30,11 +33,17 @@ public class LauncherFrame extends javax.swing.JFrame {
 	 */
 	public LauncherFrame() {
 		initComponents();
+		pcs = new PropertyChangeSupport(this);
+		startPanel = new StartPanel();
+		startPanel.addPropertyChangeListener(this);
+		this.setSize(380, 500);
+		startPanel.setSize(360, 500);
+		this.add(startPanel);
+		
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
 		int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
 		this.setLocation(x, y);
-		this.pcs = new PropertyChangeSupport(this);
 	}
 
 	/**
@@ -52,6 +61,9 @@ public class LauncherFrame extends javax.swing.JFrame {
 		this.pcs.removePropertyChangeListener(pcl);
 	}
 	
+	public void propertyChange(PropertyChangeEvent evt) {
+		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
