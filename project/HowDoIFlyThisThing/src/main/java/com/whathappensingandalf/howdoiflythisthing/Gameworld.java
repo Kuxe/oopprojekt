@@ -100,11 +100,7 @@ public class Gameworld implements PropertyChangeListener{
 //							""));
 //				}
 //			}
-			set.add(new DrawableData(	drawable.getPosition(),
-										drawable.getWidth(),
-										drawable.getHeight(),
-										drawable.getDirection(),
-										drawable.getType()));
+			set.addAll(drawable.getCollectionDrawables());
 		}
 		return set;
 	}
