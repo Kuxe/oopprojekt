@@ -94,4 +94,8 @@ public class Thruster {
 	public boolean isThrusterActive(){
 		return active;
 	}
+	
+	public Vector2f getDirection(){
+		return this.direction;
+	}
 }

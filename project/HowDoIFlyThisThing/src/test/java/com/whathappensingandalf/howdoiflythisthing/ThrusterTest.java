@@ -9,7 +9,7 @@ public class ThrusterTest {
 	@Test
 	public void testThruster() {
 		Thruster t=new Thruster(10,20,50,1);
-		assertTrue(t.);
+		assertTrue(t.getDirection().x==10 && t.getDirection().y==20 && t.getDirection().length()==50 && t.getRotationAcceleration()==1);
 	}
 
 	@Test
