@@ -43,7 +43,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="resetButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="canselButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="cancelButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="okButton" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -89,7 +89,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="resetButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="okButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="canselButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cancelButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -212,16 +212,25 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Reset"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetButtonActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="okButton">
       <Properties>
         <Property name="text" type="java.lang.String" value="OK"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="okButtonActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="canselButton">
+    <Component class="javax.swing.JButton" name="cancelButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cansel"/>
+        <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cancelButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

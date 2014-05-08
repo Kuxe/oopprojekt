@@ -6,6 +6,8 @@
 
 package View;
 
+import org.lwjgl.input.Keyboard;
+
 /**
  *
  * @author Martin
@@ -42,7 +44,7 @@ public class OptionsPanel extends javax.swing.JPanel {
         rightTextField = new javax.swing.JTextField();
         resetButton = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
-        canselButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
 
         soundLabel.setText("Sound volume");
         soundLabel.setMaximumSize(new java.awt.Dimension(130, 14));
@@ -85,10 +87,25 @@ public class OptionsPanel extends javax.swing.JPanel {
         rightTextField.setText("jTextField4");
 
         resetButton.setText("Reset");
+        resetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetButtonActionPerformed(evt);
+            }
+        });
 
         okButton.setText("OK");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
 
-        canselButton.setText("Cansel");
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -117,7 +134,7 @@ public class OptionsPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(resetButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(canselButton)
+                        .addComponent(cancelButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(okButton)))
                 .addContainerGap())
@@ -153,14 +170,42 @@ public class OptionsPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(resetButton)
                     .addComponent(okButton)
-                    .addComponent(canselButton))
+                    .addComponent(cancelButton))
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        this.firePropertyChange(LauncherFrame.Message.HDIFTT_OPTIONS_OK.toString(), 0, 1);
+		this.getLeftThrusterKey();
+    }//GEN-LAST:event_okButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        this.firePropertyChange(LauncherFrame.Message.HDIFTT_OPTIONS_CANCEL.toString(), 0, 1);
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
+        this.firePropertyChange(LauncherFrame.Message.HDOFTT_OPTIONS_RESET.toString(), 0, 1);
+    }//GEN-LAST:event_resetButtonActionPerformed
+
+	public int getVolume(){
+		return this.soundSlider.getValue();
+	}
+	public boolean getFullscreen(){
+		return this.fullscreenCheckBox.isContentAreaFilled();
+	}
+	public String getLeftThrusterKey(){
+		return this.leftTextField.getText();
+	}
+	public String getMainThrusterKey(){
+		return this.mainTextField.getText();
+	}
+	public String getRightThrusterKey(){
+		return this.rightTextField.getText();
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton canselButton;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JLabel fireKeyLabel;
     private javax.swing.JTextField fireTextField;
     private javax.swing.JCheckBox fullscreenCheckBox;

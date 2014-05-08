@@ -92,7 +92,6 @@ public class StartPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void hostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hostButtonActionPerformed
-        //pcs.firePropertyChange(Message.HDIFTT_HOST.toString(), 0, 1);
 		this.firePropertyChange(Message.HDIFTT_HOST.toString(), 0, 1);
     }//GEN-LAST:event_hostButtonActionPerformed
 

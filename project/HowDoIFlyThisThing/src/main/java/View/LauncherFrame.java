@@ -24,7 +24,7 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 		HDIFTT_JOIN,
 		HDIFTT_OPTIONS,
 		HDIFTT_OPTIONS_OK,
-		HDIFTT_OPTIONS_CANSEL,
+		HDIFTT_OPTIONS_CANCEL,
 		HDOFTT_OPTIONS_RESET
 	}
 	
