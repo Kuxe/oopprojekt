@@ -92,12 +92,5 @@ public class ArmsComponent {
 					this.weaponPipePosition.equals(other.weaponPipePosition);
 		}
 	}
-//	@Override
-//	public int hashCode(){
-//		return (int)Math.round(acceleration.x) * 7919 + (int)Math.round(acceleration.y) * 7907 + (int)Math.round(direction.x) * 7901 +
-//				(int)Math.round(direction.y) * 7883 + (int)Math.round(point.x) * 7879 + (int)Math.round(point.y) * 7877 +
-//				(int)Math.round(velocity.x) * 7873 + (int)Math.round(velocity.y) * 7867 + (int)Math.round(weaponPipePosition.x) * 7853 +
-//				(int)Math.round(weaponPipePosition.y) * 7841;
-//	}
 	
 }

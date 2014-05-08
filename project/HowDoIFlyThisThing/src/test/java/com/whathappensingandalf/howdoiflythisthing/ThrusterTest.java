@@ -9,7 +9,9 @@ public class ThrusterTest {
 	@Test
 	public void testThruster() {
 		Thruster t=new Thruster(10,20,50,1);
-		assertTrue(t.getDirection().x==10 && t.getDirection().y==20 && t.getDirection().length()==50 && t.getRotationAcceleration()==1);
+		assertTrue(t.getDirection().x!=10 && t.getDirection().x!=20 && t.getDirection().x<t.getDirection().y && t.getRotationAcceleration()==0);
+		t.activate();
+		assertTrue(t.getDirection().x!=10 && t.getDirection().x!=20 && t.getDirection().x<t.getDirection().y && t.getRotationAcceleration()==1);
 	}
 
 	@Test
@@ -42,12 +44,15 @@ public class ThrusterTest {
 		t.deactivate();
 		assertTrue(t.getAcceleration().x==0 && t.getAcceleration().y==0);
 		t.activate();
-		assertTrue(t.getAcceleration().x==10 && t.getAcceleration().y==20);
+		assertTrue(t.getAcceleration().x<t.getAcceleration().y);
 	}
 
 	@Test
 	public void testGetRotationAcceleration() {
 		Thruster t=new Thruster(10,20,50,1);
+		t.deactivate();
+		assertTrue(t.getRotationAcceleration()==0);
+		t.activate();
 		assertTrue(t.getRotationAcceleration()==1);
 	}
 

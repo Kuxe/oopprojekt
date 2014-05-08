@@ -341,7 +341,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 	public void testEquals() {
 		Spaceship st1 = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50);
 		Spaceship st2 = new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50);
-		assertTrue(st1.equals(st2));
+		assertTrue(st1.equals(st2) && st2.equals(st1));
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
