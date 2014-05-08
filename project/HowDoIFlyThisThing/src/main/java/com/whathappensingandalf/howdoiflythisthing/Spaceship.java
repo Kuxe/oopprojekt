@@ -305,7 +305,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	public void deactivateRightThruster(){
 		this.thrusterComponent.deactivateRightThruster();
 	}
-	@Override
+
 	public boolean equals(Object rhs){
 		if(rhs==this){
 			return true;
@@ -318,6 +318,16 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 					this.position.equals(other.position)&&
 					this.width==other.width;
 		}
+	}
+	
+	public boolean isMainThusterActive(){
+		return thrusterComponent.isMainThusterActive();
+	}
+	public boolean isLeftThusterActive(){
+		return thrusterComponent.isLeftThusterActive();
+	}
+	public boolean isRightThusterActive(){
+		return thrusterComponent.isRightThusterActive();
 	}
 
 	@Override
