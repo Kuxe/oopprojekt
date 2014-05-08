@@ -8,6 +8,10 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
@@ -117,5 +121,16 @@ public class WeaponPickup implements IPickup{
 	@Override
 	public int hashCode(){
 		return radius * 7919 + (int)Math.round(position.x) * 7907 + (int)Math.round(position.y) * 7901;
+	}
+	@Override
+	public Collection<? extends DrawableData> getCollectionDrawables() {
+		Set<DrawableData> returnSet=new HashSet<DrawableData>();
+		returnSet.add(new DrawableData(
+				getPosition(),
+				getHeight(),
+				getWidth(),
+				getDirection(),
+				getType().toString()));
+		return returnSet;
 	}
 }
