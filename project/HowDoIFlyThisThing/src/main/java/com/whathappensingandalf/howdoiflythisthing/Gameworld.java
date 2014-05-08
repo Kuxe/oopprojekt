@@ -274,12 +274,12 @@ public class Gameworld implements PropertyChangeListener{
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_FIRE.toString())) {
 			addProjectile((IProjectile)evt.getOldValue());
-			listOfSounds.add(SoundEffects.sound.SPACESHIP_FIRE.toString());
+			listOfSounds.add(SoundEffects.Sound.SPACESHIP_FIRE.toString());
 		} else if(evt.getPropertyName().equals(IProjectile.Message.PROJECTILE_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
-			listOfSounds.add(SoundEffects.sound.SPACESHIP_DIE.toString());
+			listOfSounds.add(SoundEffects.Sound.SPACESHIP_DIE.toString());
 			pcs.firePropertyChange(evt); //Forward event
 		} else if(evt.getPropertyName().equals(IPickup.Message.PICKUP_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
