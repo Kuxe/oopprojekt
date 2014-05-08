@@ -31,6 +31,8 @@ public class LauncherController implements PropertyChangeListener{
 			controller.start();
 			controller.cleanup();
 			System.exit(0);
+		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_OPTIONS.toString())){
+			launcher.displayOptionsPanel();
 		}
 	}
 	public void launchControllerStop(){

@@ -1,11 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package View;
 
+import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.beans.PropertyChangeEvent;
@@ -21,6 +16,7 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	private PropertyChangeSupport pcs;
 	private StartPanel startPanel;
 	private OptionsPanel optionsPanel;
+	private CardLayout cardLayout;
 
 	
 	public static enum Message{
@@ -34,6 +30,7 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	 */
 	public LauncherFrame() {
 		initComponents();
+		cardLayout = (CardLayout)backgroundPanel.getLayout();
 		pcs = new PropertyChangeSupport(this);
 		startPanel = new StartPanel();
 		startPanel.addPropertyChangeListener(this);
@@ -43,7 +40,10 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 		this.setSize(380, 500);
 		startPanel.setSize(360, 500);
 		optionsPanel.setSize(360, 500);
-		this.add(startPanel);
+		backgroundPanel.add(startPanel,"Start");
+		backgroundPanel.add(optionsPanel,"Options");
+		
+		cardLayout.show(backgroundPanel, "Start");
 		
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
 		int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
@@ -51,12 +51,10 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 		this.setLocation(x, y);
 	}
 	public void displayStartPanel(){
-		this.removeAll();
-		this.add(startPanel);
+		cardLayout.show(backgroundPanel, "Start");
 	}
 	public void displayOptionsPanel(){
-		this.removeAll();
-		this.add(optionsPanel);
+		cardLayout.show(backgroundPanel, "Options");
 	}
 	/**
 	 * Adds a listener to this object.
@@ -90,17 +88,21 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        backgroundPanel = new javax.swing.JPanel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        backgroundPanel.setLayout(new java.awt.CardLayout());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addComponent(backgroundPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(backgroundPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -142,5 +144,6 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel backgroundPanel;
     // End of variables declaration//GEN-END:variables
 }
