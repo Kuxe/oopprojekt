@@ -53,7 +53,9 @@ public class ThrusterTest {
 
 	@Test
 	public void testIsThrusterActive() {
-		fail("Not yet implemented");
+		Thruster t=new Thruster(10,20,50,1);
+		t.deactivate();
+		assertTrue(!t.isThrusterActive());
 	}
 
 }
