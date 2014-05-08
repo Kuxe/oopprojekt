@@ -50,7 +50,9 @@ public class ThrusterTest {
 	@Test
 	public void testGetRotationAcceleration() {
 		Thruster t=new Thruster(10,20,50,1);
-		
+		t.deactivate();
+		assertTrue(t.getRotationAcceleration()==0);
+		t.activate();
 		assertTrue(t.getRotationAcceleration()==1);
 	}
 
