@@ -50,6 +50,14 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 		int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
 		this.setLocation(x, y);
 	}
+	public void displayStartPanel(){
+		this.removeAll();
+		this.add(startPanel);
+	}
+	public void displayOptionsPanel(){
+		this.removeAll();
+		this.add(optionsPanel);
+	}
 	/**
 	 * Adds a listener to this object.
 	 * @param pcl
