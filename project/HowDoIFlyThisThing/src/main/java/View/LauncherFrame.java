@@ -50,6 +50,7 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	 * Adds a listener to this object.
 	 * @param pcl
 	 */
+	@Override
     public void addPropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.addPropertyChangeListener(pcl);
 	}
@@ -57,12 +58,16 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	 * Adds a listener to this object.
 	 * @param pcl
 	 */
+	@Override
     public void removePropertyChangeListener(PropertyChangeListener pcl){
 		this.pcs.removePropertyChangeListener(pcl);
 	}
 	
 	public void propertyChange(PropertyChangeEvent evt) {
-		System.out.println(evt.getPropertyName());
+		pcs.firePropertyChange(evt);
+	}
+	public String getIP(){
+		return this.startPanel.getIP();
 	}
 	/**
 	 * This method is called from within the constructor to initialize the form.
