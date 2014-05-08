@@ -22,7 +22,11 @@ public class ThrusterTest {
 
 	@Test
 	public void testDeactivate() {
-		fail("Not yet implemented");
+		Thruster t=new Thruster(10,20,50,1);
+		t.activate();
+		assertTrue(t.isThrusterActive());
+		t.deactivate();
+		assertTrue(!t.isThrusterActive());
 	}
 
 	@Test
