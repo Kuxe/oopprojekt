@@ -2,6 +2,9 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
@@ -78,5 +81,17 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 	@Override
 	public Asteroid clone() {
 		return new Asteroid(this);
+	}
+
+	@Override
+	public Collection<? extends DrawableData> getCollectionDrawables() {
+		Set<DrawableData> returnSet=new HashSet<DrawableData>();
+		returnSet.add(new DrawableData(
+				getPosition(),
+				getHeight(),
+				getWidth(),
+				getDirection(),
+				getType().toString()));
+		return returnSet;
 	}
 }
