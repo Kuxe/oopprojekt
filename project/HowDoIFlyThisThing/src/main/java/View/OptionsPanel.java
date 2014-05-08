@@ -28,30 +28,84 @@ public class OptionsPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        soundLabel = new javax.swing.JLabel();
+        fullscreenLabel = new javax.swing.JLabel();
+        fireKeyLabel = new javax.swing.JLabel();
+        leftThrusterKeyLabel = new javax.swing.JLabel();
+        mainThrusterKeyLabel = new javax.swing.JLabel();
+        rightThrusterKeyLabel = new javax.swing.JLabel();
 
-        jTextField1.setText("Options");
+        soundLabel.setText("Sound volume");
+        soundLabel.setMaximumSize(new java.awt.Dimension(130, 14));
+        soundLabel.setMinimumSize(new java.awt.Dimension(130, 14));
+        soundLabel.setPreferredSize(new java.awt.Dimension(130, 14));
+
+        fullscreenLabel.setText("Toggle fullscreen");
+        fullscreenLabel.setMaximumSize(new java.awt.Dimension(130, 14));
+        fullscreenLabel.setMinimumSize(new java.awt.Dimension(130, 14));
+        fullscreenLabel.setPreferredSize(new java.awt.Dimension(130, 14));
+
+        fireKeyLabel.setText("Key-binding fire");
+        fireKeyLabel.setMaximumSize(new java.awt.Dimension(130, 14));
+        fireKeyLabel.setMinimumSize(new java.awt.Dimension(130, 14));
+        fireKeyLabel.setPreferredSize(new java.awt.Dimension(130, 14));
+
+        leftThrusterKeyLabel.setText("Key-binding left thruster");
+        leftThrusterKeyLabel.setMaximumSize(new java.awt.Dimension(70, 14));
+        leftThrusterKeyLabel.setMinimumSize(new java.awt.Dimension(70, 14));
+        leftThrusterKeyLabel.setPreferredSize(new java.awt.Dimension(70, 14));
+
+        mainThrusterKeyLabel.setText("Key-binding main thruster");
+        mainThrusterKeyLabel.setMaximumSize(new java.awt.Dimension(130, 14));
+        mainThrusterKeyLabel.setMinimumSize(new java.awt.Dimension(130, 14));
+        mainThrusterKeyLabel.setPreferredSize(new java.awt.Dimension(130, 14));
+
+        rightThrusterKeyLabel.setText("Key-binding right thruster");
+        rightThrusterKeyLabel.setMaximumSize(new java.awt.Dimension(130, 14));
+        rightThrusterKeyLabel.setMinimumSize(new java.awt.Dimension(130, 14));
+        rightThrusterKeyLabel.setPreferredSize(new java.awt.Dimension(130, 14));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(soundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fullscreenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fireKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rightThrusterKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(leftThrusterKeyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(mainThrusterKeyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(260, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(soundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fullscreenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(fireKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(leftThrusterKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(mainThrusterKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(rightThrusterKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(150, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel fireKeyLabel;
+    private javax.swing.JLabel fullscreenLabel;
+    private javax.swing.JLabel leftThrusterKeyLabel;
+    private javax.swing.JLabel mainThrusterKeyLabel;
+    private javax.swing.JLabel rightThrusterKeyLabel;
+    private javax.swing.JLabel soundLabel;
     // End of variables declaration//GEN-END:variables
 }
