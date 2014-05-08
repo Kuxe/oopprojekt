@@ -316,11 +316,6 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 					this.width==other.width;
 		}
 	}
-	@Override
-	public int hashCode(){
-		return (int)Math.round(direction.x) * 7919 +  (int)Math.round(direction.y) * 7907 +
-				(int)Math.round(position.x) * 7901 + (int)Math.round(position.y) * 7883 + height * 7879 + width * 7877;
-	}
 	
 	public boolean isMainThusterActive(){
 		return thrusterComponent.isMainThusterActive();
