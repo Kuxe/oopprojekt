@@ -38,7 +38,11 @@ public class ThrusterTest {
 
 	@Test
 	public void testGetAcceleration() {
-		fail("Not yet implemented");
+		Thruster t=new Thruster(10,20,50,1);
+		t.deactivate();
+		assertTrue(t.getAcceleration().x==0 && t.getAcceleration().y==0);
+		t.activate();
+		assertTrue(t.getAcceleration().x==10 && t.getAcceleration().y==20);
 	}
 
 	@Test
