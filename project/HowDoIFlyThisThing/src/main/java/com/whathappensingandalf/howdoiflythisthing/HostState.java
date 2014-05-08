@@ -160,21 +160,15 @@ public class HostState implements ModelNetworkState{
 
 	public void sendPackets() {
 		
-		if(getListOfSounds().size() != 0){
-			System.out.println("listOfSounds " + getListOfSounds());
-		}
-		
 		if(timerStop - timerStart > timerInterval) {
-			if(getListOfSounds().size() != 0){
-				System.out.println("in if " + round.getListOfSounds());
-			}
 			//Send images to all clients
 			server.sendToAllTCP(new DrawableDataNetworkPacket(round.getDrawableData()));
 			
 //			TODO- round.getListOfSounds() always == 0
 			
 			//Send sounds to all clients
-			server.sendToAllTCP(new SoundNetworkPacket(round.getListOfSounds()));
+			server.sendToAllTCP(new SoundNetworkPacket(getListOfSounds()));
+			getListOfSounds().clear();
 			//Send each spaceship point associated with each connection to the connected client
 			for(Connection connection : connections) {
 				connection.sendTCP(users.get(connection.getID()).getSpaceshipPoint());
