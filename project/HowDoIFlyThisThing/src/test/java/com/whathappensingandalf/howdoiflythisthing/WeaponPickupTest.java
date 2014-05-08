@@ -130,6 +130,12 @@ public class WeaponPickupTest  implements PropertyChangeListener{
 		WeaponPickup wp2 = (WeaponPickup)wp.clone();
 		assertTrue(wp.equals(wp2)&&wp!=wp2);
 	}
+	
+	@Test
+	public void testHashCode(){
+		WeaponPickup wp2 = new WeaponPickup(new Point2f(100,100), 5, projectile);
+		assertTrue(wp.hashCode() == wp2.hashCode());
+	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
 		this.isRemoved = evt.getPropertyName().equals(HealthPickup.Message.PICKUP_DIE.toString());

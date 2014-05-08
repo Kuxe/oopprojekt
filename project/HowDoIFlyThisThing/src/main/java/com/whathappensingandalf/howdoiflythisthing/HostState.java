@@ -160,9 +160,10 @@ public class HostState implements ModelNetworkState{
 
 	public void sendPackets() {
 		
-//		if(getListOfSounds().size() != 0){
-//			System.out.println("listOfSounds " + getListOfSounds());
-//		}
+		if(getListOfSounds().size() != 0){
+			System.out.println("listOfSounds " + getListOfSounds());
+		}
+//		Set<String> setOfSounds= getListOfSounds();
 		
 		if(timerStop - timerStart > timerInterval) {			
 			//Send images to all clients
@@ -170,7 +171,7 @@ public class HostState implements ModelNetworkState{
 			
 //			TODO- round.getListOfSounds() always == 0
 			if(getListOfSounds().size() != 0){
-				System.out.println("in if " + getListOfSounds());
+//				System.out.println("in if " + setOfSounds);
 			}
 			//Send sounds to all clients
 			server.sendToAllTCP(new SoundNetworkPacket(round.getListOfSounds()));
@@ -180,9 +181,6 @@ public class HostState implements ModelNetworkState{
 			}			
 			timerStart = System.nanoTime();
 		}
-//		if(getListOfSounds().size() != 0){
-//			System.out.println("outside " + getListOfSounds());
-//		}
 		timerStop = System.nanoTime();
 	}
 
