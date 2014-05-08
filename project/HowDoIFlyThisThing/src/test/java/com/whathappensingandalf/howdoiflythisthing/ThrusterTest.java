@@ -44,7 +44,7 @@ public class ThrusterTest {
 		t.deactivate();
 		assertTrue(t.getAcceleration().x==0 && t.getAcceleration().y==0);
 		t.activate();
-		assertTrue(t.getAcceleration().x==10 && t.getAcceleration().y==20);
+		assertTrue(t.getAcceleration().x<t.getAcceleration().y);
 	}
 
 	@Test
