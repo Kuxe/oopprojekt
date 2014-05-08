@@ -319,16 +319,6 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 					this.width==other.width;
 		}
 	}
-	
-	public boolean isMainThusterActive(){
-		return thrusterComponent.isMainThusterActive();
-	}
-	public boolean isLeftThusterActive(){
-		return thrusterComponent.isLeftThusterActive();
-	}
-	public boolean isRightThusterActive(){
-		return thrusterComponent.isRightThusterActive();
-	}
 
 	@Override
 	public Collection<? extends DrawableData> getCollectionDrawables() {
