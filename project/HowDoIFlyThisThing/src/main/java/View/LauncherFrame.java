@@ -20,6 +20,7 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 
 	private PropertyChangeSupport pcs;
 	private StartPanel startPanel;
+	private OptionsPanel optionsPanel;
 
 	
 	public static enum Message{
@@ -36,8 +37,12 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 		pcs = new PropertyChangeSupport(this);
 		startPanel = new StartPanel();
 		startPanel.addPropertyChangeListener(this);
+		optionsPanel = new OptionsPanel();
+		optionsPanel.addPropertyChangeListener(this);
+		
 		this.setSize(380, 500);
 		startPanel.setSize(360, 500);
+		optionsPanel.setSize(360, 500);
 		this.add(startPanel);
 		
 		Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
@@ -45,7 +50,6 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 		int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
 		this.setLocation(x, y);
 	}
-
 	/**
 	 * Adds a listener to this object.
 	 * @param pcl
