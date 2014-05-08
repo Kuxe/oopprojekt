@@ -1,5 +1,5 @@
 package controller;
-import View.HDIFTT_Launcher;
+import View.LauncherFrame;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.JOptionPane;
@@ -10,27 +10,29 @@ import javax.swing.JOptionPane;
 public class LauncherController implements PropertyChangeListener{
 	
 	private Controller controller;
-	private HDIFTT_Launcher launcher;
+	private LauncherFrame launcher;
 	
 	public LauncherController(){
-		launcher = new HDIFTT_Launcher();
+		launcher = new LauncherFrame();
 		launcher.addPropertyChangeListener(this);
 		launcher.setVisible(true);
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
-		if(evt.getPropertyName().equals(HDIFTT_Launcher.Message.HDIFTT_HOST.toString())){
+		if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_HOST.toString())){
 			launcher.dispose();
 			controller = new Controller();
 			controller.start();
 			controller.cleanup();
 			System.exit(0);
-		}else if(evt.getPropertyName().equals(HDIFTT_Launcher.Message.HDIFTT_JOIN.toString())){
+		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_JOIN.toString())){
 			launcher.dispose();
 			controller = new Controller(launcher.getIP());
 			controller.start();
 			controller.cleanup();
 			System.exit(0);
+		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_OPTIONS.toString())){
+			launcher.displayOptionsPanel();
 		}
 	}
 	public void launchControllerStop(){

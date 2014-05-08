@@ -6,7 +6,8 @@ public class SoundNetworkPacket {
 	public Set<String> sounds;
 	public SoundNetworkPacket(Set<String> sounds) {
 		this.sounds = sounds;
-//		System.out.println("AND THERE WERE: " + sounds);
+		if(sounds.size() > 0)
+		System.out.println("IUGFSDUGHSDFUH: " + sounds.size());
 	}
 	public SoundNetworkPacket() {
 		//required for kryonet

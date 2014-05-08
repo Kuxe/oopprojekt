@@ -23,7 +23,6 @@ public class BulletTest implements PropertyChangeListener{
 	private Vector2f vec= new Vector2f(5, 5);
 	private Bullet pro= new Bullet(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
 	private Bullet pro2= new Bullet(new Point2f(1, 1), vec, vec, new Vector2f(0, 1), 3, 3);
-//											position, velocity, acceleration, direction, width, height
 	private Spaceship ss= SpaceshipFactory.create(new Point2f(1, 1), vec, 50, 50);
 	private Asteroid ast= AsteroidFactory.create(new Point2f(1, 1), 100, 100);
 
@@ -76,8 +75,6 @@ public class BulletTest implements PropertyChangeListener{
 
 	@Test
 	public void testRemove(){
-//		isRemoved= false;
-		System.out.println(isRemoved);
 		pro.addPropertyChangeListener(this);
 		pro.remove();
 		assertTrue(isRemoved);
@@ -175,7 +172,6 @@ public class BulletTest implements PropertyChangeListener{
 
 	@Test
 	public void testAccept() {
-//		isRemoved= false;
 		pro.addPropertyChangeListener(this);
 		pro.accept(pro2);
 		assertTrue(!isRemoved);
@@ -183,7 +179,6 @@ public class BulletTest implements PropertyChangeListener{
 
 	@Test
 	public void testVisitSpaceship() {
-//		isRemoved= false;
 		pro.addPropertyChangeListener(this);
 		pro.visit(ss);
 		assertTrue(isRemoved);
@@ -197,7 +192,6 @@ public class BulletTest implements PropertyChangeListener{
 
 	@Test
 	public void testVisitAsteroid() {
-//		isRemoved= false;
 		pro.addPropertyChangeListener(this);
 		pro.visit(ast);
 		assertTrue(isRemoved);
@@ -205,7 +199,6 @@ public class BulletTest implements PropertyChangeListener{
 
 	@Test
 	public void testAddPropertyChangeListener() {
-//		isRemoved= false;
 		pro.addPropertyChangeListener(this);
 		pro.remove();
 		assertTrue(isRemoved);
@@ -213,7 +206,6 @@ public class BulletTest implements PropertyChangeListener{
 
 	@Test
 	public void testRemovePropertyChangeListener() {
-//		isRemoved= false;
 		pro.removePropertyChangeListener(this);
 		pro.remove();;
 		assertTrue(!isRemoved);
@@ -231,6 +223,10 @@ public class BulletTest implements PropertyChangeListener{
 	
 	@Test
 	public void testEquals(){
-		assertTrue(pro.equals(pro2));
+		assertTrue(pro.equals(pro2) && pro.equals(pro));
 	}
+//	@Test
+//	public void testHashCode(){
+//		assertTrue(pro.hashCode() == pro2.hashCode());
+//	}
 }//end ProjectileTest
