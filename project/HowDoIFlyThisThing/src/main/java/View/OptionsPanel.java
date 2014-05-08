@@ -79,6 +79,16 @@ public class OptionsPanel extends javax.swing.JPanel {
         fullscreenCheckBox.setText("Fullscreen");
 
         fireTextField.setText("jTextField1");
+        fireTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fireTextFieldFocusGained(evt);
+            }
+        });
+        fireTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fireTextFieldKeyTyped(evt);
+            }
+        });
 
         leftTextField.setText("jTextField2");
 
@@ -188,11 +198,22 @@ public class OptionsPanel extends javax.swing.JPanel {
         this.firePropertyChange(LauncherFrame.Message.HDOFTT_OPTIONS_RESET.toString(), 0, 1);
     }//GEN-LAST:event_resetButtonActionPerformed
 
+    private void fireTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fireTextFieldKeyTyped
+        this.okButton.grabFocus();
+    }//GEN-LAST:event_fireTextFieldKeyTyped
+
+    private void fireTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fireTextFieldFocusGained
+        this.fireTextField.setText("");
+    }//GEN-LAST:event_fireTextFieldFocusGained
+
 	public int getVolume(){
 		return this.soundSlider.getValue();
 	}
 	public boolean getFullscreen(){
 		return this.fullscreenCheckBox.isContentAreaFilled();
+	}
+	public String getFireKey(){
+		return this.fireTextField.getText();
 	}
 	public String getLeftThrusterKey(){
 		return this.leftTextField.getText();

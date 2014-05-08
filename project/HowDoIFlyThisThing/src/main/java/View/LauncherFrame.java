@@ -82,12 +82,14 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	public String getIP(){
 		return this.startPanel.getIP();
 	}
-	
 	public int getVolume(){
 		return this.optionsPanel.getVolume();
 	}
 	public boolean getFullscreen(){
 		return this.optionsPanel.getFullscreen();
+	}
+	public String getFireKey(){
+		return this.optionsPanel.getFireKey();
 	}
 	public String getLeftThrusterKey(){
 		return this.optionsPanel.getLeftThrusterKey();
