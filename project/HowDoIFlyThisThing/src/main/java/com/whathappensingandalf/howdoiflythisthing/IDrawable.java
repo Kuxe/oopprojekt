@@ -1,5 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.util.Set;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
@@ -25,4 +27,6 @@ public interface IDrawable extends IListable {
 	public String getType();
 	
 	public IDrawable clone();
+	
+	public Set<IDrawable> getSetOfDrawables();
 }
