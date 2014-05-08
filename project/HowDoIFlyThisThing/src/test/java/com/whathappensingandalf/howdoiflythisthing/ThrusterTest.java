@@ -14,7 +14,10 @@ public class ThrusterTest {
 
 	@Test
 	public void testActivate() {
-		fail("Not yet implemented");
+		Thruster t=new Thruster(10,20,50,1);
+		assertTrue(!t.isThrusterActive());
+		t.activate();
+		assertTrue(t.isThrusterActive());
 	}
 
 	@Test
