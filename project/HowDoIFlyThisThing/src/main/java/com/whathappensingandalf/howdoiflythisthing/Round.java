@@ -50,8 +50,23 @@ public class Round implements PropertyChangeListener{
 		state.removeUser(user);
 		user.removePropertyChangeListener(this);
 		user.suicide();
+		
+		//If only one user in a round (that is, host), end round
 		if(users.size() == 1) {
 			end();
+			for(User lastUserOnline : users) {
+				
+				//If host is dead, add him to round
+				if(lastUserOnline.getState().equals(IUserState.state.SPECTATOR_STATE)) {
+					System.out.println("adding dead host");
+					lastUserOnline.requestSpaceship();
+				}
+			}
+		}
+		
+		//If a user disconnected and there's currently 2 or more users connected and only one alive, start a new round
+		else if(usersAlive == 1 && users.size() >= 2) {
+			start();
 		}
 	}
 
