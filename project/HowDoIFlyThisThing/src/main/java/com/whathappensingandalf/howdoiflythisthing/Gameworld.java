@@ -14,7 +14,9 @@ import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
 import services.SoundEffects;
+import utils.Timer;
 
+import com.whathappensingandalf.howdoiflythisthing.factorys.MissileFactory;
 import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
 
@@ -54,6 +56,7 @@ public class Gameworld implements PropertyChangeListener{
 	private WorldBorder worldBorder;
 	private Set<String> listOfSounds;
 	private PropertyChangeSupport pcs;
+	private Timer pickupSpawnTimer;
 	
 	public Gameworld(){
 		moveables = 					new HashMap();
@@ -65,46 +68,14 @@ public class Gameworld implements PropertyChangeListener{
 		worldBorder=new WorldBorder(540,1080);
 		timestep = new Timestep();
 		pcs = new PropertyChangeSupport(this);
+		pickupSpawnTimer = new Timer(10000);
 	}
 	
 	
 	public Set<DrawableData> getDrawableData() {
 		HashSet<DrawableData> set = new HashSet();
 		for(IDrawable drawable : drawables.values()) {
-//			if(drawable.getType().equals("SPACESHIP")){
-//				if(((Spaceship)drawable).isMainThusterActive()){
-//					set.add(new DrawableData(
-//							new Point2f(drawable.getPosition().x-drawable.getDirection().x*25,
-//							drawable.getPosition().y-drawable.getDirection().y*25),
-//							3,
-//							3,
-//							drawable.getDirection(),
-//							""));
-//				}
-//				if(((Spaceship)drawable).isRightThusterActive()){
-//					set.add(new DrawableData(
-//							new Point2f(drawable.getPosition().x-drawable.getDirection().x*25-drawable.getDirection().y*10,
-//							drawable.getPosition().y-drawable.getDirection().y*25+drawable.getDirection().x*10),
-//							3,
-//							3,
-//							drawable.getDirection(),
-//							""));
-//				}
-//				if(((Spaceship)drawable).isLeftThusterActive()){
-//					set.add(new DrawableData(
-//							new Point2f(drawable.getPosition().x-drawable.getDirection().x*25+drawable.getDirection().y*10,
-//							drawable.getPosition().y-drawable.getDirection().y*25-drawable.getDirection().x*10),
-//							3,
-//							3,
-//							drawable.getDirection(),
-//							""));
-//				}
-//			}
-			set.add(new DrawableData(	drawable.getPosition(),
-										drawable.getWidth(),
-										drawable.getHeight(),
-										drawable.getDirection(),
-										drawable.getType()));
+			set.addAll(drawable.getCollectionDrawables());
 		}
 		return set;
 	}
@@ -258,8 +229,8 @@ public class Gameworld implements PropertyChangeListener{
 	 */
 	public synchronized void update(){
 		timestep.start();
-		listOfSounds.clear();
 		
+		pickupSpawnUppdate();
 		movableUpdate();
 		worldBounderyCheck();
 		collisionUpdate();
@@ -275,12 +246,12 @@ public class Gameworld implements PropertyChangeListener{
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_FIRE.toString())) {
 			addProjectile((IProjectile)evt.getOldValue());
-			listOfSounds.add(SoundEffects.sound.SPACESHIP_FIRE.toString());
+			listOfSounds.add(SoundEffects.Sound.SPACESHIP_FIRE.toString());
 		} else if(evt.getPropertyName().equals(IProjectile.Message.PROJECTILE_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
-			listOfSounds.add(SoundEffects.sound.SPACESHIP_DIE.toString());
+			listOfSounds.add(SoundEffects.Sound.SPACESHIP_DIE.toString());
 			pcs.firePropertyChange(evt); //Forward event
 		} else if(evt.getPropertyName().equals(IPickup.Message.PICKUP_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
@@ -309,4 +280,36 @@ public class Gameworld implements PropertyChangeListener{
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		pcs.addPropertyChangeListener(listener);
 	}
+	
+	public void pickupSpawnUppdate(){
+		if(pickupSpawnTimer.isTimerDone()){
+			pickupSpawnTimer.start();
+			double spawnChance=Math.random();
+			if(spawnChance<0.1){
+				addPickup(
+						new WeaponPickup(
+								new Point2f(
+										(int)(Math.random()*worldBorder.getWorldWidth()),
+										(int)(Math.random()*worldBorder.getWorldHeight())),
+									12,
+									MissileFactory.create(
+											new Point2f(),
+											new Vector2f(),
+											new Vector2f(),
+											new Vector2f(),
+											0,
+											0)));
+			}else if(spawnChance<0.2){
+				addPickup(
+						new HealthPickup(
+								new Point2f(
+										(int)(Math.random()*worldBorder.getWorldWidth()),
+										(int)(Math.random()*worldBorder.getWorldHeight())),
+									12,
+									5));
+			}
+		}
+	}
+	
+	
 }

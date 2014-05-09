@@ -76,6 +76,8 @@ public class ArmsComponent {
 		baseSpeed.add(velocity);
 		return IProjectileFactory.create(tempPoint, baseSpeed, acceleration, direction, type);
 	}
+	
+	@Override
 	public boolean equals(Object rhs){
 		if(rhs==this){
 			return true;

@@ -1,4 +1,4 @@
-package com.whathappensingandalf.howdoiflythisthing;
+package services;
 
 import static org.junit.Assert.*;
 

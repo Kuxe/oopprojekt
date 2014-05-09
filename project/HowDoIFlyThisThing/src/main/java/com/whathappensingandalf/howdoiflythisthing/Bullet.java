@@ -4,9 +4,13 @@ import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
+
 import utils.TypeWrapper;
 
 /**
@@ -225,4 +229,17 @@ public class Bullet implements IProjectile {
 //		return width * 7919 + height * 7907 + (int)Math.round(velocity.x) * 7901 + (int)Math.round(velocity.y) * 7883 + (int)Math.round(acceleration.x) * 7879 + (int)Math.round(acceleration.y) * 7877 + (int)Math.round(direction.x) * 7873 + (int)Math.round(direction.y) * 7867 +
 //				(int)Math.round(position.x) * 7853 + (int)Math.round(position.y) * 7841;
 //	}
+
+	@Override
+	public Collection<? extends DrawableData> getCollectionDrawables() {
+		Set<DrawableData> returnSet=new HashSet<DrawableData>();
+		returnSet.add(new DrawableData(
+				getPosition(),
+				getHeight(),
+				getWidth(),
+				getDirection(),
+				getType().toString()));
+		return returnSet;
+	}
+	
 }//end Projectile

@@ -109,9 +109,6 @@ public class ClientState implements ModelNetworkState {
 		for(String string: sounds){
 			soundsCopy.add(string);
 		}
-		if(soundsCopy.size() != 0){
-			System.out.println("soundsCopy" + soundsCopy);
-		}
 		sounds.clear();
 		return soundsCopy;
 	}

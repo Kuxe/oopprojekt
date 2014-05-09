@@ -4,6 +4,9 @@ import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
@@ -325,5 +328,46 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 	public boolean isRightThusterActive(){
 		return thrusterComponent.isRightThusterActive();
+	}
+
+	@Override
+	public Collection<? extends DrawableData> getCollectionDrawables() {
+		Set<DrawableData> returnSet=new HashSet<DrawableData>();
+		returnSet.add(new DrawableData(
+				getPosition(),
+				getHeight(),
+				getWidth(),
+				getDirection(),
+				getType().toString()));
+		
+		if(thrusterComponent.isMainThusterActive()){
+			returnSet.add(new DrawableData(
+					new Point2f(getPosition().x-getDirection().x*25,
+					getPosition().y-getDirection().y*25),
+					3,
+					3,
+					getDirection(),
+					IGameObject.type.BULLET.toString()));
+		}
+		if(thrusterComponent.isRightThusterActive()){
+			returnSet.add(new DrawableData(
+					new Point2f(getPosition().x-getDirection().x*25-getDirection().y*10,
+					getPosition().y-getDirection().y*25+getDirection().x*10),
+					3,
+					3,
+					getDirection(),
+					IGameObject.type.BULLET.toString()));
+		}
+		if(thrusterComponent.isLeftThusterActive()){
+			returnSet.add(new DrawableData(
+					new Point2f(getPosition().x-getDirection().x*25+getDirection().y*10,
+					getPosition().y-getDirection().y*25-getDirection().x*10),
+					3,
+					3,
+					getDirection(),
+					IGameObject.type.BULLET.toString()));
+		}
+		
+		return returnSet;
 	}
 }

@@ -47,4 +47,9 @@ public class SpectatorState implements IUserState{
 		//Ship already dead
 	}
 
+	@Override
+	public state getState() {
+		return IUserState.state.SPECTATOR_STATE;
+	}
+
 }
