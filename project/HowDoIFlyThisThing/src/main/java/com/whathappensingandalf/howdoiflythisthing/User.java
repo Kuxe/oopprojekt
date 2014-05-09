@@ -24,7 +24,7 @@ public class User implements PropertyChangeListener{
 	private final SpectatorState spectatorState;
 	private final PlayerState playerState;
 	//private int left, main, right, fire;
-	private final Keybindings keybindings;
+	private Keybindings keybindings;
 	private Set<Integer> listOfHoldKeys;
 	private PropertyChangeSupport pcs;
 	
@@ -70,6 +70,9 @@ public class User implements PropertyChangeListener{
 	}
 	public void setFireButton(int key){
 		keybindings.setFire(key);
+	}
+	public void setKeybindings(Keybindings keybindings){
+		this.keybindings = new Keybindings(keybindings);
 	}
 	
 	public void executeInput(Set<Integer> listOfHoldKeys) {
