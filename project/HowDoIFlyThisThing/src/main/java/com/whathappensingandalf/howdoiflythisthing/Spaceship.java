@@ -23,7 +23,7 @@ import utils.VecmathUtils;
  * implements IMovable and IThrustable as it will be able to move and doing it 
  * by using a number of Thrusters.
  */
-public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObject, IDrawable, Cloneable {
+public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObject, IDrawable, IRechargable, Cloneable {
 	/**
 	 * Different components for avoiding duplicate code.
 	 */
@@ -370,5 +370,9 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		}
 		
 		return returnSet;
+	}
+	
+	public void recharge(){
+		this.shield.recharge();
 	}
 }

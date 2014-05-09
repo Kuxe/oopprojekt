@@ -45,6 +45,7 @@ public class Gameworld implements PropertyChangeListener{
 	private Map<Object, IMovable> moveables;
 	private Map<Object, ICollidable> collidables;
 	private Map<Object, IDrawable> drawables;
+	private Map<Object, IRechargable> chargables;
 	
 	/**
 	 * HashMap which is unlocked by any gameworld object, ie spaceship.
@@ -58,6 +59,7 @@ public class Gameworld implements PropertyChangeListener{
 	private Set<String> listOfSounds;
 	private PropertyChangeSupport pcs;
 	private ITimer pickupSpawnTimer;
+	private ITimer shieldTimer;
 	
 	public Gameworld(){
 		moveables = 					new HashMap();
@@ -65,11 +67,14 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap = 					new HashMap();
 		listOfObjectsToBeRemoved = 		new HashSet();
 		drawables =						new HashMap();
-		listOfSounds= 					new HashSet();
+		listOfSounds = 					new HashSet();
+		chargables =					new HashMap();
+		
 		worldBorder=new WorldBorder(540,1080);
 		timestep = new Timestep();
 		pcs = new PropertyChangeSupport(this);
 		pickupSpawnTimer = new Timer(10000);
+		shieldTimer=new Timer(10000);
 	}
 	
 	
@@ -141,6 +146,7 @@ public class Gameworld implements PropertyChangeListener{
 		moveables.put(spaceship, spaceship);
 		collidables.put(spaceship, spaceship);
 		drawables.put(spaceship, spaceship);
+		chargables.put(spaceship, spaceship);
 		
 		//List of hashmaps which Spaceship is added to
 		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
@@ -231,7 +237,9 @@ public class Gameworld implements PropertyChangeListener{
 	public synchronized void update(){
 		timestep.start();
 		
+		
 		pickupSpawnUppdate();
+		chargableUpdate();
 		movableUpdate();
 		worldBounderyCheck();
 		collisionUpdate();
@@ -240,6 +248,18 @@ public class Gameworld implements PropertyChangeListener{
 		timestep.end();
 		timestep.calculateDeltatime();
 	}
+
+	private void chargableUpdate() {
+		
+		if(shieldTimer.isTimerDone()){
+			for(IRechargable chargable : chargables.values()){
+				chargable.recharge();
+			}
+			shieldTimer.start();
+		}
+		
+	}
+
 
 	/**
 	 * {@inheritDoc}

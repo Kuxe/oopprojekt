@@ -30,6 +30,7 @@ public class Round implements PropertyChangeListener{
 	private Set<User> users;
 	private Set<User> usersRequestingShips; //Lazy add of replacement spaceships of those lost during inactive round
 	private int usersAlive = 0;
+	private boolean newRoundCommencing = false;
 		
 	public Round() {
 		world = new Gameworld();
@@ -75,18 +76,13 @@ public class Round implements PropertyChangeListener{
 	 * These users will play the round
 	 * This method calls end() beforehand, effectively forcing
 	 * a restart of round if not already ended.
+	 * 
+	 * Note that this is a lazy start. It doesn't start directly away,
+	 * but sets a state in Round to start round on next game-loop tick
 	 * @param users
 	 */
 	public synchronized void start() {
-		System.out.println("START_ROUND");
-		usersAlive = 0;
-		world = new Gameworld();
-		world.addPropertyChangeListener(this);
-		for(User user : users) {
-			user.requestSpaceship();
-		}
-		state = new ActiveRound(this, users);
-		state.addListener(this);
+		newRoundCommencing = true;
 	}
 	
 	public void end() {
@@ -96,6 +92,10 @@ public class Round implements PropertyChangeListener{
 	}
 
 	public synchronized void update() {
+		if(newRoundCommencing) {
+			processStart();
+			newRoundCommencing = false;
+		}
 		processRequestedShips();
 		world.update();
 	}
@@ -105,6 +105,26 @@ public class Round implements PropertyChangeListener{
 	}
 	public Set<String> getListOfSounds(){
 		return world.getListOfSounds();
+	}
+	
+	/**
+	 * Should never be called directly, only via start() which tells Round to
+	 * call this method on a specific point in program flow which prevents
+	 * lots of issues with spawning players
+	 */
+	private void processStart() {
+		//Only allow start if there's more than 2 users in server
+		if(users.size() >= 2) {
+			System.out.println("START_ROUND");
+			usersAlive = 0;
+			world = new Gameworld();
+			world.addPropertyChangeListener(this);
+			for(User user : users) {
+				user.requestSpaceship();
+			}
+			state = new ActiveRound(this, users);
+			state.addListener(this);
+		}
 	}
 	
 	/**
@@ -138,6 +158,18 @@ public class Round implements PropertyChangeListener{
 	
 	public void decreaseUsersAlive() {
 		usersAlive -= 1;
+	}
+	
+	public int getUsersAlive() {
+		return usersAlive;
+	}
+	
+	public int getSizeOfUsers() {
+		return users.size();
+	}
+	
+	public Roundstate.state getState() {
+		return state.getState();
 	}
 
 	@Override
