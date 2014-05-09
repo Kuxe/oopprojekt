@@ -3,6 +3,7 @@ package com.whathappensingandalf.howdoiflythisthing;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
+import utils.ITimer;
 import utils.Timer;
 
 import com.whathappensingandalf.howdoiflythisthing.factorys.BulletFactory;
@@ -20,7 +21,7 @@ public class ArmsComponent {
 	private Vector2f acceleration;
 	private Vector2f direction;
 	private String type;
-	private Timer timer;
+	private ITimer timer;
 	
 	//vector from armsComponent owner point to weapon pipe
 	//this is neccesary to calculate where the projectile should be shot
