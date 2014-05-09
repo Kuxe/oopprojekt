@@ -37,13 +37,13 @@ public class LauncherController implements PropertyChangeListener{
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_HOST.toString())){
 			launcher.dispose();
-			controller = new Controller();
+			controller = new Controller(leftKey, mainKey, rightKey, fireKey);
 			controller.start();
 			controller.cleanup();
 			System.exit(0);
 		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_JOIN.toString())){
 			launcher.dispose();
-			controller = new Controller(launcher.getIP());
+			controller = new Controller(launcher.getIP(), leftKey, mainKey, rightKey, fireKey);
 			controller.start();
 			controller.cleanup();
 			System.exit(0);

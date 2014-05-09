@@ -29,12 +29,12 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	private Set<Integer> listOfReleasedKeys;
 	private Set<Integer> listOfHoldKeys;
 
-	public Controller(){
+	public Controller(int leftKey, int mainKey, int rightKey, int fireKey){
 		sharedCTOR();
 		model.host();
 	}
 
-	public Controller(String ip){
+	public Controller(String ip, int leftKey, int mainKey, int rightKey, int fireKey){
 		sharedCTOR();
 		model.join(ip);
 	}
