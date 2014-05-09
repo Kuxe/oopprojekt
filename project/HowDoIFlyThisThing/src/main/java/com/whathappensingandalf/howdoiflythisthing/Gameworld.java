@@ -286,9 +286,27 @@ public class Gameworld implements PropertyChangeListener{
 			pickupSpawnTimer.start();
 			double spawnChance=Math.random();
 			if(spawnChance<0.1){
-				addPickup(new WeaponPickup(new Point2f((int)(Math.random()*worldBorder.getWorldWidth()), (int)(Math.random()*worldBorder.getWorldHeight())), 12, MissileFactory.create(new Point2f(), new Vector2f(), new Vector2f(), new Vector2f(), 0, 0)));
+				addPickup(
+						new WeaponPickup(
+								new Point2f(
+										(int)(Math.random()*worldBorder.getWorldWidth()),
+										(int)(Math.random()*worldBorder.getWorldHeight())),
+									12,
+									MissileFactory.create(
+											new Point2f(),
+											new Vector2f(),
+											new Vector2f(),
+											new Vector2f(),
+											0,
+											0)));
 			}else if(spawnChance<0.2){
-				addPickup(new HealthPickup(new Point2f((int)(Math.random()*worldBorder.getWorldWidth()), (int)(Math.random()*worldBorder.getWorldHeight())), 12, 5));
+				addPickup(
+						new HealthPickup(
+								new Point2f(
+										(int)(Math.random()*worldBorder.getWorldWidth()),
+										(int)(Math.random()*worldBorder.getWorldHeight())),
+									12,
+									5));
 			}
 		}
 	}
