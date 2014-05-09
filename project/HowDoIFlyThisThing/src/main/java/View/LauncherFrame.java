@@ -100,6 +100,18 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	public String getRightThrusterKey(){
 		return this.optionsPanel.getRightThrusterKey();
 	}
+	public void setFireKey(String key){
+		this.optionsPanel.setFireKey(key);
+	}
+	public void setLeftThrusterKey(String key){
+		this.optionsPanel.setLeftThrusterKey(key);
+	}
+	public void setMainThrusterKey(String key){
+		this.optionsPanel.setMainThrusterKey(key);
+	}
+	public void setRightThrusterKey(String key){
+		this.optionsPanel.setRightThrusterKey(key);
+	}
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,6 +124,7 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
         backgroundPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("How do I fly this thing?!");
 
         backgroundPanel.setLayout(new java.awt.CardLayout());
 

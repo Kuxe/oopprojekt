@@ -56,22 +56,22 @@ public class OptionsPanel extends javax.swing.JPanel {
         fullscreenLabel.setMinimumSize(new java.awt.Dimension(130, 14));
         fullscreenLabel.setPreferredSize(new java.awt.Dimension(130, 14));
 
-        fireKeyLabel.setText("Key-binding fire");
+        fireKeyLabel.setText("Fire key");
         fireKeyLabel.setMaximumSize(new java.awt.Dimension(130, 14));
         fireKeyLabel.setMinimumSize(new java.awt.Dimension(130, 14));
         fireKeyLabel.setPreferredSize(new java.awt.Dimension(130, 14));
 
-        leftThrusterKeyLabel.setText("Key-binding left thruster");
+        leftThrusterKeyLabel.setText("Left thruster key");
         leftThrusterKeyLabel.setMaximumSize(new java.awt.Dimension(70, 14));
         leftThrusterKeyLabel.setMinimumSize(new java.awt.Dimension(70, 14));
         leftThrusterKeyLabel.setPreferredSize(new java.awt.Dimension(70, 14));
 
-        mainThrusterKeyLabel.setText("Key-binding main thruster");
+        mainThrusterKeyLabel.setText("Main thruster key");
         mainThrusterKeyLabel.setMaximumSize(new java.awt.Dimension(130, 14));
         mainThrusterKeyLabel.setMinimumSize(new java.awt.Dimension(130, 14));
         mainThrusterKeyLabel.setPreferredSize(new java.awt.Dimension(130, 14));
 
-        rightThrusterKeyLabel.setText("Key-binding right thruster");
+        rightThrusterKeyLabel.setText("Right thruster key");
         rightThrusterKeyLabel.setMaximumSize(new java.awt.Dimension(130, 14));
         rightThrusterKeyLabel.setMinimumSize(new java.awt.Dimension(130, 14));
         rightThrusterKeyLabel.setPreferredSize(new java.awt.Dimension(130, 14));
@@ -223,6 +223,18 @@ public class OptionsPanel extends javax.swing.JPanel {
 	}
 	public String getRightThrusterKey(){
 		return this.rightTextField.getText();
+	}
+	public void setFireKey(String key){
+		this.fireTextField.setText(key);
+	}
+	public void setLeftThrusterKey(String key){
+		this.leftTextField.setText(key);
+	}
+	public void setMainThrusterKey(String Key){
+		this.mainTextField.setText(Key);
+	}
+	public void setRightThrusterKey(String key){
+		this.rightTextField.setText(key);
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

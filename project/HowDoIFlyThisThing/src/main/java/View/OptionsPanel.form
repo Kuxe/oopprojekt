@@ -127,7 +127,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="fireKeyLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Key-binding fire"/>
+        <Property name="text" type="java.lang.String" value="Fire key"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[130, 14]"/>
         </Property>
@@ -141,7 +141,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="leftThrusterKeyLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Key-binding left thruster"/>
+        <Property name="text" type="java.lang.String" value="Left thruster key"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[70, 14]"/>
         </Property>
@@ -155,7 +155,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="mainThrusterKeyLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Key-binding main thruster"/>
+        <Property name="text" type="java.lang.String" value="Main thruster key"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[130, 14]"/>
         </Property>
@@ -169,7 +169,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="rightThrusterKeyLabel">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Key-binding right thruster"/>
+        <Property name="text" type="java.lang.String" value="Right thruster key"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[130, 14]"/>
         </Property>

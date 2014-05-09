@@ -2,7 +2,6 @@ package controller;
 import View.LauncherFrame;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import javax.swing.JOptionPane;
 import org.lwjgl.input.Keyboard;
 /**
  *
@@ -12,6 +11,10 @@ public class LauncherController implements PropertyChangeListener{
 	
 	private Controller controller;
 	private LauncherFrame launcher;
+	private int defaultFireKey;
+	private int defaultLeftKey;
+	private int defaultMainKey;
+	private int defaultRightKey;
 	private int fireKey;
 	private int leftKey;
 	private int mainKey;
@@ -21,10 +24,14 @@ public class LauncherController implements PropertyChangeListener{
 		launcher = new LauncherFrame();
 		launcher.addPropertyChangeListener(this);
 		launcher.setVisible(true);
-		fireKey = Keyboard.KEY_SPACE;
-		leftKey = Keyboard.KEY_A;
-		mainKey = Keyboard.KEY_W;
-		rightKey = Keyboard.KEY_D;
+		defaultFireKey	=	Keyboard.KEY_SPACE;
+		defaultLeftKey	=	Keyboard.KEY_A;
+		defaultMainKey	=	Keyboard.KEY_W;
+		defaultRightKey	=	Keyboard.KEY_D;
+		fireKey			=	Keyboard.KEY_SPACE;
+		leftKey			=	Keyboard.KEY_A;
+		mainKey			=	Keyboard.KEY_W;
+		rightKey		=	Keyboard.KEY_D;
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
@@ -41,14 +48,36 @@ public class LauncherController implements PropertyChangeListener{
 			controller.cleanup();
 			System.exit(0);
 		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_OPTIONS.toString())){
+			this.displaySettings();
 			launcher.displayOptionsPanel();
 		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_OPTIONS_OK.toString())){
+			this.saveSettings();
 			launcher.displayStartPanel();
-			this.fireKey = Keyboard.getKeyIndex(launcher.getFireKey());
-			this.leftKey = Keyboard.getKeyIndex(launcher.getLeftThrusterKey());
-			this.mainKey = Keyboard.getKeyIndex(launcher.getMainThrusterKey());
-			this.rightKey = Keyboard.getKeyIndex(launcher.getRightThrusterKey());
+		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_OPTIONS_CANCEL.toString())){
+			this.displaySettings();
+			launcher.displayStartPanel();
+		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDOFTT_OPTIONS_RESET.toString())){
+			this.resetSettings();
 		}
+	}
+	public void saveSettings(){
+		fireKey = Keyboard.getKeyIndex(launcher.getFireKey().toUpperCase());
+		leftKey = Keyboard.getKeyIndex(launcher.getLeftThrusterKey().toUpperCase());
+		mainKey = Keyboard.getKeyIndex(launcher.getMainThrusterKey().toUpperCase());
+		rightKey = Keyboard.getKeyIndex(launcher.getRightThrusterKey().toUpperCase());
+		System.out.println(Keyboard.getKeyName(fireKey));
+	}
+	public void displaySettings(){
+		launcher.setFireKey(Keyboard.getKeyName(fireKey));
+		launcher.setLeftThrusterKey(Keyboard.getKeyName(leftKey));
+		launcher.setMainThrusterKey(Keyboard.getKeyName(mainKey));
+		launcher.setRightThrusterKey(Keyboard.getKeyName(rightKey));
+	}
+	public void resetSettings(){
+		launcher.setFireKey(Keyboard.getKeyName(defaultFireKey));
+		launcher.setLeftThrusterKey(Keyboard.getKeyName(defaultLeftKey));
+		launcher.setMainThrusterKey(Keyboard.getKeyName(defaultMainKey));
+		launcher.setRightThrusterKey(Keyboard.getKeyName(defaultRightKey));
 	}
 	public void launchControllerStop(){
 			controller.cleanup();
