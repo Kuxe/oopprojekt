@@ -68,8 +68,10 @@ public class RoundTest {
 		assertTrue(round.getUsersAlive() == 1); //One should be alive
 		
 		round.addUser(user2);
+		run5seconds(round);
 		round.start();
 		round.update(); //Update round in order to start round
+		run5seconds(round);
 		assertTrue(round.getState().equals(Roundstate.state.ACTIVE)); //Should be active when two users are in
 		round.update(); //Update round in order to let users spawn
 		assertTrue(round.getUsersAlive() == 2); //Two should be alive
@@ -78,6 +80,8 @@ public class RoundTest {
 		round.start();
 		assertTrue(round.getState().equals(Roundstate.state.ACTIVE)); //Should still be active when three users are in
 		round.update(); //Update round in order to start round
+		
+		run5seconds(round);
 		assertTrue(round.getUsersAlive() == 3); //Three should be alive
 		
 		round.addUser(user4);
@@ -85,6 +89,7 @@ public class RoundTest {
 		assertTrue(round.getState().equals(Roundstate.state.ACTIVE)); //Should still be active when four users are in
 		round.update(); //Update round in order to start round
 		round.update(); //Update round in order to hand out requested spaceships
+		run5seconds(round);
 		assertTrue(round.getUsersAlive() == 4); //Four should be alive
 	}
 
@@ -157,6 +162,7 @@ public class RoundTest {
 		assertTrue(user1.getState().equals(IUserState.state.SPECTATOR_STATE)); //Should not have received spaceship yet
 		assertTrue(user2.getState().equals(IUserState.state.SPECTATOR_STATE)); //Should not have received spaceship yet
 		round.update();
+		run5seconds(round);
 		assertTrue(round.getState().equals(Roundstate.state.ACTIVE)); //START_ROUND-event should make round active when second user is added
 		round.update(); //Process round (give spaceships to users that requested from event REQUEST_SPACESHIP
 		assertTrue(user1.getState().equals(IUserState.state.PLAYER_STATE)); //Should have received spaceship
@@ -173,9 +179,19 @@ public class RoundTest {
 		System.out.println(round.getUsersAlive());
 		assertTrue(round.getUsersAlive() == 1); //1 users should be alive.
 		round.update();
+		run5seconds(round);
 		assertTrue(round.getUsersAlive() == 2); //Round is updated and all users should have recieved their spaceships
 		
 		//Let's repeat this suicide sequence of code but with three users instead. Now it is expected for the round to remain
 	}
 
+	//Run round for 5seconds. This is required by start to activate, it takes 5sec for round to start since its counting down
+	private void run5seconds(Round round) {
+		long countdownStart = System.nanoTime();
+		System.out.print("starting timer");
+		while(System.nanoTime() - countdownStart < 5000000000L) {
+			round.update();
+		}
+		System.out.println(" done");
+	}
 }

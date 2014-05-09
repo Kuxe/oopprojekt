@@ -31,6 +31,11 @@ public class Round implements PropertyChangeListener{
 	private Set<User> usersRequestingShips; //Lazy add of replacement spaceships of those lost during inactive round
 	private int usersAlive = 0;
 	private boolean newRoundCommencing = false;
+	
+	//For countdown
+	private long countdownStart = 0;
+	private long countdownLimit = 5000000000L; //5000000000ns counter, 5seconds
+	private boolean permitStart = false;
 		
 	public Round() {
 		world = new Gameworld();
@@ -38,6 +43,7 @@ public class Round implements PropertyChangeListener{
 		
 		users = new HashSet();
 		usersRequestingShips = new HashSet();
+		
 		state = new InactiveRound(this, users);
 		state.addListener(this);
 	}
@@ -82,6 +88,9 @@ public class Round implements PropertyChangeListener{
 	 * @param users
 	 */
 	public synchronized void start() {
+		if(!newRoundCommencing) {
+			countdownStart = System.nanoTime();
+		}
 		newRoundCommencing = true;
 	}
 	
@@ -92,9 +101,8 @@ public class Round implements PropertyChangeListener{
 	}
 
 	public synchronized void update() {
-		if(newRoundCommencing) {
+		if(newRoundCommencing && System.nanoTime() - countdownStart > countdownLimit) {
 			processStart();
-			newRoundCommencing = false;
 		}
 		processRequestedShips();
 		world.update();
@@ -113,8 +121,12 @@ public class Round implements PropertyChangeListener{
 	 * lots of issues with spawning players
 	 */
 	private void processStart() {
-		//Only allow start if there's more than 2 users in server
+		//Only allow start if there's more than 2 users in server and if timer is done
 		if(users.size() >= 2) {
+			
+			//Reset start-conditions
+			newRoundCommencing = false;
+			
 			System.out.println("START_ROUND");
 			usersAlive = 0;
 			world = new Gameworld();
@@ -170,6 +182,14 @@ public class Round implements PropertyChangeListener{
 	
 	public Roundstate.state getState() {
 		return state.getState();
+	}
+	
+	/**
+	 * 
+	 * @return countdown, if 5seconds left for round to begin, returns 5. If 4s left, return 4 etc.
+	 */
+	public long countdownTimer() {
+		return countdownLimit - (System.nanoTime() - countdownStart);
 	}
 
 	@Override
