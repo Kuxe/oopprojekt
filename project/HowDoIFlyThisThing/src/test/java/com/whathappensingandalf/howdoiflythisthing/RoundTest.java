@@ -69,6 +69,7 @@ public class RoundTest {
 		
 		round.addUser(user2);
 		round.start();
+		round.update(); //Update round in order to start round
 		assertTrue(round.getState().equals(Roundstate.state.ACTIVE)); //Should be active when two users are in
 		round.update(); //Update round in order to let users spawn
 		assertTrue(round.getUsersAlive() == 2); //Two should be alive
@@ -76,7 +77,7 @@ public class RoundTest {
 		round.addUser(user3);
 		round.start();
 		assertTrue(round.getState().equals(Roundstate.state.ACTIVE)); //Should still be active when three users are in
-		round.update(); //Update round in order to let users spawn
+		round.update(); //Update round in order to start round
 		assertTrue(round.getUsersAlive() == 3); //Three should be alive
 		
 		round.addUser(user4);
@@ -152,9 +153,10 @@ public class RoundTest {
 		
 		round.addUser(user1);
 		round.addUser(user2);
-		assertTrue(round.getState().equals(Roundstate.state.ACTIVE)); //START_ROUND-event should make round active when second user is added
 		assertTrue(user1.getState().equals(IUserState.state.SPECTATOR_STATE)); //Should not have received spaceship yet
 		assertTrue(user2.getState().equals(IUserState.state.SPECTATOR_STATE)); //Should not have received spaceship yet
+		round.update();
+		assertTrue(round.getState().equals(Roundstate.state.ACTIVE)); //START_ROUND-event should make round active when second user is added
 		round.update(); //Process round (give spaceships to users that requested from event REQUEST_SPACESHIP
 		assertTrue(user1.getState().equals(IUserState.state.PLAYER_STATE)); //Should have received spaceship
 		assertTrue(user2.getState().equals(IUserState.state.PLAYER_STATE)); //Should have received spaceship
@@ -168,11 +170,7 @@ public class RoundTest {
 		user1.suicide(); //Kill user1 spaceship
 		System.out.println("DEAD!");
 		System.out.println(round.getUsersAlive());
-		assertTrue(round.getUsersAlive() == 0); //Zero users should be alive. When users spaceship dies it sends SPACESHIP_DIE event
-		//User listens to this event and upon receiving it user sends LOST_SPACESHIP event. Round listen to user and upon receiving
-		//LOST_SPACESHIP-event it checks if only one user is left. If so start new round causing both all users to REQUEST_SPACEHIP.
-		//SPACESHIP_DIE -> LOST_SPACESHIP -> if(usersAlive == 1) start() -> on start usersAlive should be 0 until they requested
-		//this spaceships and received them (they receive them on next update()-call)
+		assertTrue(round.getUsersAlive() == 1); //1 users should be alive.
 		round.update();
 		assertTrue(round.getUsersAlive() == 2); //Round is updated and all users should have recieved their spaceships
 		

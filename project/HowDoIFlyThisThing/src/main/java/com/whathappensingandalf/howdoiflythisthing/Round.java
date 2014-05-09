@@ -30,6 +30,7 @@ public class Round implements PropertyChangeListener{
 	private Set<User> users;
 	private Set<User> usersRequestingShips; //Lazy add of replacement spaceships of those lost during inactive round
 	private int usersAlive = 0;
+	private boolean newRoundCommencing = false;
 		
 	public Round() {
 		world = new Gameworld();
@@ -75,9 +76,43 @@ public class Round implements PropertyChangeListener{
 	 * These users will play the round
 	 * This method calls end() beforehand, effectively forcing
 	 * a restart of round if not already ended.
+	 * 
+	 * Note that this is a lazy start. It doesn't start directly away,
+	 * but sets a state in Round to start round on next game-loop tick
 	 * @param users
 	 */
 	public synchronized void start() {
+		newRoundCommencing = true;
+	}
+	
+	public void end() {
+		System.out.println("END_ROUND");
+		state = new InactiveRound(this, users);
+		state.addListener(this);
+	}
+
+	public synchronized void update() {
+		if(newRoundCommencing) {
+			processStart();
+			newRoundCommencing = false;
+		}
+		processRequestedShips();
+		world.update();
+	}
+
+	public Set<DrawableData> getDrawableData() {
+		return world.getDrawableData();
+	}
+	public Set<String> getListOfSounds(){
+		return world.getListOfSounds();
+	}
+	
+	/**
+	 * Should never be called directly, only via start() which tells Round to
+	 * call this method on a specific point in program flow which prevents
+	 * lots of issues with spawning players
+	 */
+	private void processStart() {
 		//Only allow start if there's more than 2 users in server
 		if(users.size() >= 2) {
 			System.out.println("START_ROUND");
@@ -90,24 +125,6 @@ public class Round implements PropertyChangeListener{
 			state = new ActiveRound(this, users);
 			state.addListener(this);
 		}
-	}
-	
-	public void end() {
-		System.out.println("END_ROUND");
-		state = new InactiveRound(this, users);
-		state.addListener(this);
-	}
-
-	public synchronized void update() {
-		processRequestedShips();
-		world.update();
-	}
-
-	public Set<DrawableData> getDrawableData() {
-		return world.getDrawableData();
-	}
-	public Set<String> getListOfSounds(){
-		return world.getListOfSounds();
 	}
 	
 	/**
