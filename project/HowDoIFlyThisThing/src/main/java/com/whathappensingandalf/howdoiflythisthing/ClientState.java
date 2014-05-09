@@ -27,14 +27,17 @@ public class ClientState implements ModelNetworkState {
 	private Set<DrawableData> drawables;
 	private Set<String> sounds;
 	private Point2f spaceshipPoint;
+	private Keybindings keybindins;
 
 	private long timerStart;
 	private long timerStop;
 	private final long timerInterval;
 
-	public ClientState(String ip) {
+	public ClientState(String ip, Keybindings keybindings) {
 
 		spaceshipPoint = new Point2f(0, 0);
+		this.keybindins = keybindings;
+		
 
 		client = new Client();
 		drawables = new HashSet();
@@ -68,6 +71,7 @@ public class ClientState implements ModelNetworkState {
 			client.stop();
 			e.printStackTrace();
 		}
+		client.sendTCP(new KeybindingsNetworkPacket(keybindings));
 	}
 
 	public state getState() {

@@ -36,7 +36,7 @@ public class HowDoIFlyThisThing {
 	}
 	
 	public void join(String ip) {
-		state = new ClientState(ip);
+		state = new ClientState(ip, keybindings);
 	}
 	
 	public void update(Set<Integer> listOfHoldKeys) {

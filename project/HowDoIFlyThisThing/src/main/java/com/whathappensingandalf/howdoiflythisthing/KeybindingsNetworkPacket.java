@@ -13,4 +13,7 @@ public class KeybindingsNetworkPacket {
 	public KeybindingsNetworkPacket(int leftKey, int mainKey, int rightKey, int fireKey){
 		keybindings = new Keybindings(leftKey, mainKey, rightKey, fireKey);
 	}
+	public KeybindingsNetworkPacket(Keybindings keybindings){
+		this.keybindings = new Keybindings(keybindings);
+	}
 }

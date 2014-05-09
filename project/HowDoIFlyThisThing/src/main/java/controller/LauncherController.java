@@ -28,10 +28,10 @@ public class LauncherController implements PropertyChangeListener{
 		defaultLeftKey	=	Keyboard.KEY_A;
 		defaultMainKey	=	Keyboard.KEY_W;
 		defaultRightKey	=	Keyboard.KEY_D;
-		fireKey			=	Keyboard.KEY_SPACE;
 		leftKey			=	Keyboard.KEY_A;
 		mainKey			=	Keyboard.KEY_W;
 		rightKey		=	Keyboard.KEY_D;
+		fireKey			=	Keyboard.KEY_SPACE;
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {

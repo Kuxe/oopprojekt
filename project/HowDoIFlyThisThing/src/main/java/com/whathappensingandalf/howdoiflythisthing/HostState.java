@@ -76,6 +76,8 @@ public class HostState implements ModelNetworkState{
 				if(object instanceof HoldKeysNetworkPacket) {
 					//System.out.println("Recieved HoldKeysNetworkPacket from: " + connection.getRemoteAddressTCP());
 					users.get(connection.getID()).setListOfHoldKeys(((HoldKeysNetworkPacket) object).listOfHoldKeys);
+				}else if(object instanceof KeybindingsNetworkPacket){
+					users.get(connection.getID()).setKeybindings(((KeybindingsNetworkPacket)object).keybindings);
 				}
 			}
 
