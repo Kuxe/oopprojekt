@@ -15,13 +15,15 @@ public class InactiveRound implements Roundstate {
 		START_ROUND
 	}
 	
+	private Round round;
 	private Gameworld world;
 	private Set<User> users;
 	private PropertyChangeSupport pcs;
 	
-	public InactiveRound(Gameworld world, Set<User> users) {
-		this.world = world;
+	public InactiveRound(Round round, Set<User> users) {
 		this.users = users;
+		this.round = round;
+		world = round.getWorld();
 		
 		pcs = new PropertyChangeSupport(this);
 	}
@@ -29,15 +31,7 @@ public class InactiveRound implements Roundstate {
 	@Override
 	public void addUser(User user) {
 		users.add(user);
-		
-		Spaceship ss = SpaceshipFactory.create(
-				new Point2f(
-						(float)Math.random() * world.getBorder().getWorldWidth(),
-						(float)Math.random() * world.getBorder().getWorldHeight()),
-				new Vector2f((float)Math.random(), (float)Math.random()));
-		
-		world.addSpaceship(ss);
-		user.setSpaceship(ss);
+		user.requestSpaceship();
 		if(users.size() == 2) {
 			pcs.firePropertyChange(message.START_ROUND.toString(), false, true);
 		}
@@ -45,6 +39,9 @@ public class InactiveRound implements Roundstate {
 
 	@Override
 	public void removeUser(User user) {
+		if(user.getState().equals(IUserState.state.PLAYER_STATE)) {
+			round.decreaseUsersAlive();
+		}
 		users.remove(user);
 	}
 

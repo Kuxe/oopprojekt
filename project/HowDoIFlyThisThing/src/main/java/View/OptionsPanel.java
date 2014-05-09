@@ -6,6 +6,8 @@
 
 package View;
 
+import org.lwjgl.input.Keyboard;
+
 /**
  *
  * @author Martin
@@ -28,30 +30,228 @@ public class OptionsPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTextField1 = new javax.swing.JTextField();
+        soundLabel = new javax.swing.JLabel();
+        fullscreenLabel = new javax.swing.JLabel();
+        fireKeyLabel = new javax.swing.JLabel();
+        leftThrusterKeyLabel = new javax.swing.JLabel();
+        mainThrusterKeyLabel = new javax.swing.JLabel();
+        rightThrusterKeyLabel = new javax.swing.JLabel();
+        soundSlider = new javax.swing.JSlider();
+        fullscreenCheckBox = new javax.swing.JCheckBox();
+        fireTextField = new javax.swing.JTextField();
+        leftTextField = new javax.swing.JTextField();
+        mainTextField = new javax.swing.JTextField();
+        rightTextField = new javax.swing.JTextField();
+        resetButton = new javax.swing.JButton();
+        okButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
 
-        jTextField1.setText("Options");
+        soundLabel.setText("Sound volume");
+        soundLabel.setMaximumSize(new java.awt.Dimension(130, 14));
+        soundLabel.setMinimumSize(new java.awt.Dimension(130, 14));
+        soundLabel.setPreferredSize(new java.awt.Dimension(130, 14));
+
+        fullscreenLabel.setText("Toggle fullscreen");
+        fullscreenLabel.setMaximumSize(new java.awt.Dimension(130, 14));
+        fullscreenLabel.setMinimumSize(new java.awt.Dimension(130, 14));
+        fullscreenLabel.setPreferredSize(new java.awt.Dimension(130, 14));
+
+        fireKeyLabel.setText("Fire key");
+        fireKeyLabel.setMaximumSize(new java.awt.Dimension(130, 14));
+        fireKeyLabel.setMinimumSize(new java.awt.Dimension(130, 14));
+        fireKeyLabel.setPreferredSize(new java.awt.Dimension(130, 14));
+
+        leftThrusterKeyLabel.setText("Left thruster key");
+        leftThrusterKeyLabel.setMaximumSize(new java.awt.Dimension(70, 14));
+        leftThrusterKeyLabel.setMinimumSize(new java.awt.Dimension(70, 14));
+        leftThrusterKeyLabel.setPreferredSize(new java.awt.Dimension(70, 14));
+
+        mainThrusterKeyLabel.setText("Main thruster key");
+        mainThrusterKeyLabel.setMaximumSize(new java.awt.Dimension(130, 14));
+        mainThrusterKeyLabel.setMinimumSize(new java.awt.Dimension(130, 14));
+        mainThrusterKeyLabel.setPreferredSize(new java.awt.Dimension(130, 14));
+
+        rightThrusterKeyLabel.setText("Right thruster key");
+        rightThrusterKeyLabel.setMaximumSize(new java.awt.Dimension(130, 14));
+        rightThrusterKeyLabel.setMinimumSize(new java.awt.Dimension(130, 14));
+        rightThrusterKeyLabel.setPreferredSize(new java.awt.Dimension(130, 14));
+
+        fullscreenCheckBox.setText("Fullscreen");
+
+        fireTextField.setText("jTextField1");
+        fireTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                fireTextFieldFocusGained(evt);
+            }
+        });
+        fireTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                fireTextFieldKeyTyped(evt);
+            }
+        });
+
+        leftTextField.setText("jTextField2");
+
+        mainTextField.setText("jTextField3");
+
+        rightTextField.setText("jTextField4");
+
+        resetButton.setText("Reset");
+        resetButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                resetButtonActionPerformed(evt);
+            }
+        });
+
+        okButton.setText("OK");
+        okButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okButtonActionPerformed(evt);
+            }
+        });
+
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(165, 165, 165)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(soundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(fireKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(rightThrusterKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(leftThrusterKeyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(mainThrusterKeyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(fullscreenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(soundSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fullscreenCheckBox)
+                            .addComponent(fireTextField)
+                            .addComponent(leftTextField)
+                            .addComponent(mainTextField)
+                            .addComponent(rightTextField)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(resetButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cancelButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(okButton)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(118, 118, 118)
-                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(162, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(soundSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(soundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fullscreenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fullscreenCheckBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fireKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fireTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(leftThrusterKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(leftTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(mainThrusterKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mainTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rightThrusterKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(rightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(resetButton)
+                    .addComponent(okButton)
+                    .addComponent(cancelButton))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void okButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okButtonActionPerformed
+        this.firePropertyChange(LauncherFrame.Message.HDIFTT_OPTIONS_OK.toString(), 0, 1);
+		this.getLeftThrusterKey();
+    }//GEN-LAST:event_okButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        this.firePropertyChange(LauncherFrame.Message.HDIFTT_OPTIONS_CANCEL.toString(), 0, 1);
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
+    private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
+        this.firePropertyChange(LauncherFrame.Message.HDOFTT_OPTIONS_RESET.toString(), 0, 1);
+    }//GEN-LAST:event_resetButtonActionPerformed
+
+    private void fireTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fireTextFieldKeyTyped
+        this.okButton.grabFocus();
+    }//GEN-LAST:event_fireTextFieldKeyTyped
+
+    private void fireTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fireTextFieldFocusGained
+        this.fireTextField.setText("");
+    }//GEN-LAST:event_fireTextFieldFocusGained
+
+	public int getVolume(){
+		return this.soundSlider.getValue();
+	}
+	public boolean getFullscreen(){
+		return this.fullscreenCheckBox.isContentAreaFilled();
+	}
+	public String getFireKey(){
+		return this.fireTextField.getText();
+	}
+	public String getLeftThrusterKey(){
+		return this.leftTextField.getText();
+	}
+	public String getMainThrusterKey(){
+		return this.mainTextField.getText();
+	}
+	public String getRightThrusterKey(){
+		return this.rightTextField.getText();
+	}
+	public void setFireKey(String key){
+		this.fireTextField.setText(key);
+	}
+	public void setLeftThrusterKey(String key){
+		this.leftTextField.setText(key);
+	}
+	public void setMainThrusterKey(String Key){
+		this.mainTextField.setText(Key);
+	}
+	public void setRightThrusterKey(String key){
+		this.rightTextField.setText(key);
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton cancelButton;
+    private javax.swing.JLabel fireKeyLabel;
+    private javax.swing.JTextField fireTextField;
+    private javax.swing.JCheckBox fullscreenCheckBox;
+    private javax.swing.JLabel fullscreenLabel;
+    private javax.swing.JTextField leftTextField;
+    private javax.swing.JLabel leftThrusterKeyLabel;
+    private javax.swing.JTextField mainTextField;
+    private javax.swing.JLabel mainThrusterKeyLabel;
+    private javax.swing.JButton okButton;
+    private javax.swing.JButton resetButton;
+    private javax.swing.JTextField rightTextField;
+    private javax.swing.JLabel rightThrusterKeyLabel;
+    private javax.swing.JLabel soundLabel;
+    private javax.swing.JSlider soundSlider;
     // End of variables declaration//GEN-END:variables
 }
