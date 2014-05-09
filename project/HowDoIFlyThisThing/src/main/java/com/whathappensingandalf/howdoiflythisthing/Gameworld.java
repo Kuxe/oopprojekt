@@ -14,6 +14,7 @@ import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
 import services.SoundEffects;
+import utils.ITimer;
 import utils.Timer;
 
 import com.whathappensingandalf.howdoiflythisthing.factorys.MissileFactory;
@@ -56,7 +57,7 @@ public class Gameworld implements PropertyChangeListener{
 	private WorldBorder worldBorder;
 	private Set<String> listOfSounds;
 	private PropertyChangeSupport pcs;
-	private Timer pickupSpawnTimer;
+	private ITimer pickupSpawnTimer;
 	
 	public Gameworld(){
 		moveables = 					new HashMap();
@@ -286,9 +287,27 @@ public class Gameworld implements PropertyChangeListener{
 			pickupSpawnTimer.start();
 			double spawnChance=Math.random();
 			if(spawnChance<0.1){
-				addPickup(new WeaponPickup(new Point2f((int)(Math.random()*worldBorder.getWorldWidth()), (int)(Math.random()*worldBorder.getWorldHeight())), 12, MissileFactory.create(new Point2f(), new Vector2f(), new Vector2f(), new Vector2f(), 0, 0)));
+				addPickup(
+						new WeaponPickup(
+								new Point2f(
+										(int)(Math.random()*worldBorder.getWorldWidth()),
+										(int)(Math.random()*worldBorder.getWorldHeight())),
+									12,
+									MissileFactory.create(
+											new Point2f(),
+											new Vector2f(),
+											new Vector2f(),
+											new Vector2f(),
+											0,
+											0)));
 			}else if(spawnChance<0.2){
-				addPickup(new HealthPickup(new Point2f((int)(Math.random()*worldBorder.getWorldWidth()), (int)(Math.random()*worldBorder.getWorldHeight())), 12, 5));
+				addPickup(
+						new HealthPickup(
+								new Point2f(
+										(int)(Math.random()*worldBorder.getWorldWidth()),
+										(int)(Math.random()*worldBorder.getWorldHeight())),
+									12,
+									5));
 			}
 		}
 	}

@@ -48,7 +48,8 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	 */
 	private PropertyChangeSupport pcs;
 	
-	private int hull;
+	private Hull hull;
+	private Shield shield;
 	
 	public static enum Message{
 		SPACESHIP_DIE,
@@ -74,7 +75,8 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         rotationAcceleration = new TypeWrapper(0.0f);
         rotationVelocity = new TypeWrapper(0.0f);        
         this.WEAPON_PIPE_POSITION = new Vector2f(0.0f, height/2 + 30.0f); //Should fire from middle of spaceships just infront of it
-        this.hull=10;
+        this.hull=new Hull(10);
+        this.shield=new Shield(3);
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, this.rotationVelocity, this.rotationAcceleration);
 		this.thrusterComponent = new ThrusterComponent(this.acceleration, this.direction, rotationAcceleration, rotationVelocity);
 		this.armsComponent = new ArmsComponent(this.position, velocity, new Vector2f(0,0), this.direction, WEAPON_PIPE_POSITION);
@@ -110,8 +112,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 	//Only this object should be able to destroy it?
 	private void hurt(int damage){
-		hull-=damage;
-		if(hull<=0)
+		if(hull.hurt(shield.hurt(damage)))
 			this.remove();
 	}
 	
@@ -218,7 +219,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
     }
 	
 	public int getHull(){
-		return this.hull;
+		return this.hull.getHull();
 	}
 
     public void setWeapon(IProjectile weapon) {
@@ -243,7 +244,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 	
 	public void repair(int repair){
-		this.hull+=repair;
+		this.hull.repair(repair);;
 	}
 	
 	public void accept(ICollidable visitor) {
