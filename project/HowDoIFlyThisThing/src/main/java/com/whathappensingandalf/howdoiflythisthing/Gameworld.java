@@ -14,6 +14,7 @@ import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
 import services.SoundEffects;
+import utils.ITimer;
 import utils.Timer;
 
 import com.whathappensingandalf.howdoiflythisthing.factorys.MissileFactory;
@@ -56,7 +57,7 @@ public class Gameworld implements PropertyChangeListener{
 	private WorldBorder worldBorder;
 	private Set<String> listOfSounds;
 	private PropertyChangeSupport pcs;
-	private Timer pickupSpawnTimer;
+	private ITimer pickupSpawnTimer;
 	
 	public Gameworld(){
 		moveables = 					new HashMap();
