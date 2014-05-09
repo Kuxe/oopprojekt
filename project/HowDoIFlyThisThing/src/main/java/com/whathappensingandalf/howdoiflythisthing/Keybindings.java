@@ -6,23 +6,23 @@ import org.lwjgl.input.Keyboard;
  * @author Martin Nilsson
  */
 public class Keybindings {
-	
+	 
+	private int fire;
 	private int left; 
 	private int main; 
-	private int right; 
-	private int fire;
+	private int right;
 	
 	public Keybindings(){
+		this.fire=Keyboard.KEY_SPACE;
 		this.left=Keyboard.KEY_A;
 		this.main=Keyboard.KEY_W;
 		this.right=Keyboard.KEY_D;
-		this.fire=Keyboard.KEY_SPACE;
 	}
 	public Keybindings(int left, int main, int right, int fire){
-		this.left=Keyboard.KEY_A;
-		this.main=Keyboard.KEY_W;
-		this.right=Keyboard.KEY_D;
-		this.fire=Keyboard.KEY_SPACE;
+		this.fire=left;
+		this.left=main;
+		this.main=right;
+		this.right=fire;
 	}
 	public void reset(){
 		this.left=Keyboard.KEY_A;
