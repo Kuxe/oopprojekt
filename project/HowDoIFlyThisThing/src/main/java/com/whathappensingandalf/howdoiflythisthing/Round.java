@@ -78,15 +78,18 @@ public class Round implements PropertyChangeListener{
 	 * @param users
 	 */
 	public synchronized void start() {
-		System.out.println("START_ROUND");
-		usersAlive = 0;
-		world = new Gameworld();
-		world.addPropertyChangeListener(this);
-		for(User user : users) {
-			user.requestSpaceship();
+		//Only allow start if there's more than 2 users in server
+		if(users.size() >= 2) {
+			System.out.println("START_ROUND");
+			usersAlive = 0;
+			world = new Gameworld();
+			world.addPropertyChangeListener(this);
+			for(User user : users) {
+				user.requestSpaceship();
+			}
+			state = new ActiveRound(this, users);
+			state.addListener(this);
 		}
-		state = new ActiveRound(this, users);
-		state.addListener(this);
 	}
 	
 	public void end() {
@@ -138,6 +141,18 @@ public class Round implements PropertyChangeListener{
 	
 	public void decreaseUsersAlive() {
 		usersAlive -= 1;
+	}
+	
+	public int getUsersAlive() {
+		return usersAlive;
+	}
+	
+	public int getSizeOfUsers() {
+		return users.size();
+	}
+	
+	public Roundstate.state getState() {
+		return state.getState();
 	}
 
 	@Override
