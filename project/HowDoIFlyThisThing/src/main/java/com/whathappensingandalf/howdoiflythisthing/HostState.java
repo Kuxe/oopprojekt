@@ -25,12 +25,14 @@ public class HostState implements ModelNetworkState{
 	private Server server;
 	private InetSocketAddress myIp;
 	private Set<Connection> connections;
+	private Keybindings keybindings;
 
 	private long timerStart;
 	private long timerStop;
 	private final long timerInterval;
 
-	public HostState() {
+	public HostState(Keybindings keybindings) {
+		this.keybindings = keybindings;
 		round = new Round();
 		users = new HashMap();
 		server = new Server();
@@ -74,6 +76,8 @@ public class HostState implements ModelNetworkState{
 				if(object instanceof HoldKeysNetworkPacket) {
 					//System.out.println("Recieved HoldKeysNetworkPacket from: " + connection.getRemoteAddressTCP());
 					users.get(connection.getID()).setListOfHoldKeys(((HoldKeysNetworkPacket) object).listOfHoldKeys);
+				}else if(object instanceof KeybindingsNetworkPacket){
+					users.get(connection.getID()).setKeybindings(((KeybindingsNetworkPacket)object).keybindings);
 				}
 			}
 
@@ -84,6 +88,7 @@ public class HostState implements ModelNetworkState{
 		});	
 		addUser(0); //Host ID is 0. Connection IDs start from 1 and go upward.
 		myUser = users.get(0);
+		myUser.setKeybindings(keybindings);
 		myUser.setListOfHoldKeys(new HashSet<Integer>());
 	}
 	

@@ -28,22 +28,22 @@ public class LauncherController implements PropertyChangeListener{
 		defaultLeftKey	=	Keyboard.KEY_A;
 		defaultMainKey	=	Keyboard.KEY_W;
 		defaultRightKey	=	Keyboard.KEY_D;
-		fireKey			=	Keyboard.KEY_SPACE;
 		leftKey			=	Keyboard.KEY_A;
 		mainKey			=	Keyboard.KEY_W;
 		rightKey		=	Keyboard.KEY_D;
+		fireKey			=	Keyboard.KEY_SPACE;
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_HOST.toString())){
 			launcher.dispose();
-			controller = new Controller();
+			controller = new Controller(leftKey, mainKey, rightKey, fireKey);
 			controller.start();
 			controller.cleanup();
 			System.exit(0);
 		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_JOIN.toString())){
 			launcher.dispose();
-			controller = new Controller(launcher.getIP());
+			controller = new Controller(launcher.getIP(), leftKey, mainKey, rightKey, fireKey);
 			controller.start();
 			controller.cleanup();
 			System.exit(0);

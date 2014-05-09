@@ -15,13 +15,14 @@ import View.ViewThread;
 
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
-import com.whathappensingandalf.howdoiflythisthing.IDrawable;
+import com.whathappensingandalf.howdoiflythisthing.Keybindings;
 
 public class Controller implements KeyListener, PropertyChangeListener{
 
 	private HowDoIFlyThisThing model;
 	private ViewThread viewThread;
 	private SoundEffects soundEffects;
+	private Keybindings keybindings;
 
 	boolean running = false;
 
@@ -29,18 +30,20 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	private Set<Integer> listOfReleasedKeys;
 	private Set<Integer> listOfHoldKeys;
 
-	public Controller(){
+	public Controller(int leftKey, int mainKey, int rightKey, int fireKey){
+		keybindings = new Keybindings(leftKey, mainKey, rightKey, fireKey);
 		sharedCTOR();
 		model.host();
 	}
 
-	public Controller(String ip){
+	public Controller(String ip, int leftKey, int mainKey, int rightKey, int fireKey){
+		keybindings = new Keybindings(leftKey, mainKey, rightKey, fireKey);
 		sharedCTOR();
 		model.join(ip);
 	}
 
 	private void sharedCTOR() {
-		model = new HowDoIFlyThisThing();	
+		model = new HowDoIFlyThisThing(keybindings);	
 		listOfPressedKeys = new HashSet();
 		listOfReleasedKeys = new HashSet();
 		listOfHoldKeys = new HashSet();
