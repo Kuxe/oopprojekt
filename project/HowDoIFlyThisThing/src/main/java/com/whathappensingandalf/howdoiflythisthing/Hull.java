@@ -30,4 +30,12 @@ public class Hull {
 		}
 	}
 	
+	public void repair(int repair){
+		this.setHull(this.hull+repair);
+	}
+	
+	public int getHull(){
+		return this.hull;
+	}
+	
 }
