@@ -2,7 +2,7 @@ package utils;
 
 import java.util.Date;
 
-public class Timer {
+public class Timer implements ITimer{
 	private Date startTime;
 	private int timerLength;
 	
