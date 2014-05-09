@@ -6,4 +6,6 @@ public interface ITimer {
 	
 	public boolean isTimerDone();
 	
+	public void setTimerLength(int length);
+	
 }
