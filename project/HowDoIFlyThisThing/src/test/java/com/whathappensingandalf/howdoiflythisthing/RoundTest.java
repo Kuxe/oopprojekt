@@ -83,7 +83,8 @@ public class RoundTest {
 		round.addUser(user4);
 		round.start();
 		assertTrue(round.getState().equals(Roundstate.state.ACTIVE)); //Should still be active when four users are in
-		round.update(); //Update round in order to let users spawn
+		round.update(); //Update round in order to start round
+		round.update(); //Update round in order to hand out requested spaceships
 		assertTrue(round.getUsersAlive() == 4); //Four should be alive
 	}
 
