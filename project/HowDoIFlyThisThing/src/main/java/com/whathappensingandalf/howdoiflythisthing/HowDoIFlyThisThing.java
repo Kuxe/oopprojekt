@@ -15,9 +15,11 @@ import com.esotericsoftware.kryonet.Connection;
  */
 public class HowDoIFlyThisThing {
 
-	ModelNetworkState state;
+	private Keybindings keybindings;
+	private ModelNetworkState state;
 	
-	public HowDoIFlyThisThing() {
+	public HowDoIFlyThisThing(Keybindings keybindings) {
+		this.keybindings = new Keybindings(keybindings);
 		state = new NoneState();
 	}
 	
@@ -30,11 +32,11 @@ public class HowDoIFlyThisThing {
 	}
 	
 	public void host() {
-		state = new HostState();
+		state = new HostState(keybindings);
 	}
 	
 	public void join(String ip) {
-		state = new ClientState(ip);
+		state = new ClientState(ip, keybindings);
 	}
 	
 	public void update(Set<Integer> listOfHoldKeys) {

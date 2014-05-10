@@ -4,6 +4,8 @@ import com.esotericsoftware.kryo.Kryo;
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.DrawableDataNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.HoldKeysNetworkPacket;
+import com.whathappensingandalf.howdoiflythisthing.Keybindings;
+import com.whathappensingandalf.howdoiflythisthing.KeybindingsNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.SoundNetworkPacket;
 
 /**
@@ -29,5 +31,7 @@ public class NetworkUtils {
 		kryo.register(javax.vecmath.Vector2f.class);
 		kryo.register(javax.vecmath.Point2f.class);
 		kryo.register(SoundNetworkPacket.class);
+		kryo.register(KeybindingsNetworkPacket.class);
+		kryo.register(Keybindings.class);
 	}
 }

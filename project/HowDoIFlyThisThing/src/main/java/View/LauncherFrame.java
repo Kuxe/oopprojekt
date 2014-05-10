@@ -9,7 +9,7 @@ import java.beans.PropertyChangeSupport;
 
 /**
  *
- * @author Martin
+ * @author Martin Nilsson
  */
 public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeListener{
 

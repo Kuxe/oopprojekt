@@ -1,18 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package View;
 
 import View.LauncherFrame.Message;
-import java.beans.PropertyChangeListener;
-import java.beans.PropertyChangeSupport;
 
 /**
  *
- * @author Martin
+ * @author Martin Nilsson
  */
 public class StartPanel extends javax.swing.JPanel {
 
