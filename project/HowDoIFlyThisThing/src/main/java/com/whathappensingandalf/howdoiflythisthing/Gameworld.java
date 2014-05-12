@@ -82,6 +82,9 @@ public class Gameworld implements PropertyChangeListener{
 		HashSet<DrawableData> set = new HashSet();
 		for(IDrawable drawable : drawables.values()) {
 			set.addAll(drawable.getCollectionDrawables());
+			if(drawable.getType().toString().equals("EXPLOSION")){
+				listOfObjectsToBeRemoved.add(drawable);
+			}
 		}
 		return set;
 	}
@@ -271,6 +274,8 @@ public class Gameworld implements PropertyChangeListener{
 		} else if(evt.getPropertyName().equals(IProjectile.Message.PROJECTILE_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
+			IDrawable id=new Explosion(((Spaceship)evt.getSource()).getPosition());
+			drawables.put(id, id);
 			listOfObjectsToBeRemoved.add(evt.getSource());
 			listOfSounds.add(SoundEffects.Sound.SPACESHIP_DIE.toString());
 			pcs.firePropertyChange(evt); //Forward event

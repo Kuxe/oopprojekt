@@ -38,7 +38,8 @@ public class View extends BasicGame implements ApplicationListener{
 
 	private SpriteSheet spaceship,shott,missile,asteroid,healthPack,ammoPickup,missingImage;
 	private Animation explosion;
-	private List<Animation> animations,removeAnimations;
+	private List<ExplosionAnimation> animations,removeAnimations;
+	private List<DrawableData> removeDrawableData;
 
 
 	private SpriteSheet background_1,
@@ -202,22 +203,24 @@ public class View extends BasicGame implements ApplicationListener{
 		drawScrollingImage(arg0, g, background_2, 0.15f);
 
 //		System.out.println(animations.get(0).getFrame());
-		for(Animation animComp: animations){
-			System.out.println("Frame: "+animComp.getFrame());
-			if(animComp.isStopped()){
-				animComp.stop();
-				System.out.println("removed Animation");
+		for(ExplosionAnimation animComp: animations){
+			if(animComp.getAnimation().isStopped()){
+				animComp.getAnimation().stop();
 				removeAnimations.add(animComp);
 			}
-			animComp.draw( windowWidth/2 -160,  windowHeight/2 -120);
+			animComp.getAnimation().draw(animComp.getPosition().x + windowWidth/2 -160,animComp.getPosition().y + windowHeight/2 -120);
 		}
 		
-		for(Animation animRm: removeAnimations){
-			System.out.println(removeAnimations.size());
+		for(ExplosionAnimation animRm: removeAnimations){
 			animations.remove(animRm);
 		}
 		removeAnimations.clear();
 
+		
+		for(DrawableData rm:removeDrawableData){
+			renderObjects.remove(rm);
+		}
+		removeDrawableData.clear();
 
 		for(DrawableData comp: renderObjects){
 			
@@ -235,6 +238,10 @@ public class View extends BasicGame implements ApplicationListener{
 				tmpImg=healthPack.copy();
 			}else if(comp.getType().equals("WEAPON_PICKUP")){
 				tmpImg=this.ammoPickup.copy();
+			}else if(comp.getType().equals("EXPLOSION")){
+				this.drawExplosion(comp.getPosition());
+				this.removeDrawableData.add(comp);
+				tmpImg=missingImage.copy();
 			}else{
 				tmpImg=missingImage.copy();
 			}
@@ -254,15 +261,15 @@ public class View extends BasicGame implements ApplicationListener{
 	private void drawExplosion(Point2f position){
 		Animation tempExp=explosion.copy();
 		tempExp.stopAt(19);
-//		tempExp.setLooping(false);
-		animations.add(tempExp);
+		animations.add(new ExplosionAnimation(position,tempExp));
 	}
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		colorFilter=new Color(255,0,255);
-		animations = new ArrayList<Animation>();
-		removeAnimations = new ArrayList<Animation>();
+		animations = new ArrayList<ExplosionAnimation>();
+		removeAnimations = new ArrayList<ExplosionAnimation>();
+		removeDrawableData = new ArrayList<DrawableData>();
 		try {
 			spaceship=new SpriteSheet("resources/Spaceship.png",50,50, colorFilter);
 			shott=new SpriteSheet("resources/Shott.png",3,3, colorFilter);
@@ -292,7 +299,6 @@ public class View extends BasicGame implements ApplicationListener{
 			isReady = true;
 			lock.notifyAll();
 		}
-		this.drawExplosion(new Point2f());
 	}
 
 	@Override
