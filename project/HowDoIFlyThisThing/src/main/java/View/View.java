@@ -172,8 +172,6 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	
 	public void drawHull(Graphics g){
-//		TODO- remove row below
-//		nbrOfHull= 3;
 		
 		int xPos= 10;
 		int yPos= 10;
@@ -183,8 +181,6 @@ public class View extends BasicGame implements ApplicationListener{
 		}
 	}
 	public void drawShield(Graphics g){
-//		TODO- remove row below
-//		nbrOfShield= 3;
 		
 		int xPos= hullImage.getWidth() * nbrOfHull;
 		int yPos= 10;
@@ -245,8 +241,8 @@ public class View extends BasicGame implements ApplicationListener{
 			
 			planet_1 = new SpriteSheet("resources/planet_1.png", 100, 100, colorFilter);
 			
-			hullImage= new SpriteSheet("resources/hull.png",25,25, colorFilter);
-			shieldImage= new SpriteSheet("resources/shield.png",25,25, colorFilter);
+			hullImage= new SpriteSheet("resources/hull.png", 15, 20, colorFilter);
+			shieldImage= new SpriteSheet("resources/shield.png", 15, 20, colorFilter);
 			System.out.println(hullImage);
 			System.out.println(shott);
 			
