@@ -194,6 +194,13 @@ public class Round implements PropertyChangeListener{
 		}
 		return -1;
 	}
+	
+	public String getModelStatus() {
+		if(newRoundCommencing) {
+			return "Round commencing in: ";
+		}
+		return state.getStatus();
+	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
