@@ -38,4 +38,9 @@ public class ActiveRound implements Roundstate {
 	public void addListener(PropertyChangeListener listener) {
 		pcs.addPropertyChangeListener(listener);
 	}
+
+	@Override
+	public String getStatus() {
+		return "Round active, KILL ALL SPACESHIPS WITH BULLETSTORMS OF MEGADEATH";
+	}
 }

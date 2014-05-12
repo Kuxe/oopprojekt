@@ -4,8 +4,10 @@ package View;
 import java.awt.Font;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +15,7 @@ import java.util.logging.Logger;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -32,7 +35,11 @@ public class View extends BasicGame implements ApplicationListener{
 	private AppGameContainer container;
 	
 	private Set<DrawableData> renderObjects;
-	private SpriteSheet spaceship,shott,missile,asteroid,healthPack,ammoPickup, missingImage;
+
+	private SpriteSheet spaceship,shott,missile,asteroid,healthPack,ammoPickup,missingImage;
+	private Animation explosion;
+	private List<Animation> animations,removeAnimations;
+
 
 	private SpriteSheet background_1,
 						background_2,
@@ -60,6 +67,7 @@ public class View extends BasicGame implements ApplicationListener{
 	private int nbrOfHull;
 	private int nbrOfShield;
 	private String countdownText = "Loading model...";
+	private String modelStatus = "";
 
 	
 	public static enum message {
@@ -117,14 +125,6 @@ public class View extends BasicGame implements ApplicationListener{
 		container.exit();
 	}
 	
-	public void setCountdown(long countdown){
-		countdownText = String.valueOf(countdown);
-	}
-	
-	public void setRenderObjects(Set<DrawableData> set){
-		renderObjects=Collections.synchronizedSet(set);
-	}
-	
 	/**
 	 * Draws a scrolling image, that is an Image that composed of
 	 * 4 subpieces that all look exactly the same which "follows"
@@ -156,8 +156,12 @@ public class View extends BasicGame implements ApplicationListener{
 	private void drawRoundCountdown(GameContainer arg0, Graphics g)
 	{
 		if(!countdownText.equals("-1")) {
-			g.drawString(countdownText, (windowWidth - g.getFont().getWidth(countdownText))/2, 30);
+			g.drawString(countdownText, (windowWidth - g.getFont().getWidth(countdownText))/2, 40 + g.getFont().getHeight(modelStatus));
 		}
+	}
+	
+	private void drawModelStatus(GameContainer arg0, Graphics g) {
+		g.drawString(modelStatus, (windowWidth - g.getFont().getWidth(modelStatus))/2, 30);
 	}
 	
 	/**
@@ -172,8 +176,6 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	
 	public void drawHull(Graphics g){
-//		TODO- remove row below
-//		nbrOfHull= 3;
 		
 		int xPos= 10;
 		int yPos= 10;
@@ -183,8 +185,6 @@ public class View extends BasicGame implements ApplicationListener{
 		}
 	}
 	public void drawShield(Graphics g){
-//		TODO- remove row below
-//		nbrOfShield= 3;
 		
 		int xPos= hullImage.getWidth() * nbrOfHull;
 		int yPos= 10;
@@ -197,7 +197,24 @@ public class View extends BasicGame implements ApplicationListener{
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 		drawScrollingImage(arg0, g, background_1, 0.05f);
 		drawScrollingImage(arg0, g, background_2, 0.15f);
-		drawRoundCountdown(arg0, g);
+
+//		System.out.println(animations.get(0).getFrame());
+		for(Animation animComp: animations){
+			System.out.println("Frame: "+animComp.getFrame());
+			if(animComp.isStopped()){
+				animComp.stop();
+				System.out.println("removed Animation");
+				removeAnimations.add(animComp);
+			}
+			animComp.draw( windowWidth/2 -160,  windowHeight/2 -120);
+		}
+		
+		for(Animation animRm: removeAnimations){
+			System.out.println(removeAnimations.size());
+			animations.remove(animRm);
+		}
+		removeAnimations.clear();
+
 
 		for(DrawableData comp: renderObjects){
 			
@@ -226,11 +243,23 @@ public class View extends BasicGame implements ApplicationListener{
 		drawBorder(arg0, g);
 		drawHull(g);
 		drawShield(g);
+		
+		drawModelStatus(arg0, g);
+		drawRoundCountdown(arg0, g);
+	}
+	
+	private void drawExplosion(Point2f position){
+		Animation tempExp=explosion.copy();
+		tempExp.stopAt(19);
+//		tempExp.setLooping(false);
+		animations.add(tempExp);
 	}
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		colorFilter=new Color(255,0,255);
+		animations = new ArrayList<Animation>();
+		removeAnimations = new ArrayList<Animation>();
 		try {
 			spaceship=new SpriteSheet("resources/Spaceship.png",50,50, colorFilter);
 			shott=new SpriteSheet("resources/Shott.png",3,3, colorFilter);
@@ -243,10 +272,13 @@ public class View extends BasicGame implements ApplicationListener{
 			background_2 = new SpriteSheet("resources/scrollingbackground_2nd_layer.png", 1280, 960, colorFilter);
 			background_3 = new SpriteSheet("resources/scrollingbackground_3rd_layer.png", 1280, 960, colorFilter);
 			
+			explosion =new Animation(new SpriteSheet(new Image("resources/explosionanimation.png"),320,240),100);
+//			explosion.setLooping(false);
+			
 			planet_1 = new SpriteSheet("resources/planet_1.png", 100, 100, colorFilter);
 			
-			hullImage= new SpriteSheet("resources/hull.png",25,25, colorFilter);
-			shieldImage= new SpriteSheet("resources/shield.png",25,25, colorFilter);
+			hullImage= new SpriteSheet("resources/hull.png", 15, 20, colorFilter);
+			shieldImage= new SpriteSheet("resources/shield.png", 15, 20, colorFilter);
 			System.out.println(hullImage);
 			System.out.println(shott);
 			
@@ -257,10 +289,11 @@ public class View extends BasicGame implements ApplicationListener{
 			isReady = true;
 			lock.notifyAll();
 		}
+		this.drawExplosion(new Point2f());
 	}
 
 	@Override
-	public void update(GameContainer arg0, int arg1) throws SlickException {		
+	public void update(GameContainer arg0, int arg1) throws SlickException {
 	}
 	
 	private float calculateRotation(Vector2f vector){
@@ -294,5 +327,17 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	public void setNbrOfShield(int nbrOfShield){
 		this.nbrOfShield= nbrOfShield;
+	}
+	
+	public void setCountdown(long countdown){
+		countdownText = String.valueOf(countdown);
+	}
+	
+	public void setRenderObjects(Set<DrawableData> set){
+		renderObjects=Collections.synchronizedSet(set);
+	}
+	
+	public void setModelStatus(String status) {
+		modelStatus = status;
 	}
 }

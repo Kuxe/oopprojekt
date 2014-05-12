@@ -58,6 +58,14 @@ public class HowDoIFlyThisThing {
 	}
 	
 	/**
+	 * 
+	 * @return string description of model state, ie "Waiting for players...", "Round commencing!", "Round finished"
+	 */
+	public String getModelStatus() {
+		return state.getModelStatus();
+	}
+	
+	/**
 	 * Should always be called when program is exiting
 	 * it stops clients and servers, does all the 
 	 * cleaning work
