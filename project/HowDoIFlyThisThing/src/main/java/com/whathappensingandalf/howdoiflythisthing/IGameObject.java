@@ -13,6 +13,7 @@ public interface IGameObject {
 		HEALTH_PICKUP,
 		WEAPON_PICKUP,
 		MISSILE,
+		EXPLOSION,
 	}
 	public String getType();
 }
