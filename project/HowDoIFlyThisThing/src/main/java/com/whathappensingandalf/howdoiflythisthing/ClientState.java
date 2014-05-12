@@ -28,6 +28,7 @@ public class ClientState implements ModelNetworkState {
 	private Set<String> sounds;
 	private Point2f spaceshipPoint;
 	private Keybindings keybindins;
+	private long countdown = 0;
 
 	private long timerStart;
 	private long timerStop;
@@ -60,6 +61,8 @@ public class ClientState implements ModelNetworkState {
 					spaceshipPoint = (Point2f)message;
 				} else if(message instanceof SoundNetworkPacket) {
 					sounds = ((SoundNetworkPacket)message).sounds;
+				} else if(message instanceof CountdownNetworkPacket) {
+					countdown = ((CountdownNetworkPacket)message).countdown;
 				}
 			}
 		});
@@ -125,5 +128,10 @@ public class ClientState implements ModelNetworkState {
 	public int getShield(){
 //		TODO
 		return 0;
+	}
+
+	@Override
+	public long getCountdown() {
+		return countdown;
 	}
 }

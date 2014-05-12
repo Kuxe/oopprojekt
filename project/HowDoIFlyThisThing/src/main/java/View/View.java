@@ -1,6 +1,7 @@
 package View;
 
 
+import java.awt.Font;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Collections;
@@ -20,6 +21,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.TrueTypeFont;
 
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.IDrawable;
@@ -57,6 +59,8 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private int nbrOfHull;
 	private int nbrOfShield;
+	private String countdownText = "Loading model...";
+
 	
 	public static enum message {
 		VIEW_CLOSE
@@ -78,8 +82,7 @@ public class View extends BasicGame implements ApplicationListener{
 		//Camera default to coordiante (0, 0)
 		camera = new Point2f(0, 0);
 		
-		pcs = new PropertyChangeSupport(this);
-		
+		pcs = new PropertyChangeSupport(this);		
 	}
 	
 	public boolean isReady() {
@@ -113,6 +116,10 @@ public class View extends BasicGame implements ApplicationListener{
 		container.exit();
 	}
 	
+	public void setCountdown(long countdown){
+		countdownText = String.valueOf(countdown);
+	}
+	
 	public void setRenderObjects(Set<DrawableData> set){
 		renderObjects=Collections.synchronizedSet(set);
 	}
@@ -143,6 +150,13 @@ public class View extends BasicGame implements ApplicationListener{
 		g.drawImage(image, 
 					-windowWidth/2 + modx * imageWidth/2  - camera.x*speed,
 					-windowHeight/2 + mody * imageHeight/2 - camera.y*speed);
+	}
+	
+	private void drawRoundCountdown(GameContainer arg0, Graphics g)
+	{
+		if(!countdownText.equals("-1")) {
+			g.drawString(countdownText, (windowWidth - g.getFont().getWidth(countdownText))/2, 30);
+		}
 	}
 	
 	/**
@@ -182,6 +196,7 @@ public class View extends BasicGame implements ApplicationListener{
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 		drawScrollingImage(arg0, g, background_1, 0.05f);
 		drawScrollingImage(arg0, g, background_2, 0.15f);
+		drawRoundCountdown(arg0, g);
 
 		for(DrawableData comp: renderObjects){
 			

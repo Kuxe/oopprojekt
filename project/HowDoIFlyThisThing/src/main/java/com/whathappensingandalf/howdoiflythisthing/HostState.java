@@ -168,6 +168,9 @@ public class HostState implements ModelNetworkState{
 		if(timerStop - timerStart > timerInterval) {
 			//Send images to all clients
 			server.sendToAllTCP(new DrawableDataNetworkPacket(round.getDrawableData()));
+
+			//Send round countdown to all clients
+			server.sendToAllTCP(new CountdownNetworkPacket(round.getCountdown()));
 			
 			//Send sounds to all clients
 			server.sendToAllTCP(new SoundNetworkPacket(getListOfSounds()));
@@ -221,5 +224,8 @@ public class HostState implements ModelNetworkState{
 	@Override
 	public int getShield() {
 		return myUser.getShield();
+	}
+	public long getCountdown() {
+		return round.getCountdown();
 	}
 }

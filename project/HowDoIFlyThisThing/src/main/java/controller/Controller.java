@@ -109,9 +109,14 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		setRenderObjects(model.getDrawableData());
 		viewThread.getView().setNbrOfHull(model.getHull());
 		viewThread.getView().setNbrOfShield(model.getShield());
+		setCountdown(model.getCountdown());
 		soundEffects.playSound(getListOfSounds());
 	}
 
+	private void setCountdown(long countdown){
+		viewThread.getView().setCountdown(countdown);
+	}
+	
 	public void setRenderObjects(Set<DrawableData> set){
 		viewThread.getView().setRenderObjects(set);
 	}

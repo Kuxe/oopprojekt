@@ -27,4 +27,5 @@ public interface ModelNetworkState {
 	public Set<String> getListOfSounds();
 	public int getHull();
 	public int getShield();
+	public long getCountdown();
 }

@@ -67,4 +67,8 @@ public class NoneState implements ModelNetworkState {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	public long getCountdown() {
+		// TODO Auto-generated method stub
+		return -1;
+	}
 }

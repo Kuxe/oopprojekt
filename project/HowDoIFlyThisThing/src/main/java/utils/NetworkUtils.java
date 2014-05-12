@@ -1,6 +1,7 @@
 package utils;
 
 import com.esotericsoftware.kryo.Kryo;
+import com.whathappensingandalf.howdoiflythisthing.CountdownNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.DrawableDataNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.HoldKeysNetworkPacket;
@@ -33,5 +34,6 @@ public class NetworkUtils {
 		kryo.register(SoundNetworkPacket.class);
 		kryo.register(KeybindingsNetworkPacket.class);
 		kryo.register(Keybindings.class);
+		kryo.register(CountdownNetworkPacket.class);
 	}
 }
