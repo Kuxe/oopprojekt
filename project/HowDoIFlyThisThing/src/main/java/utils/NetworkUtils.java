@@ -5,6 +5,7 @@ import com.whathappensingandalf.howdoiflythisthing.CountdownNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.DrawableDataNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.HoldKeysNetworkPacket;
+import com.whathappensingandalf.howdoiflythisthing.HudNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.Keybindings;
 import com.whathappensingandalf.howdoiflythisthing.KeybindingsNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.ModelStatusNetworkPacket;
@@ -37,5 +38,6 @@ public class NetworkUtils {
 		kryo.register(Keybindings.class);
 		kryo.register(CountdownNetworkPacket.class);
 		kryo.register(ModelStatusNetworkPacket.class);
+		kryo.register(HudNetworkPacket.class);
 	}
 }

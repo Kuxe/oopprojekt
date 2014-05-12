@@ -180,10 +180,13 @@ public class HostState implements ModelNetworkState{
 			//Send sounds to all clients
 			server.sendToAllTCP(new SoundNetworkPacket(getListOfSounds()));
 			getListOfSounds().clear();
+			
 			//Send each spaceship point associated with each connection to the connected client
 			for(Connection connection : connections) {
 				connection.sendTCP(users.get(connection.getID()).getSpaceshipPoint());
-			}			
+				
+				connection.sendTCP(new HudNetworkPacket(users.get(connection.getID()).getHull(), users.get(connection.getID()).getShield()));
+			}
 			timerStart = System.nanoTime();
 		}
 		timerStop = System.nanoTime();
