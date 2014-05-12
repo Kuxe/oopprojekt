@@ -29,7 +29,8 @@ public class ClientState implements ModelNetworkState {
 	private Point2f spaceshipPoint;
 	private Keybindings keybindins;
 	private long countdown = 0;
-
+	private String modelStatus = "Not connected to a host; status not avaiable";
+	
 	private long timerStart;
 	private long timerStop;
 	private final long timerInterval;
@@ -56,13 +57,14 @@ public class ClientState implements ModelNetworkState {
 				//System.out.println("Recieved packet:" + message.toString());
 				if(message instanceof DrawableDataNetworkPacket) {
 					drawables = ((DrawableDataNetworkPacket)message).drawables;
-				}
-				else if(message instanceof Point2f) {
+				} else if(message instanceof Point2f) {
 					spaceshipPoint = (Point2f)message;
 				} else if(message instanceof SoundNetworkPacket) {
 					sounds = ((SoundNetworkPacket)message).sounds;
 				} else if(message instanceof CountdownNetworkPacket) {
 					countdown = ((CountdownNetworkPacket)message).countdown;
+				} else if(message instanceof ModelStatusNetworkPacket) {
+					modelStatus = ((ModelStatusNetworkPacket)message).status;
 				}
 			}
 		});
@@ -133,5 +135,10 @@ public class ClientState implements ModelNetworkState {
 	@Override
 	public long getCountdown() {
 		return countdown;
+	}
+
+	@Override
+	public String getModelStatus() {
+		return modelStatus;
 	}
 }

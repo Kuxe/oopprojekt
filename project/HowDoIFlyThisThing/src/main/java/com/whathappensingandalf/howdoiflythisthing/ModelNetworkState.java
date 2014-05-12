@@ -28,4 +28,5 @@ public interface ModelNetworkState {
 	public int getHull();
 	public int getShield();
 	public long getCountdown();
+	public String getModelStatus();
 }

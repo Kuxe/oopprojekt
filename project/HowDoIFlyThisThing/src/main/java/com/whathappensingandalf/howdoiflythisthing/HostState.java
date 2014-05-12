@@ -172,6 +172,11 @@ public class HostState implements ModelNetworkState{
 			//Send round countdown to all clients
 			server.sendToAllTCP(new CountdownNetworkPacket(round.getCountdown()));
 			
+			//Send modelstatus to all clients
+			server.sendToAllTCP(new ModelStatusNetworkPacket(round.getModelStatus()));
+			
+//			TODO- round.getListOfSounds() always == 0
+		
 			//Send sounds to all clients
 			server.sendToAllTCP(new SoundNetworkPacket(getListOfSounds()));
 			getListOfSounds().clear();
@@ -227,5 +232,10 @@ public class HostState implements ModelNetworkState{
 	}
 	public long getCountdown() {
 		return round.getCountdown();
+	}
+
+	@Override
+	public String getModelStatus() {
+		return round.getModelStatus();
 	}
 }

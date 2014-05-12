@@ -60,6 +60,7 @@ public class View extends BasicGame implements ApplicationListener{
 	private int nbrOfHull;
 	private int nbrOfShield;
 	private String countdownText = "Loading model...";
+	private String modelStatus = "";
 
 	
 	public static enum message {
@@ -117,14 +118,6 @@ public class View extends BasicGame implements ApplicationListener{
 		container.exit();
 	}
 	
-	public void setCountdown(long countdown){
-		countdownText = String.valueOf(countdown);
-	}
-	
-	public void setRenderObjects(Set<DrawableData> set){
-		renderObjects=Collections.synchronizedSet(set);
-	}
-	
 	/**
 	 * Draws a scrolling image, that is an Image that composed of
 	 * 4 subpieces that all look exactly the same which "follows"
@@ -156,8 +149,12 @@ public class View extends BasicGame implements ApplicationListener{
 	private void drawRoundCountdown(GameContainer arg0, Graphics g)
 	{
 		if(!countdownText.equals("-1")) {
-			g.drawString(countdownText, (windowWidth - g.getFont().getWidth(countdownText))/2, 30);
+			g.drawString(countdownText, (windowWidth - g.getFont().getWidth(countdownText))/2, 40 + g.getFont().getHeight(modelStatus));
 		}
+	}
+	
+	private void drawModelStatus(GameContainer arg0, Graphics g) {
+		g.drawString(modelStatus, (windowWidth - g.getFont().getWidth(modelStatus))/2, 30);
 	}
 	
 	/**
@@ -197,6 +194,7 @@ public class View extends BasicGame implements ApplicationListener{
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 		drawScrollingImage(arg0, g, background_1, 0.05f);
 		drawScrollingImage(arg0, g, background_2, 0.15f);
+		drawModelStatus(arg0, g);
 		drawRoundCountdown(arg0, g);
 
 		for(DrawableData comp: renderObjects){
@@ -294,5 +292,17 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	public void setNbrOfShield(int nbrOfShield){
 		this.nbrOfShield= nbrOfShield;
+	}
+	
+	public void setCountdown(long countdown){
+		countdownText = String.valueOf(countdown);
+	}
+	
+	public void setRenderObjects(Set<DrawableData> set){
+		renderObjects=Collections.synchronizedSet(set);
+	}
+	
+	public void setModelStatus(String status) {
+		modelStatus = status;
 	}
 }

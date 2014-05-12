@@ -110,7 +110,13 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		viewThread.getView().setNbrOfHull(model.getHull());
 		viewThread.getView().setNbrOfShield(model.getShield());
 		setCountdown(model.getCountdown());
+		setModelStatus(model.getModelStatus());
+		
 		soundEffects.playSound(getListOfSounds());
+	}
+	
+	private void setModelStatus(String status) {
+		viewThread.getView().setModelStatus(status);
 	}
 
 	private void setCountdown(long countdown){

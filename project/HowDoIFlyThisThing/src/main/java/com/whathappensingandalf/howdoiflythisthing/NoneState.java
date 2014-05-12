@@ -71,4 +71,9 @@ public class NoneState implements ModelNetworkState {
 		// TODO Auto-generated method stub
 		return -1;
 	}
+
+	@Override
+	public String getModelStatus() {
+		return "Something went horribly wrong (Model has NoneState)";
+	}
 }
