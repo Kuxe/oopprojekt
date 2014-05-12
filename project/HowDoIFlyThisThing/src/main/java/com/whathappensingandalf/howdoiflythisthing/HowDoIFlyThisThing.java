@@ -68,4 +68,12 @@ public class HowDoIFlyThisThing {
 	public Set<String> getListOfSounds(){
 		return state.getListOfSounds();
 	}
+	
+	public int getHull(){
+		return state.getHull();
+	}
+	
+	public int getShield(){
+		return state.getShield();
+	}
 }

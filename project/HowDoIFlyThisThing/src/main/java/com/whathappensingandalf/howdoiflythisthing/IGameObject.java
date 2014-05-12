@@ -12,7 +12,7 @@ public interface IGameObject {
 		PICKUP,
 		HEALTH_PICKUP,
 		WEAPON_PICKUP,
-		MISSILE
+		MISSILE,
 	}
 	public String getType();
 }

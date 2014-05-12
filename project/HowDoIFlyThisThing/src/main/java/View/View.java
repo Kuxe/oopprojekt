@@ -32,13 +32,16 @@ public class View extends BasicGame implements ApplicationListener{
 	private AppGameContainer container;
 	
 	private Set<DrawableData> renderObjects;
-	private SpriteSheet spaceship,shott,missile,asteroid,healthPack,ammoPickup,missingImage;
+	private SpriteSheet spaceship,shott,missile,asteroid,healthPack,ammoPickup, missingImage;
 
 	private SpriteSheet background_1,
 						background_2,
 						background_3;
 	
 	private SpriteSheet planet_1;
+	
+	//TODO
+	private SpriteSheet hullImage, shieldImage;
 						
 						
 	private Color colorFilter;
@@ -54,7 +57,10 @@ public class View extends BasicGame implements ApplicationListener{
 	private final Object lock;
 	private boolean isReady = false;
 	
+	private int nbrOfHull;
+	private int nbrOfShield;
 	private String countdownText = "Loading model...";
+
 	
 	public static enum message {
 		VIEW_CLOSE
@@ -164,6 +170,29 @@ public class View extends BasicGame implements ApplicationListener{
 		g.drawRect(-camera.x + windowWidth/2, -camera.y + windowHeight/2, 1080, 540);
 	}
 	
+	public void drawHull(Graphics g){
+//		TODO- remove row below
+//		nbrOfHull= 3;
+		
+		int xPos= 10;
+		int yPos= 10;
+		for(int i= 0; i< nbrOfHull; i++){
+			g.drawImage(hullImage, xPos, yPos);
+			xPos= xPos + hullImage.getWidth();
+		}
+	}
+	public void drawShield(Graphics g){
+//		TODO- remove row below
+//		nbrOfShield= 3;
+		
+		int xPos= hullImage.getWidth() * nbrOfHull;
+		int yPos= 10;
+		for(int i= 0; i< nbrOfShield; i++){
+			g.drawImage(shieldImage, xPos, yPos);
+			xPos= xPos + shieldImage.getWidth();
+		}
+	}
+	
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 		drawScrollingImage(arg0, g, background_1, 0.05f);
 		drawScrollingImage(arg0, g, background_2, 0.15f);
@@ -194,6 +223,8 @@ public class View extends BasicGame implements ApplicationListener{
 			g.drawImage(tmpImg, tmpX - camera.x + windowWidth/2, tmpY - camera.y + windowHeight/2);
 		}
 		drawBorder(arg0, g);
+		drawHull(g);
+		drawShield(g);
 	}
 
 	@Override
@@ -212,6 +243,12 @@ public class View extends BasicGame implements ApplicationListener{
 			background_3 = new SpriteSheet("resources/scrollingbackground_3rd_layer.png", 1280, 960, colorFilter);
 			
 			planet_1 = new SpriteSheet("resources/planet_1.png", 100, 100, colorFilter);
+			
+			hullImage= new SpriteSheet("resources/hull.png",25,25, colorFilter);
+			shieldImage= new SpriteSheet("resources/shield.png",25,25, colorFilter);
+			System.out.println(hullImage);
+			System.out.println(shott);
+			
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -249,5 +286,12 @@ public class View extends BasicGame implements ApplicationListener{
 	public void setCamera(Point2f camera) {
 		this.camera = camera;
 	}
-
+	
+	public void setNbrOfHull(int nbrOfHull){
+		this.nbrOfHull= nbrOfHull;
+	}
+	
+	public void setNbrOfShield(int nbrOfShield){
+		this.nbrOfShield= nbrOfShield;
+	}
 }

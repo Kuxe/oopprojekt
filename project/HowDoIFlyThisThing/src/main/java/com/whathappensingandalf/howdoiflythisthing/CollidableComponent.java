@@ -5,8 +5,6 @@ import java.awt.geom.Area;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
-import org.jbox2d.dynamics.World;
-
 import utils.VecmathUtils.*;
 
 /**
@@ -14,7 +12,7 @@ import utils.VecmathUtils.*;
  * @author Francine Mäkelä
  */
 public class CollidableComponent implements ICollidableComponent{
-
+	
 	private Point2f position;
 	private int width;
 	private int height;
@@ -37,4 +35,5 @@ public class CollidableComponent implements ICollidableComponent{
 		distance.sub(position, rhs.getPosition());
 		return (radius+ rhs.getWidth()/2) > distance.length();
 	}
+	
 }//end CollidableComponent

@@ -276,7 +276,7 @@ public class Gameworld implements PropertyChangeListener{
 			pcs.firePropertyChange(evt); //Forward event
 		} else if(evt.getPropertyName().equals(IPickup.Message.PICKUP_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
-			//sound
+			listOfSounds.add(SoundEffects.Sound.PICKUP_DIE.toString());
 			pcs.firePropertyChange(evt); //Forward event
 		}
 	}

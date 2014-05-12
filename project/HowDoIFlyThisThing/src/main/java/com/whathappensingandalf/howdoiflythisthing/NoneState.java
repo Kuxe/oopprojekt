@@ -57,6 +57,16 @@ public class NoneState implements ModelNetworkState {
 	}
 
 	@Override
+	public int getHull() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getShield() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	public long getCountdown() {
 		// TODO Auto-generated method stub
 		return -1;

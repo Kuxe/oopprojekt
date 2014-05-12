@@ -25,5 +25,7 @@ public interface ModelNetworkState {
 	public Point2f getSpaceshipPoint();
 	public void cleanup();
 	public Set<String> getListOfSounds();
+	public int getHull();
+	public int getShield();
 	public long getCountdown();
 }
