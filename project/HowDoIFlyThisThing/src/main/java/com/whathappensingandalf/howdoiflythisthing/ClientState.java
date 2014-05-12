@@ -33,6 +33,9 @@ public class ClientState implements ModelNetworkState {
 	private long timerStart;
 	private long timerStop;
 	private final long timerInterval;
+	
+	private int hull;
+	private int shield;
 
 	public ClientState(String ip, Keybindings keybindings) throws IOException {
 
@@ -47,6 +50,9 @@ public class ClientState implements ModelNetworkState {
 		timerStart = System.nanoTime();
 		timerStop = System.nanoTime();
 		timerInterval = 20000000; //20ms in nanoseconds
+		
+		hull= 0;
+		shield= 0;
 
 		NetworkUtils.registerClasses(client.getKryo());
 
@@ -63,6 +69,9 @@ public class ClientState implements ModelNetworkState {
 					sounds = ((SoundNetworkPacket)message).sounds;
 				} else if(message instanceof CountdownNetworkPacket) {
 					countdown = ((CountdownNetworkPacket)message).countdown;
+				} else if(message instanceof HudNetworkPacket){
+					hull= ((HudNetworkPacket)message).hull;
+					shield= ((HudNetworkPacket)message).shield;
 				}
 			}
 		});
@@ -121,13 +130,11 @@ public class ClientState implements ModelNetworkState {
 	}
 	
 	public int getHull(){
-//		TODO
-		return 0;
+		return hull;
 	}
 	
 	public int getShield(){
-//		TODO
-		return 0;
+		return shield;
 	}
 
 	@Override
