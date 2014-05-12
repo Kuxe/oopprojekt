@@ -107,8 +107,7 @@ public class View extends BasicGame implements ApplicationListener{
 		}
 	}
 	
-	public void setCountdown(long countdown)
-	{
+	public void setCountdown(long countdown){
 		countdownText = String.valueOf(countdown);
 	}
 	
@@ -146,7 +145,7 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private void drawRoundCountdown(GameContainer arg0, Graphics g)
 	{
-		if(!countdownText.equals("0")) {
+		if(!countdownText.equals("-1")) {
 			g.drawString(countdownText, (windowWidth - g.getFont().getWidth(countdownText))/2, 30);
 		}
 	}
