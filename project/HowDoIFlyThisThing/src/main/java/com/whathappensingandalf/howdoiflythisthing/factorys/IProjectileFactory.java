@@ -10,6 +10,7 @@ import com.whathappensingandalf.howdoiflythisthing.Bullet;
 import com.whathappensingandalf.howdoiflythisthing.IGameObject;
 import com.whathappensingandalf.howdoiflythisthing.IProjectile;
 import com.whathappensingandalf.howdoiflythisthing.Missile;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
