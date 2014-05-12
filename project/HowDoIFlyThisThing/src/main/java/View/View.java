@@ -158,7 +158,7 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	public void drawHull(Graphics g){
 //		TODO- remove row below
-		nbrOfHull= 3;
+//		nbrOfHull= 3;
 		
 		int xPos= 10;
 		int yPos= 10;
@@ -169,7 +169,7 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	public void drawShield(Graphics g){
 //		TODO- remove row below
-		nbrOfShield= 3;
+//		nbrOfShield= 3;
 		
 		int xPos= hullImage.getWidth() * nbrOfHull;
 		int yPos= 10;
