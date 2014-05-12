@@ -16,6 +16,9 @@ import View.ViewThread;
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
 import com.whathappensingandalf.howdoiflythisthing.Keybindings;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Controller implements KeyListener, PropertyChangeListener{
 
@@ -30,16 +33,23 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	private Set<Integer> listOfReleasedKeys;
 	private Set<Integer> listOfHoldKeys;
 
-	public Controller(int leftKey, int mainKey, int rightKey, int fireKey){
+	public Controller(int leftKey, int mainKey, int rightKey, int fireKey, boolean fullscreen){
 		keybindings = new Keybindings(leftKey, mainKey, rightKey, fireKey);
 		sharedCTOR();
 		model.host();
+		this.createView(fullscreen);
 	}
 
-	public Controller(String ip, int leftKey, int mainKey, int rightKey, int fireKey){
+	public Controller(String ip, int leftKey, int mainKey, int rightKey, int fireKey, boolean fullscreen)throws java.net.UnknownHostException{
 		keybindings = new Keybindings(leftKey, mainKey, rightKey, fireKey);
 		sharedCTOR();
-		model.join(ip);
+		try {
+			model.join(ip);
+		} catch (IOException ex) {
+			viewThread.exit();
+			throw new java.net.UnknownHostException();
+		}
+		this.createView(fullscreen);
 	}
 
 	private void sharedCTOR() {
@@ -47,9 +57,11 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		listOfPressedKeys = new HashSet();
 		listOfReleasedKeys = new HashSet();
 		listOfHoldKeys = new HashSet();
-
+		soundEffects= new SoundEffects();
+	}
+	private void createView(boolean fullscreen){
 		final Object lock = new Object();
-		viewThread=new ViewThread(lock);
+		viewThread=new ViewThread(lock, fullscreen);
 		viewThread.start();
 		synchronized(lock) {
 			while(!viewThread.isReady()) {
@@ -63,8 +75,6 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		}
 		viewThread.getView().getContainer().getInput().addKeyListener(this); //This row may crash if View-thread havent created view yet
 		viewThread.getView().addPropertyChangeListener(this);
-
-		soundEffects= new SoundEffects();
 	}
 
 	/**
@@ -97,9 +107,22 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		model.update(listOfHoldKeys);
 		viewThread.getView().setCamera(model.getSpaceshipPoint());
 		setRenderObjects(model.getDrawableData());
+		viewThread.getView().setNbrOfHull(model.getHull());
+		viewThread.getView().setNbrOfShield(model.getShield());
+		setCountdown(model.getCountdown());
+		setModelStatus(model.getModelStatus());
+		
 		soundEffects.playSound(getListOfSounds());
 	}
+	
+	private void setModelStatus(String status) {
+		viewThread.getView().setModelStatus(status);
+	}
 
+	private void setCountdown(long countdown){
+		viewThread.getView().setCountdown(countdown);
+	}
+	
 	public void setRenderObjects(Set<DrawableData> set){
 		viewThread.getView().setRenderObjects(set);
 	}

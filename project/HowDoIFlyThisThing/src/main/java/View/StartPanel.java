@@ -24,31 +24,63 @@ public class StartPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        errorLabel = new javax.swing.JLabel();
         hostButton = new javax.swing.JButton();
         joinButton = new javax.swing.JButton();
         ipTextField = new javax.swing.JTextField();
         optionsButton = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+
+        errorLabel.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        errorLabel.setText("Could not connect.");
+
+        setMaximumSize(new java.awt.Dimension(360, 480));
+        setMinimumSize(new java.awt.Dimension(360, 480));
+        setPreferredSize(new java.awt.Dimension(360, 480));
 
         hostButton.setText("Host");
         hostButton.setToolTipText("Host a game.");
+        hostButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        hostButton.setMaximumSize(new java.awt.Dimension(85, 23));
+        hostButton.setMinimumSize(new java.awt.Dimension(85, 23));
+        hostButton.setPreferredSize(new java.awt.Dimension(85, 23));
         hostButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 hostButtonActionPerformed(evt);
             }
         });
 
-        joinButton.setText("Join:");
+        joinButton.setText("Connect");
         joinButton.setToolTipText("Join a game.");
+        joinButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        joinButton.setMaximumSize(new java.awt.Dimension(85, 23));
+        joinButton.setMinimumSize(new java.awt.Dimension(85, 23));
+        joinButton.setPreferredSize(new java.awt.Dimension(85, 23));
         joinButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 joinButtonActionPerformed(evt);
             }
         });
 
+        ipTextField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         ipTextField.setToolTipText("IP to host.");
+        ipTextField.setMaximumSize(new java.awt.Dimension(100, 20));
+        ipTextField.setMinimumSize(new java.awt.Dimension(100, 20));
+        ipTextField.setPreferredSize(new java.awt.Dimension(100, 20));
+        ipTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ipTextFieldActionPerformed(evt);
+            }
+        });
 
-        optionsButton.setText("Options");
+        optionsButton.setText("Settings");
         optionsButton.setToolTipText("Change settings.");
+        optionsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        optionsButton.setMaximumSize(new java.awt.Dimension(85, 23));
+        optionsButton.setMinimumSize(new java.awt.Dimension(85, 23));
+        optionsButton.setPreferredSize(new java.awt.Dimension(85, 23));
         optionsButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 optionsButtonActionPerformed(evt);
@@ -59,27 +91,42 @@ public class StartPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(hostButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(joinButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(optionsButton)
-                .addContainerGap())
+                .addGap(79, 79, 79)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(optionsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(58, 58, 58))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(hostButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(joinButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(59, 59, 59))
+                    .addComponent(ipTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 81, Short.MAX_VALUE))
+            .addComponent(jSeparator2)
+            .addComponent(jSeparator1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(hostButton)
-                    .addComponent(joinButton)
-                    .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(optionsButton))
-                .addContainerGap(266, Short.MAX_VALUE))
+                .addComponent(hostButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(joinButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(13, 13, 13)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(optionsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(306, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -94,13 +141,21 @@ public class StartPanel extends javax.swing.JPanel {
     private void optionsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optionsButtonActionPerformed
         this.firePropertyChange(Message.HDIFTT_OPTIONS.toString(), 0, 1);
     }//GEN-LAST:event_optionsButtonActionPerformed
+
+    private void ipTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ipTextFieldActionPerformed
 	public String getIP(){
 		return this.ipTextField.getText();
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel errorLabel;
     private javax.swing.JButton hostButton;
     private javax.swing.JTextField ipTextField;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JButton joinButton;
     private javax.swing.JButton optionsButton;
     // End of variables declaration//GEN-END:variables

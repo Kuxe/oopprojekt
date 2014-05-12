@@ -54,4 +54,9 @@ public class InactiveRound implements Roundstate {
 	public void addListener(PropertyChangeListener listener) {
 		pcs.addPropertyChangeListener(listener);		
 	}
+
+	@Override
+	public String getStatus() {
+		return "Waiting for more players...";
+	}
 }

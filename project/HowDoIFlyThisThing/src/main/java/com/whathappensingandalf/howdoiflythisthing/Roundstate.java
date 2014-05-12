@@ -11,4 +11,5 @@ public interface Roundstate {
 	public void removeUser(User user);
 	public state getState();
 	public void addListener(PropertyChangeListener listener);
+	public String getStatus();
 }

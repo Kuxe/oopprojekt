@@ -55,4 +55,25 @@ public class NoneState implements ModelNetworkState {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int getHull() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getShield() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	public long getCountdown() {
+		// TODO Auto-generated method stub
+		return -1;
+	}
+
+	@Override
+	public String getModelStatus() {
+		return "Something went horribly wrong (Model has NoneState)";
+	}
 }

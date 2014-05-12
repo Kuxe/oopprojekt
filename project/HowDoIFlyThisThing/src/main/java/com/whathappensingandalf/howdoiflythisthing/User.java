@@ -113,4 +113,11 @@ public class User implements PropertyChangeListener{
 		}
 	}
 	
+	public int getHull(){
+		return state.getHull();
+	}
+	
+	public int getShield(){
+		return state.getShield();
+	}
 }

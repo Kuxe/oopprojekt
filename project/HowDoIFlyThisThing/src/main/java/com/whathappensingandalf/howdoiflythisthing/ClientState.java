@@ -28,12 +28,17 @@ public class ClientState implements ModelNetworkState {
 	private Set<String> sounds;
 	private Point2f spaceshipPoint;
 	private Keybindings keybindins;
-
+	private long countdown = 0;
+	private String modelStatus = "Not connected to a host; status not avaiable";
+	
 	private long timerStart;
 	private long timerStop;
 	private final long timerInterval;
+	
+	private int hull;
+	private int shield;
 
-	public ClientState(String ip, Keybindings keybindings) {
+	public ClientState(String ip, Keybindings keybindings) throws IOException {
 
 		spaceshipPoint = new Point2f(0, 0);
 		this.keybindins = keybindings;
@@ -46,31 +51,47 @@ public class ClientState implements ModelNetworkState {
 		timerStart = System.nanoTime();
 		timerStop = System.nanoTime();
 		timerInterval = 20000000; //20ms in nanoseconds
+		
+		hull= 0;
+		shield= 0;
 
 		NetworkUtils.registerClasses(client.getKryo());
 
 
 		client.addListener(new Listener() {
+			
+			@Override
 			public void received(Connection connection, Object message) {
 				//System.out.println("Recieved packet:" + message.toString());
 				if(message instanceof DrawableDataNetworkPacket) {
 					drawables = ((DrawableDataNetworkPacket)message).drawables;
-				}
-				else if(message instanceof Point2f) {
+				} else if(message instanceof Point2f) {
 					spaceshipPoint = (Point2f)message;
 				} else if(message instanceof SoundNetworkPacket) {
 					sounds = ((SoundNetworkPacket)message).sounds;
+				} else if(message instanceof CountdownNetworkPacket) {
+					countdown = ((CountdownNetworkPacket)message).countdown;
+				} else if(message instanceof ModelStatusNetworkPacket) {
+					modelStatus = ((ModelStatusNetworkPacket)message).status;
+				} else if(message instanceof HudNetworkPacket){
+					hull= ((HudNetworkPacket)message).hull;
+					shield= ((HudNetworkPacket)message).shield;
 				}
+			}
+			
+			@Override
+			public void disconnected(Connection connection) {
+				System.out.println("lost connection to host!");
 			}
 		});
 
 		client.start();
-		try {
+		//try {
 			client.connect(5000, ip, 5000);
-		} catch (IOException e) {
-			client.stop();
-			e.printStackTrace();
-		}
+		//} catch (IOException e) {
+			//client.stop();
+			//e.printStackTrace();
+		//}
 		client.sendTCP(new KeybindingsNetworkPacket(keybindings));
 	}
 
@@ -115,5 +136,23 @@ public class ClientState implements ModelNetworkState {
 		}
 		sounds.clear();
 		return soundsCopy;
+	}
+	
+	public int getHull(){
+		return hull;
+	}
+	
+	public int getShield(){
+		return shield;
+	}
+
+	@Override
+	public long getCountdown() {
+		return countdown;
+	}
+
+	@Override
+	public String getModelStatus() {
+		return modelStatus;
 	}
 }

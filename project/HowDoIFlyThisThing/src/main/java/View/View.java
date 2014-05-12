@@ -1,6 +1,7 @@
 package View;
 
 
+import java.awt.Font;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.ArrayList;
@@ -23,6 +24,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.SpriteSheet;
+import org.newdawn.slick.TrueTypeFont;
 
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.IDrawable;
@@ -33,15 +35,20 @@ public class View extends BasicGame implements ApplicationListener{
 	private AppGameContainer container;
 	
 	private Set<DrawableData> renderObjects;
+
 	private SpriteSheet spaceship,shott,missile,asteroid,healthPack,ammoPickup,missingImage;
 	private Animation explosion;
 	private List<Animation> animations,removeAnimations;
+
 
 	private SpriteSheet background_1,
 						background_2,
 						background_3;
 	
 	private SpriteSheet planet_1;
+	
+	//TODO
+	private SpriteSheet hullImage, shieldImage;
 						
 						
 	private Color colorFilter;
@@ -57,11 +64,17 @@ public class View extends BasicGame implements ApplicationListener{
 	private final Object lock;
 	private boolean isReady = false;
 	
+	private int nbrOfHull;
+	private int nbrOfShield;
+	private String countdownText = "Loading model...";
+	private String modelStatus = "";
+
+	
 	public static enum message {
 		VIEW_CLOSE
 	}
 	
-	public View(String title, Object lock){
+	public View(String title, Object lock, boolean fullscreen){
 		super(title);
 		this.lock = lock;
 		renderObjects = new HashSet<DrawableData>();
@@ -70,6 +83,7 @@ public class View extends BasicGame implements ApplicationListener{
 			container.setDisplayMode(windowWidth, windowHeight, false);
 			container.setTargetFrameRate(60);
 			container.setForceExit(false);
+			container.setFullscreen(fullscreen);
 		}catch(SlickException ex){
 			Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -77,8 +91,7 @@ public class View extends BasicGame implements ApplicationListener{
 		//Camera default to coordiante (0, 0)
 		camera = new Point2f(0, 0);
 		
-		pcs = new PropertyChangeSupport(this);
-		
+		pcs = new PropertyChangeSupport(this);		
 	}
 	
 	public boolean isReady() {
@@ -108,9 +121,8 @@ public class View extends BasicGame implements ApplicationListener{
 			e.printStackTrace();
 		}
 	}
-	
-	public void setRenderObjects(Set<DrawableData> set){
-		renderObjects=Collections.synchronizedSet(set);
+	public void stop(){
+		container.exit();
 	}
 	
 	/**
@@ -141,6 +153,17 @@ public class View extends BasicGame implements ApplicationListener{
 					-windowHeight/2 + mody * imageHeight/2 - camera.y*speed);
 	}
 	
+	private void drawRoundCountdown(GameContainer arg0, Graphics g)
+	{
+		if(!countdownText.equals("-1")) {
+			g.drawString(countdownText, (windowWidth - g.getFont().getWidth(countdownText))/2, 40 + g.getFont().getHeight(modelStatus));
+		}
+	}
+	
+	private void drawModelStatus(GameContainer arg0, Graphics g) {
+		g.drawString(modelStatus, (windowWidth - g.getFont().getWidth(modelStatus))/2, 30);
+	}
+	
 	/**
 	 * For debugging purposes. Displays the worlds border.
 	 * @param arg0
@@ -152,9 +175,29 @@ public class View extends BasicGame implements ApplicationListener{
 		g.drawRect(-camera.x + windowWidth/2, -camera.y + windowHeight/2, 1080, 540);
 	}
 	
+	public void drawHull(Graphics g){
+		
+		int xPos= 10;
+		int yPos= 10;
+		for(int i= 0; i< nbrOfHull; i++){
+			g.drawImage(hullImage, xPos, yPos);
+			xPos= xPos + hullImage.getWidth();
+		}
+	}
+	public void drawShield(Graphics g){
+		
+		int xPos= hullImage.getWidth() * nbrOfHull;
+		int yPos= 10;
+		for(int i= 0; i< nbrOfShield; i++){
+			g.drawImage(shieldImage, xPos, yPos);
+			xPos= xPos + shieldImage.getWidth();
+		}
+	}
+	
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 		drawScrollingImage(arg0, g, background_1, 0.05f);
 		drawScrollingImage(arg0, g, background_2, 0.15f);
+
 //		System.out.println(animations.get(0).getFrame());
 		for(Animation animComp: animations){
 			System.out.println("Frame: "+animComp.getFrame());
@@ -171,6 +214,7 @@ public class View extends BasicGame implements ApplicationListener{
 			animations.remove(animRm);
 		}
 		removeAnimations.clear();
+
 
 		for(DrawableData comp: renderObjects){
 			
@@ -197,6 +241,11 @@ public class View extends BasicGame implements ApplicationListener{
 			g.drawImage(tmpImg, tmpX - camera.x + windowWidth/2, tmpY - camera.y + windowHeight/2);
 		}
 		drawBorder(arg0, g);
+		drawHull(g);
+		drawShield(g);
+		
+		drawModelStatus(arg0, g);
+		drawRoundCountdown(arg0, g);
 	}
 	
 	private void drawExplosion(Point2f position){
@@ -227,6 +276,12 @@ public class View extends BasicGame implements ApplicationListener{
 //			explosion.setLooping(false);
 			
 			planet_1 = new SpriteSheet("resources/planet_1.png", 100, 100, colorFilter);
+			
+			hullImage= new SpriteSheet("resources/hull.png", 15, 20, colorFilter);
+			shieldImage= new SpriteSheet("resources/shield.png", 15, 20, colorFilter);
+			System.out.println(hullImage);
+			System.out.println(shott);
+			
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
@@ -265,5 +320,24 @@ public class View extends BasicGame implements ApplicationListener{
 	public void setCamera(Point2f camera) {
 		this.camera = camera;
 	}
-
+	
+	public void setNbrOfHull(int nbrOfHull){
+		this.nbrOfHull= nbrOfHull;
+	}
+	
+	public void setNbrOfShield(int nbrOfShield){
+		this.nbrOfShield= nbrOfShield;
+	}
+	
+	public void setCountdown(long countdown){
+		countdownText = String.valueOf(countdown);
+	}
+	
+	public void setRenderObjects(Set<DrawableData> set){
+		renderObjects=Collections.synchronizedSet(set);
+	}
+	
+	public void setModelStatus(String status) {
+		modelStatus = status;
+	}
 }

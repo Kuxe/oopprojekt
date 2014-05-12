@@ -188,8 +188,18 @@ public class Round implements PropertyChangeListener{
 	 * 
 	 * @return countdown, if 5seconds left for round to begin, returns 5. If 4s left, return 4 etc.
 	 */
-	public long countdownTimer() {
-		return countdownLimit - (System.nanoTime() - countdownStart);
+	public long getCountdown() {
+		if(newRoundCommencing) {
+			return countdownLimit - (System.nanoTime() - countdownStart);
+		}
+		return -1;
+	}
+	
+	public String getModelStatus() {
+		if(newRoundCommencing) {
+			return "Round commencing in: ";
+		}
+		return state.getStatus();
 	}
 
 	@Override

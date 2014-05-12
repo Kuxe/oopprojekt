@@ -1,16 +1,22 @@
 package View;
 
+import java.util.HashSet;
+import java.util.Set;
 /**
  *
  * @author Martin Nilsson
  */
-public class OptionsPanel extends javax.swing.JPanel {
+public class OptionsPanel extends javax.swing.JPanel{
 
+	
 	/**
 	 * Creates new form OptionsPanek
 	 */
+	Set <Integer> all;
+	
 	public OptionsPanel() {
 		initComponents();
+		all = new HashSet();
 	}
 
 	/**
@@ -37,6 +43,10 @@ public class OptionsPanel extends javax.swing.JPanel {
         resetButton = new javax.swing.JButton();
         okButton = new javax.swing.JButton();
         cancelButton = new javax.swing.JButton();
+
+        setMaximumSize(new java.awt.Dimension(360, 480));
+        setMinimumSize(new java.awt.Dimension(360, 480));
+        setPreferredSize(new java.awt.Dimension(360, 480));
 
         soundLabel.setText("Sound volume");
         soundLabel.setMaximumSize(new java.awt.Dimension(130, 14));
@@ -83,10 +93,49 @@ public class OptionsPanel extends javax.swing.JPanel {
         });
 
         leftTextField.setText("jTextField2");
+        leftTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                leftTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                leftTextFieldFocusLost(evt);
+            }
+        });
+        leftTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                leftTextFieldKeyTyped(evt);
+            }
+        });
 
         mainTextField.setText("jTextField3");
+        mainTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                mainTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                mainTextFieldFocusLost(evt);
+            }
+        });
+        mainTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                mainTextFieldKeyTyped(evt);
+            }
+        });
 
         rightTextField.setText("jTextField4");
+        rightTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                rightTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                rightTextFieldFocusLost(evt);
+            }
+        });
+        rightTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                rightTextFieldKeyTyped(evt);
+            }
+        });
 
         resetButton.setText("Reset");
         resetButton.addActionListener(new java.awt.event.ActionListener() {
@@ -168,7 +217,7 @@ public class OptionsPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rightThrusterKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(resetButton)
                     .addComponent(okButton)
@@ -191,18 +240,57 @@ public class OptionsPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_resetButtonActionPerformed
 
     private void fireTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fireTextFieldKeyTyped
-        this.okButton.grabFocus();
+		this.okButton.grabFocus();
+		this.fireTextField.setText(this.fireTextField.getText().toUpperCase());
     }//GEN-LAST:event_fireTextFieldKeyTyped
 
     private void fireTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fireTextFieldFocusGained
         this.fireTextField.setText("");
     }//GEN-LAST:event_fireTextFieldFocusGained
 
+    private void leftTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_leftTextFieldKeyTyped
+		this.okButton.grabFocus();
+		this.leftTextField.setText(this.leftTextField.getText().toUpperCase());
+    }//GEN-LAST:event_leftTextFieldKeyTyped
+
+    private void leftTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_leftTextFieldFocusGained
+        this.leftTextField.setText("");
+    }//GEN-LAST:event_leftTextFieldFocusGained
+
+    private void mainTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainTextFieldKeyTyped
+        this.okButton.grabFocus();
+		this.mainTextField.setText(this.mainTextField.getText().toUpperCase());
+    }//GEN-LAST:event_mainTextFieldKeyTyped
+
+    private void mainTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mainTextFieldFocusGained
+        this.mainTextField.setText("");
+    }//GEN-LAST:event_mainTextFieldFocusGained
+
+    private void rightTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rightTextFieldFocusGained
+        this.rightTextField.setText("");
+    }//GEN-LAST:event_rightTextFieldFocusGained
+
+    private void rightTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rightTextFieldKeyTyped
+        this.okButton.grabFocus();
+    }//GEN-LAST:event_rightTextFieldKeyTyped
+
+    private void rightTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rightTextFieldFocusLost
+        this.rightTextField.setText(this.rightTextField.getText().toUpperCase());
+    }//GEN-LAST:event_rightTextFieldFocusLost
+
+    private void mainTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mainTextFieldFocusLost
+        this.mainTextField.setText(this.mainTextField.getText().toUpperCase());
+    }//GEN-LAST:event_mainTextFieldFocusLost
+
+    private void leftTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_leftTextFieldFocusLost
+        this.leftTextField.setText(this.leftTextField.getText().toUpperCase());
+    }//GEN-LAST:event_leftTextFieldFocusLost
+
 	public int getVolume(){
 		return this.soundSlider.getValue();
 	}
 	public boolean getFullscreen(){
-		return this.fullscreenCheckBox.isContentAreaFilled();
+		return this.fullscreenCheckBox.isSelected();
 	}
 	public String getFireKey(){
 		return this.fireTextField.getText();
@@ -215,6 +303,9 @@ public class OptionsPanel extends javax.swing.JPanel {
 	}
 	public String getRightThrusterKey(){
 		return this.rightTextField.getText();
+	}
+	public void setFullscreen(boolean selected){
+		this.fullscreenCheckBox.setSelected(selected);
 	}
 	public void setFireKey(String key){
 		this.fireTextField.setText(key);

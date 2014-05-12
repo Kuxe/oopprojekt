@@ -68,4 +68,11 @@ public class PlayerState implements IUserState{
 		return IUserState.state.PLAYER_STATE;
 	}
 	
+	public int getHull(){
+		return spaceship.getHull();
+	}
+
+	public int getShield(){
+		return spaceship.getShield();
+	}
 }

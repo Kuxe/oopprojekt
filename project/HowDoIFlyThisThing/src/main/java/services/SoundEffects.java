@@ -18,15 +18,17 @@ public class SoundEffects{
 	private AudioClip spaceshipFireSound;
 	private AudioClip projectileDieSound;
 	private AudioClip spaceshipDieSound;
+	private AudioClip pickupDieSound;
 
 	public enum Sound{
-		SPACESHIP_DIE, SPACESHIP_FIRE, PROJECTILE_FIRE
+		SPACESHIP_DIE, SPACESHIP_FIRE, PROJECTILE_FIRE, PICKUP_DIE
 	}
 
 	public SoundEffects(){
 		createSpaceshipFireSound();
 		createProjectileDieSound();
 		createSpaceshipDieSound();
+		createPickupDieSound();
 	}
 
 	public void createSpaceshipFireSound(){
@@ -62,6 +64,17 @@ public class SoundEffects{
 			e.printStackTrace();
 		}
 	}
+	public void createPickupDieSound(){
+		File file= new File("sounds/Dive.wav");
+		URI uri= file.toURI();
+		URL url;
+		try{
+			url= uri.toURL();
+			pickupDieSound= Applet.newAudioClip(url);
+		}catch(MalformedURLException e){
+			e.printStackTrace();
+		}
+	}
 	public void playSound(Set<String> listOfSounds){
 		if(listOfSounds== null){
 
@@ -69,10 +82,12 @@ public class SoundEffects{
 			for(String s: listOfSounds){
 				if (Sound.SPACESHIP_FIRE.toString().equals(s)) {
 					spaceshipFireSound.play();
-				} else if (Sound.PROJECTILE_FIRE.toString().equals(s)) {
+				}else if (Sound.PROJECTILE_FIRE.toString().equals(s)) {
 					projectileDieSound.play();
-				} else if (Sound.SPACESHIP_DIE.toString().equals(s)) {
+				}else if (Sound.SPACESHIP_DIE.toString().equals(s)) {
 					spaceshipDieSound.play();
+				}else if(Sound.PICKUP_DIE.toString().equals(s)){
+					pickupDieSound.play();
 				}
 			}
 		}

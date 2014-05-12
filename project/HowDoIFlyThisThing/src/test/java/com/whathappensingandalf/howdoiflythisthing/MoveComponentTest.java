@@ -21,7 +21,6 @@ public class MoveComponentTest {
 	private Vector2f dir= new Vector2f(0, 1);
 	private TypeWrapper wrapper= new TypeWrapper(0.0f);
 	private MoveComponent mc= new MoveComponent(pos, vel, acc, dir, wrapper, wrapper);
-//										position, velocity, acceleration, direction, rotationVelocity, rotationAcceleration
 
 	@Test
 	public void testMove() {

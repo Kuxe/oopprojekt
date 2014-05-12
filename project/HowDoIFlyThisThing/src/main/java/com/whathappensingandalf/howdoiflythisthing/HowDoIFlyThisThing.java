@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.vecmath.Point2f;
 
 import com.esotericsoftware.kryonet.Connection;
+import java.io.IOException;
 
 /**
  * 
@@ -35,7 +36,7 @@ public class HowDoIFlyThisThing {
 		state = new HostState(keybindings);
 	}
 	
-	public void join(String ip) {
+	public void join(String ip) throws IOException {
 		state = new ClientState(ip, keybindings);
 	}
 	
@@ -51,6 +52,19 @@ public class HowDoIFlyThisThing {
 		return state.getSpaceshipPoint();
 	}
 	
+	public long getCountdown()
+	{
+		return state.getCountdown();
+	}
+	
+	/**
+	 * 
+	 * @return string description of model state, ie "Waiting for players...", "Round commencing!", "Round finished"
+	 */
+	public String getModelStatus() {
+		return state.getModelStatus();
+	}
+	
 	/**
 	 * Should always be called when program is exiting
 	 * it stops clients and servers, does all the 
@@ -61,5 +75,13 @@ public class HowDoIFlyThisThing {
 	}
 	public Set<String> getListOfSounds(){
 		return state.getListOfSounds();
+	}
+	
+	public int getHull(){
+		return state.getHull();
+	}
+	
+	public int getShield(){
+		return state.getShield();
 	}
 }

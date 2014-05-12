@@ -168,16 +168,25 @@ public class HostState implements ModelNetworkState{
 		if(timerStop - timerStart > timerInterval) {
 			//Send images to all clients
 			server.sendToAllTCP(new DrawableDataNetworkPacket(round.getDrawableData()));
+
+			//Send round countdown to all clients
+			server.sendToAllTCP(new CountdownNetworkPacket(round.getCountdown()));
+			
+			//Send modelstatus to all clients
+			server.sendToAllTCP(new ModelStatusNetworkPacket(round.getModelStatus()));
 			
 //			TODO- round.getListOfSounds() always == 0
-			
+		
 			//Send sounds to all clients
 			server.sendToAllTCP(new SoundNetworkPacket(getListOfSounds()));
 			getListOfSounds().clear();
+			
 			//Send each spaceship point associated with each connection to the connected client
 			for(Connection connection : connections) {
 				connection.sendTCP(users.get(connection.getID()).getSpaceshipPoint());
-			}			
+				
+				connection.sendTCP(new HudNetworkPacket(users.get(connection.getID()).getHull(), users.get(connection.getID()).getShield()));
+			}
 			timerStart = System.nanoTime();
 		}
 		timerStop = System.nanoTime();
@@ -213,5 +222,23 @@ public class HostState implements ModelNetworkState{
 
 	public Set<String> getListOfSounds(){
 		return round.getListOfSounds();
+	}
+
+	@Override
+	public int getHull() {
+		return myUser.getHull();
+	}
+
+	@Override
+	public int getShield() {
+		return myUser.getShield();
+	}
+	public long getCountdown() {
+		return round.getCountdown();
+	}
+
+	@Override
+	public String getModelStatus() {
+		return round.getModelStatus();
 	}
 }

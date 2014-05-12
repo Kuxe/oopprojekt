@@ -42,5 +42,8 @@ public class Shield {
 			shield=maxShield;
 		}
 	}
-	
+
+	public int getShield(){
+		return shield;
+	}
 }

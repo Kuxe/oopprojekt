@@ -1,21 +1,24 @@
 package View;
 
 public class ViewThread extends Thread implements Runnable{
-	public View v;
+	private View view;
 	
-	public ViewThread(Object lock){
-		v=new View("How do i fly this?", lock);
+	public ViewThread(Object lock, boolean fullscreen){
+		view=new View("How do i fly this?", lock, fullscreen);
 	}
 	
 	
 	public void run(){
-		v.start();
+		view.start();
+	}
+	public void exit(){
+		view.stop();
 	}
 	
 	public View getView(){
-		return v;
+		return view;
 	}
 	public boolean isReady() {
-		return v.isReady();
+		return view.isReady();
 	}
 }
