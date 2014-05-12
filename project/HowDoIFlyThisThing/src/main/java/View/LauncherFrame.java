@@ -42,9 +42,9 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 		optionsPanel = new OptionsPanel();
 		optionsPanel.addPropertyChangeListener(this);
 		
-		this.setSize(380, 500);
-		startPanel.setSize(360, 500);
-		optionsPanel.setSize(360, 500);
+		this.setSize(380, 510);
+		startPanel.setSize(360, 480);
+		optionsPanel.setSize(360, 480);
 		backgroundPanel.add(startPanel,"Start");
 		backgroundPanel.add(optionsPanel,"Options");
 		
@@ -131,6 +131,7 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("How do I fly this thing?!");
+        setResizable(false);
 
         backgroundPanel.setLayout(new java.awt.CardLayout());
 
