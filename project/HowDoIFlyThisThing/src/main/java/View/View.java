@@ -74,6 +74,8 @@ public class View extends BasicGame implements ApplicationListener{
 		VIEW_CLOSE
 	}
 	
+	static boolean firstTime = true;
+	
 	public View(String title, Object lock, boolean fullscreen){
 		super(title);
 		this.lock = lock;
@@ -114,8 +116,9 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	
 	public void start(){
+		
 		try {
-			container.start();
+				container.start();
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

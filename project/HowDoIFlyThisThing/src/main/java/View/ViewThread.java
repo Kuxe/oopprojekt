@@ -1,5 +1,8 @@
 package View;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 public class ViewThread extends Thread implements Runnable{
 	private View view;
 	
@@ -11,7 +14,7 @@ public class ViewThread extends Thread implements Runnable{
 	public void run(){
 		view.start();
 	}
-	public void exit(){
+	public void StopView(){
 		view.stop();
 	}
 	

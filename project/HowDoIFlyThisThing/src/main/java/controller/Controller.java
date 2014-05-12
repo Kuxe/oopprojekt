@@ -47,7 +47,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		try {
 			model.join(ip);
 		} catch (IOException ex) {
-			viewThread.exit();
+			viewThread.StopView();
 			throw new java.net.UnknownHostException();
 		}
 		this.createView(fullscreen);
@@ -129,7 +129,9 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	}
 
 	public void cleanup() {
+		System.out.println("Cleanup");
 		model.cleanup();
+		
 	}
 
 	public synchronized void keyPressed(int key, char c) {
@@ -137,10 +139,10 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	}
 
 	public synchronized void keyReleased(int key, char c) {
-		//if(key == Keyboard.KEY_ESCAPE){
-			//running = false;
-			//viewThread.exit();
-		//}
+		if(key == Keyboard.KEY_ESCAPE){
+			running = false;
+			viewThread.StopView();
+		}
 		listOfReleasedKeys.add(key);
 	}
 
