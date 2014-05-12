@@ -293,7 +293,7 @@ public class OptionsPanel extends javax.swing.JPanel{
 		return this.soundSlider.getValue();
 	}
 	public boolean getFullscreen(){
-		return this.fullscreenCheckBox.isContentAreaFilled();
+		return this.fullscreenCheckBox.isSelected();
 	}
 	public String getFireKey(){
 		return this.fireTextField.getText();
@@ -306,6 +306,9 @@ public class OptionsPanel extends javax.swing.JPanel{
 	}
 	public String getRightThrusterKey(){
 		return this.rightTextField.getText();
+	}
+	public void setFullscreen(boolean selected){
+		this.fullscreenCheckBox.setSelected(selected);
 	}
 	public void setFireKey(String key){
 		this.fireTextField.setText(key);

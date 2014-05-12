@@ -15,10 +15,12 @@ public class LauncherController implements PropertyChangeListener{
 	private int defaultLeftKey;
 	private int defaultMainKey;
 	private int defaultRightKey;
+	private boolean defaultFullscreen;
 	private int fireKey;
 	private int leftKey;
 	private int mainKey;
 	private int rightKey;
+	private boolean fullscreen;
 	
 	public LauncherController(){
 		launcher = new LauncherFrame();
@@ -37,14 +39,14 @@ public class LauncherController implements PropertyChangeListener{
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_HOST.toString())){
 			launcher.dispose();
-			controller = new Controller(leftKey, mainKey, rightKey, fireKey);
+			controller = new Controller(leftKey, mainKey, rightKey, fireKey, fullscreen);
 			controller.start();
 			controller.cleanup();
 			System.exit(0);
 		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_JOIN.toString())){
 			try{
 			launcher.dispose();
-			controller = new Controller(launcher.getIP(), leftKey, mainKey, rightKey, fireKey);
+			controller = new Controller(launcher.getIP(), leftKey, mainKey, rightKey, fireKey, fullscreen);
 			controller.start();
 			controller.cleanup();
 			System.exit(0);
@@ -75,19 +77,21 @@ public class LauncherController implements PropertyChangeListener{
 		leftKey = Keyboard.getKeyIndex(launcher.getLeftThrusterKey().toUpperCase());
 		mainKey = Keyboard.getKeyIndex(launcher.getMainThrusterKey().toUpperCase());
 		rightKey = Keyboard.getKeyIndex(launcher.getRightThrusterKey().toUpperCase());
-		System.out.println(Keyboard.getKeyName(fireKey));
+		fullscreen = launcher.getFullscreen();
 	}
 	public void displaySettings(){
 		launcher.setFireKey(Keyboard.getKeyName(fireKey));
 		launcher.setLeftThrusterKey(Keyboard.getKeyName(leftKey));
 		launcher.setMainThrusterKey(Keyboard.getKeyName(mainKey));
 		launcher.setRightThrusterKey(Keyboard.getKeyName(rightKey));
+		launcher.setFullscreen(fullscreen);
 	}
 	public void resetSettings(){
 		launcher.setFireKey(Keyboard.getKeyName(defaultFireKey));
 		launcher.setLeftThrusterKey(Keyboard.getKeyName(defaultLeftKey));
 		launcher.setMainThrusterKey(Keyboard.getKeyName(defaultMainKey));
 		launcher.setRightThrusterKey(Keyboard.getKeyName(defaultRightKey));
+		launcher.setFullscreen(defaultFullscreen);
 	}
 	public void launchControllerStop(){
 			controller.cleanup();

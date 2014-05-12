@@ -31,13 +31,13 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	private Set<Integer> listOfReleasedKeys;
 	private Set<Integer> listOfHoldKeys;
 
-	public Controller(int leftKey, int mainKey, int rightKey, int fireKey){
+	public Controller(int leftKey, int mainKey, int rightKey, int fireKey, boolean fullscreen){
 		keybindings = new Keybindings(leftKey, mainKey, rightKey, fireKey);
 		sharedCTOR();
 		model.host();
 	}
 
-	public Controller(String ip, int leftKey, int mainKey, int rightKey, int fireKey)throws java.net.UnknownHostException, IOException{
+	public Controller(String ip, int leftKey, int mainKey, int rightKey, int fireKey, boolean fullscreen)throws java.net.UnknownHostException, IOException{
 		keybindings = new Keybindings(leftKey, mainKey, rightKey, fireKey);
 		sharedCTOR();
 		model.join(ip);
