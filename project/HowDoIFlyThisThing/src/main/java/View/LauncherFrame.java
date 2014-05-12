@@ -103,6 +103,9 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	public String getRightThrusterKey(){
 		return this.optionsPanel.getRightThrusterKey();
 	}
+	public void setFullscreen(boolean selected){
+		this.optionsPanel.setFullscreen(selected);
+	}
 	public void setFireKey(String key){
 		this.optionsPanel.setFireKey(key);
 	}

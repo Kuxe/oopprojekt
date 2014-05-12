@@ -109,6 +109,9 @@ public class View extends BasicGame implements ApplicationListener{
 			e.printStackTrace();
 		}
 	}
+	public void stop(){
+		container.exit();
+	}
 	
 	public void setRenderObjects(Set<DrawableData> set){
 		renderObjects=Collections.synchronizedSet(set);
