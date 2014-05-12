@@ -38,26 +38,23 @@ public class LauncherController implements PropertyChangeListener{
 
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_HOST.toString())){
-			launcher.dispose();
 			controller = new Controller(leftKey, mainKey, rightKey, fireKey, fullscreen);
+			launcher.dispose();
 			controller.start();
 			controller.cleanup();
 			System.exit(0);
 		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_JOIN.toString())){
 			try{
-			launcher.dispose();
 			controller = new Controller(launcher.getIP(), leftKey, mainKey, rightKey, fireKey, fullscreen);
+			launcher.dispose();
 			controller.start();
 			controller.cleanup();
 			System.exit(0);
 			}catch(java.net.UnknownHostException h){
 				//Can't be interpeted as a host.
 				System.out.println("HOST ERROR");
-				//TODO: Stop client, dispose of view, display error message.
-			}catch (java.io.IOException e) {
-				//Can't connect to the host, aka host not hosting game.
-				System.out.println("IO ERROR");
-				//TODO: Stop client, dispose of view, display error message.
+				//TODO: Display error message.
+				
 			}
 		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_OPTIONS.toString())){
 			this.displaySettings();
