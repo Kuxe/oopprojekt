@@ -52,4 +52,13 @@ public class SpectatorState implements IUserState{
 		return IUserState.state.SPECTATOR_STATE;
 	}
 
+	@Override
+	public int getHull() {
+		return 0;
+	}
+
+	@Override
+	public int getShield() {
+		return 0;
+	}
 }

@@ -24,6 +24,12 @@ public interface IUserState {
 	public void fireHold(boolean held);
 	
 	public Point2f getSpaceshipPosition();
+	
 	public Spaceship getSpaceship();
+	
 	public void suicide();
+	
+	public int getHull();
+	
+	public int getShield();
 }

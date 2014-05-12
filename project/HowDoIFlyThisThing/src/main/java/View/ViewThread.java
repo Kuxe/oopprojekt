@@ -12,7 +12,7 @@ public class ViewThread extends Thread implements Runnable{
 		view.start();
 	}
 	public void exit(){
-		v.stop();
+		view.stop();
 	}
 	
 	public View getView(){

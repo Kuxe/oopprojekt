@@ -116,4 +116,14 @@ public class ClientState implements ModelNetworkState {
 		sounds.clear();
 		return soundsCopy;
 	}
+	
+	public int getHull(){
+//		TODO
+		return 0;
+	}
+	
+	public int getShield(){
+//		TODO
+		return 0;
+	}
 }

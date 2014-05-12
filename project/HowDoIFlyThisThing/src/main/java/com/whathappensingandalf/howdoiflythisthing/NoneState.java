@@ -55,4 +55,16 @@ public class NoneState implements ModelNetworkState {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int getHull() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getShield() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
