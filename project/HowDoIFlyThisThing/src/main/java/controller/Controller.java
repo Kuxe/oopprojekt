@@ -19,6 +19,7 @@ import com.whathappensingandalf.howdoiflythisthing.Keybindings;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.lwjgl.input.Keyboard;
 
 public class Controller implements KeyListener, PropertyChangeListener{
 
@@ -130,6 +131,10 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	}
 
 	public synchronized void keyReleased(int key, char c) {
+		//if(key == Keyboard.KEY_ESCAPE){
+			//running = false;
+			//viewThread.exit();
+		//}
 		listOfReleasedKeys.add(key);
 	}
 
