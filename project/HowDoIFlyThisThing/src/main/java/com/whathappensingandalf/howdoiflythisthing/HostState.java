@@ -180,7 +180,7 @@ public class HostState implements ModelNetworkState{
 			for(Connection connection : connections) {
 				connection.sendTCP(users.get(connection.getID()).getSpaceshipPoint());
 				
-				connection.sendTCP(new HudNetworkPacket(myUser.getHull(), myUser.getShield()));
+				connection.sendTCP(new HudNetworkPacket(users.get(connection.getID()).getHull(), users.get(connection.getID()).getShield()));
 			}
 			timerStart = System.nanoTime();
 		}
