@@ -106,6 +106,9 @@ public class View extends BasicGame implements ApplicationListener{
 			e.printStackTrace();
 		}
 	}
+	public void stop(){
+		container.exit();
+	}
 	
 	public void setCountdown(long countdown){
 		countdownText = String.valueOf(countdown);

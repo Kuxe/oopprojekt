@@ -5,6 +5,7 @@ import java.util.Set;
 import javax.vecmath.Point2f;
 
 import com.esotericsoftware.kryonet.Connection;
+import java.io.IOException;
 
 /**
  * 
@@ -35,7 +36,7 @@ public class HowDoIFlyThisThing {
 		state = new HostState(keybindings);
 	}
 	
-	public void join(String ip) {
+	public void join(String ip) throws IOException {
 		state = new ClientState(ip, keybindings);
 	}
 	

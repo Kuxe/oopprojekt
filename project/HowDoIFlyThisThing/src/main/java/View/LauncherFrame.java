@@ -7,6 +7,9 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
+import org.lwjgl.opengl.Display;
+import org.lwjgl.input.Keyboard;
+
 /**
  *
  * @author Martin Nilsson
@@ -17,7 +20,6 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	private StartPanel startPanel;
 	private OptionsPanel optionsPanel;
 	private CardLayout cardLayout;
-
 	
 	public static enum Message{
 		HDIFTT_HOST,
@@ -52,6 +54,7 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 		int x = (int) ((dimension.getWidth() - this.getWidth()) / 2);
 		int y = (int) ((dimension.getHeight() - this.getHeight()) / 2);
 		this.setLocation(x, y);
+		
 	}
 	public void displayStartPanel(){
 		cardLayout.show(backgroundPanel, "Start");
@@ -100,6 +103,9 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	public String getRightThrusterKey(){
 		return this.optionsPanel.getRightThrusterKey();
 	}
+	public void setFullscreen(boolean selected){
+		this.optionsPanel.setFullscreen(selected);
+	}
 	public void setFireKey(String key){
 		this.optionsPanel.setFireKey(key);
 	}
@@ -142,40 +148,6 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-	/**
-	 * @param args the command line arguments
-	 */
-	public static void main(String args[]) {
-		/* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-		 * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-		 */
-		try {
-			for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-				if ("Nimbus".equals(info.getName())) {
-					javax.swing.UIManager.setLookAndFeel(info.getClassName());
-					break;
-				}
-			}
-		} catch (ClassNotFoundException ex) {
-			java.util.logging.Logger.getLogger(LauncherFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (InstantiationException ex) {
-			java.util.logging.Logger.getLogger(LauncherFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (IllegalAccessException ex) {
-			java.util.logging.Logger.getLogger(LauncherFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		} catch (javax.swing.UnsupportedLookAndFeelException ex) {
-			java.util.logging.Logger.getLogger(LauncherFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-		}
-        //</editor-fold>
-
-		/* Create and display the form */
-		java.awt.EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				new LauncherFrame().setVisible(true);
-			}
-		});
-	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
