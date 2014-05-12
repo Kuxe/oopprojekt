@@ -175,8 +175,6 @@ public class HostState implements ModelNetworkState{
 			//Send modelstatus to all clients
 			server.sendToAllTCP(new ModelStatusNetworkPacket(round.getModelStatus()));
 			
-//			TODO- round.getListOfSounds() always == 0
-		
 			//Send sounds to all clients
 			server.sendToAllTCP(new SoundNetworkPacket(getListOfSounds()));
 			getListOfSounds().clear();

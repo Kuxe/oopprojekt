@@ -57,8 +57,8 @@ public class View extends BasicGame implements ApplicationListener{
 	private final Object lock;
 	private boolean isReady = false;
 	
-	private int nbrOfHull;
-	private int nbrOfShield;
+	private int hull;
+	private int shield;
 	private String countdownText = "Loading model...";
 	private String modelStatus = "";
 
@@ -172,16 +172,16 @@ public class View extends BasicGame implements ApplicationListener{
 		
 		int xPos= 10;
 		int yPos= 10;
-		for(int i= 0; i< nbrOfHull; i++){
+		for(int i= 0; i< hull; i++){
 			g.drawImage(hullImage, xPos, yPos);
 			xPos= xPos + hullImage.getWidth();
 		}
 	}
 	public void drawShield(Graphics g){
 		
-		int xPos= hullImage.getWidth() * nbrOfHull;
+		int xPos= hullImage.getWidth() * hull;
 		int yPos= 10;
-		for(int i= 0; i< nbrOfShield; i++){
+		for(int i= 0; i< shield; i++){
 			g.drawImage(shieldImage, xPos, yPos);
 			xPos= xPos + shieldImage.getWidth();
 		}
@@ -282,12 +282,12 @@ public class View extends BasicGame implements ApplicationListener{
 		this.camera = camera;
 	}
 	
-	public void setNbrOfHull(int nbrOfHull){
-		this.nbrOfHull= nbrOfHull;
+	public void setHull(int hull){
+		this.hull= hull;
 	}
 	
-	public void setNbrOfShield(int nbrOfShield){
-		this.nbrOfShield= nbrOfShield;
+	public void setShield(int shield){
+		this.shield= shield;
 	}
 	
 	public void setCountdown(long countdown){

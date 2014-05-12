@@ -107,8 +107,8 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		model.update(listOfHoldKeys);
 		viewThread.getView().setCamera(model.getSpaceshipPoint());
 		setRenderObjects(model.getDrawableData());
-		viewThread.getView().setNbrOfHull(model.getHull());
-		viewThread.getView().setNbrOfShield(model.getShield());
+		viewThread.getView().setHull(model.getHull());
+		viewThread.getView().setShield(model.getShield());
 		setCountdown(model.getCountdown());
 		setModelStatus(model.getModelStatus());
 		
