@@ -1,16 +1,23 @@
 package View;
 
+import java.util.HashSet;
+import java.util.Set;
+import org.lwjgl.input.Keyboard;
 /**
  *
  * @author Martin Nilsson
  */
-public class OptionsPanel extends javax.swing.JPanel {
+public class OptionsPanel extends javax.swing.JPanel{
 
+	
 	/**
 	 * Creates new form OptionsPanek
 	 */
+	Set <Integer> all;
+	
 	public OptionsPanel() {
 		initComponents();
+		all = new HashSet();
 	}
 
 	/**
@@ -83,8 +90,23 @@ public class OptionsPanel extends javax.swing.JPanel {
         });
 
         leftTextField.setText("jTextField2");
+        leftTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                leftTextFieldFocusLost(evt);
+            }
+        });
+        leftTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                leftTextFieldKeyTyped(evt);
+            }
+        });
 
         mainTextField.setText("jTextField3");
+        mainTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                mainTextFieldKeyReleased(evt);
+            }
+        });
 
         rightTextField.setText("jTextField4");
 
@@ -191,12 +213,24 @@ public class OptionsPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_resetButtonActionPerformed
 
     private void fireTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fireTextFieldKeyTyped
-        this.okButton.grabFocus();
+		this.okButton.grabFocus();
     }//GEN-LAST:event_fireTextFieldKeyTyped
 
     private void fireTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fireTextFieldFocusGained
         this.fireTextField.setText("");
     }//GEN-LAST:event_fireTextFieldFocusGained
+
+    private void leftTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_leftTextFieldFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_leftTextFieldFocusLost
+
+    private void leftTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_leftTextFieldKeyTyped
+
+    }//GEN-LAST:event_leftTextFieldKeyTyped
+
+    private void mainTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainTextFieldKeyReleased
+
+    }//GEN-LAST:event_mainTextFieldKeyReleased
 
 	public int getVolume(){
 		return this.soundSlider.getValue();

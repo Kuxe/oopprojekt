@@ -16,6 +16,7 @@ import View.ViewThread;
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
 import com.whathappensingandalf.howdoiflythisthing.Keybindings;
+import java.io.IOException;
 
 public class Controller implements KeyListener, PropertyChangeListener{
 
@@ -36,7 +37,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		model.host();
 	}
 
-	public Controller(String ip, int leftKey, int mainKey, int rightKey, int fireKey){
+	public Controller(String ip, int leftKey, int mainKey, int rightKey, int fireKey)throws java.net.UnknownHostException, IOException{
 		keybindings = new Keybindings(leftKey, mainKey, rightKey, fireKey);
 		sharedCTOR();
 		model.join(ip);

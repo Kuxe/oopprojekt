@@ -33,7 +33,7 @@ public class ClientState implements ModelNetworkState {
 	private long timerStop;
 	private final long timerInterval;
 
-	public ClientState(String ip, Keybindings keybindings) {
+	public ClientState(String ip, Keybindings keybindings) throws IOException {
 
 		spaceshipPoint = new Point2f(0, 0);
 		this.keybindins = keybindings;
@@ -65,12 +65,12 @@ public class ClientState implements ModelNetworkState {
 		});
 
 		client.start();
-		try {
+		//try {
 			client.connect(5000, ip, 5000);
-		} catch (IOException e) {
-			client.stop();
-			e.printStackTrace();
-		}
+		//} catch (IOException e) {
+			//client.stop();
+			//e.printStackTrace();
+		//}
 		client.sendTCP(new KeybindingsNetworkPacket(keybindings));
 	}
 
