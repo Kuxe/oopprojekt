@@ -66,7 +66,7 @@ public class View extends BasicGame implements ApplicationListener{
 		VIEW_CLOSE
 	}
 	
-	public View(String title, Object lock){
+	public View(String title, Object lock, boolean fullscreen){
 		super(title);
 		this.lock = lock;
 		renderObjects = new HashSet<DrawableData>();
@@ -75,6 +75,7 @@ public class View extends BasicGame implements ApplicationListener{
 			container.setDisplayMode(windowWidth, windowHeight, false);
 			container.setTargetFrameRate(60);
 			container.setForceExit(false);
+			container.setFullscreen(fullscreen);
 		}catch(SlickException ex){
 			Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
 		}

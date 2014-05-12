@@ -37,7 +37,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		keybindings = new Keybindings(leftKey, mainKey, rightKey, fireKey);
 		sharedCTOR();
 		model.host();
-		this.createView();
+		this.createView(fullscreen);
 	}
 
 	public Controller(String ip, int leftKey, int mainKey, int rightKey, int fireKey, boolean fullscreen)throws java.net.UnknownHostException{
@@ -49,7 +49,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 			viewThread.exit();
 			throw new java.net.UnknownHostException();
 		}
-		this.createView();
+		this.createView(fullscreen);
 	}
 
 	private void sharedCTOR() {
@@ -59,9 +59,9 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		listOfHoldKeys = new HashSet();
 		soundEffects= new SoundEffects();
 	}
-	private void createView(){
+	private void createView(boolean fullscreen){
 		final Object lock = new Object();
-		viewThread=new ViewThread(lock);
+		viewThread=new ViewThread(lock, fullscreen);
 		viewThread.start();
 		synchronized(lock) {
 			while(!viewThread.isReady()) {
