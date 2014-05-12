@@ -51,6 +51,11 @@ public class HowDoIFlyThisThing {
 		return state.getSpaceshipPoint();
 	}
 	
+	public long getCountdown()
+	{
+		return state.getCountdown();
+	}
+	
 	/**
 	 * Should always be called when program is exiting
 	 * it stops clients and servers, does all the 

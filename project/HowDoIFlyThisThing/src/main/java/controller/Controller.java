@@ -97,9 +97,14 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		model.update(listOfHoldKeys);
 		viewThread.getView().setCamera(model.getSpaceshipPoint());
 		setRenderObjects(model.getDrawableData());
+		setCountdown(model.getCountdown());
 		soundEffects.playSound(getListOfSounds());
 	}
 
+	private void setCountdown(long countdown){
+		viewThread.getView().setCountdown(countdown);
+	}
+	
 	public void setRenderObjects(Set<DrawableData> set){
 		viewThread.getView().setRenderObjects(set);
 	}

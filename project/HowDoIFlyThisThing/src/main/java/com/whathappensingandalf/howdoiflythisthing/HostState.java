@@ -169,6 +169,9 @@ public class HostState implements ModelNetworkState{
 			//Send images to all clients
 			server.sendToAllTCP(new DrawableDataNetworkPacket(round.getDrawableData()));
 			
+			//Send round countdown to all clients
+			server.sendToAllTCP(new CountdownNetworkPacket(round.getCountdown()));
+			
 //			TODO- round.getListOfSounds() always == 0
 			
 			//Send sounds to all clients
@@ -213,5 +216,10 @@ public class HostState implements ModelNetworkState{
 
 	public Set<String> getListOfSounds(){
 		return round.getListOfSounds();
+	}
+
+	@Override
+	public long getCountdown() {
+		return round.getCountdown();
 	}
 }

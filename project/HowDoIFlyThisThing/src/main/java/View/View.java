@@ -54,7 +54,7 @@ public class View extends BasicGame implements ApplicationListener{
 	private final Object lock;
 	private boolean isReady = false;
 	
-	private String countdownText = "placeholder";
+	private String countdownText = "Loading model...";
 	
 	public static enum message {
 		VIEW_CLOSE
@@ -107,9 +107,9 @@ public class View extends BasicGame implements ApplicationListener{
 		}
 	}
 	
-	public void setCountdownText(String countdownText)
+	public void setCountdown(long countdown)
 	{
-		this.countdownText = countdownText;
+		countdownText = String.valueOf(countdown);
 	}
 	
 	public void setRenderObjects(Set<DrawableData> set){
@@ -146,7 +146,9 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private void drawRoundCountdown(GameContainer arg0, Graphics g)
 	{
-		g.drawString(countdownText, (windowWidth - g.getFont().getWidth(countdownText))/2, 30);
+		if(!countdownText.equals("0")) {
+			g.drawString(countdownText, (windowWidth - g.getFont().getWidth(countdownText))/2, 30);
+		}
 	}
 	
 	/**
