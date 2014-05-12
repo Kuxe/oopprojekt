@@ -172,9 +172,6 @@ public class HostState implements ModelNetworkState{
 			//Send round countdown to all clients
 			server.sendToAllTCP(new CountdownNetworkPacket(round.getCountdown()));
 			
-			//Send hull and shield to all clients
-			server.sendToAllTCP(new HudNetworkPacket(myUser.getHull(), myUser.getShield()));
-			
 			//Send sounds to all clients
 			server.sendToAllTCP(new SoundNetworkPacket(getListOfSounds()));
 			getListOfSounds().clear();
@@ -182,6 +179,8 @@ public class HostState implements ModelNetworkState{
 			//Send each spaceship point associated with each connection to the connected client
 			for(Connection connection : connections) {
 				connection.sendTCP(users.get(connection.getID()).getSpaceshipPoint());
+				
+				connection.sendTCP(new HudNetworkPacket(myUser.getHull(), myUser.getShield()));
 			}
 			timerStart = System.nanoTime();
 		}
