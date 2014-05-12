@@ -39,6 +39,7 @@ public class LauncherController implements PropertyChangeListener{
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_HOST.toString())){
 			controller = new Controller(leftKey, mainKey, rightKey, fireKey, fullscreen);
+			
 			launcher.dispose();
 			controller.start();
 			controller.cleanup();
