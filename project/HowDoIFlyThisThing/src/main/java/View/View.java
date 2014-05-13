@@ -309,8 +309,6 @@ public class View extends BasicGame implements ApplicationListener{
 			
 			hullImage= new SpriteSheet("resources/hull.png", 15, 20, colorFilter);
 			shieldImage= new SpriteSheet("resources/shield.png", 15, 20, colorFilter);
-			System.out.println(hullImage);
-			System.out.println(shott);
 			
 		} catch (SlickException e) {
 			e.printStackTrace();
