@@ -53,7 +53,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 			model.join(ip);
 			model.getState().addPropertyChangeListener(this);
 		} catch (IOException ex) {
-			viewThread.StopView();
+			//viewThread.StopView();
 			throw new java.net.UnknownHostException();
 		}
 		this.createView(fullscreen);
