@@ -79,7 +79,7 @@ public class View extends BasicGame implements ApplicationListener{
 		super(title);
 		this.lock = lock;
 		renderObjects = new HashSet<DrawableData>();
-		try{
+		try{			
 			container=new AppGameContainer(this);
 			container.setDisplayMode(windowWidth, windowHeight, false);
 			container.setTargetFrameRate(60);
@@ -111,6 +111,7 @@ public class View extends BasicGame implements ApplicationListener{
 	public boolean closeRequested() {
 		System.out.println("Window sending VIEW_CLOSE event");
 		pcs.firePropertyChange(message.VIEW_CLOSE.name(), false, true);
+		stop();
 		return true;
 	}
 	
