@@ -86,7 +86,7 @@ public class Gameworld implements PropertyChangeListener{
 	}
 	
 	private void generateWorld(){
-		int numberOfAsteroids = (int)(Math.random()*7)+1;
+		int numberOfAsteroids = (int)(Math.random()*20)+1;
 					System.out.println(numberOfAsteroids);
 		for(int i = 0; i<numberOfAsteroids; i++){
 					System.out.println(i);
@@ -154,6 +154,14 @@ public class Gameworld implements PropertyChangeListener{
 		//Temporary hardcoded direction set to 1, 1
 		addSpaceship(SpaceshipFactory.create(point, new Vector2f(1, 1)));
 	}
+	private boolean isValidSpawn(ICollidable spawner){
+		for(ICollidable coli : collidables.values()){
+			if(spawner.collideDetection(coli)){
+				return false;
+			}
+		}
+		return true;
+	}
 	
 	/**
 	 * Adds a spaceship to the world
@@ -161,6 +169,12 @@ public class Gameworld implements PropertyChangeListener{
 	public void addSpaceship(Spaceship spaceship){
 		//Make gameworld listen to spaceship
 		spaceship.addPropertyChangeListener(this);
+		//plases the spaceship at a possition that is free.
+		while(!isValidSpawn(spaceship)){
+			spaceship.setPosition(new Point2f ((float)(Math.random())*this.worldBorder.getWorldWidth(),
+					(float)(Math.random())*this.worldBorder.getWorldHeight()));
+			System.out.println("INVALID POINT!!!!!");
+		}
 		
 		//Add spaceship to hashmap moveable, 
 		moveables.put(spaceship, spaceship);
