@@ -27,12 +27,12 @@ public class Explosion implements IGameObject, IDrawable {
 
 	@Override
 	public int getHeight() {
-		return 0;
+		return 240;
 	}
 
 	@Override
 	public int getWidth() {
-		return 0;
+		return 360;
 	}
 
 	@Override

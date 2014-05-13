@@ -202,17 +202,18 @@ public class View extends BasicGame implements ApplicationListener{
 //		System.out.println(animations.get(0).getFrame());
 		for(ExplosionAnimation animComp: animations){
 			if(animComp.getAnimation().isStopped()){
-				animComp.getAnimation().stop();
+//				animComp.getAnimation().stop();
+				System.out.println("animation stoped: " + animComp);
 				removeAnimations.add(animComp);
 			}
-			animComp.getAnimation().draw(animComp.getPosition().x + windowWidth/2 -160,animComp.getPosition().y + windowHeight/2 -120);
+			animComp.getAnimation().draw(animComp.getPosition().x - 160 + windowWidth/2,animComp.getPosition().y -120 + windowHeight/2);
 		}
 		
-		for(ExplosionAnimation animRm: removeAnimations){
-			animations.remove(animRm);
-		}
+//		for(ExplosionAnimation animRm: removeAnimations){
+//			System.out.println("remove: " + animRm);
+//			animations.remove(animRm);
+//		}
 		removeAnimations.clear();
-
 		
 		for(DrawableData rm:removeDrawableData){
 			renderObjects.remove(rm);
@@ -236,8 +237,9 @@ public class View extends BasicGame implements ApplicationListener{
 			}else if(comp.getType().equals("WEAPON_PICKUP")){
 				tmpImg=this.ammoPickup.copy();
 			}else if(comp.getType().equals("EXPLOSION")){
+				System.out.println("animation added(View)");
 				this.drawExplosion(comp.getPosition());
-				this.removeDrawableData.add(comp);
+//				this.removeDrawableData.add(comp);
 				tmpImg=missingImage.copy();
 			}else{
 				tmpImg=missingImage.copy();
@@ -257,7 +259,7 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private void drawExplosion(Point2f position){
 		Animation tempExp=explosion.copy();
-		tempExp.stopAt(19);
+//		tempExp.stopAt(19);
 		animations.add(new ExplosionAnimation(position,tempExp));
 	}
 
