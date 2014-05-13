@@ -132,7 +132,6 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	}
 
 	public void cleanup() {
-		System.out.println("Cleanup");
 		model.cleanup();
 		
 	}
@@ -168,7 +167,6 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		if(event.getPropertyName().equals(View.message.VIEW_CLOSE.toString())) {
 			running = false;
 		}else if(event.getPropertyName().equals(Gameworld.Message.EXPLOSION.toString())){
-			System.out.println("ControlerExplosion");
 			this.viewThread.createExplosion(((ExplosionNetworkPacket)event.getOldValue()).position);
 		}
 	}

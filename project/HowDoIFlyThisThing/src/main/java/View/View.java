@@ -230,11 +230,8 @@ public class View extends BasicGame implements ApplicationListener{
 		drawScrollingImage(arg0, g, background_1, 0.05f);
 		drawScrollingImage(arg0, g, background_2, 0.15f);
 
-//		System.out.println(animations.get(0).getFrame());
 		for(ExplosionAnimation animComp: animations){
 			if(animComp.getAnimation().isStopped()){
-//				animComp.getAnimation().stop();
-				System.out.println("animation stoped: " + animComp);
 				removeAnimations.add(animComp);
 			}
 			animComp.getAnimation().draw(animComp.getPosition().x - 160 + windowWidth/2 - camera.x ,animComp.getPosition().y -120 + windowHeight/2 - camera.y);
@@ -280,7 +277,6 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private void drawExplosion(Point2f position){
 		Animation tempExp=explosion.copy();
-		System.out.println("added Explosion");
 		tempExp.stopAt(19);
 		animations.add(new ExplosionAnimation(new Point2f(position.x,position.y),tempExp));
 	}
@@ -303,7 +299,6 @@ public class View extends BasicGame implements ApplicationListener{
 			background_3 = new SpriteSheet("resources/scrollingbackground_3rd_layer.png", 1280, 960, colorFilter);
 			
 			explosion =new Animation(new SpriteSheet(new Image("resources/explosionanimation.png"),320,240),100);
-//			explosion.setLooping(false);
 			
 			planet_1 = new SpriteSheet("resources/planet_1.png", 100, 100, colorFilter);
 			
@@ -373,7 +368,6 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	
 	public void createExplosion(Point2f position){
-		System.out.println("animation added(View)");
 		this.drawExplosion(position);
 	}
 }
