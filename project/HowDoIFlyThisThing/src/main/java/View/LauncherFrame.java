@@ -27,7 +27,7 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 		HDIFTT_OPTIONS,
 		HDIFTT_OPTIONS_OK,
 		HDIFTT_OPTIONS_CANCEL,
-		HDOFTT_OPTIONS_RESET
+		HDOFTT_OPTIONS_RESET,
 	}
 	
 	/**
@@ -153,4 +153,4 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
     // End of variables declaration//GEN-END:variables
-}
+}//end LauncherFrame
