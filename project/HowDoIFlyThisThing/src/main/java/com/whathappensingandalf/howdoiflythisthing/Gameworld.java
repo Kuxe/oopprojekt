@@ -84,15 +84,7 @@ public class Gameworld implements PropertyChangeListener{
 		HashSet<DrawableData> set = new HashSet();
 		for(IDrawable drawable : drawables.values()) {
 			set.addAll(drawable.getCollectionDrawables());
-//			if(drawable.getType().toString().equals("EXPLOSION")){
-//				slateObjectForRemoval(drawable);
-//			}
 		}
-		for(IDrawable drawable : animationes.values()){
-			System.out.println("added animation(Gameworld)");
-			set.addAll(drawable.getCollectionDrawables());
-		}
-		animationes.clear();
 		return set;
 	}
 	
@@ -118,13 +110,7 @@ public class Gameworld implements PropertyChangeListener{
 		//Loop through the List containing the HashMaps in which an gameworld object (ie spaceship) is stored
 		//That is, each hashMap in the list is one of the hashMaps in which a reference to the key object is stored
 		//These hashMaps shall remove this reference upon object destruction, which is done bellow
-		if(removalMap.get(key)==null){
-			System.out.println("removalMap=null");
-		}
 		for(Map<Object, ? extends IListable> map : removalMap.get(key)) {
-			if(map==null){
-				System.out.println("map=null");
-			}
 				map.remove(key);
 		}
 		//Also remove the list containing the hashMaps from removalHashMap
@@ -141,6 +127,7 @@ public class Gameworld implements PropertyChangeListener{
 		
 		//Objects are now removed and only left removal is form the list iteself
 		listOfObjectsToBeRemoved.clear();
+		this.animationes.clear();
 	}
 
 	/**
@@ -223,15 +210,6 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap.put(pickup, listOfHashMaps);
 	}
 	
-	public void addExplosion(Explosion explosion){
-		animationes.put(explosion, explosion);
-		System.out.println("Add explosion(Gameworld)");
-//		drawables.put(explosion, explosion);
-//		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
-//		listOfHashMaps.add(animationes);
-//		removalMap.put(explosion, listOfHashMaps);
-	}
-	
 	/**
 	 * Moves all objects that implements IMoveable
 	 */
@@ -296,8 +274,6 @@ public class Gameworld implements PropertyChangeListener{
 		} else if(evt.getPropertyName().equals(IProjectile.Message.PROJECTILE_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
-//			addExplosion(new Explosion(evt.getSource()).getPosition());//((IMovable) evt.getSource()).getPosition())
-//			this.addExplosion(new Explosion(((IDrawable)evt.getSource()).getPosition()));
 			this.slateObjectForRemoval(evt.getSource());
 			listOfSounds.add(SoundEffects.Sound.SPACESHIP_DIE.toString());
 			pcs.firePropertyChange(evt); //Forward event
