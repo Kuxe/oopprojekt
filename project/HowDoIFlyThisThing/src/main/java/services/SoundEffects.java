@@ -54,7 +54,7 @@ public class SoundEffects{
 		}
 	}
 	public void createSpaceshipDieSound(){
-		File file= new File("sounds/Dove.wav");
+		File file= new File("sounds/Explosion.wav");
 		URI uri= file.toURI();
 		URL url;
 		try {
