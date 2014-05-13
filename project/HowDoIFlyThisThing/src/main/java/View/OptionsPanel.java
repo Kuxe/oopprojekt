@@ -108,11 +108,6 @@ public class OptionsPanel extends javax.swing.JPanel{
             		fireTextFieldFocusLost(evt);
             }
         });
-//        fireTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-//            public void keyTyped(java.awt.event.KeyEvent evt) {
-//                fireTextFieldKeyTyped(evt);
-//            }
-//        });
 
         fireTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
@@ -144,11 +139,6 @@ public class OptionsPanel extends javax.swing.JPanel{
             		leftTextFieldFocusLost(evt);
             }
         });
-//        leftTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-//            public void keyTyped(java.awt.event.KeyEvent evt) {
-//                leftTextFieldKeyTyped(evt);
-//            }
-//        });
 
         mainTextField.setText(Keyboard.getKeyName(Keyboard.KEY_W));
         mainTextField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -159,11 +149,6 @@ public class OptionsPanel extends javax.swing.JPanel{
             		mainTextFieldFocusLost(evt);
             }
         });
-//        mainTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-//            public void keyTyped(java.awt.event.KeyEvent evt) {
-//                mainTextFieldKeyTyped(evt);
-//            }
-//        });
 
         rightTextField.setText(Keyboard.getKeyName(Keyboard.KEY_D));
         rightTextField.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -174,11 +159,6 @@ public class OptionsPanel extends javax.swing.JPanel{
                 rightTextFieldFocusLost(evt);
             }
         });
-//        rightTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-//            public void keyTyped(java.awt.event.KeyEvent evt) {
-//                rightTextFieldKeyTyped(evt);
-//            }
-//        });
 
         resetButton.setText("Reset");
         resetButton.addActionListener(new java.awt.event.ActionListener() {
@@ -307,28 +287,14 @@ public class OptionsPanel extends javax.swing.JPanel{
     	rightTextField.setText(rightKey);
     	okButton.grabFocus();
     }
-//    private void fireTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fireTextFieldKeyTyped
-//		this.okButton.grabFocus();
-//		this.fireTextField.setText(this.fireTextField.getText().toUpperCase());
-//    }//GEN-LAST:event_fireTextFieldKeyTyped
 
     private void fireTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fireTextFieldFocusGained
         this.fireTextField.setText("");
     }//GEN-LAST:event_fireTextFieldFocusGained
 
-//    private void leftTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_leftTextFieldKeyTyped
-//		this.okButton.grabFocus();
-//		this.leftTextField.setText(this.leftTextField.getText().toUpperCase());
-//    }//GEN-LAST:event_leftTextFieldKeyTyped
-
     private void leftTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_leftTextFieldFocusGained
         this.leftTextField.setText("");
     }//GEN-LAST:event_leftTextFieldFocusGained
-
-//    private void mainTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainTextFieldKeyTyped
-//        this.okButton.grabFocus();
-//		this.mainTextField.setText(this.mainTextField.getText().toUpperCase());
-//    }//GEN-LAST:event_mainTextFieldKeyTyped
 
     private void mainTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mainTextFieldFocusGained
         this.mainTextField.setText("");
@@ -338,11 +304,6 @@ public class OptionsPanel extends javax.swing.JPanel{
         this.rightTextField.setText("");
     }//GEN-LAST:event_rightTextFieldFocusGained
 
-//    private void rightTextFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rightTextFieldKeyTyped
-//        this.okButton.grabFocus();
-//    }//GEN-LAST:event_rightTextFieldKeyTyped
-
-    
     private void fireTextFieldFocusLost(FocusEvent evt) {
     	if(fireTextField.getText().equals("")){
     		fireTextField.setText(fireKey);
