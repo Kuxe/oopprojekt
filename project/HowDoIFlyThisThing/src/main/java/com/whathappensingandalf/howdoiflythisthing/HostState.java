@@ -1,5 +1,8 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.HashMap;
@@ -15,7 +18,7 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
 
-public class HostState implements ModelNetworkState{
+public class HostState implements ModelNetworkState, PropertyChangeListener{
 
 	private Round round;
 	private HashSet<Connection> lazyAddUsers;
@@ -26,6 +29,7 @@ public class HostState implements ModelNetworkState{
 	private InetSocketAddress myIp;
 	private Set<Connection> connections;
 	private Keybindings keybindings;
+	private PropertyChangeSupport pcs;
 
 	private long timerStart;
 	private long timerStop;
@@ -34,6 +38,10 @@ public class HostState implements ModelNetworkState{
 	public HostState(Keybindings keybindings) {
 		this.keybindings = keybindings;
 		round = new Round();
+		round.addPropertyChangeListener(this);
+		
+		pcs = new PropertyChangeSupport(this);
+		
 		users = new HashMap();
 		server = new Server();
 		connections = new HashSet();
@@ -240,5 +248,18 @@ public class HostState implements ModelNetworkState{
 	@Override
 	public String getModelStatus() {
 		return round.getModelStatus();
+	}
+
+	@Override
+	public void propertyChange(PropertyChangeEvent evt) {
+		if(evt.getPropertyName().equals(Gameworld.Message.EXPLOSION.toString())){
+			System.out.println("*HostExplosion*");
+			server.sendToAllTCP(evt.getOldValue());
+			pcs.firePropertyChange(evt);
+		}
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		pcs.addPropertyChangeListener(listener);
 	}
 }

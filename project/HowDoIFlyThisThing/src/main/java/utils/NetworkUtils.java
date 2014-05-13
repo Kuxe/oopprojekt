@@ -4,6 +4,7 @@ import com.esotericsoftware.kryo.Kryo;
 import com.whathappensingandalf.howdoiflythisthing.CountdownNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.DrawableDataNetworkPacket;
+import com.whathappensingandalf.howdoiflythisthing.ExplosionNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.HoldKeysNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.HudNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.Keybindings;
@@ -39,5 +40,6 @@ public class NetworkUtils {
 		kryo.register(CountdownNetworkPacket.class);
 		kryo.register(ModelStatusNetworkPacket.class);
 		kryo.register(HudNetworkPacket.class);
+		kryo.register(ExplosionNetworkPacket.class);
 	}
 }

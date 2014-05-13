@@ -10,6 +10,6 @@ import controller.LauncherController;
 public class Main {
 	public static void main(String argc[]){
 		
-		LauncherController lc = new LauncherController();
+		new LauncherController();
 	}
 }

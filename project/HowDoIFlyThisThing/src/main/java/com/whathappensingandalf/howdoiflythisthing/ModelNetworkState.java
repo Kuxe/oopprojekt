@@ -1,5 +1,6 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.beans.PropertyChangeListener;
 import java.net.InetSocketAddress;
 import java.util.HashSet;
 import java.util.Map;
@@ -9,7 +10,7 @@ import javax.vecmath.Point2f;
 
 import com.esotericsoftware.kryonet.Connection;
 
-public interface ModelNetworkState {
+public interface ModelNetworkState{
 	
 	public static enum state {
 		HOST,
@@ -29,4 +30,5 @@ public interface ModelNetworkState {
 	public int getShield();
 	public long getCountdown();
 	public String getModelStatus();
+	public void addPropertyChangeListener(PropertyChangeListener listener);
 }

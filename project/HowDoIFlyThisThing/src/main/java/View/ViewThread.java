@@ -24,4 +24,9 @@ public class ViewThread extends Thread implements Runnable{
 	public boolean isReady() {
 		return view.isReady();
 	}
+	
+	public void createExplosion(javax.vecmath.Point2f position){
+		System.out.println("printEXPLOSION");
+		view.createExplosion(position);
+	}
 }

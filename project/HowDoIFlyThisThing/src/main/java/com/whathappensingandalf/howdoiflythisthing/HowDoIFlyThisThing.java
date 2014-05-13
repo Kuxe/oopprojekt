@@ -84,4 +84,8 @@ public class HowDoIFlyThisThing {
 	public int getShield(){
 		return state.getShield();
 	}
+	
+	public ModelNetworkState getState(){
+		return state;
+	}
 }

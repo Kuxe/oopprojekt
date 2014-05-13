@@ -1,5 +1,8 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.HashSet;
@@ -30,6 +33,7 @@ public class ClientState implements ModelNetworkState {
 	private Keybindings keybindins;
 	private long countdown = 0;
 	private String modelStatus = "Not connected to a host; status not avaiable";
+	private PropertyChangeSupport pcs;
 	
 	private long timerStart;
 	private long timerStop;
@@ -43,6 +47,7 @@ public class ClientState implements ModelNetworkState {
 		spaceshipPoint = new Point2f(0, 0);
 		this.keybindins = keybindings;
 		
+		pcs = new PropertyChangeSupport(this);
 
 		client = new Client();
 		drawables = new HashSet();
@@ -76,6 +81,9 @@ public class ClientState implements ModelNetworkState {
 				} else if(message instanceof HudNetworkPacket){
 					hull= ((HudNetworkPacket)message).hull;
 					shield= ((HudNetworkPacket)message).shield;
+				} else if(message instanceof ExplosionNetworkPacket){
+					System.out.println("ClientExplosion");
+					pcs.firePropertyChange(Gameworld.Message.EXPLOSION.toString(),((ExplosionNetworkPacket)message),false);
 				}
 			}
 			
@@ -154,5 +162,10 @@ public class ClientState implements ModelNetworkState {
 	@Override
 	public String getModelStatus() {
 		return modelStatus;
+	}
+
+	@Override
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		pcs.addPropertyChangeListener(listener);
 	}
 }

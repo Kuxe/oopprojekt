@@ -37,6 +37,10 @@ import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
  */
 
 public class Gameworld implements PropertyChangeListener{
+
+	public static enum Message{
+		EXPLOSION
+	}
 	
 	/**
 	 * HashMaps containing all interfaces which objects in gameworld implements
@@ -276,7 +280,8 @@ public class Gameworld implements PropertyChangeListener{
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
 			this.slateObjectForRemoval(evt.getSource());
 			listOfSounds.add(SoundEffects.Sound.SPACESHIP_DIE.toString());
-			pcs.firePropertyChange(evt); //Forward event
+			ExplosionNetworkPacket exnp=new ExplosionNetworkPacket(((Spaceship)evt.getSource()).getPosition());
+			pcs.firePropertyChange(Message.EXPLOSION.toString(),exnp,false); //Forward event
 		} else if(evt.getPropertyName().equals(IPickup.Message.PICKUP_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
 			listOfSounds.add(SoundEffects.Sound.PICKUP_DIE.toString());

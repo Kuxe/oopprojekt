@@ -1,5 +1,6 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import java.beans.PropertyChangeListener;
 import java.net.InetSocketAddress;
 import java.util.Map;
 import java.util.Set;
@@ -75,5 +76,11 @@ public class NoneState implements ModelNetworkState {
 	@Override
 	public String getModelStatus() {
 		return "Something went horribly wrong (Model has NoneState)";
+	}
+
+	@Override
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		// TODO Auto-generated method stub
+		
 	}
 }

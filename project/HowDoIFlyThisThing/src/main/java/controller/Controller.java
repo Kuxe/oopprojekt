@@ -14,11 +14,15 @@ import services.SoundEffects;
 import View.ViewThread;
 
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
+import com.whathappensingandalf.howdoiflythisthing.ExplosionNetworkPacket;
+import com.whathappensingandalf.howdoiflythisthing.Gameworld;
 import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
 import com.whathappensingandalf.howdoiflythisthing.Keybindings;
+
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import org.lwjgl.input.Keyboard;
 
 public class Controller implements KeyListener, PropertyChangeListener{
@@ -38,6 +42,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		keybindings = new Keybindings(leftKey, mainKey, rightKey, fireKey);
 		sharedCTOR();
 		model.host();
+		model.getState().addPropertyChangeListener(this);
 		this.createView(fullscreen);
 	}
 
@@ -46,6 +51,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		sharedCTOR();
 		try {
 			model.join(ip);
+			model.getState().addPropertyChangeListener(this);
 		} catch (IOException ex) {
 			viewThread.StopView();
 			throw new java.net.UnknownHostException();
@@ -164,9 +170,16 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		System.out.println("Controller recieved event: " + event.getPropertyName());
 		if(event.getPropertyName().equals(View.message.VIEW_CLOSE.toString())) {
 			running = false;
-		}		
+		}else if(event.getPropertyName().equals(Gameworld.Message.EXPLOSION.toString())){
+			System.out.println("ControlerExplosion");
+			this.viewThread.createExplosion(((ExplosionNetworkPacket)event.getOldValue()).position);
+		}
 	}
 	public Set<String> getListOfSounds(){
 		return model.getListOfSounds();
+	}
+	
+	public void createExplosion(javax.vecmath.Point2f position){
+		viewThread.createExplosion(position);
 	}
 }

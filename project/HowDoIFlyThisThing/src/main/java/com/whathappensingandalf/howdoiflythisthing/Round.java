@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,6 +33,8 @@ public class Round implements PropertyChangeListener{
 	private int usersAlive = 0;
 	private boolean newRoundCommencing = false;
 	
+	private PropertyChangeSupport pcs;
+	
 	//For countdown
 	private long countdownStart = 0;
 	private long countdownLimit = 5000000000L; //5000000000ns counter, 5seconds
@@ -40,6 +43,8 @@ public class Round implements PropertyChangeListener{
 	public Round() {
 		world = new Gameworld();
 		world.addPropertyChangeListener(this);
+		
+		pcs = new PropertyChangeSupport(this);
 		
 		users = new HashSet();
 		usersRequestingShips = new HashSet();
@@ -201,6 +206,10 @@ public class Round implements PropertyChangeListener{
 		}
 		return state.getStatus();
 	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		pcs.addPropertyChangeListener(listener);
+	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
@@ -226,6 +235,10 @@ public class Round implements PropertyChangeListener{
 			if (state.getState().equals(Roundstate.state.INACTIVE)) {
 				((User)evt.getSource()).requestSpaceship();
 			}
+		}
+		else if(evt.getPropertyName().equals(Gameworld.Message.EXPLOSION.toString())){
+			System.out.println("**RoundExlosion**");
+			pcs.firePropertyChange(evt);
 		}
 	}
 }
