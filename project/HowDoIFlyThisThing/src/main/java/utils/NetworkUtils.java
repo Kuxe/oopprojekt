@@ -20,8 +20,6 @@ import com.whathappensingandalf.howdoiflythisthing.SoundNetworkPacket;
  */
 public class NetworkUtils {
 	
-	private static boolean firstTime = true;
-	
 	/**
 	 * Registers classes in an uniform order for param <i>kryo</i>
 	 * This encapsulates registering of classes to a single place
@@ -30,21 +28,18 @@ public class NetworkUtils {
 	 * @param kryo
 	 */
 	public static void registerClasses(Kryo kryo) {
-		if(firstTime) {
-			kryo.register(HoldKeysNetworkPacket.class);
-			kryo.register(DrawableDataNetworkPacket.class);
-			kryo.register(DrawableData.class);
-			kryo.register(java.util.HashSet.class);
-			kryo.register(javax.vecmath.Vector2f.class);
-			kryo.register(javax.vecmath.Point2f.class);
-			kryo.register(SoundNetworkPacket.class);
-			kryo.register(KeybindingsNetworkPacket.class);
-			kryo.register(Keybindings.class);
-			kryo.register(CountdownNetworkPacket.class);
-			kryo.register(ModelStatusNetworkPacket.class);
-			kryo.register(HudNetworkPacket.class);
-			kryo.register(ExplosionNetworkPacket.class);
-			firstTime = false;
-		}
+		kryo.register(HoldKeysNetworkPacket.class);
+		kryo.register(DrawableDataNetworkPacket.class);
+		kryo.register(DrawableData.class);
+		kryo.register(java.util.HashSet.class);
+		kryo.register(javax.vecmath.Vector2f.class);
+		kryo.register(javax.vecmath.Point2f.class);
+		kryo.register(SoundNetworkPacket.class);
+		kryo.register(KeybindingsNetworkPacket.class);
+		kryo.register(Keybindings.class);
+		kryo.register(CountdownNetworkPacket.class);
+		kryo.register(ModelStatusNetworkPacket.class);
+		kryo.register(HudNetworkPacket.class);
+		kryo.register(ExplosionNetworkPacket.class);
 	}
 }
