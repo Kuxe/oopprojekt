@@ -87,9 +87,7 @@ public class Gameworld implements PropertyChangeListener{
 	
 	private void generateWorld(){
 		int numberOfAsteroids = (int)(Math.random()*20)+1;
-					System.out.println(numberOfAsteroids);
 		for(int i = 0; i<numberOfAsteroids; i++){
-					System.out.println(i);
 			Point2f position = new Point2f((float)(Math.random())*this.worldBorder.getWorldWidth(),
 					(float)(Math.random())*this.worldBorder.getWorldHeight());
 			Asteroid ast = AsteroidFactory.create(position);
@@ -173,7 +171,6 @@ public class Gameworld implements PropertyChangeListener{
 		while(!isValidSpawn(spaceship)){
 			spaceship.setPosition(new Point2f ((float)(Math.random())*this.worldBorder.getWorldWidth(),
 					(float)(Math.random())*this.worldBorder.getWorldHeight()));
-			System.out.println("INVALID POINT!!!!!");
 		}
 		
 		//Add spaceship to hashmap moveable, 
