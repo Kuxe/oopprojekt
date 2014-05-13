@@ -27,6 +27,6 @@ public class AsteroidFactory {
 	 * @return an instance of asteroid with default width and height 150x150
 	 */
 	public static Asteroid create(Point2f position) {
-		return new Asteroid(new Point2f(position), 150, 150);
+		return new Asteroid(new Point2f(position), 100, 100);
 	}
 }

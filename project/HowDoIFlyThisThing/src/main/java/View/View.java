@@ -64,8 +64,10 @@ public class View extends BasicGame implements ApplicationListener{
 	private final Object lock;
 	private boolean isReady = false;
 	
-	private int nbrOfHull;
-	private int nbrOfShield;
+	private int hull;
+	private int shield;
+	
+	private TrueTypeFont font;
 	private String countdownText = "Loading model...";
 	private String modelStatus = "";
 
@@ -78,7 +80,7 @@ public class View extends BasicGame implements ApplicationListener{
 		super(title);
 		this.lock = lock;
 		renderObjects = new HashSet<DrawableData>();
-		try{
+		try{			
 			container=new AppGameContainer(this);
 			container.setDisplayMode(windowWidth, windowHeight, false);
 			container.setTargetFrameRate(60);
@@ -91,7 +93,7 @@ public class View extends BasicGame implements ApplicationListener{
 		//Camera default to coordiante (0, 0)
 		camera = new Point2f(0, 0);
 		
-		pcs = new PropertyChangeSupport(this);		
+		pcs = new PropertyChangeSupport(this);
 	}
 	
 	public boolean isReady() {
@@ -110,6 +112,7 @@ public class View extends BasicGame implements ApplicationListener{
 	public boolean closeRequested() {
 		System.out.println("Window sending VIEW_CLOSE event");
 		pcs.firePropertyChange(message.VIEW_CLOSE.name(), false, true);
+		stop();
 		return true;
 	}
 	
@@ -123,6 +126,8 @@ public class View extends BasicGame implements ApplicationListener{
 		}
 	}
 	public void stop(){
+		container.getGraphics().clear();
+		container.getGraphics().destroy();
 		try {
 			ammoPickup.destroy();
 			spaceship.destroy();
@@ -176,12 +181,14 @@ public class View extends BasicGame implements ApplicationListener{
 	private void drawRoundCountdown(GameContainer arg0, Graphics g)
 	{
 		if(!countdownText.equals("-1")) {
-			g.drawString(countdownText, (windowWidth - g.getFont().getWidth(countdownText))/2, 40 + g.getFont().getHeight(modelStatus));
+			g.setFont(font);
+			g.drawString(countdownText, (windowWidth - font.getWidth(countdownText))/2, 40 + font.getHeight(modelStatus));
 		}
 	}
 	
 	private void drawModelStatus(GameContainer arg0, Graphics g) {
-		g.drawString(modelStatus, (windowWidth - g.getFont().getWidth(modelStatus))/2, 30);
+		g.setFont(font);
+		g.drawString(modelStatus, (windowWidth - font.getWidth(modelStatus))/2, 30);
 	}
 	
 	/**
@@ -199,16 +206,16 @@ public class View extends BasicGame implements ApplicationListener{
 		
 		int xPos= 10;
 		int yPos= 10;
-		for(int i= 0; i< nbrOfHull; i++){
+		for(int i= 0; i< hull; i++){
 			g.drawImage(hullImage, xPos, yPos);
 			xPos= xPos + hullImage.getWidth();
 		}
 	}
 	public void drawShield(Graphics g){
 		
-		int xPos= hullImage.getWidth() * nbrOfHull;
+		int xPos= hullImage.getWidth() * hull;
 		int yPos= 10;
-		for(int i= 0; i< nbrOfShield; i++){
+		for(int i= 0; i< shield; i++){
 			g.drawImage(shieldImage, xPos, yPos);
 			xPos= xPos + shieldImage.getWidth();
 		}
@@ -296,13 +303,15 @@ public class View extends BasicGame implements ApplicationListener{
 			planet_1 = new SpriteSheet("resources/planet_1.png", 100, 100, colorFilter);
 			
 			hullImage= new SpriteSheet("resources/hull.png", 15, 20, colorFilter);
-			shieldImage= new SpriteSheet("resources/shield.png", 15, 20, colorFilter);
-			System.out.println(hullImage);
-			System.out.println(shott);
-			
+			shieldImage= new SpriteSheet("resources/shield.png", 15, 20, colorFilter);			
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
+		
+		font = new TrueTypeFont(new Font("Monospaced", Font.PLAIN, 18), false);
+		container.getGraphics().setFont(font);
+		container.setDefaultFont(font);
+		
 		synchronized(lock) {
 			isReady = true;
 			lock.notifyAll();
@@ -338,12 +347,12 @@ public class View extends BasicGame implements ApplicationListener{
 		this.camera = camera;
 	}
 	
-	public void setNbrOfHull(int nbrOfHull){
-		this.nbrOfHull= nbrOfHull;
+	public void setHull(int hull){
+		this.hull= hull;
 	}
 	
-	public void setNbrOfShield(int nbrOfShield){
-		this.nbrOfShield= nbrOfShield;
+	public void setShield(int shield){
+		this.shield= shield;
 	}
 	
 	public void setCountdown(long countdown){

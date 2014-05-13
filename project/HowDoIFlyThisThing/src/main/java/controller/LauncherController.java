@@ -68,6 +68,7 @@ public class LauncherController implements PropertyChangeListener{
 		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDOFTT_OPTIONS_RESET.toString())){
 			this.resetSettings();
 		}
+		
 	}
 	public void saveSettings(){
 		fireKey = Keyboard.getKeyIndex(launcher.getFireKey().toUpperCase());
