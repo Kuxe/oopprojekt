@@ -74,6 +74,11 @@ public class Round implements PropertyChangeListener{
 					lastUserOnline.requestSpaceship();
 				}
 			}
+			
+			//If user requested a spaceship but disconnects before recieving it, annul request
+			if(usersRequestingShips.contains(user)) {
+				usersRequestingShips.remove(user));
+			}
 		}
 		
 		//If a user disconnected and there's currently 2 or more users connected and only one alive, start a new round
