@@ -1,5 +1,6 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
+import com.whathappensingandalf.howdoiflythisthing.factorys.AsteroidFactory;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -73,12 +74,24 @@ public class Gameworld implements PropertyChangeListener{
 		chargables =					new HashMap();
 		
 		worldBorder=new WorldBorder(540,1080);
+		generateWorld();
 		timestep = new Timestep();
 		pcs = new PropertyChangeSupport(this);
 		pickupSpawnTimer = new Timer(10000);
 		shieldTimer=new Timer(10000);
 	}
 	
+	private void generateWorld(){
+		int numberOfAsteroids = (int)(Math.random()*7)+1;
+					System.out.println(numberOfAsteroids);
+		for(int i = 0; i<numberOfAsteroids; i++){
+					System.out.println(i);
+			Point2f position = new Point2f((float)(Math.random())*this.worldBorder.getWorldWidth(),
+					(float)(Math.random())*this.worldBorder.getWorldHeight());
+			Asteroid ast = AsteroidFactory.create(position);
+			this.addAsteroid(ast);
+		}
+	}
 	
 	public Set<DrawableData> getDrawableData() {
 		HashSet<DrawableData> set = new HashSet();
