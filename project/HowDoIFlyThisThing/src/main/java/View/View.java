@@ -67,6 +67,8 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private int hull;
 	private int shield;
+	
+	private TrueTypeFont font;
 	private String countdownText = "Loading model...";
 	private String modelStatus = "";
 
@@ -92,7 +94,7 @@ public class View extends BasicGame implements ApplicationListener{
 		//Camera default to coordiante (0, 0)
 		camera = new Point2f(0, 0);
 		
-		pcs = new PropertyChangeSupport(this);		
+		pcs = new PropertyChangeSupport(this);
 	}
 	
 	public boolean isReady() {
@@ -125,6 +127,8 @@ public class View extends BasicGame implements ApplicationListener{
 		}
 	}
 	public void stop(){
+		container.getGraphics().clear();
+		container.getGraphics().destroy();
 		try {
 			ammoPickup.destroy();
 			spaceship.destroy();
@@ -178,12 +182,14 @@ public class View extends BasicGame implements ApplicationListener{
 	private void drawRoundCountdown(GameContainer arg0, Graphics g)
 	{
 		if(!countdownText.equals("-1")) {
-			g.drawString(countdownText, (windowWidth - g.getFont().getWidth(countdownText))/2, 40 + g.getFont().getHeight(modelStatus));
+			g.setFont(font);
+			g.drawString(countdownText, (windowWidth - font.getWidth(countdownText))/2, 40 + font.getHeight(modelStatus));
 		}
 	}
 	
 	private void drawModelStatus(GameContainer arg0, Graphics g) {
-		g.drawString(modelStatus, (windowWidth - g.getFont().getWidth(modelStatus))/2, 30);
+		g.setFont(font);
+		g.drawString(modelStatus, (windowWidth - font.getWidth(modelStatus))/2, 30);
 	}
 	
 	/**
@@ -308,11 +314,15 @@ public class View extends BasicGame implements ApplicationListener{
 			planet_1 = new SpriteSheet("resources/planet_1.png", 100, 100, colorFilter);
 			
 			hullImage= new SpriteSheet("resources/hull.png", 15, 20, colorFilter);
-			shieldImage= new SpriteSheet("resources/shield.png", 15, 20, colorFilter);
-			
+			shieldImage= new SpriteSheet("resources/shield.png", 15, 20, colorFilter);			
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
+		
+		font = new TrueTypeFont(new Font("Monospaced", Font.PLAIN, 18), false);
+		container.getGraphics().setFont(font);
+		container.setDefaultFont(font);
+		
 		synchronized(lock) {
 			isReady = true;
 			lock.notifyAll();
