@@ -87,6 +87,9 @@ public class OptionsPanel extends javax.swing.JPanel{
             }
         });
         fireTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                fireTextFieldKeyPressed(evt);
+            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 fireTextFieldKeyTyped(evt);
             }
@@ -285,6 +288,10 @@ public class OptionsPanel extends javax.swing.JPanel{
     private void leftTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_leftTextFieldFocusLost
         this.leftTextField.setText(this.leftTextField.getText().toUpperCase());
     }//GEN-LAST:event_leftTextFieldFocusLost
+
+    private void fireTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fireTextFieldKeyPressed
+        System.out.println(evt.getKeyCode());
+    }//GEN-LAST:event_fireTextFieldKeyPressed
 
 	public int getVolume(){
 		return this.soundSlider.getValue();
