@@ -75,8 +75,6 @@ public class View extends BasicGame implements ApplicationListener{
 		VIEW_CLOSE
 	}
 	
-	static boolean firstTime = true;
-	
 	public View(String title, Object lock, boolean fullscreen){
 		super(title);
 		this.lock = lock;
@@ -126,6 +124,25 @@ public class View extends BasicGame implements ApplicationListener{
 		}
 	}
 	public void stop(){
+		try {
+			ammoPickup.destroy();
+			spaceship.destroy();
+			shott.destroy();
+			missile.destroy();
+			asteroid.destroy();
+			healthPack.destroy();
+			ammoPickup.destroy();
+			missingImage.destroy();
+			background_1.destroy();
+			background_2.destroy();
+			background_3.destroy();
+			planet_1.destroy();
+			hullImage.destroy();
+			shieldImage.destroy();
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		container.exit();
 	}
 	
