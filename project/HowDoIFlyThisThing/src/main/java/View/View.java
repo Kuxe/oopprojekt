@@ -143,6 +143,11 @@ public class View extends BasicGame implements ApplicationListener{
 			planet_1.destroy();
 			hullImage.destroy();
 			shieldImage.destroy();
+			
+			for(int i = 0 ; i < explosion.getFrameCount(); i++) {
+				explosion.getImage(i).destroy();
+			}
+			
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
