@@ -2,6 +2,7 @@ package View;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.KeyEvent;
+import java.beans.PropertyChangeSupport;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -365,6 +366,10 @@ public class OptionsPanel extends javax.swing.JPanel{
     		rightTextField.setText(rightKey);
     	}
     }
+
+    private void fireTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fireTextFieldKeyPressed
+        System.out.println(evt.getKeyCode());
+    }//GEN-LAST:event_fireTextFieldKeyPressed
 
 	public int getVolume(){
 		return this.soundSlider.getValue();

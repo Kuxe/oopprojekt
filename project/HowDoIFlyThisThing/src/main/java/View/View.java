@@ -4,8 +4,10 @@ package View;
 import java.awt.Font;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,6 +15,7 @@ import java.util.logging.Logger;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.BasicGame;
 import org.newdawn.slick.Color;
@@ -32,7 +35,12 @@ public class View extends BasicGame implements ApplicationListener{
 	private AppGameContainer container;
 	
 	private Set<DrawableData> renderObjects;
-	private SpriteSheet spaceship,shott,missile,asteroid,healthPack,ammoPickup, missingImage;
+
+	private SpriteSheet spaceship,shott,missile,asteroid,healthPack,ammoPickup,missingImage;
+	private Animation explosion;
+	private List<ExplosionAnimation> animations,removeAnimations;
+	private List<DrawableData> removeDrawableData;
+
 
 	private SpriteSheet background_1,
 						background_2,
@@ -107,14 +115,34 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	
 	public void start(){
+		
 		try {
-			container.start();
+				container.start();
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 	public void stop(){
+		try {
+			ammoPickup.destroy();
+			spaceship.destroy();
+			shott.destroy();
+			missile.destroy();
+			asteroid.destroy();
+			healthPack.destroy();
+			ammoPickup.destroy();
+			missingImage.destroy();
+			background_1.destroy();
+			background_2.destroy();
+			background_3.destroy();
+			planet_1.destroy();
+			hullImage.destroy();
+			shieldImage.destroy();
+		} catch (SlickException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		container.exit();
 	}
 	
@@ -190,8 +218,27 @@ public class View extends BasicGame implements ApplicationListener{
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 		drawScrollingImage(arg0, g, background_1, 0.05f);
 		drawScrollingImage(arg0, g, background_2, 0.15f);
-		drawModelStatus(arg0, g);
-		drawRoundCountdown(arg0, g);
+
+//		System.out.println(animations.get(0).getFrame());
+		for(ExplosionAnimation animComp: animations){
+			if(animComp.getAnimation().isStopped()){
+//				animComp.getAnimation().stop();
+				System.out.println("animation stoped: " + animComp);
+				removeAnimations.add(animComp);
+			}
+			animComp.getAnimation().draw(animComp.getPosition().x - 160 + windowWidth/2,animComp.getPosition().y -120 + windowHeight/2);
+		}
+		
+//		for(ExplosionAnimation animRm: removeAnimations){
+//			System.out.println("remove: " + animRm);
+//			animations.remove(animRm);
+//		}
+		removeAnimations.clear();
+		
+		for(DrawableData rm:removeDrawableData){
+			renderObjects.remove(rm);
+		}
+		removeDrawableData.clear();
 
 		for(DrawableData comp: renderObjects){
 			
@@ -209,6 +256,11 @@ public class View extends BasicGame implements ApplicationListener{
 				tmpImg=healthPack.copy();
 			}else if(comp.getType().equals("WEAPON_PICKUP")){
 				tmpImg=this.ammoPickup.copy();
+			}else if(comp.getType().equals("EXPLOSION")){
+				System.out.println("animation added(View)");
+				this.drawExplosion(comp.getPosition());
+//				this.removeDrawableData.add(comp);
+				tmpImg=missingImage.copy();
 			}else{
 				tmpImg=missingImage.copy();
 			}
@@ -220,11 +272,23 @@ public class View extends BasicGame implements ApplicationListener{
 		drawBorder(arg0, g);
 		drawHull(g);
 		drawShield(g);
+		
+		drawModelStatus(arg0, g);
+		drawRoundCountdown(arg0, g);
+	}
+	
+	private void drawExplosion(Point2f position){
+		Animation tempExp=explosion.copy();
+//		tempExp.stopAt(19);
+		animations.add(new ExplosionAnimation(position,tempExp));
 	}
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		colorFilter=new Color(255,0,255);
+		animations = new ArrayList<ExplosionAnimation>();
+		removeAnimations = new ArrayList<ExplosionAnimation>();
+		removeDrawableData = new ArrayList<DrawableData>();
 		try {
 			spaceship=new SpriteSheet("resources/Spaceship.png",50,50, colorFilter);
 			shott=new SpriteSheet("resources/Shott.png",3,3, colorFilter);
@@ -236,6 +300,9 @@ public class View extends BasicGame implements ApplicationListener{
 			background_1 = new SpriteSheet("resources/scrollingbackground_1st_layer.png", 1280, 960, colorFilter);
 			background_2 = new SpriteSheet("resources/scrollingbackground_2nd_layer.png", 1280, 960, colorFilter);
 			background_3 = new SpriteSheet("resources/scrollingbackground_3rd_layer.png", 1280, 960, colorFilter);
+			
+			explosion =new Animation(new SpriteSheet(new Image("resources/explosionanimation.png"),320,240),100);
+//			explosion.setLooping(false);
 			
 			planet_1 = new SpriteSheet("resources/planet_1.png", 100, 100, colorFilter);
 			
@@ -254,7 +321,7 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 
 	@Override
-	public void update(GameContainer arg0, int arg1) throws SlickException {		
+	public void update(GameContainer arg0, int arg1) throws SlickException {
 	}
 	
 	private float calculateRotation(Vector2f vector){

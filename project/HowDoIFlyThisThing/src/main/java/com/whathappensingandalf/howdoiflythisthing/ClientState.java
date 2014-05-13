@@ -59,6 +59,8 @@ public class ClientState implements ModelNetworkState {
 
 
 		client.addListener(new Listener() {
+			
+			@Override
 			public void received(Connection connection, Object message) {
 				//System.out.println("Recieved packet:" + message.toString());
 				if(message instanceof DrawableDataNetworkPacket) {
@@ -75,6 +77,11 @@ public class ClientState implements ModelNetworkState {
 					hull= ((HudNetworkPacket)message).hull;
 					shield= ((HudNetworkPacket)message).shield;
 				}
+			}
+			
+			@Override
+			public void disconnected(Connection connection) {
+				System.out.println("lost connection to host!");
 			}
 		});
 

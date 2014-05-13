@@ -46,6 +46,7 @@ public class Gameworld implements PropertyChangeListener{
 	private Map<Object, ICollidable> collidables;
 	private Map<Object, IDrawable> drawables;
 	private Map<Object, IRechargable> chargables;
+	private Map<Object, IDrawable> animationes;
 	
 	/**
 	 * HashMap which is unlocked by any gameworld object, ie spaceship.
@@ -67,6 +68,7 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap = 					new HashMap();
 		listOfObjectsToBeRemoved = 		new HashSet();
 		drawables =						new HashMap();
+		animationes =					new HashMap();
 		listOfSounds = 					new HashSet();
 		chargables =					new HashMap();
 		
@@ -109,7 +111,7 @@ public class Gameworld implements PropertyChangeListener{
 		//That is, each hashMap in the list is one of the hashMaps in which a reference to the key object is stored
 		//These hashMaps shall remove this reference upon object destruction, which is done bellow
 		for(Map<Object, ? extends IListable> map : removalMap.get(key)) {
-			map.remove(key);
+				map.remove(key);
 		}
 		//Also remove the list containing the hashMaps from removalHashMap
 		removalMap.remove(key);
@@ -125,6 +127,7 @@ public class Gameworld implements PropertyChangeListener{
 		
 		//Objects are now removed and only left removal is form the list iteself
 		listOfObjectsToBeRemoved.clear();
+		this.animationes.clear();
 	}
 
 	/**
@@ -271,7 +274,7 @@ public class Gameworld implements PropertyChangeListener{
 		} else if(evt.getPropertyName().equals(IProjectile.Message.PROJECTILE_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
-			listOfObjectsToBeRemoved.add(evt.getSource());
+			this.slateObjectForRemoval(evt.getSource());
 			listOfSounds.add(SoundEffects.Sound.SPACESHIP_DIE.toString());
 			pcs.firePropertyChange(evt); //Forward event
 		} else if(evt.getPropertyName().equals(IPickup.Message.PICKUP_DIE.toString())) {

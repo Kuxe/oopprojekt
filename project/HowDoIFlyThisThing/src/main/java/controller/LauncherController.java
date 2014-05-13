@@ -39,18 +39,17 @@ public class LauncherController implements PropertyChangeListener{
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_HOST.toString())){
 			controller = new Controller(leftKey, mainKey, rightKey, fireKey, fullscreen);
-			
-			launcher.dispose();
+			launcher.setVisible(false);
 			controller.start();
 			controller.cleanup();
-			System.exit(0);
+			launcher.setVisible(true);
 		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_JOIN.toString())){
 			try{
 			controller = new Controller(launcher.getIP(), leftKey, mainKey, rightKey, fireKey, fullscreen);
-			launcher.dispose();
+			launcher.setVisible(false);
 			controller.start();
 			controller.cleanup();
-			System.exit(0);
+			launcher.setVisible(true);
 			}catch(java.net.UnknownHostException h){
 				//Can't be interpeted as a host.
 				System.out.println("HOST ERROR");
