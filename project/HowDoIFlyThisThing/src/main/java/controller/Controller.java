@@ -3,7 +3,6 @@ package controller;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 import org.newdawn.slick.Input;
@@ -20,8 +19,6 @@ import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
 import com.whathappensingandalf.howdoiflythisthing.Keybindings;
 
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.lwjgl.input.Keyboard;
 
