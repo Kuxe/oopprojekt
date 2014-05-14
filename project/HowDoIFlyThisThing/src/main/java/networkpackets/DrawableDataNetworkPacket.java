@@ -6,9 +6,9 @@ import java.util.Set;
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 
 public class DrawableDataNetworkPacket implements NetworkPacket{
-	public Set<DrawableData> drawables;
-	public DrawableDataNetworkPacket(Set<DrawableData> drawables) {
-		this.drawables = drawables;
+	public DrawableData drawable;
+	public DrawableDataNetworkPacket(DrawableData drawable) {
+		this.drawable = drawable;
 	}
 	public DrawableDataNetworkPacket() {
 		

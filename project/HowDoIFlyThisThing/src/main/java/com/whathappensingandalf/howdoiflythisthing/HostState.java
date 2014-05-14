@@ -207,7 +207,9 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 		
 		if(timerStop - timerStart > timerInterval) {
 			//Send images to all clients
-			server.sendToAllTCP(new DrawableDataNetworkPacket(round.getDrawableData()));
+			for(DrawableData drawable : round.getDrawableData()) {
+				server.sendToAllTCP(new DrawableDataNetworkPacket(drawable));
+			}
 
 			//Send round countdown to all clients
 			server.sendToAllTCP(new CountdownNetworkPacket(round.getCountdown()));
