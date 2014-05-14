@@ -65,7 +65,7 @@ public class SoundEffects{
 		}
 	}
 	public void createPickupDieSound(){
-		File file= new File("sounds/Dive.wav");
+		File file= new File("sounds/Water.wav");
 		URI uri= file.toURI();
 		URL url;
 		try{
