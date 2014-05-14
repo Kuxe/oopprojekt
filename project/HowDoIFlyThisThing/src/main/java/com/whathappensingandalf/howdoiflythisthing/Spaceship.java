@@ -53,7 +53,8 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	
 	public static enum Message{
 		SPACESHIP_DIE,
-		SPACESHIP_FIRE
+		SPACESHIP_FIRE,
+		SPACESHIP_HIT
 	}
 	
 	/**
@@ -263,6 +264,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 	public void visit(IProjectile projectile) {
 		this.hurt(projectile.getDamage());
+		pcs.firePropertyChange(Message.SPACESHIP_HIT.toString(), 0, 1);
 	}
 	
 	public void visit(Asteroid asteroid) {
