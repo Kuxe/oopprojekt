@@ -38,7 +38,7 @@ public class View extends BasicGame implements ApplicationListener{
 
 	private SpriteSheet spaceship,shott,missile,asteroid,healthPack,ammoPickup,missingImage;
 	private Animation explosion;
-	private List<ExplosionAnimation> animations,removeAnimations;
+	private List<AnimationWrapper> animations,removeAnimations;
 
 
 	private SpriteSheet background_1,
@@ -230,14 +230,14 @@ public class View extends BasicGame implements ApplicationListener{
 		drawScrollingImage(arg0, g, background_1, 0.05f);
 		drawScrollingImage(arg0, g, background_2, 0.15f);
 
-		for(ExplosionAnimation animComp: animations){
+		for(AnimationWrapper animComp: animations){
 			if(animComp.getAnimation().isStopped()){
 				removeAnimations.add(animComp);
 			}
 			animComp.getAnimation().draw(animComp.getPosition().x - 160 + windowWidth/2 - camera.x ,animComp.getPosition().y -120 + windowHeight/2 - camera.y);
 		}
 		
-		for(ExplosionAnimation animRm: removeAnimations){
+		for(AnimationWrapper animRm: removeAnimations){
 			System.out.println("remove: " + animRm);
 			animations.remove(animRm);
 		}
@@ -278,14 +278,14 @@ public class View extends BasicGame implements ApplicationListener{
 	private void drawExplosion(Point2f position){
 		Animation tempExp=explosion.copy();
 		tempExp.stopAt(19);
-		animations.add(new ExplosionAnimation(new Point2f(position.x,position.y),tempExp));
+		animations.add(new AnimationWrapper(new Point2f(position.x,position.y),tempExp));
 	}
 
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		colorFilter=new Color(255,0,255);
-		animations = new ArrayList<ExplosionAnimation>();
-		removeAnimations = new ArrayList<ExplosionAnimation>();
+		animations = new ArrayList<AnimationWrapper>();
+		removeAnimations = new ArrayList<AnimationWrapper>();
 		try {
 			spaceship=new SpriteSheet("resources/Spaceship.png",50,50, colorFilter);
 			shott=new SpriteSheet("resources/Shott.png",3,3, colorFilter);
