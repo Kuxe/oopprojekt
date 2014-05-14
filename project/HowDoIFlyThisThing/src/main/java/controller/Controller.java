@@ -5,6 +5,9 @@ import java.beans.PropertyChangeListener;
 import java.util.HashSet;
 import java.util.Set;
 
+import networkpackets.ExplosionNetworkPacket;
+import networkpackets.SparkleNetworkPacket;
+
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 
@@ -13,11 +16,9 @@ import services.SoundEffects;
 import View.ViewThread;
 
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
-import com.whathappensingandalf.howdoiflythisthing.ExplosionNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.Gameworld;
 import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
 import com.whathappensingandalf.howdoiflythisthing.Keybindings;
-import com.whathappensingandalf.howdoiflythisthing.SparkleNetworkPacket;
 
 import java.io.IOException;
 

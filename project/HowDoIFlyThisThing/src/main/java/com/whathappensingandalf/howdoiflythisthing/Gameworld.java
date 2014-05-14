@@ -1,6 +1,7 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import com.whathappensingandalf.howdoiflythisthing.factorys.AsteroidFactory;
+
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
@@ -14,6 +15,8 @@ import java.util.Set;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
+import networkpackets.ExplosionNetworkPacket;
+import networkpackets.SparkleNetworkPacket;
 import services.SoundEffects;
 import utils.ITimer;
 import utils.Timer;

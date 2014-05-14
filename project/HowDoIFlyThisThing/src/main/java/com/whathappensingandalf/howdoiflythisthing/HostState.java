@@ -11,6 +11,17 @@ import java.util.Set;
 
 import javax.vecmath.Point2f;
 
+import networkpackets.CountdownNetworkPacket;
+import networkpackets.DrawableDataNetworkPacket;
+import networkpackets.HoldKeysNetworkPacket;
+import networkpackets.HudNetworkPacket;
+import networkpackets.KeybindingsNetworkPacket;
+import networkpackets.ModelStatusNetworkPacket;
+import networkpackets.NetworkPacket;
+import networkpackets.SoundNetworkPacket;
+import networkpackets.SpaceshipPointNetworkPacket;
+import networkpackets.WorldBorderNetworkPacket;
+import networkpackets.NetworkPacket.Type;
 import utils.NetworkUtils;
 
 import com.esotericsoftware.kryonet.Connection;
@@ -84,13 +95,29 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 
 			//Called whenever a client sends a packet
 			public void received(Connection connection, Object object) {
-				//System.out.println("Recieved packet from " + connection.getRemoteAddressTCP() + ": " + object.toString());
-				//If someone sends his input, execute it.
-				if(object instanceof HoldKeysNetworkPacket) {
-					//System.out.println("Recieved HoldKeysNetworkPacket from: " + connection.getRemoteAddressTCP());
-					users.get(connection.getID()).setListOfHoldKeys(((HoldKeysNetworkPacket) object).listOfHoldKeys);
-				}else if(object instanceof KeybindingsNetworkPacket){
-					users.get(connection.getID()).setKeybindings(((KeybindingsNetworkPacket)object).keybindings);
+				//If it is a valid network packet...
+				if(object instanceof NetworkPacket) {
+					NetworkPacket tempObject = (NetworkPacket)object;
+					switch(tempObject.getType()) {
+					case COUNTDOWN:
+						break;
+					case DRAWABLE_DATA:
+						break;
+					case HOLD_KEYS:
+						users.get(connection.getID()).setListOfHoldKeys(((HoldKeysNetworkPacket) object).listOfHoldKeys);
+						break;
+					case HUD:
+						break;
+					case KEYBINDINGS:
+						users.get(connection.getID()).setKeybindings(((KeybindingsNetworkPacket)object).keybindings);
+						break;
+					case MODEL_STATUS:
+						break;
+					case SOUND:
+						break;
+					case SPARKLE:
+						break;
+					}
 				}
 			}
 
@@ -194,7 +221,7 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 			
 			//Send each spaceship point associated with each connection to the connected client
 			for(Connection connection : connections) {
-				connection.sendTCP(users.get(connection.getID()).getSpaceshipPoint());
+				connection.sendTCP(new SpaceshipPointNetworkPacket(users.get(connection.getID()).getSpaceshipPoint()));
 				
 				connection.sendTCP(new HudNetworkPacket(users.get(connection.getID()).getHull(), users.get(connection.getID()).getShield()));
 			}

@@ -1,8 +1,8 @@
-package com.whathappensingandalf.howdoiflythisthing;
+package networkpackets;
 
 import java.util.Set;
 
-public class SoundNetworkPacket {
+public class SoundNetworkPacket implements NetworkPacket {
 	
 	public Set<String> sounds;
 	
@@ -12,5 +12,10 @@ public class SoundNetworkPacket {
 	
 	public SoundNetworkPacket() {
 		//required for kryonet
+	}
+
+	@Override
+	public Type getType() {
+		return NetworkPacket.Type.SOUND;
 	}
 }

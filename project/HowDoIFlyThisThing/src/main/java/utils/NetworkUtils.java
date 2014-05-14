@@ -1,19 +1,21 @@
 package utils;
 
+import networkpackets.CountdownNetworkPacket;
+import networkpackets.DrawableDataNetworkPacket;
+import networkpackets.ExplosionNetworkPacket;
+import networkpackets.HoldKeysNetworkPacket;
+import networkpackets.HudNetworkPacket;
+import networkpackets.KeybindingsNetworkPacket;
+import networkpackets.ModelStatusNetworkPacket;
+import networkpackets.SoundNetworkPacket;
+import networkpackets.SpaceshipPointNetworkPacket;
+import networkpackets.SparkleNetworkPacket;
+import networkpackets.WorldBorderNetworkPacket;
+
 import com.esotericsoftware.kryo.Kryo;
-import com.whathappensingandalf.howdoiflythisthing.CountdownNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
-import com.whathappensingandalf.howdoiflythisthing.DrawableDataNetworkPacket;
-import com.whathappensingandalf.howdoiflythisthing.ExplosionNetworkPacket;
-import com.whathappensingandalf.howdoiflythisthing.HoldKeysNetworkPacket;
-import com.whathappensingandalf.howdoiflythisthing.HudNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.Keybindings;
-import com.whathappensingandalf.howdoiflythisthing.KeybindingsNetworkPacket;
-import com.whathappensingandalf.howdoiflythisthing.ModelStatusNetworkPacket;
-import com.whathappensingandalf.howdoiflythisthing.SoundNetworkPacket;
-import com.whathappensingandalf.howdoiflythisthing.SparkleNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.WorldBorder;
-import com.whathappensingandalf.howdoiflythisthing.WorldBorderNetworkPacket;
 
 /**
  * 
@@ -46,5 +48,6 @@ public class NetworkUtils {
 		kryo.register(ExplosionNetworkPacket.class);
 		kryo.register(SparkleNetworkPacket.class);
 		kryo.register(WorldBorderNetworkPacket.class);
+		kryo.register(SpaceshipPointNetworkPacket.class);
 	}
 }

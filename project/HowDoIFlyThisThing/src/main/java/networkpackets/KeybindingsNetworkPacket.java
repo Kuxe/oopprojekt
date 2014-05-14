@@ -1,10 +1,12 @@
-package com.whathappensingandalf.howdoiflythisthing;
+package networkpackets;
+
+import com.whathappensingandalf.howdoiflythisthing.Keybindings;
 
 /**
  *
  * @author Martin Nilsson
  */
-public class KeybindingsNetworkPacket {
+public class KeybindingsNetworkPacket implements NetworkPacket {
 	public Keybindings keybindings;
 	
 	public KeybindingsNetworkPacket(){
@@ -15,5 +17,9 @@ public class KeybindingsNetworkPacket {
 	}
 	public KeybindingsNetworkPacket(Keybindings keybindings){
 		this.keybindings = new Keybindings(keybindings);
+	}
+	@Override
+	public Type getType() {
+		return NetworkPacket.Type.KEYBINDINGS;
 	}
 }
