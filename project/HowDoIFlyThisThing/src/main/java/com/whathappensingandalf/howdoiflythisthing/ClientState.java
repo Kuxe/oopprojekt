@@ -83,9 +83,10 @@ public class ClientState implements ModelNetworkState {
 					shield= ((HudNetworkPacket)message).shield;
 				} else if(message instanceof ExplosionNetworkPacket){
 					pcs.firePropertyChange(Gameworld.Message.EXPLOSION.toString(),((ExplosionNetworkPacket)message),false);
+				} else if(message instanceof SparkleNetworkPacket){
+					pcs.firePropertyChange(Gameworld.Message.SPARKLE.toString(),((SparkleNetworkPacket)message),false);
 				} else if(message instanceof WorldBorderNetworkPacket) {
 					border = new WorldBorder(((WorldBorderNetworkPacket)message).height, ((WorldBorderNetworkPacket)message).width);
-					
 				}
 			}
 			

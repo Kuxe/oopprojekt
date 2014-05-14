@@ -40,7 +40,8 @@ import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 public class Gameworld implements PropertyChangeListener{
 
 	public static enum Message{
-		EXPLOSION
+		EXPLOSION,
+		SPARKLE
 	}
 	
 	/**
@@ -301,6 +302,8 @@ public class Gameworld implements PropertyChangeListener{
 			listOfSounds.add(SoundEffects.Sound.SPACESHIP_FIRE.toString());
 		} else if(evt.getPropertyName().equals(IProjectile.Message.PROJECTILE_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
+			SparkleNetworkPacket exnp=new SparkleNetworkPacket(((IProjectile)evt.getSource()).getPosition());
+			pcs.firePropertyChange(Message.SPARKLE.toString(),exnp,false); //Forward event
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
 			this.slateObjectForRemoval(evt.getSource());
 			listOfSounds.add(SoundEffects.Sound.SPACESHIP_DIE.toString());

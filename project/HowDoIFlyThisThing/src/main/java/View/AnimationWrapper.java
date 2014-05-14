@@ -4,14 +4,17 @@ import javax.vecmath.Point2f;
 
 import org.newdawn.slick.Animation;
 
-public class ExplosionAnimation {
+public class AnimationWrapper{
 	
 	private Point2f position;
 	private Animation animation;
+	private int width,height;
 	
-	public ExplosionAnimation(Point2f position,Animation animation){
+	public AnimationWrapper(Point2f position,Animation animation, int width, int height){
 		this.position=position;
 		this.animation=animation;
+		this.width=width;
+		this.height=height;
 	}
 	
 	public Point2f getPosition(){
@@ -20,6 +23,14 @@ public class ExplosionAnimation {
 	
 	public Animation getAnimation(){
 		return this.animation;
+	}
+	
+	public int getWidth(){
+		return this.width;
+	}
+	
+	public int getHeight(){
+		return this.height;
 	}
 
 }

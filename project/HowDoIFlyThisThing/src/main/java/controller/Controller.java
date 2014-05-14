@@ -17,6 +17,7 @@ import com.whathappensingandalf.howdoiflythisthing.ExplosionNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.Gameworld;
 import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
 import com.whathappensingandalf.howdoiflythisthing.Keybindings;
+import com.whathappensingandalf.howdoiflythisthing.SparkleNetworkPacket;
 
 import java.io.IOException;
 
@@ -170,6 +171,8 @@ public class Controller implements KeyListener, PropertyChangeListener{
 			running = false;
 		}else if(event.getPropertyName().equals(Gameworld.Message.EXPLOSION.toString())){
 			this.viewThread.createExplosion(((ExplosionNetworkPacket)event.getOldValue()).position);
+		}else if(event.getPropertyName().equals(Gameworld.Message.SPARKLE.toString())){
+			this.viewThread.createSparkle(((SparkleNetworkPacket)event.getOldValue()).position);
 		}
 	}
 	public Set<String> getListOfSounds(){
