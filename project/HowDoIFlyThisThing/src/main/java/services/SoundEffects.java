@@ -16,7 +16,7 @@ import com.whathappensingandalf.howdoiflythisthing.Gameworld;
 public class SoundEffects{
 
 	private AudioClip spaceshipFireSound;
-	private AudioClip projectileDieSound;
+	private AudioClip spaceshipHitSound;
 	private AudioClip spaceshipDieSound;
 	private AudioClip pickupDieSound;
 
@@ -26,7 +26,7 @@ public class SoundEffects{
 
 	public SoundEffects(){
 		createSpaceshipFireSound();
-		createProjectileDieSound();
+		createSpaceshipHitSound();
 		createSpaceshipDieSound();
 		createPickupDieSound();
 	}
@@ -42,13 +42,13 @@ public class SoundEffects{
 			e.printStackTrace();
 		}
 	}
-	public void createProjectileDieSound(){
-		File file= new File("sounds/Gun_Shot.wav");
+	public void createSpaceshipHitSound(){
+		File file= new File("sounds/Crash.wav");
 		URI uri= file.toURI();
 		URL url;
 		try {
 			url = uri.toURL();
-			projectileDieSound= Applet.newAudioClip(url);
+			spaceshipHitSound= Applet.newAudioClip(url);
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
@@ -82,12 +82,9 @@ public class SoundEffects{
 			for(String s: listOfSounds){
 				if (Sound.SPACESHIP_FIRE.toString().equals(s)) {
 					spaceshipFireSound.play();
-				}
-				/*else if (Sound.PROJECTILE_FIRE.toString().equals(s)) {
-					projectileDieSound.play();
-				}
-				*/
-				else if (Sound.SPACESHIP_DIE.toString().equals(s)) {
+				}else if(Sound.SPACESHIP_HIT.toString().equals(s)){
+					spaceshipHitSound.play();
+				}else if (Sound.SPACESHIP_DIE.toString().equals(s)) {
 					spaceshipDieSound.play();
 				}else if(Sound.PICKUP_DIE.toString().equals(s)){
 					pickupDieSound.play();
