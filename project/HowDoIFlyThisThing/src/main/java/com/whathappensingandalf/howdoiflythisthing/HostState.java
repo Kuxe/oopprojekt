@@ -75,6 +75,11 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 				System.out.print(connection.getRemoteAddressTCP() + " is connecting...");
 				lazyAddUsers.add(connection);
 				System.out.println(" done!");
+				
+				WorldBorder border = round.getWorld().getBorder();
+				int width = border.getWorldWidth();
+				int height = border.getWorldHeight();
+				connection.sendTCP(new WorldBorderNetworkPacket(width, height));
 			}
 
 			//Called whenever a client sends a packet
@@ -246,6 +251,11 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 	@Override
 	public String getModelStatus() {
 		return round.getModelStatus();
+	}
+	
+	@Override
+	public WorldBorder getWorldBorder() {
+		return round.getWorld().getBorder();
 	}
 
 	@Override

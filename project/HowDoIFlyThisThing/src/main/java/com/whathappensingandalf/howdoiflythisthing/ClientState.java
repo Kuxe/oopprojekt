@@ -33,6 +33,7 @@ public class ClientState implements ModelNetworkState {
 	private Keybindings keybindins;
 	private long countdown = 0;
 	private String modelStatus = "Not connected to a host; status not avaiable";
+	private WorldBorder border;
 	private PropertyChangeSupport pcs;
 	
 	private long timerStart;
@@ -67,7 +68,6 @@ public class ClientState implements ModelNetworkState {
 			
 			@Override
 			public void received(Connection connection, Object message) {
-				//System.out.println("Recieved packet:" + message.toString());
 				if(message instanceof DrawableDataNetworkPacket) {
 					drawables = ((DrawableDataNetworkPacket)message).drawables;
 				} else if(message instanceof Point2f) {
@@ -82,8 +82,10 @@ public class ClientState implements ModelNetworkState {
 					hull= ((HudNetworkPacket)message).hull;
 					shield= ((HudNetworkPacket)message).shield;
 				} else if(message instanceof ExplosionNetworkPacket){
-					System.out.println("ClientExplosion");
 					pcs.firePropertyChange(Gameworld.Message.EXPLOSION.toString(),((ExplosionNetworkPacket)message),false);
+				} else if(message instanceof WorldBorderNetworkPacket) {
+					border = new WorldBorder(((WorldBorderNetworkPacket)message).height, ((WorldBorderNetworkPacket)message).width);
+					
 				}
 			}
 			
@@ -162,6 +164,11 @@ public class ClientState implements ModelNetworkState {
 	@Override
 	public String getModelStatus() {
 		return modelStatus;
+	}
+	
+	@Override
+	public WorldBorder getWorldBorder() {
+		return border;
 	}
 
 	@Override

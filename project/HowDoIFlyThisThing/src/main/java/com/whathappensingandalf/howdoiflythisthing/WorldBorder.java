@@ -19,6 +19,10 @@ public class WorldBorder {
 		maxWorldWidth=worldWidth;
 	}
 	
+	public WorldBorder() {
+		//Required by KryoNet
+	}
+	
 	public int getWorldHeight(){
 		return worldHeight;
 	}
