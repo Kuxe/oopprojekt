@@ -90,7 +90,7 @@ public class ClientState implements ModelNetworkState {
 						countdown = ((CountdownNetworkPacket)message).countdown;
 						break;
 					case DRAWABLE_DATA:
-						drawables.add(((DrawableDataNetworkPacket)message).drawable);
+						drawables = ((DrawableDataNetworkPacket)message).drawables;
 						break;
 					case HOLD_KEYS:
 						break;
