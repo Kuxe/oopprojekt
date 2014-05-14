@@ -41,6 +41,6 @@ public class ActiveRound implements Roundstate {
 
 	@Override
 	public String getStatus() {
-		return "Round active, KILL ALL SPACESHIPS WITH BULLETSTORMS OF MEGADEATH";
+		return "Fight!";
 	}
 }
