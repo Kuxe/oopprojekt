@@ -77,7 +77,7 @@ public class Round implements PropertyChangeListener{
 			
 			//If user requested a spaceship but disconnects before recieving it, annul request
 			if(usersRequestingShips.contains(user)) {
-				usersRequestingShips.remove(user));
+				usersRequestingShips.remove(user);
 			}
 		}
 		
