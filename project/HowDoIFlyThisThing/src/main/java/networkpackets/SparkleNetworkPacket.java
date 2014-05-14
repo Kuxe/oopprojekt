@@ -1,8 +1,8 @@
-package com.whathappensingandalf.howdoiflythisthing;
+package networkpackets;
 
 import javax.vecmath.Point2f;
 
-public class SparkleNetworkPacket {
+public class SparkleNetworkPacket implements NetworkPacket {
 	public Point2f position;
 	
 	public  SparkleNetworkPacket(Point2f position){
@@ -11,5 +11,10 @@ public class SparkleNetworkPacket {
 	
 	public  SparkleNetworkPacket(){
 		//For kryonet
+	}
+
+	@Override
+	public Type getType() {
+		return NetworkPacket.Type.SPARKLE;
 	}
 }

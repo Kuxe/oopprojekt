@@ -10,6 +10,19 @@ import java.util.Set;
 
 import javax.vecmath.Point2f;
 
+import networkpackets.CountdownNetworkPacket;
+import networkpackets.DrawableDataNetworkPacket;
+import networkpackets.ExplosionNetworkPacket;
+import networkpackets.HoldKeysNetworkPacket;
+import networkpackets.HudNetworkPacket;
+import networkpackets.KeybindingsNetworkPacket;
+import networkpackets.ModelStatusNetworkPacket;
+import networkpackets.NetworkPacket;
+import networkpackets.SoundNetworkPacket;
+import networkpackets.SpaceshipPointNetworkPacket;
+import networkpackets.SparkleNetworkPacket;
+import networkpackets.WorldBorderNetworkPacket;
+
 import org.newdawn.slick.Sound;
 
 import utils.NetworkUtils;
@@ -68,25 +81,43 @@ public class ClientState implements ModelNetworkState {
 			
 			@Override
 			public void received(Connection connection, Object message) {
-				if(message instanceof DrawableDataNetworkPacket) {
-					drawables = ((DrawableDataNetworkPacket)message).drawables;
-				} else if(message instanceof Point2f) {
-					spaceshipPoint = (Point2f)message;
-				} else if(message instanceof SoundNetworkPacket) {
-					sounds = ((SoundNetworkPacket)message).sounds;
-				} else if(message instanceof CountdownNetworkPacket) {
-					countdown = ((CountdownNetworkPacket)message).countdown;
-				} else if(message instanceof ModelStatusNetworkPacket) {
-					modelStatus = ((ModelStatusNetworkPacket)message).status;
-				} else if(message instanceof HudNetworkPacket){
-					hull= ((HudNetworkPacket)message).hull;
-					shield= ((HudNetworkPacket)message).shield;
-				} else if(message instanceof ExplosionNetworkPacket){
-					pcs.firePropertyChange(Gameworld.Message.EXPLOSION.toString(),((ExplosionNetworkPacket)message),false);
-				} else if(message instanceof SparkleNetworkPacket){
-					pcs.firePropertyChange(Gameworld.Message.SPARKLE.toString(),((SparkleNetworkPacket)message),false);
-				} else if(message instanceof WorldBorderNetworkPacket) {
-					border = new WorldBorder(((WorldBorderNetworkPacket)message).height, ((WorldBorderNetworkPacket)message).width);
+				
+				//If it is a valid network packet...
+				if(message instanceof NetworkPacket) {
+					NetworkPacket tempObject = (NetworkPacket)message;
+					switch(tempObject.getType()) {
+					case COUNTDOWN:
+						countdown = ((CountdownNetworkPacket)message).countdown;
+						break;
+					case DRAWABLE_DATA:
+						drawables = ((DrawableDataNetworkPacket)message).drawables;
+						break;
+					case HOLD_KEYS:
+						break;
+					case HUD:
+						hull= ((HudNetworkPacket)message).hull;
+						shield= ((HudNetworkPacket)message).shield;
+						break;
+					case KEYBINDINGS:
+						break;
+					case MODEL_STATUS:
+						modelStatus = ((ModelStatusNetworkPacket)message).status;
+						break;
+					case SOUND:
+						sounds = ((SoundNetworkPacket)message).sounds;
+						break;
+					case SPARKLE:
+						pcs.firePropertyChange(Gameworld.Message.SPARKLE.toString(),((SparkleNetworkPacket)message),false);
+						break;
+					case SPACESHIP_POINT:
+						spaceshipPoint = ((SpaceshipPointNetworkPacket)message).point;
+						break;
+					case EXPLOSION:
+						pcs.firePropertyChange(Gameworld.Message.EXPLOSION.toString(),((ExplosionNetworkPacket)message),false);
+						break;
+					case WORLD_BORDER:
+						border = new WorldBorder(((WorldBorderNetworkPacket)message).height, ((WorldBorderNetworkPacket)message).width);
+					}
 				}
 			}
 			

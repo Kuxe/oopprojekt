@@ -1,6 +1,6 @@
-package com.whathappensingandalf.howdoiflythisthing;
+package networkpackets;
 
-public class WorldBorderNetworkPacket {
+public class WorldBorderNetworkPacket implements NetworkPacket {
 	public int width, height;
 	public WorldBorderNetworkPacket(int width, int height) {
 		this.width = width;
@@ -8,5 +8,9 @@ public class WorldBorderNetworkPacket {
 	}
 	public WorldBorderNetworkPacket() {
 		//Required by KryoNet
+	}
+	@Override
+	public Type getType() {
+		return NetworkPacket.Type.WORLD_BORDER;
 	}
 }

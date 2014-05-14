@@ -1,7 +1,7 @@
-package com.whathappensingandalf.howdoiflythisthing;
+package networkpackets;
 
 
-public class HudNetworkPacket {
+public class HudNetworkPacket implements NetworkPacket {
 	
 public int hull;
 public int shield;
@@ -13,5 +13,10 @@ public int shield;
 	
 	public HudNetworkPacket() {
 		//required for kryonet
+	}
+
+	@Override
+	public Type getType() {
+		return NetworkPacket.Type.HUD;
 	}
 }
