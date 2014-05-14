@@ -36,6 +36,7 @@ public class OptionsPanel extends javax.swing.JPanel{
 		leftKey= getLeftThrusterKey();
 		mainKey= getMainThrusterKey();
 		rightKey= getRightThrusterKey();
+		soundSlider.setEnabled(false);
 	}
 
 	/**
