@@ -43,7 +43,7 @@ public class SoundEffects{
 		}
 	}
 	public void createSpaceshipHitSound(){
-		File file= new File("sounds/Crash.wav");
+		File file= new File("sounds/SpaceshipHit.wav");
 		URI uri= file.toURI();
 		URL url;
 		try {
