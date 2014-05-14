@@ -12,6 +12,8 @@ import com.whathappensingandalf.howdoiflythisthing.KeybindingsNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.ModelStatusNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.SoundNetworkPacket;
 import com.whathappensingandalf.howdoiflythisthing.SparkleNetworkPacket;
+import com.whathappensingandalf.howdoiflythisthing.WorldBorder;
+import com.whathappensingandalf.howdoiflythisthing.WorldBorderNetworkPacket;
 
 /**
  * 
@@ -43,5 +45,6 @@ public class NetworkUtils {
 		kryo.register(HudNetworkPacket.class);
 		kryo.register(ExplosionNetworkPacket.class);
 		kryo.register(SparkleNetworkPacket.class);
+		kryo.register(WorldBorderNetworkPacket.class);
 	}
 }

@@ -88,4 +88,8 @@ public class HowDoIFlyThisThing {
 	public ModelNetworkState getState(){
 		return state;
 	}
+	
+	public WorldBorder getWorldBorder() {
+		return state.getWorldBorder();
+	}
 }

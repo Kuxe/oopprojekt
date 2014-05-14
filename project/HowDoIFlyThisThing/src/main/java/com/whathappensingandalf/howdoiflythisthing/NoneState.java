@@ -83,4 +83,10 @@ public class NoneState implements ModelNetworkState {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public WorldBorder getWorldBorder() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

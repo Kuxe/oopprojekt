@@ -58,6 +58,8 @@ public class View extends BasicGame implements ApplicationListener{
 	private Point2f camera;
 	private final int windowWidth = 640;
 	private final int windowHeight = 480;
+	private int worldWidth = windowWidth;	//Default to window size
+	private int worldHeight = windowHeight;	//Default to window size
 	
 	private PropertyChangeSupport pcs;
 	
@@ -207,7 +209,7 @@ public class View extends BasicGame implements ApplicationListener{
 	private void drawBorder(GameContainer arg0, Graphics g) {
 		//HARDCODED. If world border changes,this row must manually be changed to display
 		//correct world border
-		g.drawRect(-camera.x + windowWidth/2, -camera.y + windowHeight/2, 1080, 540);
+		g.drawRect(-camera.x + windowWidth/2, -camera.y + windowHeight/2, worldWidth, worldHeight);
 	}
 	
 	public void drawHull(Graphics g){
@@ -376,6 +378,11 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	public void setModelStatus(String status) {
 		modelStatus = status;
+	}
+	
+	public void setBorder(int worldWidth, int worldHeight) {
+		this.worldWidth = worldWidth;
+		this.worldHeight = worldHeight;
 	}
 	
 	public void createExplosion(Point2f position){

@@ -1,8 +1,5 @@
 package View;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class ViewThread extends Thread implements Runnable{
 	private View view;
 	

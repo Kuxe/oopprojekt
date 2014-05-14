@@ -30,5 +30,6 @@ public interface ModelNetworkState{
 	public int getShield();
 	public long getCountdown();
 	public String getModelStatus();
+	public WorldBorder getWorldBorder();
 	public void addPropertyChangeListener(PropertyChangeListener listener);
 }

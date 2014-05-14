@@ -7,9 +7,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import org.lwjgl.opengl.Display;
-import org.lwjgl.input.Keyboard;
-
 /**
  *
  * @author Martin Nilsson
@@ -28,6 +25,7 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 		HDIFTT_OPTIONS_OK,
 		HDIFTT_OPTIONS_CANCEL,
 		HDOFTT_OPTIONS_RESET,
+		HDIFTT_EXIT
 	}
 	
 	/**
@@ -85,9 +83,6 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	public String getIP(){
 		return this.startPanel.getIP();
 	}
-	public int getVolume(){
-		return this.optionsPanel.getVolume();
-	}
 	public boolean getFullscreen(){
 		return this.optionsPanel.getFullscreen();
 	}
@@ -117,6 +112,12 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	}
 	public void setRightThrusterKey(String key){
 		this.optionsPanel.setRightThrusterKey(key);
+	}
+	public void displayConnectionErrorMessage(){
+		this.startPanel.displayConnectionErrorMessage();
+	}
+	public void hideConnectionErrorMessage(){
+		this.startPanel.hideConnectionErrorMessage();
 	}
 	/**
 	 * This method is called from within the constructor to initialize the form.
