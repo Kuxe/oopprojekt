@@ -54,7 +54,7 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 		pcs = new PropertyChangeSupport(this);
 		
 		users = new HashMap();
-		server = new Server();
+		server = new Server(32768, 4096);
 		connections = new HashSet();
 		
 		lazyAddUsers = new HashSet();
@@ -62,7 +62,7 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 
 		timerStart = System.nanoTime();
 		timerStop = System.nanoTime();
-		timerInterval = 20000000; //20ms in nanoseconds
+		timerInterval = 50000000; //20ms in nanoseconds
 
 		NetworkUtils.registerClasses(server.getKryo());
 
