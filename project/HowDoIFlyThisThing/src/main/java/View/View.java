@@ -296,7 +296,7 @@ public class View extends BasicGame implements ApplicationListener{
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		colorFilter=new Color(255,0,255);
-		animations = new ArrayList<AnimationWrapper>();
+		animations = Collections.synchronizedList(new ArrayList<AnimationWrapper>());
 		removeAnimations = new ArrayList<AnimationWrapper>();
 		try {
 			spaceship=new SpriteSheet("resources/Spaceship.png",50,50, colorFilter);
