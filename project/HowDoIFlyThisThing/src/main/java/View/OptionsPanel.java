@@ -36,7 +36,6 @@ public class OptionsPanel extends javax.swing.JPanel{
 		leftKey= getLeftThrusterKey();
 		mainKey= getMainThrusterKey();
 		rightKey= getRightThrusterKey();
-		soundSlider.setEnabled(false);
 	}
 
 	/**
@@ -48,13 +47,11 @@ public class OptionsPanel extends javax.swing.JPanel{
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        soundLabel = new javax.swing.JLabel();
         fullscreenLabel = new javax.swing.JLabel();
         fireKeyLabel = new javax.swing.JLabel();
         leftThrusterKeyLabel = new javax.swing.JLabel();
         mainThrusterKeyLabel = new javax.swing.JLabel();
         rightThrusterKeyLabel = new javax.swing.JLabel();
-        soundSlider = new javax.swing.JSlider();
         fullscreenCheckBox = new javax.swing.JCheckBox();
         fireTextField = new javax.swing.JTextField();
         leftTextField = new javax.swing.JTextField();
@@ -67,11 +64,6 @@ public class OptionsPanel extends javax.swing.JPanel{
         setMaximumSize(new java.awt.Dimension(360, 480));
         setMinimumSize(new java.awt.Dimension(360, 480));
         setPreferredSize(new java.awt.Dimension(360, 480));
-
-        soundLabel.setText("Sound volume");
-        soundLabel.setMaximumSize(new java.awt.Dimension(130, 14));
-        soundLabel.setMinimumSize(new java.awt.Dimension(130, 14));
-        soundLabel.setPreferredSize(new java.awt.Dimension(130, 14));
 
         fullscreenLabel.setText("Toggle fullscreen");
         fullscreenLabel.setMaximumSize(new java.awt.Dimension(130, 14));
@@ -100,19 +92,28 @@ public class OptionsPanel extends javax.swing.JPanel{
 
         fullscreenCheckBox.setText("Fullscreen");
 
-        fireTextField.setText(Keyboard.getKeyName(Keyboard.KEY_SPACE));
+        fireTextField.setText("jTextField1");
         fireTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 fireTextFieldFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-            		fireTextFieldFocusLost(evt);
+                fireTextFieldFocusLost(evt);
             }
         });
-
         fireTextField.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 fireTextFieldKeyReleased(evt);
+            }
+        });
+
+        leftTextField.setText("jTextField2");
+        leftTextField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                leftTextFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                leftTextFieldFocusLost(evt);
             }
         });
         leftTextField.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -120,44 +121,34 @@ public class OptionsPanel extends javax.swing.JPanel{
                 leftTextFieldKeyReleased(evt);
             }
         });
-        mainTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                mainTextFieldKeyReleased(evt);
-            }
-        });
-        rightTextField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                rightTextFieldKeyReleased(evt);
-            }
-        });
 
-        leftTextField.setText(Keyboard.getKeyName(Keyboard.KEY_A));
-        leftTextField.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                leftTextFieldFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-            		leftTextFieldFocusLost(evt);
-            }
-        });
-
-        mainTextField.setText(Keyboard.getKeyName(Keyboard.KEY_W));
+        mainTextField.setText("jTextField3");
         mainTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 mainTextFieldFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
-            		mainTextFieldFocusLost(evt);
+                mainTextFieldFocusLost(evt);
+            }
+        });
+        mainTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                mainTextFieldKeyReleased(evt);
             }
         });
 
-        rightTextField.setText(Keyboard.getKeyName(Keyboard.KEY_D));
+        rightTextField.setText("jTextField4");
         rightTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
-            		rightTextFieldFocusGained(evt);
+                rightTextFieldFocusGained(evt);
             }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 rightTextFieldFocusLost(evt);
+            }
+        });
+        rightTextField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                rightTextFieldKeyReleased(evt);
             }
         });
 
@@ -191,18 +182,16 @@ public class OptionsPanel extends javax.swing.JPanel{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(soundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(fireKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(rightThrusterKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(leftThrusterKeyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(mainThrusterKeyLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(fullscreenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(soundSlider, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(fullscreenCheckBox)
-                            .addComponent(fireTextField)
+                            .addComponent(fireTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(leftTextField)
                             .addComponent(mainTextField)
                             .addComponent(rightTextField)))
@@ -217,11 +206,7 @@ public class OptionsPanel extends javax.swing.JPanel{
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(soundSlider, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(soundLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fullscreenLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(fullscreenCheckBox))
@@ -241,7 +226,7 @@ public class OptionsPanel extends javax.swing.JPanel{
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(rightThrusterKeyLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rightTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 262, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(resetButton)
                     .addComponent(okButton)
@@ -263,32 +248,6 @@ public class OptionsPanel extends javax.swing.JPanel{
         this.firePropertyChange(LauncherFrame.Message.HDOFTT_OPTIONS_RESET.toString(), 0, 1);
     }//GEN-LAST:event_resetButtonActionPerformed
 
-    
-    private void fireTextFieldKeyReleased(KeyEvent evt){
-    	int temp= KeybindingUtils.getKeyboardKeyFormJava(evt.getKeyCode());
-    	fireKey= Keyboard.getKeyName(temp);
-    	fireTextField.setText(fireKey);
-    	okButton.grabFocus();
-    }
-    private void leftTextFieldKeyReleased(KeyEvent evt){
-    	int temp= KeybindingUtils.getKeyboardKeyFormJava(evt.getKeyCode());
-    	leftKey= Keyboard.getKeyName(temp);
-    	leftTextField.setText(leftKey);
-    	okButton.grabFocus();
-    }
-    private void mainTextFieldKeyReleased(KeyEvent evt){
-    	int temp= KeybindingUtils.getKeyboardKeyFormJava(evt.getKeyCode());
-    	mainKey= Keyboard.getKeyName(temp);
-    	mainTextField.setText(mainKey);
-    	okButton.grabFocus();
-    }
-    private void rightTextFieldKeyReleased(KeyEvent evt){
-    	int temp= KeybindingUtils.getKeyboardKeyFormJava(evt.getKeyCode());
-    	rightKey= Keyboard.getKeyName(temp);
-    	rightTextField.setText(rightKey);
-    	okButton.grabFocus();
-    }
-
     private void fireTextFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fireTextFieldFocusGained
         this.fireTextField.setText("");
     }//GEN-LAST:event_fireTextFieldFocusGained
@@ -305,37 +264,58 @@ public class OptionsPanel extends javax.swing.JPanel{
         this.rightTextField.setText("");
     }//GEN-LAST:event_rightTextFieldFocusGained
 
-    private void fireTextFieldFocusLost(FocusEvent evt) {
-    	if(fireTextField.getText().equals("")){
+    private void leftTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_leftTextFieldKeyReleased
+        int temp= KeybindingUtils.getKeyboardKeyFormJava(evt.getKeyCode());
+    	leftKey= Keyboard.getKeyName(temp);
+    	leftTextField.setText(leftKey);
+    	okButton.grabFocus();
+    }//GEN-LAST:event_leftTextFieldKeyReleased
+
+    private void fireTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fireTextFieldKeyReleased
+        int temp= KeybindingUtils.getKeyboardKeyFormJava(evt.getKeyCode());
+    	fireKey= Keyboard.getKeyName(temp);
+    	fireTextField.setText(fireKey);
+    	okButton.grabFocus();
+    }//GEN-LAST:event_fireTextFieldKeyReleased
+
+    private void mainTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mainTextFieldKeyReleased
+        int temp= KeybindingUtils.getKeyboardKeyFormJava(evt.getKeyCode());
+    	mainKey= Keyboard.getKeyName(temp);
+    	mainTextField.setText(mainKey);
+    	okButton.grabFocus();
+    }//GEN-LAST:event_mainTextFieldKeyReleased
+
+    private void rightTextFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rightTextFieldKeyReleased
+        int temp= KeybindingUtils.getKeyboardKeyFormJava(evt.getKeyCode());
+    	rightKey= Keyboard.getKeyName(temp);
+    	rightTextField.setText(rightKey);
+    	okButton.grabFocus();
+    }//GEN-LAST:event_rightTextFieldKeyReleased
+
+    private void fireTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_fireTextFieldFocusLost
+        if(fireTextField.getText().equals("")){
     		fireTextField.setText(fireKey);
     	}
-    }
+    }//GEN-LAST:event_fireTextFieldFocusLost
 
-    private void leftTextFieldFocusLost(java.awt.event.FocusEvent evt) {
-    	if(leftTextField.getText().equals("")){
+    private void leftTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_leftTextFieldFocusLost
+        if(leftTextField.getText().equals("")){
     		leftTextField.setText(leftKey);
     	}
-    }
-    
-    private void mainTextFieldFocusLost(java.awt.event.FocusEvent evt) {
-    	if(mainTextField.getText().equals("")){
+    }//GEN-LAST:event_leftTextFieldFocusLost
+
+    private void mainTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_mainTextFieldFocusLost
+        if(mainTextField.getText().equals("")){
     		mainTextField.setText(mainKey);
     	}
-    }
-    
-    private void rightTextFieldFocusLost(java.awt.event.FocusEvent evt) {
-    	if(rightTextField.getText().equals("")){
+    }//GEN-LAST:event_mainTextFieldFocusLost
+
+    private void rightTextFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_rightTextFieldFocusLost
+        if(rightTextField.getText().equals("")){
     		rightTextField.setText(rightKey);
     	}
-    }
+    }//GEN-LAST:event_rightTextFieldFocusLost
 
-    private void fireTextFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fireTextFieldKeyPressed
-        System.out.println(evt.getKeyCode());
-    }//GEN-LAST:event_fireTextFieldKeyPressed
-
-	public int getVolume(){
-		return this.soundSlider.getValue();
-	}
 	public boolean getFullscreen(){
 		return this.fullscreenCheckBox.isSelected();
 	}
@@ -381,7 +361,5 @@ public class OptionsPanel extends javax.swing.JPanel{
     private javax.swing.JButton resetButton;
     private javax.swing.JTextField rightTextField;
     private javax.swing.JLabel rightThrusterKeyLabel;
-    private javax.swing.JLabel soundLabel;
-    private javax.swing.JSlider soundSlider;
     // End of variables declaration//GEN-END:variables
 }//end OptionsPanel

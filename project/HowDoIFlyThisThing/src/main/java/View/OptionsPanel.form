@@ -32,7 +32,6 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="soundLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
                               <Component id="fireKeyLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="rightThrusterKeyLabel" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -41,11 +40,10 @@
                           </Group>
                           <Component id="fullscreenLabel" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="50" max="32767" attributes="0"/>
+                      <EmptySpace pref="10" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="soundSlider" max="32767" attributes="0"/>
                           <Component id="fullscreenCheckBox" min="-2" max="-2" attributes="0"/>
-                          <Component id="fireTextField" alignment="0" max="32767" attributes="0"/>
+                          <Component id="fireTextField" alignment="0" pref="200" max="32767" attributes="0"/>
                           <Component id="leftTextField" max="32767" attributes="0"/>
                           <Component id="mainTextField" max="32767" attributes="0"/>
                           <Component id="rightTextField" max="32767" attributes="0"/>
@@ -66,12 +64,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="soundSlider" min="-2" max="-2" attributes="0"/>
-                  <Component id="soundLabel" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="fullscreenLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="fullscreenCheckBox" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -96,7 +89,7 @@
                   <Component id="rightThrusterKeyLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="rightTextField" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="262" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="resetButton" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="okButton" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -108,20 +101,6 @@
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="soundLabel">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Sound volume"/>
-        <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[130, 14]"/>
-        </Property>
-        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[130, 14]"/>
-        </Property>
-        <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-          <Dimension value="[130, 14]"/>
-        </Property>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="fullscreenLabel">
       <Properties>
         <Property name="text" type="java.lang.String" value="Toggle fullscreen"/>
@@ -192,8 +171,6 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JSlider" name="soundSlider">
-    </Component>
     <Component class="javax.swing.JCheckBox" name="fullscreenCheckBox">
       <Properties>
         <Property name="text" type="java.lang.String" value="Fullscreen"/>
@@ -205,8 +182,8 @@
       </Properties>
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="fireTextFieldFocusGained"/>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fireTextFieldKeyPressed"/>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fireTextFieldKeyTyped"/>
+        <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="fireTextFieldFocusLost"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="fireTextFieldKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="leftTextField">
@@ -216,7 +193,7 @@
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="leftTextFieldFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="leftTextFieldFocusLost"/>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="leftTextFieldKeyTyped"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="leftTextFieldKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="mainTextField">
@@ -226,7 +203,7 @@
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="mainTextFieldFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="mainTextFieldFocusLost"/>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mainTextFieldKeyTyped"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="mainTextFieldKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="rightTextField">
@@ -236,7 +213,7 @@
       <Events>
         <EventHandler event="focusGained" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="rightTextFieldFocusGained"/>
         <EventHandler event="focusLost" listener="java.awt.event.FocusListener" parameters="java.awt.event.FocusEvent" handler="rightTextFieldFocusLost"/>
-        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rightTextFieldKeyTyped"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="rightTextFieldKeyReleased"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="resetButton">
