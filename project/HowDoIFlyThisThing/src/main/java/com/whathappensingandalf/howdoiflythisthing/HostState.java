@@ -84,10 +84,8 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 
 			//Called whenever a client sends a packet
 			public void received(Connection connection, Object object) {
-				//System.out.println("Recieved packet from " + connection.getRemoteAddressTCP() + ": " + object.toString());
 				//If someone sends his input, execute it.
 				if(object instanceof HoldKeysNetworkPacket) {
-					//System.out.println("Recieved HoldKeysNetworkPacket from: " + connection.getRemoteAddressTCP());
 					users.get(connection.getID()).setListOfHoldKeys(((HoldKeysNetworkPacket) object).listOfHoldKeys);
 				}else if(object instanceof KeybindingsNetworkPacket){
 					users.get(connection.getID()).setKeybindings(((KeybindingsNetworkPacket)object).keybindings);
