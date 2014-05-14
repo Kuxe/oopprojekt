@@ -29,9 +29,11 @@ public class StartPanel extends javax.swing.JPanel {
         joinButton = new javax.swing.JButton();
         ipTextField = new javax.swing.JTextField();
         optionsButton = new javax.swing.JButton();
+        exitButton = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
+        connectionErrorLabel = new javax.swing.JLabel();
 
         errorLabel.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         errorLabel.setText("Could not connect.");
@@ -55,6 +57,7 @@ public class StartPanel extends javax.swing.JPanel {
         joinButton.setText("Connect");
         joinButton.setToolTipText("Join a game.");
         joinButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        joinButton.setMargin(new java.awt.Insets(2, 7, 2, 7));
         joinButton.setMaximumSize(new java.awt.Dimension(85, 23));
         joinButton.setMinimumSize(new java.awt.Dimension(85, 23));
         joinButton.setPreferredSize(new java.awt.Dimension(85, 23));
@@ -69,11 +72,6 @@ public class StartPanel extends javax.swing.JPanel {
         ipTextField.setMaximumSize(new java.awt.Dimension(100, 20));
         ipTextField.setMinimumSize(new java.awt.Dimension(100, 20));
         ipTextField.setPreferredSize(new java.awt.Dimension(100, 20));
-        ipTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ipTextFieldActionPerformed(evt);
-            }
-        });
 
         optionsButton.setText("Settings");
         optionsButton.setToolTipText("Change settings.");
@@ -87,46 +85,72 @@ public class StartPanel extends javax.swing.JPanel {
             }
         });
 
+        exitButton.setText("Exit");
+        exitButton.setMaximumSize(new java.awt.Dimension(85, 23));
+        exitButton.setMinimumSize(new java.awt.Dimension(85, 23));
+        exitButton.setPreferredSize(new java.awt.Dimension(85, 23));
+        exitButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                exitButtonActionPerformed(evt);
+            }
+        });
+
+        connectionErrorLabel.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        connectionErrorLabel.setForeground(new java.awt.Color(255, 0, 0));
+        connectionErrorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        connectionErrorLabel.setText("Invalid IP, could not connect to host.");
+        connectionErrorLabel.setAlignmentY(0.0F);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jSeparator3, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jSeparator2)
+            .addComponent(jSeparator1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(optionsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(58, 58, 58))
+                    .addComponent(ipTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(hostButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(joinButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59))
-                    .addComponent(ipTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(59, 59, 59)))
                 .addGap(0, 81, Short.MAX_VALUE))
-            .addComponent(jSeparator2)
-            .addComponent(jSeparator1)
+            .addComponent(connectionErrorLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(134, 134, 134)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(joinButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(optionsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(135, 135, 135)
+                        .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(hostButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
                 .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(joinButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(connectionErrorLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(optionsButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(306, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(269, 269, 269))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -142,15 +166,23 @@ public class StartPanel extends javax.swing.JPanel {
         this.firePropertyChange(Message.HDIFTT_OPTIONS.toString(), 0, 1);
     }//GEN-LAST:event_optionsButtonActionPerformed
 
-    private void ipTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ipTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ipTextFieldActionPerformed
+    private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
+        this.firePropertyChange(Message.HDIFTT_EXIT.toString(), 0, 1);
+    }//GEN-LAST:event_exitButtonActionPerformed
 	public String getIP(){
 		return this.ipTextField.getText();
 	}
+	public void displayConnectionErrorMessage(){
+		this.connectionErrorLabel.setVisible(true);
+	}
+	public void hideConnectionErrorMessage(){
+		this.connectionErrorLabel.setVisible(false);
+	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel connectionErrorLabel;
     private javax.swing.JLabel errorLabel;
+    private javax.swing.JButton exitButton;
     private javax.swing.JButton hostButton;
     private javax.swing.JTextField ipTextField;
     private javax.swing.JSeparator jSeparator1;

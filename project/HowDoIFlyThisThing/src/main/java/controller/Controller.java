@@ -35,15 +35,14 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	private Set<Integer> listOfReleasedKeys;
 	private Set<Integer> listOfHoldKeys;
 
-	public Controller(int leftKey, int mainKey, int rightKey, int fireKey, boolean fullscreen){
+	public Controller(int leftKey, int mainKey, int rightKey, int fireKey){
 		keybindings = new Keybindings(leftKey, mainKey, rightKey, fireKey);
 		sharedCTOR();
 		model.host();
 		model.getState().addPropertyChangeListener(this);
-		this.createView(fullscreen);
 	}
 
-	public Controller(String ip, int leftKey, int mainKey, int rightKey, int fireKey, boolean fullscreen)throws java.net.UnknownHostException{
+	public Controller(String ip, int leftKey, int mainKey, int rightKey, int fireKey)throws java.net.UnknownHostException{
 		keybindings = new Keybindings(leftKey, mainKey, rightKey, fireKey);
 		sharedCTOR();
 		try {
@@ -53,9 +52,11 @@ public class Controller implements KeyListener, PropertyChangeListener{
 			//viewThread.StopView();
 			throw new java.net.UnknownHostException();
 		}
-		this.createView(fullscreen);
 	}
-
+	public void createTheView(boolean fullscreen){
+		this.createView(fullscreen);
+		
+	}
 	private void sharedCTOR() {
 		model = new HowDoIFlyThisThing(keybindings);	
 		listOfPressedKeys = new HashSet();
