@@ -28,6 +28,7 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 		HDIFTT_OPTIONS_OK,
 		HDIFTT_OPTIONS_CANCEL,
 		HDOFTT_OPTIONS_RESET,
+		HDIFTT_EXIT
 	}
 	
 	/**
@@ -117,6 +118,12 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	}
 	public void setRightThrusterKey(String key){
 		this.optionsPanel.setRightThrusterKey(key);
+	}
+	public void displayConnectionErrorMessage(){
+		this.startPanel.displayConnectionErrorMessage();
+	}
+	public void hideConnectionErrorMessage(){
+		this.startPanel.hideConnectionErrorMessage();
 	}
 	/**
 	 * This method is called from within the constructor to initialize the form.
