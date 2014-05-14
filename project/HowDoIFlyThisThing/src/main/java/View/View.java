@@ -37,7 +37,7 @@ public class View extends BasicGame implements ApplicationListener{
 	private Set<DrawableData> renderObjects;
 
 	private SpriteSheet spaceship,shott,missile,asteroid,healthPack,ammoPickup,missingImage;
-	private Animation explosion;
+	private Animation explosion,sparkle;
 	private List<AnimationWrapper> animations,removeAnimations;
 
 
@@ -147,6 +147,9 @@ public class View extends BasicGame implements ApplicationListener{
 			for(int i = 0 ; i < explosion.getFrameCount(); i++) {
 				explosion.getImage(i).destroy();
 			}
+			for(int i = 0 ; i < sparkle.getFrameCount(); i++) {
+				sparkle.getImage(i).destroy();
+			}
 			
 		} catch (SlickException e) {
 			// TODO Auto-generated catch block
@@ -230,18 +233,6 @@ public class View extends BasicGame implements ApplicationListener{
 		drawScrollingImage(arg0, g, background_1, 0.05f);
 		drawScrollingImage(arg0, g, background_2, 0.15f);
 
-		for(AnimationWrapper animComp: animations){
-			if(animComp.getAnimation().isStopped()){
-				removeAnimations.add(animComp);
-			}
-			animComp.getAnimation().draw(animComp.getPosition().x - 160 + windowWidth/2 - camera.x ,animComp.getPosition().y -120 + windowHeight/2 - camera.y);
-		}
-		
-		for(AnimationWrapper animRm: removeAnimations){
-			System.out.println("remove: " + animRm);
-			animations.remove(animRm);
-		}
-		removeAnimations.clear();
 
 		for(DrawableData comp: renderObjects){
 			
@@ -267,6 +258,19 @@ public class View extends BasicGame implements ApplicationListener{
 			tmpImg.rotate(calculateRotation(comp.getDirection()));
 			g.drawImage(tmpImg, tmpX - camera.x + windowWidth/2, tmpY - camera.y + windowHeight/2);
 		}
+		
+		for(AnimationWrapper animComp: animations){
+			if(animComp.getAnimation().isStopped()){
+				removeAnimations.add(animComp);
+			}
+			animComp.getAnimation().draw(animComp.getPosition().x - animComp.getWidth()/2 + windowWidth/2 - camera.x ,animComp.getPosition().y - animComp.getHeight()/2 + windowHeight/2 - camera.y);
+		}
+		
+		for(AnimationWrapper animRm: removeAnimations){
+			animations.remove(animRm);
+		}
+		removeAnimations.clear();
+		
 		drawBorder(arg0, g);
 		drawHull(g);
 		drawShield(g);
@@ -275,10 +279,16 @@ public class View extends BasicGame implements ApplicationListener{
 		drawRoundCountdown(arg0, g);
 	}
 	
-	private void drawExplosion(Point2f position){
+	private void addExplosion(Point2f position){
 		Animation tempExp=explosion.copy();
 		tempExp.stopAt(19);
-		animations.add(new AnimationWrapper(new Point2f(position.x,position.y),tempExp));
+		animations.add(new AnimationWrapper(new Point2f(position.x,position.y),tempExp,320,240));
+	}
+	
+	private void addSparkle(Point2f position){
+		Animation tempSp=sparkle.copy();
+		tempSp.stopAt(11);
+		animations.add(new AnimationWrapper(new Point2f(position.x,position.y),tempSp, 10,10));
 	}
 
 	@Override
@@ -298,7 +308,8 @@ public class View extends BasicGame implements ApplicationListener{
 			background_2 = new SpriteSheet("resources/scrollingbackground_2nd_layer.png", 1280, 960, colorFilter);
 			background_3 = new SpriteSheet("resources/scrollingbackground_3rd_layer.png", 1280, 960, colorFilter);
 			
-			explosion =new Animation(new SpriteSheet(new Image("resources/explosionanimation.png"),320,240),100);
+			explosion = new Animation(new SpriteSheet(new Image("resources/explosionanimation.png"),320,240),100);
+			sparkle = new Animation(new SpriteSheet("resources/SparkleAnimation.png",10,10, colorFilter),20);
 			
 			planet_1 = new SpriteSheet("resources/planet_1.png", 100, 100, colorFilter);
 			
@@ -368,6 +379,10 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	
 	public void createExplosion(Point2f position){
-		this.drawExplosion(position);
+		this.addExplosion(position);
+	}
+	
+	public void createSparkle(Point2f position){
+		this.addSparkle(position);
 	}
 }

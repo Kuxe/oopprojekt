@@ -242,7 +242,8 @@ public class Round implements PropertyChangeListener{
 			}
 		}
 		else if(evt.getPropertyName().equals(Gameworld.Message.EXPLOSION.toString())){
-			System.out.println("**RoundExlosion**");
+			pcs.firePropertyChange(evt);
+		}else if(evt.getPropertyName().equals(Gameworld.Message.SPARKLE.toString())){
 			pcs.firePropertyChange(evt);
 		}
 	}

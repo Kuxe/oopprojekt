@@ -38,7 +38,7 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 	public HostState(Keybindings keybindings) {
 		this.keybindings = keybindings;
 		round = new Round();
-		round.addPropertyChangeListener(this);
+		round.addPropertyChangeListener(this);;
 		
 		pcs = new PropertyChangeSupport(this);
 		
@@ -251,7 +251,9 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(Gameworld.Message.EXPLOSION.toString())){
-			System.out.println("*HostExplosion*");
+			server.sendToAllTCP(evt.getOldValue());
+			pcs.firePropertyChange(evt);
+		}else if(evt.getPropertyName().equals(Gameworld.Message.SPARKLE.toString())){
 			server.sendToAllTCP(evt.getOldValue());
 			pcs.firePropertyChange(evt);
 		}

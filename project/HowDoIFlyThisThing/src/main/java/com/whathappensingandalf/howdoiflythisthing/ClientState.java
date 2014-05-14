@@ -67,7 +67,7 @@ public class ClientState implements ModelNetworkState {
 			
 			@Override
 			public void received(Connection connection, Object message) {
-				//System.out.println("Recieved packet:" + message.toString());
+//				System.out.println("Recieved packet:" + message.toString());
 				if(message instanceof DrawableDataNetworkPacket) {
 					drawables = ((DrawableDataNetworkPacket)message).drawables;
 				} else if(message instanceof Point2f) {
@@ -82,8 +82,9 @@ public class ClientState implements ModelNetworkState {
 					hull= ((HudNetworkPacket)message).hull;
 					shield= ((HudNetworkPacket)message).shield;
 				} else if(message instanceof ExplosionNetworkPacket){
-					System.out.println("ClientExplosion");
 					pcs.firePropertyChange(Gameworld.Message.EXPLOSION.toString(),((ExplosionNetworkPacket)message),false);
+				} else if(message instanceof SparkleNetworkPacket){
+					pcs.firePropertyChange(Gameworld.Message.SPARKLE.toString(),((SparkleNetworkPacket)message),false);
 				}
 			}
 			

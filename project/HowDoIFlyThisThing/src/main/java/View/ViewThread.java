@@ -26,7 +26,10 @@ public class ViewThread extends Thread implements Runnable{
 	}
 	
 	public void createExplosion(javax.vecmath.Point2f position){
-		System.out.println("printEXPLOSION");
 		view.createExplosion(position);
+	}
+	
+	public void createSparkle(javax.vecmath.Point2f position){
+		view.createSparkle(position);
 	}
 }
