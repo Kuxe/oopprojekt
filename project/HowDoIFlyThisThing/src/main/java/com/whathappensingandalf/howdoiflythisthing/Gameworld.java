@@ -77,7 +77,7 @@ public class Gameworld implements PropertyChangeListener{
 		listOfSounds = 					new HashSet();
 		chargables =					new HashMap();
 		
-		worldBorder=new WorldBorder(100,500);
+		worldBorder=new WorldBorder(1000, 1000);
 		generateWorld();
 		timestep = new Timestep();
 		pcs = new PropertyChangeSupport(this);
@@ -86,7 +86,7 @@ public class Gameworld implements PropertyChangeListener{
 	}
 	
 	private void generateWorld(){
-		int numberOfAsteroids = (int)(Math.random()*0)+1;
+		int numberOfAsteroids = (int)(Math.random()*20)+1;
 		for(int i = 0; i<numberOfAsteroids; i++){
 			Point2f position = new Point2f((float)(Math.random())*this.worldBorder.getWorldWidth(),
 					(float)(Math.random())*this.worldBorder.getWorldHeight());
