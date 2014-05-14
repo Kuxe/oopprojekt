@@ -7,9 +7,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 
-import org.lwjgl.opengl.Display;
-import org.lwjgl.input.Keyboard;
-
 /**
  *
  * @author Martin Nilsson
