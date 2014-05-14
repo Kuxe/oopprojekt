@@ -10,11 +10,11 @@ import org.lwjgl.input.Keyboard;
 public class LauncherController implements PropertyChangeListener{
 	
 	private Controller controller;
-	private LauncherFrame launcher;
-	private int defaultFireKey;
-	private int defaultLeftKey;
-	private int defaultMainKey;
-	private int defaultRightKey;
+	private final LauncherFrame launcher;
+	private final int defaultFireKey;
+	private final int defaultLeftKey;
+	private final int defaultMainKey;
+	private final int defaultRightKey;
 	private boolean defaultFullscreen;
 	private int fireKey;
 	private int leftKey;
@@ -25,6 +25,7 @@ public class LauncherController implements PropertyChangeListener{
 	public LauncherController(){
 		launcher = new LauncherFrame();
 		launcher.addPropertyChangeListener(this);
+		launcher.hideConnectionErrorMessage();
 		launcher.setVisible(true);
 		defaultFireKey	=	Keyboard.KEY_SPACE;
 		defaultLeftKey	=	Keyboard.KEY_A;
@@ -38,24 +39,9 @@ public class LauncherController implements PropertyChangeListener{
 
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_HOST.toString())){
-			controller = new Controller(leftKey, mainKey, rightKey, fireKey, fullscreen);
-			launcher.setVisible(false);
-			controller.start();
-			controller.cleanup();
-			launcher.setVisible(true);
+			hostGame();
 		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_JOIN.toString())){
-			try{
-			controller = new Controller(launcher.getIP(), leftKey, mainKey, rightKey, fireKey, fullscreen);
-			launcher.setVisible(false);
-			controller.start();
-			controller.cleanup();
-			launcher.setVisible(true);
-			}catch(java.net.UnknownHostException h){
-				//Can't be interpeted as a host.
-				System.out.println("HOST ERROR");
-				//TODO: Display error message.
-				
-			}
+			joinGame();
 		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_OPTIONS.toString())){
 			this.displaySettings();
 			launcher.displayOptionsPanel();
@@ -67,33 +53,54 @@ public class LauncherController implements PropertyChangeListener{
 			launcher.displayStartPanel();
 		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDOFTT_OPTIONS_RESET.toString())){
 			this.resetSettings();
+		}else if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_EXIT.toString())){
+			System.exit(0);
 		}
 		
 	}
-	public void saveSettings(){
+	private void hostGame(){
+		controller = new Controller(leftKey, mainKey, rightKey, fireKey);
+		launcher.setVisible(false);
+		launcher.hideConnectionErrorMessage();
+		controller.createTheView(fullscreen);
+		controller.start();
+		controller.cleanup();
+		launcher.setVisible(true);
+	}
+	private void joinGame(){
+		try{
+			controller = new Controller(launcher.getIP(), leftKey, mainKey, rightKey, fireKey);
+			launcher.setVisible(false);
+			launcher.hideConnectionErrorMessage();
+			controller.createTheView(fullscreen);
+			controller.start();
+			controller.cleanup();
+			launcher.setVisible(true);
+			}catch(java.net.UnknownHostException h){
+				//Can't be interpeted as a host.
+				launcher.displayConnectionErrorMessage();
+			}
+	}
+	private void saveSettings(){
 		fireKey = Keyboard.getKeyIndex(launcher.getFireKey().toUpperCase());
 		leftKey = Keyboard.getKeyIndex(launcher.getLeftThrusterKey().toUpperCase());
 		mainKey = Keyboard.getKeyIndex(launcher.getMainThrusterKey().toUpperCase());
 		rightKey = Keyboard.getKeyIndex(launcher.getRightThrusterKey().toUpperCase());
 		fullscreen = launcher.getFullscreen();
 	}
-	public void displaySettings(){
+	private void displaySettings(){
 		launcher.setFireKey(Keyboard.getKeyName(fireKey));
 		launcher.setLeftThrusterKey(Keyboard.getKeyName(leftKey));
 		launcher.setMainThrusterKey(Keyboard.getKeyName(mainKey));
 		launcher.setRightThrusterKey(Keyboard.getKeyName(rightKey));
 		launcher.setFullscreen(fullscreen);
 	}
-	public void resetSettings(){
+	private void resetSettings(){
 		launcher.setFireKey(Keyboard.getKeyName(defaultFireKey));
 		launcher.setLeftThrusterKey(Keyboard.getKeyName(defaultLeftKey));
 		launcher.setMainThrusterKey(Keyboard.getKeyName(defaultMainKey));
 		launcher.setRightThrusterKey(Keyboard.getKeyName(defaultRightKey));
 		launcher.setFullscreen(defaultFullscreen);
-	}
-	public void launchControllerStop(){
-			controller.cleanup();
-			System.exit(0);
 	}
 	
 }

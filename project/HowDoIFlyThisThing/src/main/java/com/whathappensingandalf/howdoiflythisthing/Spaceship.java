@@ -1,7 +1,5 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
-import java.awt.geom.Area;
-import java.awt.geom.Rectangle2D;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Collection;
@@ -53,7 +51,8 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	
 	public static enum Message{
 		SPACESHIP_DIE,
-		SPACESHIP_FIRE
+		SPACESHIP_FIRE,
+		SPACESHIP_HIT
 	}
 	
 	/**
@@ -93,6 +92,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 	/**
 	 * {@inheritDoc}
+	 * @param timestep
 	 */
     public synchronized void move(Timestep timestep) {
 		this.calculateThrust(timestep);
@@ -189,6 +189,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 
 	/**
 	 * {@inheritDoc}
+	 * @param rotationVelocity
 	 */
 	public void setRotVelocity(float rotationVelocity) {
 		this.rotationVelocity.setValue(rotationVelocity);
@@ -241,6 +242,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	
 	/**
 	 * {@inheritDoc}
+	 * @param timestep
 	 */
 	public void calculateThrust(Timestep timestep) {
 		this.thrusterComponent.calculateAceleration();
@@ -248,7 +250,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 	
 	public void repair(int repair){
-		this.hull.repair(repair);;
+		this.hull.repair(repair);
 	}
 	
 	public void accept(ICollidable visitor) {
@@ -263,6 +265,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 	public void visit(IProjectile projectile) {
 		this.hurt(projectile.getDamage());
+		pcs.firePropertyChange(Message.SPACESHIP_HIT.toString(), 0, 1);
 	}
 	
 	public void visit(Asteroid asteroid) {
