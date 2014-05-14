@@ -261,12 +261,7 @@ public class View extends BasicGame implements ApplicationListener{
 			g.drawImage(tmpImg, tmpX - camera.x + windowWidth/2, tmpY - camera.y + windowHeight/2);
 		}
 		
-		for(AnimationWrapper animComp: animations){
-			if(animComp.getAnimation().isStopped()){
-				removeAnimations.add(animComp);
-			}
-			animComp.getAnimation().draw(animComp.getPosition().x - animComp.getWidth()/2 + windowWidth/2 - camera.x ,animComp.getPosition().y - animComp.getHeight()/2 + windowHeight/2 - camera.y);
-		}
+		slateAnimationsForRemoval();
 		
 		for(AnimationWrapper animRm: removeAnimations){
 			animations.remove(animRm);
@@ -281,13 +276,22 @@ public class View extends BasicGame implements ApplicationListener{
 		drawRoundCountdown(arg0, g);
 	}
 	
-	private void addExplosion(Point2f position){
+	private synchronized void slateAnimationsForRemoval(){
+		for(AnimationWrapper animComp: animations){
+			if(animComp.getAnimation().isStopped()){
+				removeAnimations.add(animComp);
+			}
+			animComp.getAnimation().draw(animComp.getPosition().x - animComp.getWidth()/2 + windowWidth/2 - camera.x ,animComp.getPosition().y - animComp.getHeight()/2 + windowHeight/2 - camera.y);
+		}
+	}
+	
+	private synchronized void addExplosion(Point2f position){
 		Animation tempExp=explosion.copy();
 		tempExp.stopAt(19);
 		animations.add(new AnimationWrapper(new Point2f(position.x,position.y),tempExp,320,240));
 	}
 	
-	private void addSparkle(Point2f position){
+	private synchronized void addSparkle(Point2f position){
 		Animation tempSp=sparkle.copy();
 		tempSp.stopAt(11);
 		animations.add(new AnimationWrapper(new Point2f(position.x,position.y),tempSp, 10,10));
