@@ -79,7 +79,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 			}
 		}
 		viewThread.getView().getContainer().getInput().addKeyListener(this); //This row may crash if View-thread havent created view yet
-		viewThread.getView().setBorder(model.getWorldBorder().getWorldWidth(), model.getWorldBorder().getWorldWidth()); //Set border size in view
+		viewThread.getView().setBorder(model.getWorldBorder().getWorldWidth(), model.getWorldBorder().getWorldHeight()); //Set border size in view
 		viewThread.getView().addPropertyChangeListener(this);
 	}
 
