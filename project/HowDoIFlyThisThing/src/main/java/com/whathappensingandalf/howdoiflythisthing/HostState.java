@@ -37,7 +37,6 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 	private HashMap<Integer, User> users;
 	private User myUser;
 	private Server server;
-	private InetSocketAddress myIp;
 	private Set<Connection> connections;
 	private Keybindings keybindings;
 	private PropertyChangeSupport pcs;
@@ -238,8 +237,8 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 		return users.get(connection.getID()).getSpaceshipPoint();
 	}
 
-	public state getState() {
-		return ModelNetworkState.state.HOST;
+	public State getState() {
+		return ModelNetworkState.State.HOST;
 	}
 	/**
 	 *  This method returns point of spaceship beloning to ip.

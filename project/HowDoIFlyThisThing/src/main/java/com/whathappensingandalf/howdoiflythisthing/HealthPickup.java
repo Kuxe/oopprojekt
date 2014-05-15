@@ -60,7 +60,7 @@ public class HealthPickup implements IPickup{
 	}
 
 	public String getType() {
-		return type.HEALTH_PICKUP.toString();
+		return Type.HEALTH_PICKUP.toString();
 	}
 
 	public void accept(ICollidable visitor) {
@@ -126,7 +126,7 @@ public class HealthPickup implements IPickup{
 				getHeight(),
 				getWidth(),
 				getDirection(),
-				getType().toString()));
+				getType()));
 		return returnSet;
 	}
 	

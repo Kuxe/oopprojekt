@@ -19,7 +19,7 @@ public class ActiveRound implements Roundstate {
 	@Override
 	public void removeUser(User user, Set<User> users, Round round) {
 		users.remove(user);
-		if(user.getState().equals(IUserState.state.PLAYER_STATE)) {
+		if(user.getState().equals(IUserState.State.PLAYER_STATE)) {
 			round.decreaseUsersAlive();
 		}
 	}

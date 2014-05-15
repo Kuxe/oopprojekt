@@ -160,18 +160,18 @@ public class RoundTest {
 		
 		round.addUser(user1);
 		round.addUser(user2);
-		assertTrue(user1.getState().equals(IUserState.state.SPECTATOR_STATE)); //Should not have received spaceship yet
-		assertTrue(user2.getState().equals(IUserState.state.SPECTATOR_STATE)); //Should not have received spaceship yet
+		assertTrue(user1.getState().equals(IUserState.State.SPECTATOR_STATE)); //Should not have received spaceship yet
+		assertTrue(user2.getState().equals(IUserState.State.SPECTATOR_STATE)); //Should not have received spaceship yet
 		round.update();
 		run5seconds(round);
 		assertTrue(round.getState().equals(Roundstate.State.ACTIVE)); //START_ROUND-event should make round active when second user is added
 		round.update(); //Process round (give spaceships to users that requested from event REQUEST_SPACESHIP
-		assertTrue(user1.getState().equals(IUserState.state.PLAYER_STATE)); //Should have received spaceship
-		assertTrue(user2.getState().equals(IUserState.state.PLAYER_STATE)); //Should have received spaceship
+		assertTrue(user1.getState().equals(IUserState.State.PLAYER_STATE)); //Should have received spaceship
+		assertTrue(user2.getState().equals(IUserState.State.PLAYER_STATE)); //Should have received spaceship
 		
 		assertTrue(round.getUsersAlive() == 2); //Both users should be alive
-		assertTrue(user1.getState().equals(IUserState.state.PLAYER_STATE)); //If both users are alive, they are both players
-		assertTrue(user2.getState().equals(IUserState.state.PLAYER_STATE)); //If both users are alive, they are both players
+		assertTrue(user1.getState().equals(IUserState.State.PLAYER_STATE)); //If both users are alive, they are both players
+		assertTrue(user2.getState().equals(IUserState.State.PLAYER_STATE)); //If both users are alive, they are both players
 		
 		System.out.println(round.getUsersAlive());
 		System.out.print("SUICIDE... ");

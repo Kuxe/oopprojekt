@@ -11,7 +11,7 @@ public class ViewThread extends Thread implements Runnable{
 	public void run(){
 		view.start();
 	}
-	public void StopView(){
+	public void stopView(){
 		view.stop();
 	}
 	

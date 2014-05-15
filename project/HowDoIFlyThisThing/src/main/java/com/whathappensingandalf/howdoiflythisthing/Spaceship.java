@@ -212,7 +212,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 
 	public String getType() {
-		return type.SPACESHIP.toString();
+		return Type.SPACESHIP.toString();
 	}
 	
     public String getWeapon() {
@@ -346,7 +346,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 				getHeight(),
 				getWidth(),
 				getDirection(),
-				getType().toString()));
+				getType()));
 		
 		if(thrusterComponent.isMainThusterActive()){
 			returnSet.add(new DrawableData(
@@ -355,7 +355,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 					3,
 					3,
 					getDirection(),
-					IGameObject.type.BULLET.toString()));
+					IGameObject.Type.BULLET.toString()));
 		}
 		if(thrusterComponent.isRightThusterActive()){
 			returnSet.add(new DrawableData(
@@ -364,7 +364,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 					3,
 					3,
 					getDirection(),
-					IGameObject.type.BULLET.toString()));
+					IGameObject.Type.BULLET.toString()));
 		}
 		if(thrusterComponent.isLeftThusterActive()){
 			returnSet.add(new DrawableData(
@@ -373,7 +373,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 					3,
 					3,
 					getDirection(),
-					IGameObject.type.BULLET.toString()));
+					IGameObject.Type.BULLET.toString()));
 		}
 		
 		return returnSet;

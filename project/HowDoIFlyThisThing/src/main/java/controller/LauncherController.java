@@ -100,7 +100,6 @@ public class LauncherController implements PropertyChangeListener{
 		launcher.setLeftThrusterKey(Keyboard.getKeyName(defaultLeftKey));
 		launcher.setMainThrusterKey(Keyboard.getKeyName(defaultMainKey));
 		launcher.setRightThrusterKey(Keyboard.getKeyName(defaultRightKey));
-		launcher.setFullscreen(defaultFullscreen);
 	}
 	
 }

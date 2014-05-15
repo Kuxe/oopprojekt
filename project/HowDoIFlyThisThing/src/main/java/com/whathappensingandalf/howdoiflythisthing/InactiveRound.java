@@ -11,7 +11,7 @@ import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
 public class InactiveRound implements Roundstate {
 	
-	public enum message {
+	public enum Message {
 		START_ROUND
 	}
 	
@@ -27,13 +27,13 @@ public class InactiveRound implements Roundstate {
 		users.add(user);
 		user.requestSpaceship();
 		if(users.size() == 2) {
-			pcs.firePropertyChange(message.START_ROUND.toString(), false, true);
+			pcs.firePropertyChange(Message.START_ROUND.toString(), false, true);
 		}
 	}
 
 	@Override
 	public void removeUser(User user, Set<User> users, Round round) {
-		if(user.getState().equals(IUserState.state.PLAYER_STATE)) {
+		if(user.getState().equals(IUserState.State.PLAYER_STATE)) {
 			round.decreaseUsersAlive();
 		}
 		users.remove(user);

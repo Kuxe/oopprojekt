@@ -151,7 +151,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetWeapon() {
-		assertTrue(s.getWeapon().equals(IGameObject.type.BULLET.toString()));
+		assertTrue(s.getWeapon().equals(IGameObject.Type.BULLET.toString()));
 	}
 	
 	@Test
@@ -164,7 +164,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 	public void testSetWeapon() {
 		IProjectile projectile = new Missile(new Point2f(5,9), new Vector2f(7,9), new Vector2f(3,6), new Vector2f(7,3), 3, 3);
 		s.setWeapon(projectile);
-		assertTrue(s.getWeapon().equals(IGameObject.type.MISSILE.toString()));
+		assertTrue(s.getWeapon().equals(IGameObject.Type.MISSILE.toString()));
 	}
 
 	@Test
@@ -233,7 +233,6 @@ public class SpaceshipTest implements PropertyChangeListener{
 	public void testAddPropertyChangeListener() {
 		s.addPropertyChangeListener(this);
 		s.remove();
-		boolean tmp = isRemoved;
 		s.fireWeapon();
 		assertTrue(isRemoved||isFireing);
 	}

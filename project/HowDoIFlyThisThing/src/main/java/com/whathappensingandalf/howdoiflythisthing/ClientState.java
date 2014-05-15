@@ -24,7 +24,6 @@ public class ClientState implements ModelNetworkState {
 	private Set<DrawableData> drawables;
 	private Set<String> sounds;
 	private Point2f spaceshipPoint;
-	private Keybindings keybindins;
 	private long countdown = 0;
 	private String modelStatus = "Not connected to a host; status not avaiable";
 	private WorldBorder border;
@@ -40,7 +39,6 @@ public class ClientState implements ModelNetworkState {
 	public ClientState(String ip, Keybindings keybindings) throws IOException {
 
 		spaceshipPoint = new Point2f(0, 0);
-		this.keybindins = keybindings;
 		
 		pcs = new PropertyChangeSupport(this);
 
@@ -105,7 +103,7 @@ public class ClientState implements ModelNetworkState {
 			@Override
 			public void disconnected(Connection connection) {
 				System.out.println("lost connection to host!");
-				pcs.firePropertyChange(ModelNetworkState.message.SHUTDOWN.toString(), false, true);
+				pcs.firePropertyChange(ModelNetworkState.Message.SHUTDOWN.toString(), false, true);
 			}
 		});
 
@@ -114,8 +112,8 @@ public class ClientState implements ModelNetworkState {
 		client.sendTCP(new KeybindingsNetworkPacket(keybindings));
 	}
 
-	public state getState() {
-		return ModelNetworkState.state.CLIENT;
+	public State getState() {
+		return ModelNetworkState.State.CLIENT;
 	}
 
 	public void addUser(int id) {

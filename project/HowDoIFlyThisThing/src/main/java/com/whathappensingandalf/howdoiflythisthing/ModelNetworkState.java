@@ -12,18 +12,18 @@ import com.esotericsoftware.kryonet.Connection;
 
 public interface ModelNetworkState{
 	
-	public static enum state {
+	public static enum State {
 		HOST,
 		CLIENT,
 		NONE,
 		ERROR
 	}
 	
-	public static enum message {
+	public static enum Message {
 		SHUTDOWN
 	}
 	
-	public state getState();
+	public State getState();
 	public void addUser(int id);	
 	public void update(Set<Integer> listOfHoldKeys);
 	public Set<DrawableData> getDrawableData();

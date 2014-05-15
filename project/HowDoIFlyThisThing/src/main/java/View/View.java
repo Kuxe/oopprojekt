@@ -32,6 +32,10 @@ import com.whathappensingandalf.howdoiflythisthing.IGameObject;
 
 public class View extends BasicGame implements ApplicationListener{
 	
+	public static enum Message {
+		VIEW_CLOSE
+	}
+	
 	private AppGameContainer container;
 	
 	private Set<DrawableData> renderObjects;
@@ -72,11 +76,6 @@ public class View extends BasicGame implements ApplicationListener{
 	private TrueTypeFont font;
 	private String countdownText = "Loading model...";
 	private String modelStatus = "";
-
-	
-	public static enum message {
-		VIEW_CLOSE
-	}
 	
 	public View(String title, Object lock, boolean fullscreen){
 		super(title);
@@ -113,7 +112,7 @@ public class View extends BasicGame implements ApplicationListener{
 	@Override
 	public boolean closeRequested() {
 		System.out.println("Window sending VIEW_CLOSE event");
-		pcs.firePropertyChange(message.VIEW_CLOSE.name(), false, true);
+		pcs.firePropertyChange(Message.VIEW_CLOSE.name(), false, true);
 		stop();
 		return true;
 	}
