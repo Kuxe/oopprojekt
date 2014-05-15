@@ -82,6 +82,7 @@ public class RoundTest {
 		round.update(); //Update round in order to start round
 		
 		run5seconds(round);
+		run5seconds(round);
 		assertTrue(round.getUsersAlive() == 3); //Three should be alive
 		
 		round.addUser(user4);
