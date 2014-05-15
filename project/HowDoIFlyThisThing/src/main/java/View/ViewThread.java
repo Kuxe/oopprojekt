@@ -1,6 +1,6 @@
 package View;
 
-public class ViewThread extends Thread implements Runnable{
+public class ViewThread implements Runnable{
 	private View view;
 	
 	public ViewThread(Object lock, boolean fullscreen){

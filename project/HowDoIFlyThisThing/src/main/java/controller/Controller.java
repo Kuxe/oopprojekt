@@ -69,7 +69,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	private void createView(boolean fullscreen){
 		final Object lock = new Object();
 		viewThread=new ViewThread(lock, fullscreen);
-		viewThread.start();
+		new Thread(viewThread).start();
 		synchronized(lock) {
 			while(!viewThread.isReady()) {
 				try {
