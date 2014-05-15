@@ -131,12 +131,11 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	}
 	
 	public void setRenderObjects(Set<DrawableData> set){
-		viewThread.getView().setRenderObjects(set);
+		viewThread.getView().setRenderObjects(set); 
 	}
 
 	public void cleanup() {
 		model.cleanup();
-		
 	}
 
 	public synchronized void keyPressed(int key, char c) {
