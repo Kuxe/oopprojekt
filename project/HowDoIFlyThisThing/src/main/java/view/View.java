@@ -80,6 +80,7 @@ public class View extends BasicGame implements ApplicationListener{
 		super(title);
 		this.lock = lock;
 		renderObjects = new HashSet<DrawableData>();
+		System.setProperty("org.newdawn.slick.pngloader", "false");
 		try{			
 			container=new AppGameContainer(this);
 			container.setDisplayMode(windowWidth, windowHeight, false);
