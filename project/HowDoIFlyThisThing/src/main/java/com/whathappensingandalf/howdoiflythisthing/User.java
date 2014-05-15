@@ -15,7 +15,7 @@ import org.lwjgl.input.Keyboard;
  */
 public class User implements PropertyChangeListener{
 	
-	public enum message {
+	public enum Message {
 		LOST_SPACESHIP,
 		REQUEST_SPACESHIP
 	}
@@ -98,19 +98,19 @@ public class User implements PropertyChangeListener{
 		pcs.removePropertyChangeListener(listener);
 	}
 
-	public IUserState.state getState() {
+	public IUserState.State getState() {
 		return state.getState();
 	}
 	
 	public void requestSpaceship() {
-		pcs.firePropertyChange(message.REQUEST_SPACESHIP.toString(), false, true);
+		pcs.firePropertyChange(Message.REQUEST_SPACESHIP.toString(), false, true);
 	}
 	
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
 			spectatorState.setCameraPoint(playerState.getSpaceshipPosition());
 			state = spectatorState;
-			pcs.firePropertyChange(message.LOST_SPACESHIP.toString(), false, true);
+			pcs.firePropertyChange(Message.LOST_SPACESHIP.toString(), false, true);
 		}
 	}
 	

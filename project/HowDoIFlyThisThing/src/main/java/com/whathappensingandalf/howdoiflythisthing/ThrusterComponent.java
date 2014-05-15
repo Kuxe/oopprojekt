@@ -18,7 +18,6 @@ class ThrusterComponent {
 	 * Vectors for calculating and representing the resulting acceleration.
 	 */
 	private Vector2f acceleration;
-	private Vector2f direction;
 	private TypeWrapper rotationVelocity;
 	private TypeWrapper rotationAcceleration;
 	/**
@@ -36,7 +35,6 @@ class ThrusterComponent {
 	 */
     public ThrusterComponent(Vector2f acceleration, Vector2f direction,TypeWrapper rotationAcceleration,TypeWrapper rotationVelocity){
 		this.acceleration=acceleration;
-		this.direction=direction;
 		this.rotationVelocity=rotationVelocity;
 		this.rotationAcceleration=rotationAcceleration;
 		this.mainThruster=new Thruster(0,1,200,0);

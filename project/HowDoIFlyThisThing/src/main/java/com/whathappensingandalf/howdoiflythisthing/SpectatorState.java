@@ -72,8 +72,8 @@ public class SpectatorState implements IUserState{
 	}
 
 	@Override
-	public state getState() {
-		return IUserState.state.SPECTATOR_STATE;
+	public State getState() {
+		return IUserState.State.SPECTATOR_STATE;
 	}
 
 	@Override

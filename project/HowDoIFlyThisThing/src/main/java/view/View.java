@@ -32,6 +32,10 @@ import com.whathappensingandalf.howdoiflythisthing.IGameObject;
 
 public class View extends BasicGame implements ApplicationListener{
 	
+	public static enum Message {
+		VIEW_CLOSE
+	}
+	
 	private AppGameContainer container;
 	
 	private Set<DrawableData> renderObjects;
@@ -71,11 +75,6 @@ public class View extends BasicGame implements ApplicationListener{
 	private TrueTypeFont font;
 	private String countdownText = "Loading model...";
 	private String modelStatus = "";
-
-	
-	public static enum message {
-		VIEW_CLOSE
-	}
 	
 	public View(String title, Object lock, boolean fullscreen){
 		super(title);
@@ -112,7 +111,7 @@ public class View extends BasicGame implements ApplicationListener{
 	@Override
 	public boolean closeRequested() {
 		System.out.println("Window sending VIEW_CLOSE event");
-		pcs.firePropertyChange(message.VIEW_CLOSE.name(), false, true);
+		pcs.firePropertyChange(Message.VIEW_CLOSE.name(), false, true);
 		stop();
 		return true;
 	}
@@ -178,24 +177,24 @@ public class View extends BasicGame implements ApplicationListener{
 	}
 	
 	private void drawScrollingImageForceDimension(GameContainer arg0, Graphics g, SpriteSheet image, float speed, int imageWidth, int imageHeight) {
-		int modx = (int) ((camera.x*speed + windowWidth/2) / (imageWidth/2));
-		int mody = (int) ((camera.y*speed + windowHeight/2) / (imageHeight/2));
+		int modx = (int) ((camera.x*speed + windowWidth/2.0f) / (imageWidth/2.0f));
+		int mody = (int) ((camera.y*speed + windowHeight/2.0f) / (imageHeight/2.0f));
 		g.drawImage(image, 
-					-windowWidth/2 + modx * imageWidth/2  - camera.x*speed,
-					-windowHeight/2 + mody * imageHeight/2 - camera.y*speed);
+					-windowWidth/2.0f + modx * imageWidth/2.0f  - camera.x*speed,
+					-windowHeight/2.0f + mody * imageHeight/2.0f - camera.y*speed);
 	}
 	
 	private void drawRoundCountdown(GameContainer arg0, Graphics g)
 	{
 		if(!countdownText.equals("-1")) {
 			g.setFont(font);
-			g.drawString(countdownText, (windowWidth - font.getWidth(countdownText))/2, 40 + font.getHeight(modelStatus));
+			g.drawString(countdownText, (windowWidth - font.getWidth(countdownText))/2.0f, 40 + font.getHeight(modelStatus));
 		}
 	}
 	
 	private void drawModelStatus(GameContainer arg0, Graphics g) {
 		g.setFont(font);
-		g.drawString(modelStatus, (windowWidth - font.getWidth(modelStatus))/2, 30);
+		g.drawString(modelStatus, (windowWidth - font.getWidth(modelStatus))/2.0f, 30);
 	}
 	
 	/**
@@ -252,8 +251,8 @@ public class View extends BasicGame implements ApplicationListener{
 			}else{
 				tmpImg=missingImage.copy();
 			}
-			tmpX=comp.getPosition().x-comp.getWidth()/2;
-			tmpY=comp.getPosition().y-comp.getHeight()/2;
+			tmpX=comp.getPosition().x-comp.getWidth()/2.0f;
+			tmpY=comp.getPosition().y-comp.getHeight()/2.0f;
 			tmpImg.rotate(calculateRotation(comp.getDirection()));
 			g.drawImage(tmpImg, tmpX - camera.x + windowWidth/2, tmpY - camera.y + windowHeight/2);
 		}
@@ -278,7 +277,7 @@ public class View extends BasicGame implements ApplicationListener{
 			if(animComp.getAnimation().isStopped()){
 				removeAnimations.add(animComp);
 			}
-			animComp.getAnimation().draw(animComp.getPosition().x - animComp.getWidth()/2 + windowWidth/2 - camera.x ,animComp.getPosition().y - animComp.getHeight()/2 + windowHeight/2 - camera.y);
+			animComp.getAnimation().draw(animComp.getPosition().x - animComp.getWidth()/2.0f + windowWidth/2.0f - camera.x ,animComp.getPosition().y - animComp.getHeight()/2.0f + windowHeight/2.0f - camera.y);
 		}
 	}
 	

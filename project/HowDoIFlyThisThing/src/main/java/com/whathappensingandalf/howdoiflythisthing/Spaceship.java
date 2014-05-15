@@ -73,7 +73,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
         this.velocity = new Vector2f(0.0f, 0.0f);
         rotationAcceleration = new TypeWrapper(0.0f);
         rotationVelocity = new TypeWrapper(0.0f);        
-        this.WEAPON_PIPE_POSITION = new Vector2f(0.0f, height/2 + 6.0f); //Should fire from middle of spaceships just infront of it
+        this.WEAPON_PIPE_POSITION = new Vector2f(0.0f, height/2.0f + 6.0f); //Should fire from middle of spaceships just infront of it
         this.hull=new Hull(10);
         this.shield=new Shield(3);
         this.moveComponent = new MoveComponent(this.position, this.velocity, this.acceleration, this.direction, this.rotationVelocity, this.rotationAcceleration);
@@ -212,7 +212,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 	}
 
 	public String getType() {
-		return type.SPACESHIP.toString();
+		return Type.SPACESHIP.toString();
 	}
 	
     public String getWeapon() {
@@ -346,7 +346,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 				getHeight(),
 				getWidth(),
 				getDirection(),
-				getType().toString()));
+				getType()));
 		
 		if(thrusterComponent.isMainThusterActive()){
 			returnSet.add(new DrawableData(
@@ -355,7 +355,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 					3,
 					3,
 					getDirection(),
-					IGameObject.type.BULLET.toString()));
+					IGameObject.Type.BULLET.toString()));
 		}
 		if(thrusterComponent.isRightThusterActive()){
 			returnSet.add(new DrawableData(
@@ -364,7 +364,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 					3,
 					3,
 					getDirection(),
-					IGameObject.type.BULLET.toString()));
+					IGameObject.Type.BULLET.toString()));
 		}
 		if(thrusterComponent.isLeftThusterActive()){
 			returnSet.add(new DrawableData(
@@ -373,7 +373,7 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 					3,
 					3,
 					getDirection(),
-					IGameObject.type.BULLET.toString()));
+					IGameObject.Type.BULLET.toString()));
 		}
 		
 		return returnSet;

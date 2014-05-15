@@ -82,7 +82,7 @@ public class WeaponPickupTest  implements PropertyChangeListener{
 
 	@Test
 	public void testGetType() {
-		assertTrue(wp.getType().equals(IGameObject.type.WEAPON_PICKUP.toString()));
+		assertTrue(wp.getType().equals(IGameObject.Type.WEAPON_PICKUP.toString()));
 	}
 
 	@Test

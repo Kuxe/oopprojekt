@@ -53,7 +53,7 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 	}
 
 	public String getType() {
-		return type.ASTEROID.toString();
+		return Type.ASTEROID.toString();
 	}
 
 	public void accept(ICollidable visitor) {
@@ -85,13 +85,13 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 
 	@Override
 	public Collection<? extends DrawableData> getCollectionDrawables() {
-		Set<DrawableData> returnSet=new HashSet<DrawableData>();
+		Set<DrawableData> returnSet = new HashSet<DrawableData>();
 		returnSet.add(new DrawableData(
 				getPosition(),
 				getHeight(),
 				getWidth(),
 				getDirection(),
-				getType().toString()));
+				getType()));
 		return returnSet;
 	}
 }

@@ -144,7 +144,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public String getType() {
-		return type.MISSILE.toString();
+		return Type.MISSILE.toString();
 	}
 
 	@Override
@@ -200,7 +200,7 @@ public class Missile implements IProjectile{
 				getHeight(),
 				getWidth(),
 				getDirection(),
-				getType().toString()));
+				getType()));
 		return returnSet;
 	}
 
