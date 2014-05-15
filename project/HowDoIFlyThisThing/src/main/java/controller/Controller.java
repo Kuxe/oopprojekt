@@ -51,7 +51,6 @@ public class Controller implements KeyListener, PropertyChangeListener{
 			model.join(ip);
 			model.getState().addPropertyChangeListener(this);
 		} catch (IOException ex) {
-			//viewThread.StopView();
 			throw new java.net.UnknownHostException();
 		}
 	}
@@ -75,12 +74,11 @@ public class Controller implements KeyListener, PropertyChangeListener{
 				try {
 					lock.wait();
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}
-		viewThread.getView().getContainer().getInput().addKeyListener(this); //This row may crash if View-thread havent created view yet
+		viewThread.getView().getContainer().getInput().addKeyListener(this); //This row may crash if View-thread haven't created view yet
 		viewThread.getView().setBorder(model.getWorldBorder().getWorldWidth(), model.getWorldBorder().getWorldHeight()); //Set border size in view
 		viewThread.getView().addPropertyChangeListener(this);
 	}
@@ -153,21 +151,20 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	}
 
 	public void setInput(Input input) {
-		// TODO Auto-generated method stub
+		// not used
 	}
 	public boolean isAcceptingInput() {
-		// TODO Auto-generated method stub
 		return true;
 	}
 	public void inputEnded() {
-		// TODO Auto-generated method stub
+		// not used
 	}
 	public void inputStarted() {
-		// TODO Auto-generated method stub
+		// not used
 	}
 
 	public void propertyChange(PropertyChangeEvent event) {
-		System.out.println("Controller recieved event: " + event.getPropertyName());
+		System.out.println("Controller recieved event: " + event.getPropertyName());//Remove?
 		if(event.getPropertyName().equals(View.message.VIEW_CLOSE.toString())) {
 			running = false;
 		}else if(event.getPropertyName().equals(Gameworld.Message.EXPLOSION.toString())){
