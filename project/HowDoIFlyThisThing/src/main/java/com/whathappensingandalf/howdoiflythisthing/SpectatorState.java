@@ -18,10 +18,10 @@ public class SpectatorState implements IUserState{
 
 	public SpectatorState(){
 		camera	=	new Point2f(1,1);
-		up		=	new Vector2f(0,-0.1f);
-		down	=	new Vector2f(0,0.1f);
-		left	=	new Vector2f(-0.1f,0);
-		right	=	new Vector2f(0.1f,0);
+		up		=	new Vector2f(0,-0.001f);
+		down	=	new Vector2f(0,0.001f);
+		left	=	new Vector2f(-0.001f,0);
+		right	=	new Vector2f(0.001f,0);
 	}
 	
 	public void mainHold(boolean held) {
@@ -48,6 +48,9 @@ public class SpectatorState implements IUserState{
 		}
 	}
 
+	public void setCameraPoint(Point2f position){
+		this.camera.set(position);
+	}
 	/**
 	 * 
 	 * @return A camera possition as the user does not have a spaceship.
