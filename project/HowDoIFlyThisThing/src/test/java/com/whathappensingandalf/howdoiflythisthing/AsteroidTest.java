@@ -59,8 +59,10 @@ public class AsteroidTest implements PropertyChangeListener{
 	public void testGetPosition() {
 		Point2f testPoint=new Point2f(30,40);
 		Asteroid testAsteroid=new Asteroid(testPoint,10,20);
-		assertTrue(testAsteroid.getPosition().x==testPoint.x &&
-				testAsteroid.getPosition().y==testPoint.y);
+		if(Math.abs(testAsteroid.getPosition().x - testPoint.x) < 0.0000001 &&
+				Math.abs(testAsteroid.getPosition().y - testPoint.y) < 0.0000001){
+		assertTrue(true);
+		}
 	}
 
 	@Test

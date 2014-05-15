@@ -83,7 +83,7 @@ public class HealthPickupTest implements PropertyChangeListener{
 
 	@Test
 	public void testGetType() {
-		assertTrue(hp.getType().equals(IGameObject.type.HEALTH_PICKUP.toString()));
+		assertTrue(hp.getType().equals(IGameObject.Type.HEALTH_PICKUP.toString()));
 	}
 
 	@Test

@@ -24,6 +24,7 @@ import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
  * start new rounds. When using this class, only calling "addUser"
  * and "removeUser" should be enough.
  */
+
 public class Round implements PropertyChangeListener{
 	
 	private Gameworld world;
@@ -38,8 +39,7 @@ public class Round implements PropertyChangeListener{
 	//For countdown
 	private long countdownStart = 0;
 	private long countdownLimit = 5000000000L; //5000000000ns counter, 5seconds
-//	private boolean permitStart = false;
-		
+
 	public Round() {
 		world = new Gameworld();
 		world.addPropertyChangeListener(this);
@@ -49,17 +49,17 @@ public class Round implements PropertyChangeListener{
 		users = new HashSet<User>();
 		usersRequestingShips = new HashSet<User>();
 		
-		state = new InactiveRound(this, users);
+		state = new InactiveRound();
 		state.addListener(this);
 	}
 	
 	public synchronized void addUser(User user) {
 		user.addPropertyChangeListener(this);
-		state.addUser(user);
+		state.addUser(user, users);
 	}
 	
 	public synchronized void removeUser(User user) {
-		state.removeUser(user);
+		state.removeUser(user, users, this);
 		user.removePropertyChangeListener(this);
 		user.suicide();
 		
@@ -69,7 +69,7 @@ public class Round implements PropertyChangeListener{
 			for(User lastUserOnline : users) {
 				
 				//If host is dead, add him to round
-				if(lastUserOnline.getState().equals(IUserState.state.SPECTATOR_STATE)) {
+				if(lastUserOnline.getState().equals(IUserState.State.SPECTATOR_STATE)) {
 					System.out.println("adding dead host");
 					lastUserOnline.requestSpaceship();
 				}
@@ -106,7 +106,7 @@ public class Round implements PropertyChangeListener{
 	
 	public void end() {
 		System.out.println("END_ROUND");
-		state = new InactiveRound(this, users);
+		state = new InactiveRound();
 		state.addListener(this);
 	}
 
@@ -118,7 +118,7 @@ public class Round implements PropertyChangeListener{
 		world.update();
 	}
 
-	public Set<DrawableData> getDrawableData() {
+	public synchronized Set<DrawableData> getDrawableData() {
 		return world.getDrawableData();
 	}
 	public Set<String> getListOfSounds(){
@@ -144,7 +144,7 @@ public class Round implements PropertyChangeListener{
 			for(User user : users) {
 				user.requestSpaceship();
 			}
-			state = new ActiveRound(this, users);
+			state = new ActiveRound();
 			state.addListener(this);
 		}
 	}
@@ -189,7 +189,7 @@ public class Round implements PropertyChangeListener{
 		return users.size();
 	}
 	
-	public Roundstate.state getState() {
+	public Roundstate.State getState() {
 		return state.getState();
 	}
 	
@@ -197,14 +197,14 @@ public class Round implements PropertyChangeListener{
 	 * 
 	 * @return countdown, if 5seconds left for round to begin, returns 5. If 4s left, return 4 etc.
 	 */
-	public long getCountdown() {
+	public synchronized long getCountdown() {
 		if(newRoundCommencing) {
 			return countdownLimit - (System.nanoTime() - countdownStart);
 		}
 		return -1;
 	}
 	
-	public String getModelStatus() {
+	public synchronized String getModelStatus() {
 		if(newRoundCommencing) {
 			return "Round commencing in: ";
 		}
@@ -218,25 +218,26 @@ public class Round implements PropertyChangeListener{
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		System.out.println(evt.getPropertyName());
-		if(evt.getPropertyName().equals(User.message.REQUEST_SPACESHIP.toString())) {
+		if(evt.getPropertyName().equals(User.Message.REQUEST_SPACESHIP.toString())) {
 			usersRequestingShips.add((User)evt.getSource());
 		}
-		else if(evt.getPropertyName().equals(InactiveRound.message.START_ROUND.toString())) {
+		
+		else if(evt.getPropertyName().equals(InactiveRound.Message.START_ROUND.toString())) {
 			start();
 		}
 		
 		//Is user lost his spaceship...
-		else if (evt.getPropertyName().equals(User.message.LOST_SPACESHIP.toString())) {
+		else if (evt.getPropertyName().equals(User.Message.LOST_SPACESHIP.toString())) {
 			
 			//One user died...
 			decreaseUsersAlive();
 			//If last man standing and round is active, start new round
-			if(usersAlive == 1 && state.getState().equals(Roundstate.state.ACTIVE)) {
+			if(usersAlive == 1 && state.getState().equals(Roundstate.State.ACTIVE)) {
 				start();
 			}
 			
 			//If round is inactive, give a new ship to user
-			if (state.getState().equals(Roundstate.state.INACTIVE)) {
+			if (state.getState().equals(Roundstate.State.INACTIVE)) {
 				((User)evt.getSource()).requestSpaceship();
 			}
 		}

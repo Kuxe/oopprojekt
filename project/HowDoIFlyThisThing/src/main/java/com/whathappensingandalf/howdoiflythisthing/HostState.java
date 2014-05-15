@@ -233,12 +233,12 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 		return round.getDrawableData();
 	}
 
-	public Point2f getSpaceshipPoint(InetSocketAddress ip) {
-		return users.get(ip).getSpaceshipPoint();
+	public Point2f getSpaceshipPoint(Connection connection) {
+		return users.get(connection.getID()).getSpaceshipPoint();
 	}
 
-	public state getState() {
-		return ModelNetworkState.state.HOST;
+	public State getState() {
+		return ModelNetworkState.State.HOST;
 	}
 	/**
 	 *  This method returns point of spaceship beloning to ip.

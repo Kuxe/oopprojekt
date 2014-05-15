@@ -22,7 +22,7 @@ public class NoneState implements ModelNetworkState {
 
 	}
 
-	public state getState() {
+	public State getState() {
 		// TODO Auto-generated method stub
 		return null;
 	}

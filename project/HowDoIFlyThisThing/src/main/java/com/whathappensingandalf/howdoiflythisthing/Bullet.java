@@ -166,7 +166,7 @@ public class Bullet implements IProjectile {
 	}
 
 	public String getType() {
-		return type.BULLET.toString();
+		return Type.BULLET.toString();
 	}
 	public boolean collideDetection(ICollidable rhs) {
 		return colliComp.collideDetection(rhs);
@@ -227,13 +227,13 @@ public class Bullet implements IProjectile {
 
 	@Override
 	public Collection<? extends DrawableData> getCollectionDrawables() {
-		Set<DrawableData> returnSet=new HashSet<DrawableData>();
+		Set<DrawableData> returnSet = new HashSet<DrawableData>();
 		returnSet.add(new DrawableData(
 				getPosition(),
 				getHeight(),
 				getWidth(),
 				getDirection(),
-				getType().toString()));
+				getType()));
 		return returnSet;
 	}
 	

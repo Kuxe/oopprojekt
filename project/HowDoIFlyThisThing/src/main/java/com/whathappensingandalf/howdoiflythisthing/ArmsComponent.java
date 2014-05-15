@@ -15,7 +15,6 @@ import com.whathappensingandalf.howdoiflythisthing.factorys.IProjectileFactory;
  */
 public class ArmsComponent {
     
-	private IProjectile equipedProjectile;
 	private Point2f point;
 	private Vector2f velocity;
 	private Vector2f acceleration;
@@ -35,7 +34,7 @@ public class ArmsComponent {
 		this.acceleration 			= acceleration;
 		this.direction				= direction;
 		this.weaponPipePosition 	= weaponPipePosition;
-		this.type					= IGameObject.type.BULLET.toString();
+		this.type					= IGameObject.Type.BULLET.toString();
 		this.timer					= new Timer(1000);
 	}
 	

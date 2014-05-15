@@ -58,7 +58,7 @@ public class WeaponPickup implements IPickup{
 	}
 
 	public String getType() {
-		return type.WEAPON_PICKUP.toString();
+		return Type.WEAPON_PICKUP.toString();
 	}
 
 	public void accept(ICollidable visitor) {
@@ -113,7 +113,7 @@ public class WeaponPickup implements IPickup{
 			return false;
 		}else{
 			WeaponPickup other = (WeaponPickup)rhs;
-			return 	this.projectile.getType().toString().equals(other.projectile.getType().toString())&&
+			return	this.projectile.getType().equals(other.projectile.getType())&&
 					this.position.equals(other.position)&&
 					this.radius==other.radius;
 		}

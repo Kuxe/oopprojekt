@@ -58,8 +58,8 @@ public class PlayerState implements IUserState{
 	}
 
 	@Override
-	public state getState() {
-		return IUserState.state.PLAYER_STATE;
+	public State getState() {
+		return IUserState.State.PLAYER_STATE;
 	}
 	
 	public int getHull(){

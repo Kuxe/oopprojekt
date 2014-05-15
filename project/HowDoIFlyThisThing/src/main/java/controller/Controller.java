@@ -2,6 +2,7 @@ package controller;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -61,9 +62,9 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	}
 	private void sharedCTOR() {
 		model = new HowDoIFlyThisThing(keybindings);	
-		listOfPressedKeys = new HashSet();
-		listOfReleasedKeys = new HashSet();
-		listOfHoldKeys = new HashSet();
+		listOfPressedKeys = Collections.synchronizedSet(new HashSet<Integer>());
+		listOfReleasedKeys = Collections.synchronizedSet(new HashSet<Integer>());
+		listOfHoldKeys = new HashSet<Integer>();
 		soundEffects= new SoundEffects();
 	}
 	private void createView(boolean fullscreen){
@@ -168,8 +169,8 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		System.out.println("Controller recieved event: " + event.getPropertyName()); //Remove?
 		
 		//If either view was shutdown or model requested a a close, stop the game loop and let cleanup begin
-		if(	event.getPropertyName().equals(View.message.VIEW_CLOSE.toString()) ||
-			event.getPropertyName().equals(ModelNetworkState.message.SHUTDOWN.toString())) {
+		if(	event.getPropertyName().equals(View.Message.VIEW_CLOSE.toString()) ||
+			event.getPropertyName().equals(ModelNetworkState.Message.SHUTDOWN.toString())) {
 			running = false;
 		}else if(event.getPropertyName().equals(Gameworld.Message.EXPLOSION.toString())){
 			this.viewThread.createExplosion(((ExplosionNetworkPacket)event.getOldValue()).position);

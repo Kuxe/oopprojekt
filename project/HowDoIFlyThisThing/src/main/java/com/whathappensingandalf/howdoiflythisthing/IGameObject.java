@@ -5,7 +5,7 @@ package com.whathappensingandalf.howdoiflythisthing;
  * @author Martin Nilsson
  */
 public interface IGameObject {
-	public enum type{
+	public enum Type{
 		SPACESHIP,
 		BULLET,
 		ASTEROID,
