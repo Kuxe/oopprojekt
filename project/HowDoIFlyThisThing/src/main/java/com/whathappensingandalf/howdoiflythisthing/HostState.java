@@ -53,7 +53,7 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 		
 		pcs = new PropertyChangeSupport(this);
 		
-		users = new HashMap();
+		users = new HashMap<Integer, User>();
 		server = new Server(32768, 4096);
 		connections = new HashSet();
 		
@@ -234,8 +234,8 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 		return round.getDrawableData();
 	}
 
-	public Point2f getSpaceshipPoint(InetSocketAddress ip) {
-		return users.get(ip).getSpaceshipPoint();
+	public Point2f getSpaceshipPoint(Connection connection) {
+		return users.get(connection.getID()).getSpaceshipPoint();
 	}
 
 	public state getState() {
