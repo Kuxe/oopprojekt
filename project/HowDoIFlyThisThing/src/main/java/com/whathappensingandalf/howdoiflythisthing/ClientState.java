@@ -137,6 +137,7 @@ public class ClientState implements ModelNetworkState {
 	}
 
 	public Point2f getSpaceshipPoint() {
+		//System.out.println(spaceshipPoint);
 		return spaceshipPoint;
 	}
 
