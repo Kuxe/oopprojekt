@@ -5,6 +5,8 @@ import java.util.Set;
 import javax.vecmath.Point2f;
 
 import com.esotericsoftware.kryonet.Connection;
+
+import java.beans.PropertyChangeListener;
 import java.io.IOException;
 
 /**
@@ -91,5 +93,9 @@ public class HowDoIFlyThisThing {
 	
 	public WorldBorder getWorldBorder() {
 		return state.getWorldBorder();
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		state.addPropertyChangeListener(listener);
 	}
 }

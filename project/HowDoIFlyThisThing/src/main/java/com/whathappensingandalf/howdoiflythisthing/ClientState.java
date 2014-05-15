@@ -105,6 +105,7 @@ public class ClientState implements ModelNetworkState {
 			@Override
 			public void disconnected(Connection connection) {
 				System.out.println("lost connection to host!");
+				pcs.firePropertyChange(ModelNetworkState.message.SHUTDOWN.toString(), false, true);
 			}
 		});
 

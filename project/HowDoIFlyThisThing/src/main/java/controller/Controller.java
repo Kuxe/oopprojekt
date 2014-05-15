@@ -19,6 +19,7 @@ import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.Gameworld;
 import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
 import com.whathappensingandalf.howdoiflythisthing.Keybindings;
+import com.whathappensingandalf.howdoiflythisthing.ModelNetworkState;
 
 import java.io.IOException;
 
@@ -41,7 +42,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		keybindings = new Keybindings(leftKey, mainKey, rightKey, fireKey);
 		sharedCTOR();
 		model.host();
-		model.getState().addPropertyChangeListener(this);
+		model.addPropertyChangeListener(this);
 	}
 
 	public Controller(String ip, int leftKey, int mainKey, int rightKey, int fireKey)throws java.net.UnknownHostException{
@@ -49,7 +50,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		sharedCTOR();
 		try {
 			model.join(ip);
-			model.getState().addPropertyChangeListener(this);
+			model.addPropertyChangeListener(this);
 		} catch (IOException ex) {
 			//viewThread.StopView();
 			throw new java.net.UnknownHostException();
@@ -168,7 +169,10 @@ public class Controller implements KeyListener, PropertyChangeListener{
 
 	public void propertyChange(PropertyChangeEvent event) {
 		System.out.println("Controller recieved event: " + event.getPropertyName());
-		if(event.getPropertyName().equals(View.message.VIEW_CLOSE.toString())) {
+		
+		//If either view was shutdown or model requested a a close, stop the game loop and let cleanup begin
+		if(	event.getPropertyName().equals(View.message.VIEW_CLOSE.toString()) ||
+			event.getPropertyName().equals(ModelNetworkState.message.SHUTDOWN.toString())) {
 			running = false;
 		}else if(event.getPropertyName().equals(Gameworld.Message.EXPLOSION.toString())){
 			this.viewThread.createExplosion(((ExplosionNetworkPacket)event.getOldValue()).position);

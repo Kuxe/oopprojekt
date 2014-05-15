@@ -19,6 +19,10 @@ public interface ModelNetworkState{
 		ERROR
 	}
 	
+	public static enum message {
+		SHUTDOWN
+	}
+	
 	public state getState();
 	public void addUser(int id);	
 	public void update(Set<Integer> listOfHoldKeys);
