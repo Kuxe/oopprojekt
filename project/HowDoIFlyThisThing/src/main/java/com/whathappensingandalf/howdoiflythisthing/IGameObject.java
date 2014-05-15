@@ -8,6 +8,7 @@ public interface IGameObject {
 	public enum Type{
 		SPACESHIP,
 		BULLET,
+		THRUSTER_FIRE,
 		ASTEROID,
 		PICKUP,
 		HEALTH_PICKUP,
