@@ -11,9 +11,9 @@ import networkpackets.SparkleNetworkPacket;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 
-import View.View;
 import services.SoundEffects;
-import View.ViewThread;
+import view.View;
+import view.ViewThread;
 
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.Gameworld;
@@ -69,7 +69,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	private void createView(boolean fullscreen){
 		final Object lock = new Object();
 		viewThread=new ViewThread(lock, fullscreen);
-		viewThread.start();
+		new Thread(viewThread).start();
 		synchronized(lock) {
 			while(!viewThread.isReady()) {
 				try {
@@ -146,7 +146,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	public synchronized void keyReleased(int key, char c) {
 		if(key == Keyboard.KEY_ESCAPE){
 			running = false;
-			viewThread.StopView();
+			viewThread.stopView();
 		}
 		listOfReleasedKeys.add(key);
 	}

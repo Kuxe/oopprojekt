@@ -4,7 +4,7 @@ import org.lwjgl.input.Keyboard;
 
 /**
  *
- * @author Martin Nilsson
+ * @author Martin Nilsson & Francine Mäkelä
  */
 public class KeybindingUtils {
 	public static int getKeyboardKeyFormJava(int javaKey){
@@ -226,7 +226,6 @@ public class KeybindingUtils {
 			//   enter
 				return Keyboard.KEY_RETURN;
 		}
-		
 		return 0;
 	}
 }//end KeybindingUtils

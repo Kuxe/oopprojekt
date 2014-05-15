@@ -1,6 +1,6 @@
-package View;
+package view;
 
-public class ViewThread extends Thread implements Runnable{
+public class ViewThread implements Runnable{
 	private View view;
 	
 	public ViewThread(Object lock, boolean fullscreen){
@@ -11,7 +11,7 @@ public class ViewThread extends Thread implements Runnable{
 	public void run(){
 		view.start();
 	}
-	public void StopView(){
+	public void stopView(){
 		view.stop();
 	}
 	
