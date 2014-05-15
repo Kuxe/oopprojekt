@@ -160,8 +160,7 @@ public class Round implements PropertyChangeListener{
 			Spaceship ss = SpaceshipFactory.create(
 					new Point2f(
 							(float)Math.random() * world.getBorder().getWorldWidth(),
-							(float)Math.random() * world.getBorder().getWorldHeight()),
-					new Vector2f((float)Math.random(), (float)Math.random()));
+							(float)Math.random() * world.getBorder().getWorldHeight()));
 			
 			user.setSpaceship(ss);
 			world.addSpaceship(ss);
