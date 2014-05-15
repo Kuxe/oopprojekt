@@ -1,4 +1,4 @@
-package View;
+package view;
 
 public class ViewThread implements Runnable{
 	private View view;
@@ -11,7 +11,7 @@ public class ViewThread implements Runnable{
 	public void run(){
 		view.start();
 	}
-	public void StopView(){
+	public void stopView(){
 		view.stop();
 	}
 	

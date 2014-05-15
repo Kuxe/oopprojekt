@@ -1,6 +1,6 @@
-package View;
+package view;
 
-import View.LauncherFrame.Message;
+import view.LauncherFrame.Message;
 
 /**
  *

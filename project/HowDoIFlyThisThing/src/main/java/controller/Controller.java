@@ -11,9 +11,9 @@ import networkpackets.SparkleNetworkPacket;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
 
-import View.View;
 import services.SoundEffects;
-import View.ViewThread;
+import view.View;
+import view.ViewThread;
 
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.Gameworld;
@@ -146,7 +146,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	public synchronized void keyReleased(int key, char c) {
 		if(key == Keyboard.KEY_ESCAPE){
 			running = false;
-			viewThread.StopView();
+			viewThread.stopView();
 		}
 		listOfReleasedKeys.add(key);
 	}
