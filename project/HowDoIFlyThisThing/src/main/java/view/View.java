@@ -1,4 +1,4 @@
-package View;
+package view;
 
 
 import java.awt.Font;
@@ -51,7 +51,6 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private SpriteSheet planet_1;
 	
-	//TODO
 	private SpriteSheet hullImage, shieldImage;
 						
 						
@@ -120,9 +119,8 @@ public class View extends BasicGame implements ApplicationListener{
 	public void start(){
 		
 		try {
-				container.start();
+			container.start();
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -153,7 +151,6 @@ public class View extends BasicGame implements ApplicationListener{
 			}
 			
 		} catch (SlickException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		container.exit();

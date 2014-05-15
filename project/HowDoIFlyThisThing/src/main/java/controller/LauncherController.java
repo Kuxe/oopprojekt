@@ -1,8 +1,10 @@
 package controller;
-import View.LauncherFrame;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+
 import org.lwjgl.input.Keyboard;
+
+import view.LauncherFrame;
 /**
  *
  * @author Martin Nilsson

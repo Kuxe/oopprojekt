@@ -108,6 +108,7 @@ public class User implements PropertyChangeListener{
 	
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
+			spectatorState.setCameraPoint(playerState.getSpaceshipPosition());
 			state = spectatorState;
 			pcs.firePropertyChange(Message.LOST_SPACESHIP.toString(), false, true);
 		}
