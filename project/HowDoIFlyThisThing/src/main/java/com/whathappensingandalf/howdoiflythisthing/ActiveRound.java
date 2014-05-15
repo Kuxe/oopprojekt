@@ -25,8 +25,8 @@ public class ActiveRound implements Roundstate {
 	}
 	
 	@Override
-	public state getState() {
-		return Roundstate.state.ACTIVE;
+	public State getState() {
+		return Roundstate.State.ACTIVE;
 	}
 
 	@Override

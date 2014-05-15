@@ -40,8 +40,8 @@ public class InactiveRound implements Roundstate {
 	}
 
 	@Override
-	public state getState() {
-		return Roundstate.state.INACTIVE;
+	public State getState() {
+		return Roundstate.State.INACTIVE;
 	}
 
 	@Override

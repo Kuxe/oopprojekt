@@ -190,7 +190,7 @@ public class Round implements PropertyChangeListener{
 		return users.size();
 	}
 	
-	public Roundstate.state getState() {
+	public Roundstate.State getState() {
 		return state.getState();
 	}
 	
@@ -232,12 +232,12 @@ public class Round implements PropertyChangeListener{
 			//One user died...
 			decreaseUsersAlive();
 			//If last man standing and round is active, start new round
-			if(usersAlive == 1 && state.getState().equals(Roundstate.state.ACTIVE)) {
+			if(usersAlive == 1 && state.getState().equals(Roundstate.State.ACTIVE)) {
 				start();
 			}
 			
 			//If round is inactive, give a new ship to user
-			if (state.getState().equals(Roundstate.state.INACTIVE)) {
+			if (state.getState().equals(Roundstate.State.INACTIVE)) {
 				((User)evt.getSource()).requestSpaceship();
 			}
 		}
