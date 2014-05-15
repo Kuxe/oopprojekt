@@ -23,10 +23,14 @@ public class ViewThread extends Thread implements Runnable{
 	}
 	
 	public void createExplosion(javax.vecmath.Point2f position){
-		view.createExplosion(position);
+		if(view.isReady()){
+			view.createExplosion(position);
+		}
 	}
 	
 	public void createSparkle(javax.vecmath.Point2f position){
-		view.createSparkle(position);
+		if(view.isReady()){
+			view.createSparkle(position);
+		}
 	}
 }
