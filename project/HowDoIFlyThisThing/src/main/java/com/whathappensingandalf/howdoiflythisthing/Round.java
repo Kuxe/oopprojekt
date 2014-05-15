@@ -49,17 +49,17 @@ public class Round implements PropertyChangeListener{
 		users = new HashSet();
 		usersRequestingShips = new HashSet();
 		
-		state = new InactiveRound(this, users);
+		state = new InactiveRound();
 		state.addListener(this);
 	}
 	
 	public synchronized void addUser(User user) {
 		user.addPropertyChangeListener(this);
-		state.addUser(user);
+		state.addUser(user, users);
 	}
 	
 	public synchronized void removeUser(User user) {
-		state.removeUser(user);
+		state.removeUser(user, users, this);
 		user.removePropertyChangeListener(this);
 		user.suicide();
 		
@@ -106,7 +106,7 @@ public class Round implements PropertyChangeListener{
 	
 	public void end() {
 		System.out.println("END_ROUND");
-		state = new InactiveRound(this, users);
+		state = new InactiveRound();
 		state.addListener(this);
 	}
 
@@ -144,7 +144,7 @@ public class Round implements PropertyChangeListener{
 			for(User user : users) {
 				user.requestSpaceship();
 			}
-			state = new ActiveRound(this, users);
+			state = new ActiveRound();
 			state.addListener(this);
 		}
 	}

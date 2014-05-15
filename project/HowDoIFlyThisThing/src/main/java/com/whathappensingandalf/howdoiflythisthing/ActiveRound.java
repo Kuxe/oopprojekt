@@ -5,24 +5,19 @@ import java.beans.PropertyChangeSupport;
 import java.util.Set;
 
 public class ActiveRound implements Roundstate {
-
-	private Round round;
-	private Set<User> users;
 	private PropertyChangeSupport pcs;
 	
-	public ActiveRound(Round ownerRound, Set<User> users) {
-		round = ownerRound;
-		this.users = users;
+	public ActiveRound() {
 		pcs = new PropertyChangeSupport(this);
 	}
 	
 	@Override
-	public void addUser(User user) {
+	public void addUser(User user, Set<User> users) {
 		users.add(user);
 	}
 
 	@Override
-	public void removeUser(User user) {
+	public void removeUser(User user, Set<User> users, Round round) {
 		users.remove(user);
 		if(user.getState().equals(IUserState.state.PLAYER_STATE)) {
 			round.decreaseUsersAlive();
