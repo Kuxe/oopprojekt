@@ -17,6 +17,6 @@ public class SpaceshipFactory {
     	return new Spaceship(new Point2f(point), new Vector2f(vector), width, height);
     }
     public static Spaceship create(Point2f position){
-		return create(position,new Vector2f((float)Math.random(), (float)Math.random()));
+		return create(position,new Vector2f((float)Math.random()*2-1, (float)Math.random()*2-1));
     }
 }
