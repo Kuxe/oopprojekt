@@ -38,7 +38,7 @@ public class Round implements PropertyChangeListener{
 	//For countdown
 	private long countdownStart = 0;
 	private long countdownLimit = 5000000000L; //5000000000ns counter, 5seconds
-	private boolean permitStart = false;
+//	private boolean permitStart = false;
 		
 	public Round() {
 		world = new Gameworld();
@@ -46,8 +46,8 @@ public class Round implements PropertyChangeListener{
 		
 		pcs = new PropertyChangeSupport(this);
 		
-		users = new HashSet();
-		usersRequestingShips = new HashSet();
+		users = new HashSet<User>();
+		usersRequestingShips = new HashSet<User>();
 		
 		state = new InactiveRound(this, users);
 		state.addListener(this);

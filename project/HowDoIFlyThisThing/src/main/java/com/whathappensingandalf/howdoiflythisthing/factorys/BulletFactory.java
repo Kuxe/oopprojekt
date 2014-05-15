@@ -12,7 +12,7 @@ import com.whathappensingandalf.howdoiflythisthing.Bullet;
  *
  */
 public class BulletFactory {
-	static int count = 0;
+//	static int count = 0;
 	
 	public static Bullet create(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, int width, int height){
 		return new Bullet(new Point2f(position), new Vector2f(velocity), new Vector2f(acceleration), new Vector2f(direction), width, height);

@@ -37,7 +37,6 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 	private HashMap<Integer, User> users;
 	private User myUser;
 	private Server server;
-	private InetSocketAddress myIp;
 	private Set<Connection> connections;
 	private Keybindings keybindings;
 	private PropertyChangeSupport pcs;
@@ -53,12 +52,12 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 		
 		pcs = new PropertyChangeSupport(this);
 		
-		users = new HashMap();
+		users = new HashMap<Integer, User>();
 		server = new Server(32768, 4096);
-		connections = new HashSet();
+		connections = new HashSet<Connection>();
 		
-		lazyAddUsers = new HashSet();
-		lazyRemoveUsers = new HashSet();
+		lazyAddUsers = new HashSet<Connection>();
+		lazyRemoveUsers = new HashSet<Connection>();
 
 		timerStart = System.nanoTime();
 		timerStop = System.nanoTime();
