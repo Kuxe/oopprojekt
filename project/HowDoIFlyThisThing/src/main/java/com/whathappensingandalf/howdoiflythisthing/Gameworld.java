@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import javax.vecmath.Point2f;
@@ -90,7 +91,8 @@ public class Gameworld implements PropertyChangeListener{
 	}
 	
 	private void generateWorld(){
-		int numberOfAsteroids = (int)(Math.random()*20)+1;
+		Random random = new Random();
+		int numberOfAsteroids = random.nextInt(20)+1;
 		for(int i = 0; i<numberOfAsteroids; i++){
 			Point2f position = new Point2f((float)(Math.random())*this.worldBorder.getWorldWidth(),
 					(float)(Math.random())*this.worldBorder.getWorldHeight());
