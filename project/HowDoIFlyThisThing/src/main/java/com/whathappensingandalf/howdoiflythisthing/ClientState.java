@@ -1,32 +1,13 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.vecmath.Point2f;
-
-import networkpackets.CountdownNetworkPacket;
-import networkpackets.DrawableDataNetworkPacket;
-import networkpackets.ExplosionNetworkPacket;
-import networkpackets.HoldKeysNetworkPacket;
-import networkpackets.HudNetworkPacket;
-import networkpackets.KeybindingsNetworkPacket;
-import networkpackets.ModelStatusNetworkPacket;
-import networkpackets.NetworkPacket;
-import networkpackets.SoundNetworkPacket;
-import networkpackets.SpaceshipPointNetworkPacket;
-import networkpackets.SparkleNetworkPacket;
-import networkpackets.WorldBorderNetworkPacket;
-
-import org.newdawn.slick.Sound;
-
+import networkpackets.*;
 import utils.NetworkUtils;
-
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -128,12 +109,7 @@ public class ClientState implements ModelNetworkState {
 		});
 
 		client.start();
-		//try {
-			client.connect(5000, ip, 5000);
-		//} catch (IOException e) {
-			//client.stop();
-			//e.printStackTrace();
-		//}
+		client.connect(5000, ip, 5000);
 		client.sendTCP(new KeybindingsNetworkPacket(keybindings));
 	}
 
@@ -146,8 +122,6 @@ public class ClientState implements ModelNetworkState {
 	}
 
 	public void update(Set<Integer> listOfHoldKeys) {
-
-
 		if(timerStop - timerStart > timerInterval) {
 			//Send listOfHoldKeys to server
 			client.sendTCP(new HoldKeysNetworkPacket(listOfHoldKeys));
