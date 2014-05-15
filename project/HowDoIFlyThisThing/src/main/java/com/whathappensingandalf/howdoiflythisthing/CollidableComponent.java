@@ -28,12 +28,12 @@ public class CollidableComponent implements ICollidableComponent{
 		this.position= position;
 		this.width= width/2;
 		this.height= height/2;
-		radius= ((height+ width)/4);
+		radius= ((height+ width)/4.0f);
 	}
 	
 	public boolean collideDetection(ICollidable rhs){
 		distance.sub(position, rhs.getPosition());
-		return (radius+ rhs.getWidth()/2) > distance.length();
+		return (radius+ rhs.getWidth()/2.0) > distance.length();
 	}
 	
 }//end CollidableComponent
