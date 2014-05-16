@@ -90,7 +90,7 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 	}
 
 	public void visit(Spaceship spaceship) {
-		//Nothing should happen.
+		damage(3);
 	}
 
 	public void visit(IProjectile projectile) {
