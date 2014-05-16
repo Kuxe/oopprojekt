@@ -74,6 +74,10 @@ public class HealthPickup implements IPickup{
 	public void visit(IProjectile projectile) {
 		//Nothing should happen.	
 	}
+	
+	public void visit(CookieCracker cookieCracker) {
+		//Nothing should happen.
+	}
 
 	public void visit(Asteroid asteroid) {
 		this.remove();
@@ -128,6 +132,5 @@ public class HealthPickup implements IPickup{
 				getDirection(),
 				getType()));
 		return returnSet;
-	}
-	
+	}	
 }

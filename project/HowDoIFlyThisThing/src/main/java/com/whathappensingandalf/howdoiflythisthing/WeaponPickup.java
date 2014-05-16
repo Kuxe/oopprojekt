@@ -76,6 +76,10 @@ public class WeaponPickup implements IPickup{
 	public void visit(IProjectile projectile) {
 		//Nothing should happen.		
 	}
+	
+	public void visit(CookieCracker cookieCracker) {
+		//Nothing should happen.		
+	}
 
 	public void visit(IPickup iPickup) {
 		//Nothing should happen.		
@@ -117,11 +121,6 @@ public class WeaponPickup implements IPickup{
 					this.position.equals(other.position)&&
 					this.radius==other.radius;
 		}
-	}
-	
-	@Override
-	public int hashCode(){
-		return radius * 7919 + (int)Math.round(position.x) * 7907 + (int)Math.round(position.y) * 7901;
 	}
 	
 	@Override

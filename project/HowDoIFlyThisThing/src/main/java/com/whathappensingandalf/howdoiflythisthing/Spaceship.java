@@ -268,6 +268,12 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		pcs.firePropertyChange(Message.SPACESHIP_HIT.toString(), 0, 1);
 	}
 	
+	@Override
+	public void visit(CookieCracker cookieCracker) {
+		this.hurt(cookieCracker.getDamage());
+		pcs.firePropertyChange(Message.SPACESHIP_HIT.toString(), 0, 1);
+	}
+	
 	public void visit(Asteroid asteroid) {
 		this.remove();
 	}

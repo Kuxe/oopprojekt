@@ -14,6 +14,7 @@ public interface IGameObject {
 		HEALTH_PICKUP,
 		WEAPON_PICKUP,
 		MISSILE,
+		COOKIE_CRACKER
 	}
 	public String getType();
 }
