@@ -27,8 +27,6 @@ import org.newdawn.slick.SpriteSheet;
 import org.newdawn.slick.TrueTypeFont;
 
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;
-import com.whathappensingandalf.howdoiflythisthing.IDrawable;
-import com.whathappensingandalf.howdoiflythisthing.IGameObject;
 
 public class View extends BasicGame implements ApplicationListener{
 	
@@ -76,6 +74,8 @@ public class View extends BasicGame implements ApplicationListener{
 	private String countdownText = "Loading model...";
 	private String modelStatus = "";
 	
+	private boolean shouldUpdate;
+	
 	public View(String title, Object lock, boolean fullscreen){
 		super(title);
 		this.lock = lock;
@@ -95,6 +95,7 @@ public class View extends BasicGame implements ApplicationListener{
 		camera = new Point2f(0, 0);
 		
 		pcs = new PropertyChangeSupport(this);
+		shouldUpdate = true;
 	}
 	
 	public boolean isReady() {
@@ -342,6 +343,13 @@ public class View extends BasicGame implements ApplicationListener{
 
 	@Override
 	public void update(GameContainer arg0, int arg1) throws SlickException {
+		if(!shouldUpdate){
+			this.stop();
+		}
+	}
+	
+	public void endUpdate(){
+		this.shouldUpdate = false;
 	}
 	
 	private float calculateRotation(Vector2f vector){
