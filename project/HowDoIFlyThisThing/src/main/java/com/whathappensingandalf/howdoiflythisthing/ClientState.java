@@ -5,9 +5,12 @@ import java.beans.PropertyChangeSupport;
 import java.io.IOException;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.vecmath.Point2f;
+
 import networkpackets.*;
 import utils.NetworkUtils;
+
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -43,8 +46,8 @@ public class ClientState implements ModelNetworkState {
 		pcs = new PropertyChangeSupport(this);
 
 		client = new Client();
-		drawables = new HashSet();
-		sounds = new HashSet();
+		drawables = new HashSet<DrawableData>();
+		sounds = new HashSet<String>();
 
 		timerStart = System.nanoTime();
 		timerStop = System.nanoTime();

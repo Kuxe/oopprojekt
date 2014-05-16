@@ -58,7 +58,7 @@ public class Bullet implements IProjectile {
 		this.width = width;
 		this.height = height;
 		mC= new MoveComponent(position, velocity, acceleration, direction, new TypeWrapper(0.0f),new TypeWrapper(0.0f));
-		colliComp = new CollidableComponent(position, /*direction,*/ width, height);
+		colliComp = new CollidableComponent(position, width, height);
 		pcs = new PropertyChangeSupport(this);
 	}
 	
