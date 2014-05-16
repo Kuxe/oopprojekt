@@ -247,30 +247,43 @@ public class View extends BasicGame implements ApplicationListener{
 			
 			float tmpX,tmpY;
 			Image tmpImg;
-			if(comp.getType().equals("SPACESHIP")){
-				tmpImg=spaceship.copy();
-			}else if(comp.getType().equals("ASTEROID")){
-				tmpImg=asteroid.copy();
-			}else if(comp.getType().equals("ASTEROID_DMG1")){
-				tmpImg=asteroidBroken1.copy();
-			}else if(comp.getType().equals("ASTEROID_DMG2")){
-				tmpImg=asteroidBroken2.copy();
-			}else if(comp.getType().equals("ASTEROID_DMG3")){
-				tmpImg=asteroidBroken3.copy();
-			}else if(comp.getType().equals("BULLET")){
-				tmpImg=shott.copy();
-			}else if(comp.getType().equals("THRUSTER_FIRE")){
-				tmpImg=thrusterFire.copy();
-			}else if(comp.getType().equals("MISSILE")){
-				tmpImg=missile.copy();
-			}else if(comp.getType().equals("COOKIE_CRACKER")){
-				tmpImg=cookieCracker.copy();
-			} else if(comp.getType().equals("HEALTH_PICKUP")){
-				tmpImg=healthPack.copy();
-			}else if(comp.getType().equals("WEAPON_PICKUP")){
-				tmpImg=this.ammoPickup.copy();
-			}else{
-				tmpImg=missingImage.copy();
+			
+			switch(comp.getType()) {
+			case "SPACESHIP":
+				tmpImg = spaceship.copy();
+				break;
+			case "ASTEROID":
+				tmpImg = asteroid.copy();
+				break;
+			case "ASTEROID_DMG1":
+				tmpImg = asteroidBroken1.copy();
+				break;
+			case "ASTEROID_DMG2":
+				tmpImg = asteroidBroken2.copy();
+				break;
+			case "ASTEROID_DMG3":
+				tmpImg = asteroidBroken3.copy();
+				break;
+			case "BULLET":
+				tmpImg = shott.copy();
+				break;
+			case "THRUSTER_FIRE":
+				tmpImg = thrusterFire.copy();
+				break;
+			case "MISSILE":
+				tmpImg = missile.copy();
+				break;
+			case "COOKIE_CRACKER":
+				tmpImg = cookieCracker.copy();
+				break;
+			case "HEALTH_PICKUP":
+				tmpImg = healthPack.copy();
+				break;
+			case "WEAPON_PICKUP":
+				tmpImg = ammoPickup.copy();
+				break;
+			default:
+				tmpImg = missingImage.copy();
 			}
 			tmpX=comp.getPosition().x-comp.getWidth()/2.0f;
 			tmpY=comp.getPosition().y-comp.getHeight()/2.0f;
