@@ -11,6 +11,8 @@ import java.util.Set;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
+import com.whathappensingandalf.howdoiflythisthing.IGameObject.Type;
+
 /**
  *
  * @author Martin Nilsson
@@ -25,7 +27,7 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 	private Point2f position;
 	private int width;
 	private int height;
-	private int health = 7;
+	private int health = 12;
 	private PropertyChangeSupport pcs;
 	
 	public Asteroid (Point2f position, int width, int height){
@@ -61,7 +63,22 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 	}
 
 	public String getType() {
-		return Type.ASTEROID.toString();
+		switch(health) {
+		case 1:
+		case 2:
+		case 3:
+			return Type.ASTEROID_DMG3.toString();
+		case 4:
+		case 5:
+		case 6:
+			return Type.ASTEROID_DMG2.toString();
+		case 7:
+		case 8:
+		case 9:
+			return Type.ASTEROID_DMG1.toString();
+			default:
+				return Type.ASTEROID.toString();
+		}
 	}
 
 	public void accept(ICollidable visitor) {

@@ -38,10 +38,14 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private Set<DrawableData> renderObjects;
 
-	private SpriteSheet spaceship,shott,thrusterFire,missile,cookieCracker,asteroid,healthPack,ammoPickup,missingImage;
+	private SpriteSheet spaceship,shott,thrusterFire,missile,cookieCracker,healthPack,ammoPickup,missingImage;
 	private Animation explosion,sparkle;
 	private List<AnimationWrapper> animations,removeAnimations;
 
+	private SpriteSheet asteroid,
+						asteroidBroken1,
+						asteroidBroken2,
+						asteroidBroken3;
 
 	private SpriteSheet background_1,
 						background_2,
@@ -137,6 +141,9 @@ public class View extends BasicGame implements ApplicationListener{
 			missile.destroy();
 			cookieCracker.destroy();
 			asteroid.destroy();
+			asteroidBroken1.destroy();
+			asteroidBroken2.destroy();
+			asteroidBroken3.destroy();
 			healthPack.destroy();
 			ammoPickup.destroy();
 			missingImage.destroy();
@@ -244,6 +251,12 @@ public class View extends BasicGame implements ApplicationListener{
 				tmpImg=spaceship.copy();
 			}else if(comp.getType().equals("ASTEROID")){
 				tmpImg=asteroid.copy();
+			}else if(comp.getType().equals("ASTEROID_DMG1")){
+				tmpImg=asteroidBroken1.copy();
+			}else if(comp.getType().equals("ASTEROID_DMG2")){
+				tmpImg=asteroidBroken2.copy();
+			}else if(comp.getType().equals("ASTEROID_DMG3")){
+				tmpImg=asteroidBroken3.copy();
 			}else if(comp.getType().equals("BULLET")){
 				tmpImg=shott.copy();
 			}else if(comp.getType().equals("THRUSTER_FIRE")){
@@ -313,6 +326,9 @@ public class View extends BasicGame implements ApplicationListener{
 			missile=new SpriteSheet("resources/Missile.png",5,10, colorFilter);
 			cookieCracker=new SpriteSheet("resources/CookieCracker.png",5,10, colorFilter);
 			asteroid=new SpriteSheet("resources/Asteroid.png",100,100, colorFilter);
+			asteroidBroken1=new SpriteSheet("resources/AsteroidBroken1.png",100,100, colorFilter);
+			asteroidBroken2=new SpriteSheet("resources/AsteroidBroken2.png",100,100, colorFilter);
+			asteroidBroken3=new SpriteSheet("resources/AsteroidBroken3.png",100,100, colorFilter);
 			healthPack=new SpriteSheet("resources/HealthPack.png",25,25, colorFilter);
 			ammoPickup=new SpriteSheet("resources/AmmoPickup.png",25,25, colorFilter);
 			missingImage=new SpriteSheet("resources/MissingImage.png",25,25, colorFilter);
