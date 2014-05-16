@@ -204,26 +204,29 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 
 	public void sendPackets() {
 		
-		if(timerStop - timerStart > timerInterval) {
-			//Send images to all clients
-			server.sendToAllTCP(new DrawableDataNetworkPacket(round.getDrawableData()));
-
-			//Send round countdown to all clients
-			server.sendToAllTCP(new CountdownNetworkPacket(round.getCountdown()));
-			
-			//Send modelstatus to all clients
-			server.sendToAllTCP(new ModelStatusNetworkPacket(round.getModelStatus()));
-			
-			//Send sounds to all clients
-			server.sendToAllTCP(new SoundNetworkPacket(getListOfSounds()));
-			getListOfSounds().clear();
-			
+		if(timerStop - timerStart > timerInterval) {		
 			//Send each spaceship point associated with each connection to the connected client
 			for(Connection connection : connections) {
+				
+				//Send drawables to client
+				connection.sendTCP(new DrawableDataNetworkPacket(round.getDrawableData()));
+				
+				//Send spaceship point to client
 				connection.sendTCP(new SpaceshipPointNetworkPacket(users.get(connection.getID()).getSpaceshipPoint()));
 				
+				//Send round countdown to client
+				connection.sendTCP(new CountdownNetworkPacket(round.getCountdown()));
+				
+				//Send modelstatus to client
+				connection.sendTCP(new ModelStatusNetworkPacket(round.getModelStatus()));
+				
+				//Send sounds to client
+				connection.sendTCP(new SoundNetworkPacket(getListOfSounds()));
+				
+				//Send HUD to client
 				connection.sendTCP(new HudNetworkPacket(users.get(connection.getID()).getHull(), users.get(connection.getID()).getShield()));
 			}
+			getListOfSounds().clear();
 			timerStart = System.nanoTime();
 		}
 		timerStop = System.nanoTime();
