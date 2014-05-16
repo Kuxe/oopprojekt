@@ -350,30 +350,30 @@ public class Spaceship implements IMovable, IThrustable, ICollidable, IGameObjec
 		
 		if(thrusterComponent.isMainThusterActive()){
 			returnSet.add(new DrawableData(
-					new Point2f(getPosition().x-getDirection().x*25,
-					getPosition().y-getDirection().y*25),
+					new Point2f(getPosition().x-getDirection().x*26,
+					getPosition().y-getDirection().y*26),
 					3,
 					3,
 					getDirection(),
-					IGameObject.Type.BULLET.toString()));
+					IGameObject.Type.THRUSTER_FIRE.toString()));
 		}
 		if(thrusterComponent.isRightThusterActive()){
 			returnSet.add(new DrawableData(
-					new Point2f(getPosition().x-getDirection().x*25-getDirection().y*10,
-					getPosition().y-getDirection().y*25+getDirection().x*10),
+					new Point2f(getPosition().x-getDirection().x*26-getDirection().y*10,
+					getPosition().y-getDirection().y*26+getDirection().x*10),
 					3,
 					3,
 					getDirection(),
-					IGameObject.Type.BULLET.toString()));
+					IGameObject.Type.THRUSTER_FIRE.toString()));
 		}
 		if(thrusterComponent.isLeftThusterActive()){
 			returnSet.add(new DrawableData(
-					new Point2f(getPosition().x-getDirection().x*25+getDirection().y*10,
-					getPosition().y-getDirection().y*25-getDirection().x*10),
+					new Point2f(getPosition().x-getDirection().x*26+getDirection().y*10,
+					getPosition().y-getDirection().y*26-getDirection().x*10),
 					3,
 					3,
 					getDirection(),
-					IGameObject.Type.BULLET.toString()));
+					IGameObject.Type.THRUSTER_FIRE.toString()));
 		}
 		
 		return returnSet;

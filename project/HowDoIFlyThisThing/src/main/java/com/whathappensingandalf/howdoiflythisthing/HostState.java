@@ -54,10 +54,10 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 		
 		users = new HashMap<Integer, User>();
 		server = new Server(32768, 4096);
-		connections = new HashSet();
+		connections = new HashSet<Connection>();
 		
-		lazyAddUsers = new HashSet();
-		lazyRemoveUsers = new HashSet();
+		lazyAddUsers = new HashSet<Connection>();
+		lazyRemoveUsers = new HashSet<Connection>();
 
 		timerStart = System.nanoTime();
 		timerStop = System.nanoTime();

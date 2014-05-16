@@ -38,7 +38,7 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private Set<DrawableData> renderObjects;
 
-	private SpriteSheet spaceship,shott,missile,asteroid,healthPack,ammoPickup,missingImage;
+	private SpriteSheet spaceship,shott,thrusterFire,missile,asteroid,healthPack,ammoPickup,missingImage;
 	private Animation explosion,sparkle;
 	private List<AnimationWrapper> animations,removeAnimations;
 
@@ -80,6 +80,7 @@ public class View extends BasicGame implements ApplicationListener{
 		super(title);
 		this.lock = lock;
 		renderObjects = new HashSet<DrawableData>();
+		System.setProperty("org.newdawn.slick.pngloader", "false");
 		try{			
 			container=new AppGameContainer(this);
 			container.setDisplayMode(windowWidth, windowHeight, false);
@@ -132,6 +133,7 @@ public class View extends BasicGame implements ApplicationListener{
 			ammoPickup.destroy();
 			spaceship.destroy();
 			shott.destroy();
+			thrusterFire.destroy();
 			missile.destroy();
 			asteroid.destroy();
 			healthPack.destroy();
@@ -243,6 +245,8 @@ public class View extends BasicGame implements ApplicationListener{
 				tmpImg=asteroid.copy();
 			}else if(comp.getType().equals("BULLET")){
 				tmpImg=shott.copy();
+			}else if(comp.getType().equals("THRUSTER_FIRE")){
+				tmpImg=thrusterFire.copy();
 			}else if(comp.getType().equals("MISSILE")){
 				tmpImg=missile.copy();
 			}else if(comp.getType().equals("HEALTH_PICKUP")){
@@ -302,6 +306,7 @@ public class View extends BasicGame implements ApplicationListener{
 		try {
 			spaceship=new SpriteSheet("resources/Spaceship.png",50,50, colorFilter);
 			shott=new SpriteSheet("resources/Shott.png",3,3, colorFilter);
+			thrusterFire = new SpriteSheet("resources/ThrusterFire.png",5,5, colorFilter); 
 			missile=new SpriteSheet("resources/Missile.png",5,10, colorFilter);
 			asteroid=new SpriteSheet("resources/Asteroid.png",100,100, colorFilter);
 			healthPack=new SpriteSheet("resources/HealthPack.png",25,25, colorFilter);

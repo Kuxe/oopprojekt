@@ -13,9 +13,8 @@ public class OptionsPanel extends javax.swing.JPanel{
 
 	
 	/**
-	 * Creates new form OptionsPanek
+	 * Creates new form OptionsPanel
 	 */
-	Set <Integer> all;
 	
 	private String fireKey;
 	private String leftKey;
@@ -24,7 +23,6 @@ public class OptionsPanel extends javax.swing.JPanel{
 	
 	public OptionsPanel() {
 		initComponents();
-		all = new HashSet<Integer>();
 		fireKey= getFireKey();
 		leftKey= getLeftThrusterKey();
 		mainKey= getMainThrusterKey();
