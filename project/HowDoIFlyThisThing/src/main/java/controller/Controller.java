@@ -170,6 +170,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		//If either view was shutdown or model requested a a close, stop the game loop and let cleanup begin
 		if(	event.getPropertyName().equals(View.Message.VIEW_CLOSE.toString()) ||
 			event.getPropertyName().equals(ModelNetworkState.Message.SHUTDOWN.toString())) {
+			viewThread.stopView();
 			running = false;
 		}else if(event.getPropertyName().equals(Gameworld.Message.EXPLOSION.toString())){
 			this.viewThread.createExplosion(((ExplosionNetworkPacket)event.getOldValue()).position);
