@@ -45,6 +45,11 @@ public interface ICollidable extends IListable{
 	 */
 	public void visit(IProjectile projectile);
 	/**
+	 * 
+	 * @param cookieCracker
+	 */
+	public void visit(CookieCracker cookieCracker);
+	/**
 	 * @param asteroid
 	 */
 	public void visit(Asteroid asteroid);

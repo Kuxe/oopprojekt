@@ -7,6 +7,7 @@
 package com.whathappensingandalf.howdoiflythisthing.factorys;
 
 import com.whathappensingandalf.howdoiflythisthing.Bullet;
+import com.whathappensingandalf.howdoiflythisthing.CookieCracker;
 import com.whathappensingandalf.howdoiflythisthing.IGameObject;
 import com.whathappensingandalf.howdoiflythisthing.IProjectile;
 import com.whathappensingandalf.howdoiflythisthing.Missile;
@@ -23,9 +24,14 @@ public class IProjectileFactory {
 	public static IProjectile create(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, String type) {
 		if(type.equals(IGameObject.Type.MISSILE.toString())){
 			return new Missile(new Point2f(position), new Vector2f(velocity.x/2, velocity.y/2), new Vector2f(direction.x*100, direction.y*100), new Vector2f(direction), 5, 10);
-		}else{
+		} else if (type.equals(IGameObject.Type.BULLET.toString())){
 			return new Bullet(new Point2f(position), new Vector2f(velocity), new Vector2f(acceleration), new Vector2f(direction), 3, 3);
+		} else if (type.equals(IGameObject.Type.COOKIE_CRACKER.toString())) {
+			return new CookieCracker(new Point2f(position), new Vector2f(velocity.x/2, velocity.y/2), new Vector2f(direction.x*100, direction.y*100), new Vector2f(direction), 5, 10);
 		}
+		
+		//If type wasn't valid, return null
+		return null;
 	}
 	
 }

@@ -11,16 +11,22 @@ import javax.vecmath.Vector2f;
 
 import utils.TypeWrapper;
 
-public class Missile implements IProjectile{
-	
+
+/**
+ * 
+ * @author Joakim "Kuxe" Thorén
+ *
+ * Class representing a CookieCracker, a kind of projectile that's
+ * capable of destroying asteroids
+ */
+public class CookieCracker implements IProjectile{
 	private int width;
 	private int height;
 	private Vector2f velocity;
 	private Vector2f acceleration;
 	private Vector2f direction;
 	private Point2f position;
-	private int damage = 2;  //@TODO
-	//private Damage damage= new Damage();
+	private int damage = 1;
 	private TypeWrapper rotationVelocity;
 	private TypeWrapper rotationAcceleration;
 	private MoveComponent mC;
@@ -28,7 +34,7 @@ public class Missile implements IProjectile{
 	
 	private PropertyChangeSupport pcs;
 	
-	public Missile(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, int width, int height){
+	public CookieCracker(Point2f position, Vector2f velocity, Vector2f acceleration, Vector2f direction, int width, int height){
 		this.velocity= velocity;
 		this.acceleration= acceleration;
 		this.direction= direction;
@@ -42,15 +48,15 @@ public class Missile implements IProjectile{
 		pcs = new PropertyChangeSupport(this);
 	}
 	
-	public Missile(Missile missile){
-		this.velocity=missile.getVelocity();
-		this.acceleration= missile.getAcceleration();
-		this.direction= missile.getDirection();
-		this.position= missile.getPosition();
-		this.width = missile.getWidth();
-		this.height = missile.getHeight();
-		this.rotationVelocity.setValue(missile.getRotVelocity());
-		this.rotationAcceleration.setValue(missile.getRotAcceleration());
+	public CookieCracker(CookieCracker cookieCracker){
+		this.velocity=cookieCracker.getVelocity();
+		this.acceleration= cookieCracker.getAcceleration();
+		this.direction= cookieCracker.getDirection();
+		this.position= cookieCracker.getPosition();
+		this.width = cookieCracker.getWidth();
+		this.height = cookieCracker.getHeight();
+		this.rotationVelocity.setValue(cookieCracker.getRotVelocity());
+		this.rotationAcceleration.setValue(cookieCracker.getRotAcceleration());
 		mC= new MoveComponent(position, velocity, acceleration, direction, new TypeWrapper(0.0f),new TypeWrapper(0.0f));
 		colliComp = new CollidableComponent(position, width, height);
 		pcs = new PropertyChangeSupport(this);
@@ -144,7 +150,7 @@ public class Missile implements IProjectile{
 
 	@Override
 	public String getType() {
-		return Type.MISSILE.toString();
+		return Type.COOKIE_CRACKER.toString();
 	}
 
 	@Override
@@ -161,16 +167,15 @@ public class Missile implements IProjectile{
 	public void visit(IProjectile projectile) {
 		this.remove();
 	}
-	
-	@Override
-	public void visit(CookieCracker cookieCracker) {
-		//Do nothing
-	}
 
 	@Override
 	public void visit(Asteroid asteroid) {
 		this.remove();
-		
+	}
+	
+	@Override
+	public void visit(CookieCracker cookieCracker) {
+		//Double cookieCracker, ohhohoooo!
 	}
 
 	@Override
@@ -193,8 +198,8 @@ public class Missile implements IProjectile{
 		this.pcs.addPropertyChangeListener(pcl);
 	}
 	
-	public Missile clone(){
-		return new Missile(this);
+	public CookieCracker clone(){
+		return new CookieCracker(this);
 	}
 
 	@Override
@@ -208,5 +213,4 @@ public class Missile implements IProjectile{
 				getType()));
 		return returnSet;
 	}
-
 }

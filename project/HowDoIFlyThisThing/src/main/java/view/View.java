@@ -40,7 +40,7 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private Set<DrawableData> renderObjects;
 
-	private SpriteSheet spaceship,shott,thrusterFire,missile,asteroid,healthPack,ammoPickup,missingImage;
+	private SpriteSheet spaceship,shott,thrusterFire,missile,cookieCracker,asteroid,healthPack,ammoPickup,missingImage;
 	private Animation explosion,sparkle;
 	private List<AnimationWrapper> animations,removeAnimations;
 
@@ -134,6 +134,7 @@ public class View extends BasicGame implements ApplicationListener{
 			shott.destroy();
 			thrusterFire.destroy();
 			missile.destroy();
+			cookieCracker.destroy();
 			asteroid.destroy();
 			healthPack.destroy();
 			ammoPickup.destroy();
@@ -248,7 +249,9 @@ public class View extends BasicGame implements ApplicationListener{
 				tmpImg=thrusterFire.copy();
 			}else if(comp.getType().equals("MISSILE")){
 				tmpImg=missile.copy();
-			}else if(comp.getType().equals("HEALTH_PICKUP")){
+			}else if(comp.getType().equals("COOKIE_CRACKER")){
+				tmpImg=cookieCracker.copy();
+			} else if(comp.getType().equals("HEALTH_PICKUP")){
 				tmpImg=healthPack.copy();
 			}else if(comp.getType().equals("WEAPON_PICKUP")){
 				tmpImg=this.ammoPickup.copy();
@@ -307,6 +310,7 @@ public class View extends BasicGame implements ApplicationListener{
 			shott=new SpriteSheet("resources/Shott.png",3,3, colorFilter);
 			thrusterFire = new SpriteSheet("resources/ThrusterFire.png",5,5, colorFilter); 
 			missile=new SpriteSheet("resources/Missile.png",5,10, colorFilter);
+			cookieCracker=new SpriteSheet("resources/CookieCracker.png",5,10, colorFilter);
 			asteroid=new SpriteSheet("resources/Asteroid.png",100,100, colorFilter);
 			healthPack=new SpriteSheet("resources/HealthPack.png",25,25, colorFilter);
 			ammoPickup=new SpriteSheet("resources/AmmoPickup.png",25,25, colorFilter);
