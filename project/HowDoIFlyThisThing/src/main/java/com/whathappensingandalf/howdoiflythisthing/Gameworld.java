@@ -364,7 +364,7 @@ public class Gameworld implements PropertyChangeListener{
 										(int)(Math.random()*worldBorder.getWorldHeight())),
 									12,
 									5));
-			} else if(spawnChance < 1.3) {
+			} else if(spawnChance < 0.3) {
 				addPickup(new WeaponPickup(new Point2f((int)(Math.random()*worldBorder.getWorldWidth()),
 													(int)(Math.random()*worldBorder.getWorldHeight())),
 													12, CookieCrackerFactory.create(new Point2f(),
