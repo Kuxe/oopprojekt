@@ -2,6 +2,8 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.awt.geom.Area;
 import java.awt.geom.Rectangle2D;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,23 +11,31 @@ import java.util.Set;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
+import com.whathappensingandalf.howdoiflythisthing.IGameObject.Type;
+
 /**
  *
  * @author Martin Nilsson
  */
 public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 
+	public enum Message {
+		ASTEROID_DIE
+	}
 	
 	private CollidableComponent colliComp;
-	Point2f position;
-	int width;
-	int height;
+	private Point2f position;
+	private int width;
+	private int height;
+	private int health = 12;
+	private PropertyChangeSupport pcs;
 	
 	public Asteroid (Point2f position, int width, int height){
 		this.position = position;
 		this.width = width;
 		this.height = height;
 		this.colliComp = new CollidableComponent(position, /*new Vector2f(1,0),*/ width, height);
+		pcs = new PropertyChangeSupport(this);
 	}
 	
 	/**
@@ -53,7 +63,22 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 	}
 
 	public String getType() {
-		return Type.ASTEROID.toString();
+		switch(health) {
+		case 1:
+		case 2:
+		case 3:
+			return Type.ASTEROID_DMG3.toString();
+		case 4:
+		case 5:
+		case 6:
+			return Type.ASTEROID_DMG2.toString();
+		case 7:
+		case 8:
+		case 9:
+			return Type.ASTEROID_DMG1.toString();
+			default:
+				return Type.ASTEROID.toString();
+		}
 	}
 
 	public void accept(ICollidable visitor) {
@@ -65,7 +90,7 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 	}
 
 	public void visit(Spaceship spaceship) {
-		//Nothing should happen.
+		damage(3);
 	}
 
 	public void visit(IProjectile projectile) {
@@ -75,6 +100,11 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 	public void visit(Asteroid asteroid) {
 		//Nothing should happen.
 	}
+
+	public void visit(CookieCracker cookieCracker) {
+		damage(1);
+	}
+	
 	public Vector2f getDirection() {
 		return new Vector2f(0,1);
 	}
@@ -93,5 +123,16 @@ public class Asteroid implements ICollidable, IGameObject, IDrawable, Cloneable{
 				getDirection(),
 				getType()));
 		return returnSet;
+	}
+	
+	public void addPropertyChangeListener(PropertyChangeListener listener) {
+		pcs.addPropertyChangeListener(listener);
+	}
+	
+	private void damage(int damage) {
+		health -= damage;
+		if(health <= 0) {
+			pcs.firePropertyChange(Message.ASTEROID_DIE.toString(), false, true);
+		}
 	}
 }

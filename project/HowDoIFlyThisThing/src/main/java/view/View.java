@@ -38,10 +38,14 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private Set<DrawableData> renderObjects;
 
-	private SpriteSheet spaceship,shott,thrusterFire,missile,asteroid,healthPack,ammoPickup,missingImage;
+	private SpriteSheet spaceship,shott,thrusterFire,missile,cookieCracker,healthPack,ammoPickup,missingImage;
 	private Animation explosion,sparkle;
 	private List<AnimationWrapper> animations,removeAnimations;
 
+	private SpriteSheet asteroid,
+						asteroidBroken1,
+						asteroidBroken2,
+						asteroidBroken3;
 
 	private SpriteSheet background_1,
 						background_2,
@@ -135,7 +139,11 @@ public class View extends BasicGame implements ApplicationListener{
 			shott.destroy();
 			thrusterFire.destroy();
 			missile.destroy();
+			cookieCracker.destroy();
 			asteroid.destroy();
+			asteroidBroken1.destroy();
+			asteroidBroken2.destroy();
+			asteroidBroken3.destroy();
 			healthPack.destroy();
 			ammoPickup.destroy();
 			missingImage.destroy();
@@ -239,22 +247,43 @@ public class View extends BasicGame implements ApplicationListener{
 			
 			float tmpX,tmpY;
 			Image tmpImg;
-			if(comp.getType().equals("SPACESHIP")){
-				tmpImg=spaceship.copy();
-			}else if(comp.getType().equals("ASTEROID")){
-				tmpImg=asteroid.copy();
-			}else if(comp.getType().equals("BULLET")){
-				tmpImg=shott.copy();
-			}else if(comp.getType().equals("THRUSTER_FIRE")){
-				tmpImg=thrusterFire.copy();
-			}else if(comp.getType().equals("MISSILE")){
-				tmpImg=missile.copy();
-			}else if(comp.getType().equals("HEALTH_PICKUP")){
-				tmpImg=healthPack.copy();
-			}else if(comp.getType().equals("WEAPON_PICKUP")){
-				tmpImg=this.ammoPickup.copy();
-			}else{
-				tmpImg=missingImage.copy();
+			
+			switch(comp.getType()) {
+			case "SPACESHIP":
+				tmpImg = spaceship.copy();
+				break;
+			case "ASTEROID":
+				tmpImg = asteroid.copy();
+				break;
+			case "ASTEROID_DMG1":
+				tmpImg = asteroidBroken1.copy();
+				break;
+			case "ASTEROID_DMG2":
+				tmpImg = asteroidBroken2.copy();
+				break;
+			case "ASTEROID_DMG3":
+				tmpImg = asteroidBroken3.copy();
+				break;
+			case "BULLET":
+				tmpImg = shott.copy();
+				break;
+			case "THRUSTER_FIRE":
+				tmpImg = thrusterFire.copy();
+				break;
+			case "MISSILE":
+				tmpImg = missile.copy();
+				break;
+			case "COOKIE_CRACKER":
+				tmpImg = cookieCracker.copy();
+				break;
+			case "HEALTH_PICKUP":
+				tmpImg = healthPack.copy();
+				break;
+			case "WEAPON_PICKUP":
+				tmpImg = ammoPickup.copy();
+				break;
+			default:
+				tmpImg = missingImage.copy();
 			}
 			tmpX=comp.getPosition().x-comp.getWidth()/2.0f;
 			tmpY=comp.getPosition().y-comp.getHeight()/2.0f;
@@ -308,7 +337,11 @@ public class View extends BasicGame implements ApplicationListener{
 			shott=new SpriteSheet("resources/Shott.png",3,3, colorFilter);
 			thrusterFire = new SpriteSheet("resources/ThrusterFire.png",5,5, colorFilter); 
 			missile=new SpriteSheet("resources/Missile.png",5,10, colorFilter);
+			cookieCracker=new SpriteSheet("resources/CookieCracker.png",5,10, colorFilter);
 			asteroid=new SpriteSheet("resources/Asteroid.png",100,100, colorFilter);
+			asteroidBroken1=new SpriteSheet("resources/AsteroidBroken1.png",100,100, colorFilter);
+			asteroidBroken2=new SpriteSheet("resources/AsteroidBroken2.png",100,100, colorFilter);
+			asteroidBroken3=new SpriteSheet("resources/AsteroidBroken3.png",100,100, colorFilter);
 			healthPack=new SpriteSheet("resources/HealthPack.png",25,25, colorFilter);
 			ammoPickup=new SpriteSheet("resources/AmmoPickup.png",25,25, colorFilter);
 			missingImage=new SpriteSheet("resources/MissingImage.png",25,25, colorFilter);

@@ -184,6 +184,10 @@ public class Bullet implements IProjectile {
 		//Do nothing
 	}
 	
+	public void visit(CookieCracker cookieCracker) {
+		//Do nothing
+	}
+	
 	public void visit(Asteroid asteroid) {
 		this.remove();
 	}

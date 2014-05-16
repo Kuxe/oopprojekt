@@ -22,6 +22,7 @@ import services.SoundEffects;
 import utils.ITimer;
 import utils.Timer;
 
+import com.whathappensingandalf.howdoiflythisthing.factorys.CookieCrackerFactory;
 import com.whathappensingandalf.howdoiflythisthing.factorys.MissileFactory;
 import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
@@ -83,11 +84,11 @@ public class Gameworld implements PropertyChangeListener{
 		chargables =					new HashMap();
 		
 		worldBorder=new WorldBorder(1000, 1000);
-		generateWorld();
 		timestep = new Timestep();
 		pcs = new PropertyChangeSupport(this);
 		pickupSpawnTimer = new Timer(10000);
 		shieldTimer=new Timer(10000);
+		generateWorld();
 	}
 	
 	private void generateWorld(){
@@ -212,6 +213,7 @@ public class Gameworld implements PropertyChangeListener{
 	}
 	
 	public void addAsteroid(Asteroid asteroid) {
+		asteroid.addPropertyChangeListener(this);
 		collidables.put(asteroid, asteroid);
 		drawables.put(asteroid, asteroid);
 		List<Map<Object, ? extends IListable>> listOfHashMaps = new LinkedList();
@@ -310,6 +312,8 @@ public class Gameworld implements PropertyChangeListener{
 			listOfObjectsToBeRemoved.add(evt.getSource());
 			listOfSounds.add(SoundEffects.Sound.PICKUP_DIE.toString());
 			pcs.firePropertyChange(evt); //Forward event
+		} else if(evt.getPropertyName().equals(Asteroid.Message.ASTEROID_DIE.toString())) {
+			slateObjectForRemoval((Asteroid)evt.getSource());
 		}
 	}
 	
@@ -360,6 +364,17 @@ public class Gameworld implements PropertyChangeListener{
 										(int)(Math.random()*worldBorder.getWorldHeight())),
 									12,
 									5));
+			} else if(spawnChance < 0.3) {
+				addPickup(new WeaponPickup(new Point2f((int)(Math.random()*worldBorder.getWorldWidth()),
+													(int)(Math.random()*worldBorder.getWorldHeight())),
+													12, CookieCrackerFactory.create(new Point2f(),
+																					new Vector2f(),
+																					new Vector2f(),
+																					new Vector2f(),
+																					0,
+																					0)
+											)
+				);
 			}
 		}
 	}
