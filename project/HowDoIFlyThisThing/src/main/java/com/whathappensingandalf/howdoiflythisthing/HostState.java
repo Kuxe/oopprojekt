@@ -48,7 +48,7 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 	public HostState(Keybindings keybindings) {
 		this.keybindings = keybindings;
 		round = new Round();
-		round.addPropertyChangeListener(this);;
+		round.addPropertyChangeListener(this);
 		
 		pcs = new PropertyChangeSupport(this);
 		

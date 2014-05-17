@@ -76,9 +76,7 @@ public class SoundEffects{
 		}
 	}
 	public void playSound(Set<String> listOfSounds){
-		if(listOfSounds== null){
-
-		}else{
+		if(listOfSounds != null){
 			for(String s: listOfSounds){
 				if (Sound.SPACESHIP_FIRE.toString().equals(s)) {
 					spaceshipFireSound.play();

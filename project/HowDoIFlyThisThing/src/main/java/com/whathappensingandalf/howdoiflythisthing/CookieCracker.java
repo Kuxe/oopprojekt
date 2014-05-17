@@ -26,8 +26,7 @@ public class CookieCracker implements IProjectile{
 	private Vector2f acceleration;
 	private Vector2f direction;
 	private Point2f position;
-	private int damage = 1;
-	private TypeWrapper rotationVelocity;
+    private TypeWrapper rotationVelocity;
 	private TypeWrapper rotationAcceleration;
 	private MoveComponent mC;
 	private CollidableComponent colliComp;
@@ -185,7 +184,7 @@ public class CookieCracker implements IProjectile{
 
 	@Override
 	public int getDamage() {
-		return this.damage;
+        return 1;
 	}
 
 	@Override

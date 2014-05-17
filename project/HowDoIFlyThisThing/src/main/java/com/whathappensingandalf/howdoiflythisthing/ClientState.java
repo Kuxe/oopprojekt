@@ -89,20 +89,20 @@ public class ClientState implements ModelNetworkState {
 						sounds = ((SoundNetworkPacket)message).sounds;
 						break;
 					case SPARKLE:
-						pcs.firePropertyChange(Gameworld.Message.SPARKLE.toString(),((SparkleNetworkPacket)message),false);
+						pcs.firePropertyChange(Gameworld.Message.SPARKLE.toString(),(message),false);
 						break;
 					case SPACESHIP_POINT:
 						spaceshipPoint = ((SpaceshipPointNetworkPacket)message).point;
 						break;
 					case EXPLOSION:
-						pcs.firePropertyChange(Gameworld.Message.EXPLOSION.toString(),((ExplosionNetworkPacket)message),false);
+						pcs.firePropertyChange(Gameworld.Message.EXPLOSION.toString(),(message),false);
 						break;
 					case WORLD_BORDER:
 						border = new WorldBorder(((WorldBorderNetworkPacket)message).height, ((WorldBorderNetworkPacket)message).width);
 					}
 				}
 			}
-			
+
 			@Override
 			public void disconnected(Connection connection) {
 				System.out.println("lost connection to host!");

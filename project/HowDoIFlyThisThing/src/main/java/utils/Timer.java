@@ -20,11 +20,7 @@ public class Timer implements ITimer{
 	}
 	
 	public boolean isTimerDone(){
-		if(this.timerLength>this.getTimeOfsettMillis()){
-			return false;
-		}else{
-			return true;
-		}
+        return !(timerLength > getTimeOfsettMillis());
 	}
 	
 	private long getTimeOfsettMillis(){
