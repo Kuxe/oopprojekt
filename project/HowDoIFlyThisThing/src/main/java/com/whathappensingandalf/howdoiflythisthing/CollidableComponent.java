@@ -1,6 +1,5 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
-import java.awt.geom.Area;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
@@ -11,7 +10,7 @@ import utils.VecmathUtils.*;
  *
  * @author Francine Mäkelä
  */
-public class CollidableComponent implements ICollidableComponent{
+public class CollidableComponent{
 	
 	private Point2f position;
 	private double radius;

@@ -39,7 +39,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	private Set<Integer> listOfReleasedKeys;
 	private Set<Integer> listOfHoldKeys;
 
-	public Controller(int leftKey, int mainKey, int rightKey, int fireKey){
+	public Controller(int leftKey, int mainKey, int rightKey, int fireKey) throws IOException{
 		keybindings = new Keybindings(leftKey, mainKey, rightKey, fireKey);
 		sharedCTOR();
 		model.host();
