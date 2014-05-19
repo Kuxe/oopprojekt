@@ -14,12 +14,12 @@ public class CollidableComponent{
 	
 	private final Point2f position;
 	private final double radius;
-	private Vector2f distance;
+	private Vector2f distance = new Vector2f(0 ,0);
 	
 	public CollidableComponent(Point2f position, double radius){
 		this.position= position;
 		this.radius= radius;
-		this.distance= new Vector2f(0 ,0);
+		//this.distance
 	}
 	
 	public CollidableComponent(Point2f position, int width, int height){

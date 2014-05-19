@@ -34,7 +34,7 @@ public class StartPanel extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         connectionErrorLabel = new javax.swing.JLabel();
-        connectionErrorLabel1 = new javax.swing.JLabel();
+        hostErrorLabel = new javax.swing.JLabel();
 
         errorLabel.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         errorLabel.setText("Could not connect.");
@@ -105,12 +105,13 @@ public class StartPanel extends javax.swing.JPanel {
         connectionErrorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         connectionErrorLabel.setText("Invalid IP, could not connect to host.");
         connectionErrorLabel.setAlignmentY(0.0F);
+        connectionErrorLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        connectionErrorLabel1.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
-        connectionErrorLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        connectionErrorLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        connectionErrorLabel1.setText("Port 5000 allready in use.");
-        connectionErrorLabel1.setAlignmentY(0.0F);
+        hostErrorLabel.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        hostErrorLabel.setForeground(new java.awt.Color(255, 0, 0));
+        hostErrorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        hostErrorLabel.setText("Port 5000 allready in use.");
+        hostErrorLabel.setAlignmentY(0.0F);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -138,7 +139,7 @@ public class StartPanel extends javax.swing.JPanel {
                 .addGap(79, 79, 79)
                 .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 81, Short.MAX_VALUE))
-            .addComponent(connectionErrorLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(hostErrorLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,7 +147,7 @@ public class StartPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(hostButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(9, 9, 9)
-                .addComponent(connectionErrorLabel1)
+                .addComponent(hostErrorLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(2, 2, 2)
@@ -187,21 +188,21 @@ public class StartPanel extends javax.swing.JPanel {
 	}
 	public void hideErrorMessages(){
 		this.connectionErrorLabel.setVisible(false);
-		this.connectionErrorLabel1.setVisible(false);
+		this.hostErrorLabel.setVisible(false);
 	}
 	public void displayConnectionErrorMessage() {
 		this.connectionErrorLabel.setVisible(true);
 	}
 	public void displayHostErrorMessage() {
-		this.connectionErrorLabel1.setVisible(true);
+		this.hostErrorLabel.setVisible(true);
 	}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel connectionErrorLabel;
-    private javax.swing.JLabel connectionErrorLabel1;
     private javax.swing.JLabel errorLabel;
     private javax.swing.JButton exitButton;
     private javax.swing.JButton hostButton;
+    private javax.swing.JLabel hostErrorLabel;
     private javax.swing.JTextField ipTextField;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
