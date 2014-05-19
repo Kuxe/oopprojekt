@@ -42,6 +42,7 @@ public class StartPanel extends javax.swing.JPanel {
         setMinimumSize(new java.awt.Dimension(360, 480));
         setPreferredSize(new java.awt.Dimension(360, 480));
 
+        hostButton.setMnemonic('H');
         hostButton.setText("Host");
         hostButton.setToolTipText("Host a game.");
         hostButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -54,6 +55,7 @@ public class StartPanel extends javax.swing.JPanel {
             }
         });
 
+        joinButton.setMnemonic('C');
         joinButton.setText("Connect");
         joinButton.setToolTipText("Join a game.");
         joinButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -73,6 +75,7 @@ public class StartPanel extends javax.swing.JPanel {
         ipTextField.setMinimumSize(new java.awt.Dimension(100, 20));
         ipTextField.setPreferredSize(new java.awt.Dimension(100, 20));
 
+        optionsButton.setMnemonic('S');
         optionsButton.setText("Settings");
         optionsButton.setToolTipText("Change settings.");
         optionsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -85,6 +88,7 @@ public class StartPanel extends javax.swing.JPanel {
             }
         });
 
+        exitButton.setMnemonic('E');
         exitButton.setText("Exit");
         exitButton.setMaximumSize(new java.awt.Dimension(85, 23));
         exitButton.setMinimumSize(new java.awt.Dimension(85, 23));

@@ -99,6 +99,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="hostButton">
       <Properties>
+        <Property name="mnemonic" type="int" value="72"/>
         <Property name="text" type="java.lang.String" value="Host"/>
         <Property name="toolTipText" type="java.lang.String" value="Host a game."/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -118,6 +119,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="joinButton">
       <Properties>
+        <Property name="mnemonic" type="int" value="67"/>
         <Property name="text" type="java.lang.String" value="Connect"/>
         <Property name="toolTipText" type="java.lang.String" value="Join a game."/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -155,6 +157,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="optionsButton">
       <Properties>
+        <Property name="mnemonic" type="int" value="83"/>
         <Property name="text" type="java.lang.String" value="Settings"/>
         <Property name="toolTipText" type="java.lang.String" value="Change settings."/>
         <Property name="horizontalTextPosition" type="int" value="0"/>
@@ -174,6 +177,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="exitButton">
       <Properties>
+        <Property name="mnemonic" type="int" value="69"/>
         <Property name="text" type="java.lang.String" value="Exit"/>
         <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[85, 23]"/>
