@@ -218,6 +218,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="resetButton">
       <Properties>
+        <Property name="mnemonic" type="int" value="82"/>
         <Property name="text" type="java.lang.String" value="Reset"/>
       </Properties>
       <Events>
@@ -226,6 +227,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="okButton">
       <Properties>
+        <Property name="mnemonic" type="int" value="79"/>
         <Property name="text" type="java.lang.String" value="OK"/>
       </Properties>
       <Events>
@@ -234,6 +236,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="cancelButton">
       <Properties>
+        <Property name="mnemonic" type="int" value="67"/>
         <Property name="text" type="java.lang.String" value="Cancel"/>
       </Properties>
       <Events>

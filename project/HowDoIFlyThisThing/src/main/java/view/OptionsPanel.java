@@ -143,6 +143,7 @@ public class OptionsPanel extends javax.swing.JPanel{
             }
         });
 
+        resetButton.setMnemonic('R');
         resetButton.setText("Reset");
         resetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,6 +151,7 @@ public class OptionsPanel extends javax.swing.JPanel{
             }
         });
 
+        okButton.setMnemonic('O');
         okButton.setText("OK");
         okButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -157,6 +159,7 @@ public class OptionsPanel extends javax.swing.JPanel{
             }
         });
 
+        cancelButton.setMnemonic('C');
         cancelButton.setText("Cancel");
         cancelButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
