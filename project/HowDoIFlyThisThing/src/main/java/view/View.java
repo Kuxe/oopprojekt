@@ -38,7 +38,6 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private Set<DrawableData> renderObjects;
 
-	private SpriteSheet spaceship,shott,thrusterFire,missile,cookieCracker,healthPack,ammoPickup,missingImage;
 	private Animation explosion,sparkle;
 	private List<AnimationWrapper> animations,removeAnimations;
 
@@ -46,6 +45,15 @@ public class View extends BasicGame implements ApplicationListener{
 						asteroidBroken1,
 						asteroidBroken2,
 						asteroidBroken3;
+	
+	private SpriteSheet spaceship,
+						shott,
+						thrusterFire,
+						missile,
+						cookieCracker,
+						healthPack,
+						ammoPickup,
+						missingImage;
 
 	private SpriteSheet background_1,
 						background_2,
@@ -57,8 +65,6 @@ public class View extends BasicGame implements ApplicationListener{
 						
 						
 	private Color colorFilter;
-	private int backgroundWidth, backgroundHeight;
-	private Float f=0f;
 	
 	private Point2f camera;
 	private final int windowWidth = 640;
@@ -102,6 +108,9 @@ public class View extends BasicGame implements ApplicationListener{
 		shouldUpdate = true;
 	}
 	
+	/**
+	 * returns if the view is ready to receive DrwableData and Animations or not.
+	 */
 	public boolean isReady() {
 		return isReady;
 	}
@@ -122,6 +131,11 @@ public class View extends BasicGame implements ApplicationListener{
 		return true;
 	}
 	
+	
+	/**
+	 * Slick2d inherited method to start the game. In this case the view.
+	 * Starts Slick2ds background mechanics.
+	 */
 	public void start(){
 		
 		try {
@@ -130,6 +144,10 @@ public class View extends BasicGame implements ApplicationListener{
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Clear all the image data to allow the game to restart.
+	 */
 	public void stop(){
 		container.getGraphics().clear();
 		container.getGraphics().destroy();
@@ -203,24 +221,27 @@ public class View extends BasicGame implements ApplicationListener{
 		}
 	}
 	
+	/**
+	 * Writes text on the window to inform the player about the games status.
+	 */
 	private void drawModelStatus(GameContainer arg0, Graphics g) {
 		g.setFont(font);
 		g.drawString(modelStatus, (windowWidth - font.getWidth(modelStatus))/2.0f, 30);
 	}
 	
 	/**
-	 * For debugging purposes. Displays the worlds border.
+	 * Displays the worlds border.
 	 * @param arg0
 	 * @param g
 	 */
 	private void drawBorder(GameContainer arg0, Graphics g) {
-		//HARDCODED. If world border changes,this row must manually be changed to display
-		//correct world border
 		g.drawRect(-camera.x + windowWidth/2, -camera.y + windowHeight/2, worldWidth, worldHeight);
 	}
 	
+	/**
+	 * Draw the players spaceships current Hull.
+	 */
 	public void drawHull(Graphics g){
-		
 		int xPos= 10;
 		int yPos= 10;
 		for(int i= 0; i< hull; i++){
@@ -228,6 +249,9 @@ public class View extends BasicGame implements ApplicationListener{
 			xPos= xPos + hullImage.getWidth();
 		}
 	}
+	/**
+	 * Draw the players spaceships current Shield.
+	 */
 	public void drawShield(Graphics g){
 		
 		int xPos= hullImage.getWidth() * hull;
@@ -238,6 +262,9 @@ public class View extends BasicGame implements ApplicationListener{
 		}
 	}
 	
+	/**
+	 * 
+	 */
 	public void render(GameContainer arg0, Graphics g) throws SlickException {
 		drawScrollingImage(arg0, g, background_1, 0.05f);
 		drawScrollingImage(arg0, g, background_2, 0.15f);
@@ -320,13 +347,16 @@ public class View extends BasicGame implements ApplicationListener{
 		tempExp.stopAt(19);
 		animations.add(new AnimationWrapper(new Point2f(position.x,position.y),tempExp,320,240));
 	}
-	
 	private synchronized void addSparkle(Point2f position){
 		Animation tempSp=sparkle.copy();
 		tempSp.stopAt(11);
 		animations.add(new AnimationWrapper(new Point2f(position.x,position.y),tempSp, 10,10));
 	}
 
+	/**
+	 * Called once on start from Slick2d.
+	 * 
+	 */
 	@Override
 	public void init(GameContainer arg0) throws SlickException {
 		colorFilter=new Color(255,0,255);
@@ -370,9 +400,12 @@ public class View extends BasicGame implements ApplicationListener{
 		}
 	}
 
+	/**
+	 * inherited from Slick2d. Should idealy not do anything.
+	 */
 	@Override
 	public void update(GameContainer arg0, int arg1) throws SlickException {
-		if(!shouldUpdate){
+		if(!shouldUpdate){//allows the game to restart
 			this.stop();
 		}
 	}
@@ -381,6 +414,10 @@ public class View extends BasicGame implements ApplicationListener{
 		this.shouldUpdate = false;
 	}
 	
+	/**
+	 * calculates the angle for drawing from the DrawableDatas direction vector.
+	 * @return the angle from the vector in degrees
+	 */
 	private float calculateRotation(Vector2f vector){
 		Vector2f ex=new Vector2f(1,0);
 		Vector2f ey=new Vector2f(0,-1);
