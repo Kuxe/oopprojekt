@@ -2,8 +2,6 @@ package controller;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.lwjgl.input.Keyboard;
 
@@ -42,6 +40,7 @@ public class LauncherController implements PropertyChangeListener{
 		fireKey				=	Keyboard.KEY_SPACE;
 	}
 
+	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(LauncherFrame.Message.HDIFTT_HOST.toString())){
 			hostGame();
