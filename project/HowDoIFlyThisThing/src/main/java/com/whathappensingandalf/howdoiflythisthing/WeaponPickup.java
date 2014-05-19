@@ -131,7 +131,7 @@ public class WeaponPickup implements IPickup{
 				getHeight(),
 				getWidth(),
 				getDirection(),
-				getType().toString()));
+				getType()));
 		return returnSet;
 	}
 	

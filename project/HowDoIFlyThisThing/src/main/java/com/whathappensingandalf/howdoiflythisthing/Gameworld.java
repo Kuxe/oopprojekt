@@ -313,7 +313,7 @@ public class Gameworld implements PropertyChangeListener{
 			listOfSounds.add(SoundEffects.Sound.PICKUP_DIE.toString());
 			pcs.firePropertyChange(evt); //Forward event
 		} else if(evt.getPropertyName().equals(Asteroid.Message.ASTEROID_DIE.toString())) {
-			slateObjectForRemoval((Asteroid)evt.getSource());
+			slateObjectForRemoval(evt.getSource());
 		}
 	}
 	

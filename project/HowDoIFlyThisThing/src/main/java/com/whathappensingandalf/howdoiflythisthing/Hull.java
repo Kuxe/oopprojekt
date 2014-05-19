@@ -15,12 +15,8 @@ public class Hull {
 	}
 	
 	public boolean hurt(int damage){
-		hull=hull-damage;
-		if(hull<1){
-			return true;
-		}else{
-			return false;
-		}
+		hull -= damage;
+        return hull < 1;
 	}
 	
 	public void setHull(int h){
