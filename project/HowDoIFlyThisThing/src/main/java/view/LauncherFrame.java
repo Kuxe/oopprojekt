@@ -17,6 +17,7 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	private StartPanel startPanel;
 	private OptionsPanel optionsPanel;
 	private CardLayout cardLayout;
+
 	
 	public static enum Message{
 		HDIFTT_HOST,
@@ -113,11 +114,14 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	public void setRightThrusterKey(String key){
 		this.optionsPanel.setRightThrusterKey(key);
 	}
-	public void displayConnectionErrorMessage(){
+	public void displayConnectionErrorMessage() {
 		this.startPanel.displayConnectionErrorMessage();
 	}
-	public void hideConnectionErrorMessage(){
-		this.startPanel.hideConnectionErrorMessage();
+	public void displayHostErrorMessage() {
+		this.startPanel.displayHostErrorMessage();
+	}
+	public void hideErrorMessages(){
+		this.startPanel.hideErrorMessages();
 	}
 	/**
 	 * This method is called from within the constructor to initialize the form.

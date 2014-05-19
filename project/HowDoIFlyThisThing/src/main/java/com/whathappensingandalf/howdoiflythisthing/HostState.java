@@ -45,7 +45,7 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 	private long timerStop;
 	private final long timerInterval;
 
-	public HostState(Keybindings keybindings) {
+	public HostState(Keybindings keybindings) throws IOException {
 		this.keybindings = keybindings;
 		round = new Round();
 		round.addPropertyChangeListener(this);
@@ -68,14 +68,14 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 		start();
 	}
 
-	public void start() {
+	public void start() throws IOException {
 		server.start();
-		try {
+		//try {
 			server.bind(5000);
-		} catch (IOException e) {
+		//} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} //5000 default TCP-port
+			//e.printStackTrace();
+		//} //5000 default TCP-port
 
 		server.addListener(new Listener() {
 

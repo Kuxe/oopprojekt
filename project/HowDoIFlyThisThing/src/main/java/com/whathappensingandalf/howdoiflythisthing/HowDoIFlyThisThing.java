@@ -34,7 +34,7 @@ public class HowDoIFlyThisThing {
 		state.addUser(connection.getID());
 	}
 	
-	public void host() {
+	public void host() throws IOException {
 		state = new HostState(keybindings);
 	}
 	

@@ -1,6 +1,9 @@
 package controller;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.lwjgl.input.Keyboard;
 
@@ -27,16 +30,16 @@ public class LauncherController implements PropertyChangeListener{
 	public LauncherController(){
 		launcher = new LauncherFrame();
 		launcher.addPropertyChangeListener(this);
-		launcher.hideConnectionErrorMessage();
+		launcher.hideErrorMessages();
 		launcher.setVisible(true);
-		defaultFireKey	=	Keyboard.KEY_SPACE;
-		defaultLeftKey	=	Keyboard.KEY_A;
-		defaultMainKey	=	Keyboard.KEY_W;
-		defaultRightKey	=	Keyboard.KEY_D;
-		leftKey			=	Keyboard.KEY_A;
-		mainKey			=	Keyboard.KEY_W;
-		rightKey		=	Keyboard.KEY_D;
-		fireKey			=	Keyboard.KEY_SPACE;
+		defaultFireKey		=	Keyboard.KEY_SPACE;
+		defaultLeftKey		=	Keyboard.KEY_A;
+		defaultMainKey		=	Keyboard.KEY_W;
+		defaultRightKey		=	Keyboard.KEY_D;
+		leftKey				=	Keyboard.KEY_A;
+		mainKey				=	Keyboard.KEY_W;
+		rightKey			=	Keyboard.KEY_D;
+		fireKey				=	Keyboard.KEY_SPACE;
 	}
 
 	public void propertyChange(PropertyChangeEvent evt) {
@@ -61,19 +64,24 @@ public class LauncherController implements PropertyChangeListener{
 		
 	}
 	private void hostGame(){
-		controller = new Controller(leftKey, mainKey, rightKey, fireKey);
-		launcher.setVisible(false);
-		launcher.hideConnectionErrorMessage();
-		controller.createTheView(fullscreen);
-		controller.start();
-		controller.cleanup();
-		launcher.setVisible(true);
+		try{
+			controller = new Controller(leftKey, mainKey, rightKey, fireKey);
+			launcher.setVisible(false);
+			launcher.hideErrorMessages();
+			controller.createTheView(fullscreen);
+			controller.start();
+			controller.cleanup();
+			launcher.setVisible(true);
+		}catch (IOException ex) {
+			//All ready hosting.
+			launcher.displayHostErrorMessage();
+		}
 	}
 	private void joinGame(){
 		try{
 			controller = new Controller(launcher.getIP(), leftKey, mainKey, rightKey, fireKey);
 			launcher.setVisible(false);
-			launcher.hideConnectionErrorMessage();
+			launcher.hideErrorMessages();
 			controller.createTheView(fullscreen);
 			controller.start();
 			controller.cleanup();
@@ -102,6 +110,7 @@ public class LauncherController implements PropertyChangeListener{
 		launcher.setLeftThrusterKey(Keyboard.getKeyName(defaultLeftKey));
 		launcher.setMainThrusterKey(Keyboard.getKeyName(defaultMainKey));
 		launcher.setRightThrusterKey(Keyboard.getKeyName(defaultRightKey));
+		launcher.setFullscreen(defaultFullscreen);
 	}
 	
 }
