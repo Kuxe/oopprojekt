@@ -1,4 +1,4 @@
-package networkpackets;
+package network;
 
 
 public class HudNetworkPacket implements NetworkPacket {

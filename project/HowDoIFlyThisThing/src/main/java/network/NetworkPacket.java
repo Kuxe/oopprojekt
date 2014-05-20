@@ -1,4 +1,4 @@
-package networkpackets;
+package network;
 
 public interface NetworkPacket {
 	public static enum Type {

@@ -1,4 +1,4 @@
-package networkpackets;
+package network;
 
 public class ModelStatusNetworkPacket implements NetworkPacket {
 	public String status;

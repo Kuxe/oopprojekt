@@ -1,7 +1,6 @@
 package view;
 
 import org.lwjgl.input.Keyboard;
-import utils.KeybindingUtils;
 /**
  *
  * @author Martin Nilsson

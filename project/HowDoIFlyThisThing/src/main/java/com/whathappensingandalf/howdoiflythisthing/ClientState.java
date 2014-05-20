@@ -8,8 +8,7 @@ import java.util.Set;
 
 import javax.vecmath.Point2f;
 
-import networkpackets.*;
-import utils.NetworkUtils;
+import network.*;
 
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;

@@ -11,18 +11,18 @@ import java.util.Set;
 
 import javax.vecmath.Point2f;
 
-import networkpackets.CountdownNetworkPacket;
-import networkpackets.DrawableDataNetworkPacket;
-import networkpackets.HoldKeysNetworkPacket;
-import networkpackets.HudNetworkPacket;
-import networkpackets.KeybindingsNetworkPacket;
-import networkpackets.ModelStatusNetworkPacket;
-import networkpackets.NetworkPacket;
-import networkpackets.SoundNetworkPacket;
-import networkpackets.SpaceshipPointNetworkPacket;
-import networkpackets.WorldBorderNetworkPacket;
-import networkpackets.NetworkPacket.Type;
-import utils.NetworkUtils;
+import network.CountdownNetworkPacket;
+import network.DrawableDataNetworkPacket;
+import network.HoldKeysNetworkPacket;
+import network.HudNetworkPacket;
+import network.KeybindingsNetworkPacket;
+import network.ModelStatusNetworkPacket;
+import network.NetworkPacket;
+import network.NetworkUtils;
+import network.SoundNetworkPacket;
+import network.SpaceshipPointNetworkPacket;
+import network.WorldBorderNetworkPacket;
+import network.NetworkPacket.Type;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;

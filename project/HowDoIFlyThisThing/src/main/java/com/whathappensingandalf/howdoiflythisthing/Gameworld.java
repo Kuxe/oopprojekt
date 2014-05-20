@@ -16,8 +16,8 @@ import java.util.Set;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
-import networkpackets.ExplosionNetworkPacket;
-import networkpackets.SparkleNetworkPacket;
+import network.ExplosionNetworkPacket;
+import network.SparkleNetworkPacket;
 import services.SoundEffects;
 import utils.ITimer;
 import utils.Timer;

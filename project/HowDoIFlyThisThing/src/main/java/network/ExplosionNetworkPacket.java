@@ -1,4 +1,4 @@
-package networkpackets;
+package network;
 
 import javax.vecmath.Point2f;
 
