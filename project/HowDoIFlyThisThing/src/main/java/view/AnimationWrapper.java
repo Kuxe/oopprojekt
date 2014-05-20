@@ -3,7 +3,11 @@ package view;
 import javax.vecmath.Point2f;
 
 import org.newdawn.slick.Animation;
-
+/**
+ * Wrapperclass for all information needed to paint an animation.
+ * @author Mathias
+ *
+ */
 public class AnimationWrapper{
 	
 	private Point2f position;
