@@ -6,8 +6,8 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import networkpackets.ExplosionNetworkPacket;
-import networkpackets.SparkleNetworkPacket;
+import network.ExplosionNetworkPacket;
+import network.SparkleNetworkPacket;
 
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;

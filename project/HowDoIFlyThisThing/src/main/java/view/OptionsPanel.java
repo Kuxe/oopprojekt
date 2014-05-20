@@ -4,7 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.lwjgl.input.Keyboard;
-import utils.KeybindingUtils;
 /**
  *
  * @author Martin Nilsson

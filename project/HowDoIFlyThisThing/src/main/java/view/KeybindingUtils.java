@@ -1,4 +1,4 @@
-package utils;
+package view;
 
 import org.lwjgl.input.Keyboard;
 

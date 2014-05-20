@@ -1,4 +1,4 @@
-package networkpackets;
+package network;
 
 import com.whathappensingandalf.howdoiflythisthing.Keybindings;
 

@@ -1,16 +1,4 @@
-package utils;
-
-import networkpackets.CountdownNetworkPacket;
-import networkpackets.DrawableDataNetworkPacket;
-import networkpackets.ExplosionNetworkPacket;
-import networkpackets.HoldKeysNetworkPacket;
-import networkpackets.HudNetworkPacket;
-import networkpackets.KeybindingsNetworkPacket;
-import networkpackets.ModelStatusNetworkPacket;
-import networkpackets.SoundNetworkPacket;
-import networkpackets.SpaceshipPointNetworkPacket;
-import networkpackets.SparkleNetworkPacket;
-import networkpackets.WorldBorderNetworkPacket;
+package network;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.whathappensingandalf.howdoiflythisthing.DrawableData;

@@ -1,4 +1,4 @@
-package networkpackets;
+package network;
 
 public class CountdownNetworkPacket implements NetworkPacket {
 	public long countdown;

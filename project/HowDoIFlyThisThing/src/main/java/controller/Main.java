@@ -1,6 +1,5 @@
-package com.whathappensingandalf.howdoiflythisthing;
+package controller;
 
-import controller.LauncherController;
 /**
  * 
  * @author Kuxe

@@ -1,4 +1,4 @@
-package networkpackets;
+package network;
 
 public class WorldBorderNetworkPacket implements NetworkPacket {
 	public int width, height;

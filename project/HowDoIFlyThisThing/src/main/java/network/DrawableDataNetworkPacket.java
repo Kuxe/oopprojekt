@@ -1,4 +1,4 @@
-package networkpackets;
+package network;
 
 import java.util.HashSet;
 import java.util.Set;
