@@ -4,7 +4,7 @@ public class ViewThread implements Runnable{
 	private View view;
 	
 	public ViewThread(Object lock, boolean fullscreen){
-		view=new View("How do i fly this?", lock, fullscreen);
+		view=new View("How do i fly this thing?", lock, fullscreen);
 	}
 	
 	

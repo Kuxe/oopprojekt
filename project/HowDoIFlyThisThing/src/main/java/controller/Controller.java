@@ -31,7 +31,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 	private HowDoIFlyThisThing model;
 	private ViewThread viewThread;
 	private SoundEffects soundEffects;
-	private Keybindings keybindings;
+	private final Keybindings keybindings;
 
 	boolean running = false;
 
@@ -139,10 +139,12 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		model.cleanup();
 	}
 
+	@Override
 	public synchronized void keyPressed(int key, char c) {
 		listOfPressedKeys.add(key);
 	}
 
+	@Override
 	public synchronized void keyReleased(int key, char c) {
 		if(key == Keyboard.KEY_ESCAPE){
 			running = false;
@@ -151,19 +153,24 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		listOfReleasedKeys.add(key);
 	}
 
+	@Override
 	public void setInput(Input input) {
 		// not used
 	}
+	@Override
 	public boolean isAcceptingInput() {
 		return true;
 	}
+	@Override
 	public void inputEnded() {
 		// not used
 	}
+	@Override
 	public void inputStarted() {
 		// not used
 	}
 
+	@Override
 	public void propertyChange(PropertyChangeEvent event) {
 		System.out.println("Controller recieved event: " + event.getPropertyName()); //Remove?
 		
