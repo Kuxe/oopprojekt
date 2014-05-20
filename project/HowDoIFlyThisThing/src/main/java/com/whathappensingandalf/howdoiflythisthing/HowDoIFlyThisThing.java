@@ -18,7 +18,7 @@ import java.io.IOException;
  */
 public class HowDoIFlyThisThing {
 
-	private Keybindings keybindings;
+	private final Keybindings keybindings;
 	private ModelNetworkState state;
 	
 	public HowDoIFlyThisThing(Keybindings keybindings) {
@@ -28,7 +28,7 @@ public class HowDoIFlyThisThing {
 	
 	/**
 	 *  
-	 * @param spaceship
+	 * @param connection
 	 */
 	public void addUser(Connection connection) {
 		state.addUser(connection.getID());

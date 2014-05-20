@@ -13,10 +13,10 @@ import java.beans.PropertyChangeSupport;
  */
 public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeListener{
 
-	private PropertyChangeSupport pcs;
-	private StartPanel startPanel;
-	private OptionsPanel optionsPanel;
-	private CardLayout cardLayout;
+	private final PropertyChangeSupport pcs;
+	private final StartPanel startPanel;
+	private final OptionsPanel optionsPanel;
+	private final CardLayout cardLayout;
 
 	
 	public static enum Message{
@@ -78,6 +78,7 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 		this.pcs.removePropertyChangeListener(pcl);
 	}
 	
+	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		pcs.firePropertyChange(evt);
 	}

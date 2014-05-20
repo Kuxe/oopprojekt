@@ -12,13 +12,14 @@ import utils.VecmathUtils.*;
  */
 public class CollidableComponent{
 	
-	private Point2f position;
-	private double radius;
-	private Vector2f distance= new Vector2f(0 ,0);
+	private final Point2f position;
+	private final double radius;
+	private Vector2f distance = new Vector2f(0 ,0);
 	
 	public CollidableComponent(Point2f position, double radius){
 		this.position= position;
 		this.radius= radius;
+		//this.distance
 	}
 	
 	public CollidableComponent(Point2f position, int width, int height){
