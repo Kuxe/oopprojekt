@@ -38,7 +38,7 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	private Set<DrawableData> renderObjects;
 
-	private Animation explosion,sparkle;
+	private Animation explosion,sparkle,asteroidExplosion;
 	private List<AnimationWrapper> animations,removeAnimations;
 
 	private SpriteSheet asteroid,
@@ -177,6 +177,9 @@ public class View extends BasicGame implements ApplicationListener{
 			}
 			for(int i = 0 ; i < sparkle.getFrameCount(); i++) {
 				sparkle.getImage(i).destroy();
+			}
+			for(int i = 0 ; i < asteroidExplosion.getFrameCount(); i++) {
+				asteroidExplosion.getImage(i).destroy();
 			}
 			
 		} catch (SlickException e) {
@@ -352,6 +355,11 @@ public class View extends BasicGame implements ApplicationListener{
 		tempSp.stopAt(11);
 		animations.add(new AnimationWrapper(new Point2f(position.x,position.y),tempSp, 10,10));
 	}
+	private void addAsteroidExplosion(Point2f position) {
+		Animation tempAnim=asteroidExplosion.copy();
+		tempAnim.stopAt(15);
+		animations.add(new AnimationWrapper(new Point2f(position),tempAnim, 300,300));
+	}
 
 	/**
 	 * Called once on start from Slick2d.
@@ -381,6 +389,7 @@ public class View extends BasicGame implements ApplicationListener{
 			
 			explosion = new Animation(new SpriteSheet(new Image("resources/explosionanimation.png"),320,240),100);
 			sparkle = new Animation(new SpriteSheet("resources/SparkleAnimation.png",10,10, colorFilter),20);
+			asteroidExplosion = new Animation(new SpriteSheet("resources/AsteroidAnimation.png",300,300, colorFilter),75);
 			
 			planet_1 = new SpriteSheet("resources/planet_1.png", 100, 100, colorFilter);
 			
@@ -474,5 +483,9 @@ public class View extends BasicGame implements ApplicationListener{
 	
 	public void createSparkle(Point2f position){
 		this.addSparkle(position);
+	}
+	
+	public void createAsteroidExplosion(Point2f position){
+		this.addAsteroidExplosion(position);
 	}
 }

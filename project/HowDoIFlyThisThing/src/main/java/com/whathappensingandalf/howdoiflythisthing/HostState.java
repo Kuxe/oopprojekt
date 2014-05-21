@@ -295,6 +295,9 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 		}else if(evt.getPropertyName().equals(Gameworld.Message.SPARKLE.toString())){
 			server.sendToAllTCP(evt.getOldValue());
 			pcs.firePropertyChange(evt);
+		}else if(evt.getPropertyName().equals(Gameworld.Message.ASTEROID_EXP.toString())){
+			server.sendToAllTCP(evt.getOldValue());
+			pcs.firePropertyChange(evt);
 		}
 	}
 	

@@ -37,5 +37,6 @@ public class NetworkUtils {
 		kryo.register(SparkleNetworkPacket.class);
 		kryo.register(WorldBorderNetworkPacket.class);
 		kryo.register(SpaceshipPointNetworkPacket.class);
+		kryo.register(AsteroidDieNetworkPacket.class);
 	}
 }

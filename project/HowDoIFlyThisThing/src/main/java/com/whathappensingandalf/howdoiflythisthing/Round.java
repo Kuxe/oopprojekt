@@ -245,6 +245,8 @@ public class Round implements PropertyChangeListener{
 			pcs.firePropertyChange(evt);
 		}else if(evt.getPropertyName().equals(Gameworld.Message.SPARKLE.toString())){
 			pcs.firePropertyChange(evt);
+		}else if(evt.getPropertyName().equals(Gameworld.Message.ASTEROID_EXP.toString())){
+			pcs.firePropertyChange(evt);
 		}
 	}
 }

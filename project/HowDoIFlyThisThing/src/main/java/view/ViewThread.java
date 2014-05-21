@@ -33,4 +33,10 @@ public class ViewThread implements Runnable{
 			view.createSparkle(position);
 		}
 	}
+	
+	public void createAsteroidExplosion(javax.vecmath.Point2f position){
+		if(view.isReady()){
+			view.createAsteroidExplosion(position);
+		}
+	}
 }

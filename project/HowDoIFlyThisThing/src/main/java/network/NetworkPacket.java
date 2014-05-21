@@ -12,7 +12,8 @@ public interface NetworkPacket {
 		SPARKLE,
 		SPACESHIP_POINT,
 		EXPLOSION,
-		WORLD_BORDER
+		WORLD_BORDER,
+		ASTEROID_EXP
 	}
 	public Type getType();
 }
