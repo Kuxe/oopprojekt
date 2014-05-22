@@ -141,6 +141,7 @@ public class Round implements PropertyChangeListener{
 			System.out.println("START_ROUND");
 			usersAlive = 0;
 			world = new Gameworld();
+			world.generateWorld();
 			world.addPropertyChangeListener(this);
 			for(User user : users) {
 				user.requestSpaceship();
