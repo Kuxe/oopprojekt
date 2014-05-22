@@ -10,6 +10,10 @@ public class PlayerState implements IUserState{
 	
 	private Spaceship spaceship;
 	
+	public PlayerState(Spaceship spaceship){
+		this.spaceship = spaceship;
+	}
+	
 	public void setSpaceship(Spaceship spaceship){
 		this.spaceship=spaceship;
 	}

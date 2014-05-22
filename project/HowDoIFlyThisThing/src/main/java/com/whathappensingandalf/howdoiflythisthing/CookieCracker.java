@@ -106,7 +106,7 @@ public class CookieCracker implements IProjectile{
 	public void setVelocity(Vector2f velocity) {
 		this.velocity=velocity;
 	}
-
+	
 	@Override
 	public void setAcceleration(Vector2f acceleration) {
 		this.acceleration=acceleration;

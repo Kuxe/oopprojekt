@@ -13,7 +13,7 @@ public class CollidableComponentTest {
 	public void testCollidableComponentPoint2fDouble() {
 		assertTrue(true);
 	}
-
+	
 	@Test
 	public void testCollidableComponentPoint2fIntInt() {
 		assertTrue(true);
