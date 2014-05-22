@@ -1,13 +1,9 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeListener;
-import java.net.InetSocketAddress;
-import java.util.Map;
 import java.util.Set;
 
 import javax.vecmath.Point2f;
-
-import com.esotericsoftware.kryonet.Connection;
 
 /**
  * 
