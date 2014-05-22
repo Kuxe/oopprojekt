@@ -58,12 +58,12 @@ public class RoundTest {
 		User user4 = new User();
 		
 		round.start();
-		assertTrue(round.getState().equals(Roundstate.State.INACTIVE)); // Should not start when one users are in
+		assertTrue(round.getState().equals(IRoundstate.State.INACTIVE)); // Should not start when one users are in
 		assertTrue(round.getUsersAlive() == 0); //No one should be alive
 		
 		round.addUser(user1);
 		round.start();
-		assertTrue(round.getState().equals(Roundstate.State.INACTIVE)); // Should not start when one users are in
+		assertTrue(round.getState().equals(IRoundstate.State.INACTIVE)); // Should not start when one users are in
 		round.update(); //Update round in order to let users spawn
 		assertTrue(round.getUsersAlive() == 1); //One should be alive
 		
@@ -72,13 +72,13 @@ public class RoundTest {
 		round.start();
 		round.update(); //Update round in order to start round
 		run5seconds(round);
-		assertTrue(round.getState().equals(Roundstate.State.ACTIVE)); //Should be active when two users are in
+		assertTrue(round.getState().equals(IRoundstate.State.ACTIVE)); //Should be active when two users are in
 		round.update(); //Update round in order to let users spawn
 		assertTrue(round.getUsersAlive() == 2); //Two should be alive
 		
 		round.addUser(user3);
 		round.start();
-		assertTrue(round.getState().equals(Roundstate.State.ACTIVE)); //Should still be active when three users are in
+		assertTrue(round.getState().equals(IRoundstate.State.ACTIVE)); //Should still be active when three users are in
 		round.update(); //Update round in order to start round
 		
 		run5seconds(round);
@@ -87,7 +87,7 @@ public class RoundTest {
 		
 		round.addUser(user4);
 		round.start();
-		assertTrue(round.getState().equals(Roundstate.State.ACTIVE)); //Should still be active when four users are in
+		assertTrue(round.getState().equals(IRoundstate.State.ACTIVE)); //Should still be active when four users are in
 		round.update(); //Update round in order to start round
 		round.update(); //Update round in order to hand out requested spaceships
 		run5seconds(round);
@@ -103,7 +103,7 @@ public class RoundTest {
 		round.addUser(user1);
 		round.addUser(user2);
 		round.end(); //At this point round should be started (two users). Now force end it.
-		assertTrue(round.getState().equals(Roundstate.State.INACTIVE)); //Did it force end?
+		assertTrue(round.getState().equals(IRoundstate.State.INACTIVE)); //Did it force end?
 	}
 
 	@Test
@@ -164,7 +164,7 @@ public class RoundTest {
 		assertTrue(user2.getState().equals(IUserState.State.SPECTATOR_STATE)); //Should not have received spaceship yet
 		round.update();
 		run5seconds(round);
-		assertTrue(round.getState().equals(Roundstate.State.ACTIVE)); //START_ROUND-event should make round active when second user is added
+		assertTrue(round.getState().equals(IRoundstate.State.ACTIVE)); //START_ROUND-event should make round active when second user is added
 		round.update(); //Process round (give spaceships to users that requested from event REQUEST_SPACESHIP
 		assertTrue(user1.getState().equals(IUserState.State.PLAYER_STATE)); //Should have received spaceship
 		assertTrue(user2.getState().equals(IUserState.State.PLAYER_STATE)); //Should have received spaceship
