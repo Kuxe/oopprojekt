@@ -69,9 +69,8 @@ public class CookieCracker implements IProjectile{
 	@Override
 	public void remove() {
 		pcs.firePropertyChange(Message.PROJECTILE_DIE.toString(),this,true);
-		
 	}
-
+	
 	@Override
 	public Vector2f getVelocity() {
 		return new Vector2f(this.velocity.x,this.velocity.y);
