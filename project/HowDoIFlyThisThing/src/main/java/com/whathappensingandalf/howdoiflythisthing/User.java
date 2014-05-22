@@ -3,9 +3,11 @@ package com.whathappensingandalf.howdoiflythisthing;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.vecmath.Point2f;
+import javax.vecmath.Vector2f;
 
 import org.lwjgl.input.Keyboard;
 
@@ -31,7 +33,7 @@ public class User implements PropertyChangeListener{
 	
 	public User(){
 		spectatorState = new SpectatorState();
-		playerState = new PlayerState();
+		playerState = new PlayerState(new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50));
 		state = spectatorState;
 		keybindings = new Keybindings();
 		keybindings.setLeft(Keyboard.KEY_A);
@@ -39,6 +41,7 @@ public class User implements PropertyChangeListener{
 		keybindings.setRight(Keyboard.KEY_D);
 		keybindings.setFire(Keyboard.KEY_SPACE);
 		pcs = new PropertyChangeSupport(this);
+		listOfHoldKeys = new HashSet<Integer>();
 	}
 	
 	public Set<Integer> getListOfHoldKeys() {
@@ -106,6 +109,7 @@ public class User implements PropertyChangeListener{
 		pcs.firePropertyChange(Message.REQUEST_SPACESHIP.toString(), false, true);
 	}
 	
+	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_DIE.toString())) {
 			spectatorState.setCameraPoint(playerState.getSpaceshipPosition());
