@@ -73,6 +73,7 @@ public class Gameworld implements PropertyChangeListener{
 	private PropertyChangeSupport pcs;
 	private ITimer pickupSpawnTimer;
 	private ITimer shieldTimer;
+	private boolean spawnPickups = true;
 	
 	public Gameworld(){
 		moveables = 					new HashMap();
@@ -423,13 +424,21 @@ public class Gameworld implements PropertyChangeListener{
 	public void setShieldTimer(ITimer shieldTimer) {
 		this.shieldTimer = shieldTimer;
 	}
+	
+	public void spawnPickups(boolean spawn) {
+		spawnPickups = spawn;
+	}
+	
+	public boolean isSpawningPickups() {
+		return spawnPickups;
+	}
 
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		pcs.addPropertyChangeListener(listener);
 	}
 	
 	private void pickupSpawnUppdate(){
-		if(pickupSpawnTimer.isTimerDone()){
+		if(pickupSpawnTimer.isTimerDone() && spawnPickups){
 			pickupSpawnTimer.start();
 			double spawnChance=Math.random();
 			if(spawnChance<0.1){

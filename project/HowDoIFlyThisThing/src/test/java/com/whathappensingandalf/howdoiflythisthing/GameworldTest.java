@@ -46,6 +46,8 @@ public class GameworldTest {
 	@Test
 	public void testGetDrawableData() {
 		Gameworld world = new Gameworld();
+		world.spawnPickups(false);
+		
 		world.addAsteroid(AsteroidFactory.create(new Point2f(10, 10)));
 		world.update();
 		assertTrue(world.getDrawableData() != null);
@@ -402,6 +404,24 @@ public class GameworldTest {
 		assertTrue(world.getShieldTimer().equals(shieldTimer));
 	}
 	
+	@Test
+	public void testSpawnPickups() {
+		Gameworld world = new Gameworld();
+		
+		world.spawnPickups(false);
+		assertTrue(world.isSpawningPickups() == equals(false));
+	}
+	
+	@Test
+	public void testIsSpawningPickups() {
+		Gameworld world = new Gameworld();
+		
+		world.spawnPickups(false);
+		assertTrue(world.isSpawningPickups() == false);
+		world.spawnPickups(true);
+		assertTrue(world.isSpawningPickups() == true);
+	}
+	
 	
 	//Ensure that functionality isnt dead (ensure code coverage)
 	//Does not actually test anything
@@ -418,6 +438,8 @@ public class GameworldTest {
 	@Test
 	public void testSpaceshipPickupColliding() {
 		Gameworld world = new Gameworld();
+		world.spawnPickups(false);
+		
 		world.addSpaceship(SpaceshipFactory.create(new Point2f(20, 20)));
 		world.addPickup(new HealthPickup(new Point2f(20, 20), 20, 20));
 		world.update();
