@@ -47,6 +47,8 @@ public class ArmsComponent {
 			this.timer.setTimerLength(1000);
 		}else if(type.equals("MISSILE")){
 			this.timer.setTimerLength(2000);
+		}else if(type.equals("COOKIE_CRACKER")){
+			this.timer.setTimerLength(2000);
 		}
 	}
 	public String getWeapon(){

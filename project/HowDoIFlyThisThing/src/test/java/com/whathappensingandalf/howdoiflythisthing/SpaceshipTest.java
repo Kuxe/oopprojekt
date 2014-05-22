@@ -8,6 +8,8 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 import org.junit.After;
@@ -53,6 +55,11 @@ public class SpaceshipTest implements PropertyChangeListener{
 		ship.setVelocity(new Vector2f(100,0));
 		Timestep t = new Timestep();
 		t.start();
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException ex) {
+			Logger.getLogger(SpaceshipTest.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		t.end();
 		t.calculateDeltatime();
 		ship.move(t);
@@ -182,6 +189,11 @@ public class SpaceshipTest implements PropertyChangeListener{
 		s.setRotAcceleration(5);
 		Timestep t = new Timestep();
 		t.start();
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException ex) {
+			Logger.getLogger(SpaceshipTest.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		t.end();
 		t.calculateDeltatime();
 		s.calculateThrust(t);

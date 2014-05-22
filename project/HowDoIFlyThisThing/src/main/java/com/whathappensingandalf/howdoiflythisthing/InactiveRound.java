@@ -9,7 +9,7 @@ import javax.vecmath.Vector2f;
 
 import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 
-public class InactiveRound implements Roundstate {
+public class InactiveRound implements IRoundstate {
 	
 	public enum Message {
 		START_ROUND
@@ -41,7 +41,7 @@ public class InactiveRound implements Roundstate {
 
 	@Override
 	public State getState() {
-		return Roundstate.State.INACTIVE;
+		return IRoundstate.State.INACTIVE;
 	}
 
 	@Override
