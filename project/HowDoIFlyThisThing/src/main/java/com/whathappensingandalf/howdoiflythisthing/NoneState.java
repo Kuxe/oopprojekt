@@ -1,13 +1,9 @@
 package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeListener;
-import java.net.InetSocketAddress;
-import java.util.Map;
 import java.util.Set;
 
 import javax.vecmath.Point2f;
-
-import com.esotericsoftware.kryonet.Connection;
 
 /**
  * 
@@ -15,7 +11,7 @@ import com.esotericsoftware.kryonet.Connection;
  * 
  * State used by model when it's neither hosting nor acting as client
  */
-public class NoneState implements ModelNetworkState {
+public class NoneState implements IModelNetworkState {
 
 	public void update() {
 		// TODO Auto-generated method stub

@@ -4,11 +4,6 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Set;
 
-import javax.vecmath.Point2f;
-import javax.vecmath.Vector2f;
-
-import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
-
 public class InactiveRound implements IRoundstate {
 	
 	public enum Message {
