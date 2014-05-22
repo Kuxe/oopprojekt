@@ -19,8 +19,7 @@ public class Missile implements IProjectile{
 	private Vector2f acceleration;
 	private Vector2f direction;
 	private Point2f position;
-	private int damage = 2;  //@TODO
-	//private Damage damage= new Damage();
+	private int damage = 2;
 	private TypeWrapper rotationVelocity;
 	private TypeWrapper rotationAcceleration;
 	private MoveComponent mC;
@@ -49,8 +48,8 @@ public class Missile implements IProjectile{
 		this.position= missile.getPosition();
 		this.width = missile.getWidth();
 		this.height = missile.getHeight();
-		this.rotationVelocity.setValue(missile.getRotVelocity());
-		this.rotationAcceleration.setValue(missile.getRotAcceleration());
+		this.rotationVelocity = new TypeWrapper(missile.getRotVelocity());
+		this.rotationAcceleration = new TypeWrapper(missile.getRotAcceleration());
 		mC= new MoveComponent(position, velocity, acceleration, direction, new TypeWrapper(0.0f),new TypeWrapper(0.0f));
 		colliComp = new CollidableComponent(position, width, height);
 		pcs = new PropertyChangeSupport(this);
@@ -202,8 +201,8 @@ public class Missile implements IProjectile{
 		Set<DrawableData> returnSet=new HashSet<DrawableData>();
 		returnSet.add(new DrawableData(
 				getPosition(),
-				getHeight(),
 				getWidth(),
+				getHeight(),
 				getDirection(),
 				getType()));
 		return returnSet;

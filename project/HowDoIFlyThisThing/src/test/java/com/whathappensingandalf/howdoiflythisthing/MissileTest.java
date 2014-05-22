@@ -2,10 +2,14 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
 import org.junit.Test;
+
+import com.whathappensingandalf.howdoiflythisthing.IGameObject.Type;
 
 public class MissileTest {
 
@@ -57,8 +61,8 @@ public class MissileTest {
 	@Test
 	public void testGetVelocity() {
 		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
-		assertTrue(m.getVelocity().x==10);
-		assertTrue(m.getVelocity().y==11);
+		assertTrue(m.getVelocity().x==2);
+		assertTrue(m.getVelocity().y==3);
 	}
 
 	@Test
@@ -77,122 +81,134 @@ public class MissileTest {
 
 	@Test
 	public void testGetPosition() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		assertTrue(m.getPosition().x==10);
+		assertTrue(m.getPosition().y==11);
 	}
 
 	@Test
 	public void testGetRotVelocity() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		assertTrue(m.getVelocity().x==2);
+		assertTrue(m.getVelocity().y==3);
 	}
 
 	@Test
 	public void testGetRotAcceleration() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		assertTrue(m.getRotAcceleration()==0.0f);
 	}
 
 	@Test
 	public void testSetVelocity() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		m.setVelocity(new Vector2f(10,11));
+		assertTrue(m.getVelocity().x==10);
+		assertTrue(m.getVelocity().y==11);
 	}
 
 	@Test
 	public void testSetAcceleration() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		m.setAcceleration(new Vector2f(15,20));
+		assertTrue(m.getAcceleration().x==15);
+		assertTrue(m.getAcceleration().y==20);
 	}
 
 	@Test
 	public void testSetDirection() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		m.setDirection(new Vector2f(2,1));
+		assertTrue(m.getDirection().x==2);
+		assertTrue(m.getDirection().y==1);
 	}
 
 	@Test
 	public void testSetPosition() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		m.setPosition(new Point2f(100,200));
+		assertTrue(m.getPosition().x==100);
+		assertTrue(m.getPosition().y==200);
 	}
 
 	@Test
 	public void testSetRotVelocity() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		m.setRotVelocity(10);
+		assertTrue(m.getRotVelocity()==10);
 	}
 
 	@Test
 	public void testSetRotAcceleration() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		m.setRotAcceleration(20);
+		assertTrue(m.getRotAcceleration()==20);
 	}
 
 	@Test
 	public void testCollideDetection() {
-		fail("Not yet implemented");
+		Missile m1=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		Missile m2=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		assertTrue(m1.collideDetection(m2));
 	}
 
 	@Test
 	public void testGetHeight() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		assertTrue(m.getHeight()==10);
 	}
 
 	@Test
 	public void testGetWidth() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		assertTrue(m.getWidth()==5);
 	}
 
 	@Test
 	public void testGetType() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAccept() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testVisitSpaceship() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testVisitIProjectile() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testVisitCookieCracker() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testVisitAsteroid() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testVisitIPickup() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		assertTrue(m.getType().equals(Type.MISSILE.toString()));
 	}
 
 	@Test
 	public void testGetDamage() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		assertTrue(m.getDamage()==2);
 	}
 
-	@Test
-	public void testRemovePropertyChangeListener() {
-		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testAddPropertyChangeListener() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testClone() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		Missile clone=m.clone();
+		assertFalse(clone==m);
+		assertTrue(m.getPosition().x==clone.getPosition().x);
+		assertTrue(m.getPosition().y==clone.getPosition().y);
+		assertTrue(m.getVelocity().x==clone.getVelocity().x);
+		assertTrue(m.getVelocity().y==clone.getVelocity().y);
+		assertTrue(m.getAcceleration().x==clone.getAcceleration().x);
+		assertTrue(m.getAcceleration().y==clone.getAcceleration().y);
+		assertTrue(m.getDirection().x==clone.getDirection().x);
+		assertTrue(m.getDirection().y==clone.getDirection().y);
+		assertTrue(m.getWidth()==clone.getWidth());
+		assertTrue(m.getHeight()==clone.getHeight());
+		assertTrue(m.getRotVelocity()==clone.getRotVelocity());
+		assertTrue(m.getRotAcceleration()==clone.getRotAcceleration());
 	}
 
 	@Test
 	public void testGetCollectionDrawables() {
-		fail("Not yet implemented");
+		Missile m=new Missile(new Point2f(10,11), new Vector2f(2,3), new Vector2f(4,5), new Vector2f(1,6), 5, 10);
+		HashSet<DrawableData> set=new HashSet();
+		set.addAll(m.getCollectionDrawables());
+		for(DrawableData d:set){
+			assertTrue(d.getDirection().x==m.getDirection().x);
+			assertTrue(d.getDirection().y==m.getDirection().y);
+			assertTrue(d.getHeight()==m.getHeight());
+			assertTrue(d.getWidth()==m.getWidth());
+			assertTrue(d.getPosition().x==m.getPosition().x);
+			assertTrue(d.getPosition().y==m.getPosition().y);
+		}
 	}
 
 }
