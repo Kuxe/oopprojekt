@@ -42,6 +42,7 @@ public class Round implements PropertyChangeListener{
 
 	public Round() {
 		world = new Gameworld();
+		world.generateWorld();
 		world.addPropertyChangeListener(this);
 		
 		pcs = new PropertyChangeSupport(this);
