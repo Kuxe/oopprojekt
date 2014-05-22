@@ -28,7 +28,7 @@ import com.whathappensingandalf.howdoiflythisthing.factorys.SpaceshipFactory;
 public class Round implements PropertyChangeListener{
 	
 	private Gameworld world;
-	private Roundstate state;
+	private IRoundstate state;
 	private Set<User> users;
 	private Set<User> usersRequestingShips; //Lazy add of replacement spaceships of those lost during inactive round
 	private int usersAlive = 0;
@@ -122,7 +122,7 @@ public class Round implements PropertyChangeListener{
 	public synchronized Set<DrawableData> getDrawableData() {
 		return world.getDrawableData();
 	}
-	public Set<String> getListOfSounds(){
+	public synchronized Set<String> getListOfSounds(){
 		return world.getListOfSounds();
 	}
 	
@@ -170,7 +170,7 @@ public class Round implements PropertyChangeListener{
 		usersRequestingShips.clear();
 	}
 	
-	public Gameworld getWorld() {
+	public synchronized Gameworld getWorld() {
 		return world;
 	}
 	
@@ -190,7 +190,7 @@ public class Round implements PropertyChangeListener{
 		return users.size();
 	}
 	
-	public Roundstate.State getState() {
+	public IRoundstate.State getState() {
 		return state.getState();
 	}
 	
@@ -233,12 +233,12 @@ public class Round implements PropertyChangeListener{
 			//One user died...
 			decreaseUsersAlive();
 			//If last man standing and round is active, start new round
-			if(usersAlive == 1 && state.getState().equals(Roundstate.State.ACTIVE)) {
+			if(usersAlive == 1 && state.getState().equals(IRoundstate.State.ACTIVE)) {
 				start();
 			}
 			
 			//If round is inactive, give a new ship to user
-			if (state.getState().equals(Roundstate.State.INACTIVE)) {
+			if (state.getState().equals(IRoundstate.State.INACTIVE)) {
 				((User)evt.getSource()).requestSpaceship();
 			}
 		}

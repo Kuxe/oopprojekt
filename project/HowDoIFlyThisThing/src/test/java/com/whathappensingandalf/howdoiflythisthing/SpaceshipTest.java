@@ -9,6 +9,9 @@ package com.whathappensingandalf.howdoiflythisthing;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
@@ -56,6 +59,11 @@ public class SpaceshipTest implements PropertyChangeListener{
 		ship.setVelocity(new Vector2f(100,0));
 		Timestep t = new Timestep();
 		t.start();
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException ex) {
+			Logger.getLogger(SpaceshipTest.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		t.end();
 		t.calculateDeltatime();
 		ship.move(t);
@@ -185,6 +193,11 @@ public class SpaceshipTest implements PropertyChangeListener{
 		s.setRotAcceleration(5);
 		Timestep t = new Timestep();
 		t.start();
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException ex) {
+			Logger.getLogger(SpaceshipTest.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		t.end();
 		t.calculateDeltatime();
 		s.calculateThrust(t);
@@ -212,9 +225,9 @@ public class SpaceshipTest implements PropertyChangeListener{
 	@Test
 	public void testVisit_Projectile() {
 		IProjectile p = new Bullet(null, null, null, null, 5, 5);
-		int h = s.getHull();
+		int h = s.getShield();
 		s.visit(p);
-		assertTrue(s.getHull()<h);
+		assertTrue(s.getShield() < h);
 	}
 
 	@Test
@@ -229,7 +242,7 @@ public class SpaceshipTest implements PropertyChangeListener{
 		HealthPickup hp = new HealthPickup(new Point2f(0,0), 5, 10);
 		int h = s.getHull();
 		s.visit(hp);
-		assertTrue(s.getHull()>h);
+		assertTrue(s.getHull() > h);
 	}
 
 	@Test

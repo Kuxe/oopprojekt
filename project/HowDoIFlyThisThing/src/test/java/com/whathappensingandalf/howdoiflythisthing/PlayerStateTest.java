@@ -16,8 +16,8 @@ import org.junit.Test;
 
 public class PlayerStateTest implements PropertyChangeListener{
 
-	private PlayerState ps= new PlayerState();
-	private PlayerState ps2= new PlayerState();
+	private PlayerState ps= new PlayerState(new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50));
+	private PlayerState ps2= new PlayerState(new Spaceship(new Point2f(10, 10), new Vector2f(1,1), 70, 50));
 	private boolean bo1= false;
 	private boolean bo2= true;
 	private boolean bo3= false;

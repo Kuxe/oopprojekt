@@ -21,7 +21,7 @@ public class Hull {
 	
 	public void setHull(int h){
 		hull=h;
-		if(hull<maxHull){
+		if(hull>maxHull){
 			hull=maxHull;
 		}
 	}
