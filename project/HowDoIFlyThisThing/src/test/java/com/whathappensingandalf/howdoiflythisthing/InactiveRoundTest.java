@@ -2,6 +2,7 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.HashSet;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -41,27 +42,55 @@ public class InactiveRoundTest implements PropertyChangeListener{
 
 	@Test
 	public void testAddUser() {
+		ir.addListener(this);
+		User u1 = new User();
+		HashSet set = new HashSet<User>();
+		ir.addUser(u1, set);
+		assertTrue(set.size()==1);
+		assertFalse(start);
+		User u2 = new User();
+		ir.addUser(u2, set);
+		assertTrue(set.size()==2);
+		assertTrue(start);
 	}
 
 	@Test
 	public void testRemoveUser() {
+		Round round = new Round();
+		ir.addListener(this);
+		User u1 = new User();
+		HashSet set = new HashSet<User>();
+		ir.addUser(u1, set);
+		ir.removeUser(u1, set, round);
+		assertTrue(round.getUsersAlive()==0);
 	}
 
 	@Test
 	public void testGetState() {
+		assertTrue(ir.getState().toString().equals(IRoundstate.State.INACTIVE.toString()));
 	}
 
 	@Test
 	public void testAddListener() {
+		ir.addListener(this);
+		User u1 = new User();
+		User u2 = new User();
+		HashSet set = new HashSet<User>();
+		ir.addUser(u1, set);
+		ir.addUser(u2, set);
+		assertTrue(start);
 	}
 
 	@Test
 	public void testGetStatus() {
+		assertTrue(ir.getStatus().equals("Waiting for more players..."));
 	}
 
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
-		if(evt.getPropertyName().equals(""));
+		if(evt.getPropertyName().equals(InactiveRound.Message.START_ROUND.toString())){
+			start = true;
+		}
 	}
 	
 }
