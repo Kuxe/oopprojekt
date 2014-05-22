@@ -17,7 +17,6 @@ public class GameworldTest {
 	public void testGameworld() {
 		Gameworld world = new Gameworld();
 		
-		assertTrue(world.getAnimationes() 				!= null);
 		assertTrue(world.getBorder() 					!= null);
 		assertTrue(world.getChargables() 				!= null);
 		assertTrue(world.getCollidables() 				!= null);

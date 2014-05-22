@@ -59,7 +59,6 @@ public class Gameworld implements PropertyChangeListener{
 	private Map<Object, ICollidable> collidables;
 	private Map<Object, IDrawable> drawables;
 	private Map<Object, IRechargable> chargables;
-	private Map<Object, IDrawable> animationes;
 	
 	/**
 	 * HashMap which is unlocked by any gameworld object, ie spaceship.
@@ -81,7 +80,6 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap = 					new HashMap();
 		listOfObjectsToBeRemoved = 		new HashSet();
 		drawables =						new HashMap();
-		animationes =					new HashMap();
 		listOfSounds = 					new HashSet();
 		chargables =					new HashMap();
 		
@@ -150,7 +148,6 @@ public class Gameworld implements PropertyChangeListener{
 		
 		//Objects are now removed and only left removal is form the list iteself
 		listOfObjectsToBeRemoved.clear();
-		this.animationes.clear();
 	}
 
 	/**
@@ -360,14 +357,6 @@ public class Gameworld implements PropertyChangeListener{
 
 	public void setChargables(Map<Object, IRechargable> chargables) {
 		this.chargables = chargables;
-	}
-
-	public Map<Object, IDrawable> getAnimationes() {
-		return animationes;
-	}
-
-	public void setAnimationes(Map<Object, IDrawable> animationes) {
-		this.animationes = animationes;
 	}
 
 	public Map<Object, List<Map<Object, ? extends IListable>>> getRemovalMap() {
