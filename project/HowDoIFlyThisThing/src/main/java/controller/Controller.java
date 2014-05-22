@@ -21,7 +21,7 @@ import com.whathappensingandalf.howdoiflythisthing.DrawableData;
 import com.whathappensingandalf.howdoiflythisthing.Gameworld;
 import com.whathappensingandalf.howdoiflythisthing.HowDoIFlyThisThing;
 import com.whathappensingandalf.howdoiflythisthing.Keybindings;
-import com.whathappensingandalf.howdoiflythisthing.ModelNetworkState;
+import com.whathappensingandalf.howdoiflythisthing.IModelNetworkState;
 
 import java.io.IOException;
 
@@ -177,7 +177,7 @@ public class Controller implements KeyListener, PropertyChangeListener{
 		
 		//If either view was shutdown or model requested a a close, stop the game loop and let cleanup begin
 		if(	event.getPropertyName().equals(View.Message.VIEW_CLOSE.toString()) ||
-			event.getPropertyName().equals(ModelNetworkState.Message.SHUTDOWN.toString())) {
+			event.getPropertyName().equals(IModelNetworkState.Message.SHUTDOWN.toString())) {
 			viewThread.stopView();
 			running = false;
 		}else if(event.getPropertyName().equals(Gameworld.Message.EXPLOSION.toString())){

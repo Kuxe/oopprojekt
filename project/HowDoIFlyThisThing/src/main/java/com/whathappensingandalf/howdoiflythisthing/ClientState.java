@@ -20,7 +20,7 @@ import com.esotericsoftware.kryonet.Listener;
  * 
  * State used by model when it's acting as a client
  */
-public class ClientState implements ModelNetworkState {
+public class ClientState implements IModelNetworkState {
 
 	private Client client;
 	private Set<DrawableData> drawables;
@@ -108,7 +108,7 @@ public class ClientState implements ModelNetworkState {
 			@Override
 			public void disconnected(Connection connection) {
 				System.out.println("lost connection to host!");
-				pcs.firePropertyChange(ModelNetworkState.Message.SHUTDOWN.toString(), false, true);
+				pcs.firePropertyChange(IModelNetworkState.Message.SHUTDOWN.toString(), false, true);
 			}
 		});
 
@@ -118,7 +118,7 @@ public class ClientState implements ModelNetworkState {
 	}
 
 	public State getState() {
-		return ModelNetworkState.State.CLIENT;
+		return IModelNetworkState.State.CLIENT;
 	}
 
 	public void addUser(int id) {

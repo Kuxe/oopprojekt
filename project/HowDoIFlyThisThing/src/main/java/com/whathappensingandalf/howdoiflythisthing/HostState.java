@@ -29,7 +29,7 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
 
-public class HostState implements ModelNetworkState, PropertyChangeListener{
+public class HostState implements IModelNetworkState, PropertyChangeListener{
 
 	private Round round;
 	private HashSet<Connection> lazyAddUsers;
@@ -241,7 +241,7 @@ public class HostState implements ModelNetworkState, PropertyChangeListener{
 	}
 
 	public State getState() {
-		return ModelNetworkState.State.HOST;
+		return IModelNetworkState.State.HOST;
 	}
 	/**
 	 *  This method returns point of spaceship beloning to ip.
