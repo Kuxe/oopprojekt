@@ -121,7 +121,7 @@ public class Round implements PropertyChangeListener{
 	public synchronized Set<DrawableData> getDrawableData() {
 		return world.getDrawableData();
 	}
-	public Set<String> getListOfSounds(){
+	public synchronized Set<String> getListOfSounds(){
 		return world.getListOfSounds();
 	}
 	
@@ -169,7 +169,7 @@ public class Round implements PropertyChangeListener{
 		usersRequestingShips.clear();
 	}
 	
-	public Gameworld getWorld() {
+	public synchronized Gameworld getWorld() {
 		return world;
 	}
 	
@@ -244,6 +244,8 @@ public class Round implements PropertyChangeListener{
 		else if(evt.getPropertyName().equals(Gameworld.Message.EXPLOSION.toString())){
 			pcs.firePropertyChange(evt);
 		}else if(evt.getPropertyName().equals(Gameworld.Message.SPARKLE.toString())){
+			pcs.firePropertyChange(evt);
+		}else if(evt.getPropertyName().equals(Gameworld.Message.ASTEROID_EXP.toString())){
 			pcs.firePropertyChange(evt);
 		}
 	}

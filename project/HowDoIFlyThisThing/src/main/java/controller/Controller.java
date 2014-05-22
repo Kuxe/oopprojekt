@@ -8,6 +8,7 @@ import java.util.Set;
 
 import network.ExplosionNetworkPacket;
 import network.SparkleNetworkPacket;
+import network.AsteroidDieNetworkPacket;
 
 import org.newdawn.slick.Input;
 import org.newdawn.slick.KeyListener;
@@ -183,6 +184,8 @@ public class Controller implements KeyListener, PropertyChangeListener{
 			this.viewThread.createExplosion(((ExplosionNetworkPacket)event.getOldValue()).position);
 		}else if(event.getPropertyName().equals(Gameworld.Message.SPARKLE.toString())){
 			this.viewThread.createSparkle(((SparkleNetworkPacket)event.getOldValue()).position);
+		}else if(event.getPropertyName().equals(Gameworld.Message.ASTEROID_EXP.toString())){
+			this.viewThread.createAsteroidExplosion(((AsteroidDieNetworkPacket)event.getOldValue()).position);
 		}
 	}
 	public Set<String> getListOfSounds(){

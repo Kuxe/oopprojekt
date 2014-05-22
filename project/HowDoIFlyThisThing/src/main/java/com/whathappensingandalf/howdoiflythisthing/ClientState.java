@@ -96,6 +96,9 @@ public class ClientState implements ModelNetworkState {
 					case EXPLOSION:
 						pcs.firePropertyChange(Gameworld.Message.EXPLOSION.toString(),(message),false);
 						break;
+					case ASTEROID_EXP:
+						pcs.firePropertyChange(Gameworld.Message.ASTEROID_EXP.toString(),(message),false);
+						break;
 					case WORLD_BORDER:
 						border = new WorldBorder(((WorldBorderNetworkPacket)message).height, ((WorldBorderNetworkPacket)message).width);
 					}

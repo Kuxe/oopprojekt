@@ -16,6 +16,7 @@ import java.util.Set;
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
 
+import network.AsteroidDieNetworkPacket;
 import network.ExplosionNetworkPacket;
 import network.SparkleNetworkPacket;
 import services.SoundEffects;
@@ -46,7 +47,8 @@ public class Gameworld implements PropertyChangeListener{
 
 	public static enum Message{
 		EXPLOSION,
-		SPARKLE
+		SPARKLE,
+		ASTEROID_EXP
 	}
 	
 	/**
@@ -306,7 +308,6 @@ public class Gameworld implements PropertyChangeListener{
 			ExplosionNetworkPacket exnp=new ExplosionNetworkPacket(((Spaceship)evt.getSource()).getPosition());
 			pcs.firePropertyChange(Message.EXPLOSION.toString(),exnp,false); //Forward event
 		} else if(evt.getPropertyName().equals(Spaceship.Message.SPACESHIP_HIT.toString())){
-			
 			listOfSounds.add(SoundEffects.Sound.SPACESHIP_HIT.toString());
 		} else if(evt.getPropertyName().equals(IPickup.Message.PICKUP_DIE.toString())) {
 			listOfObjectsToBeRemoved.add(evt.getSource());
@@ -314,6 +315,8 @@ public class Gameworld implements PropertyChangeListener{
 			pcs.firePropertyChange(evt); //Forward event
 		} else if(evt.getPropertyName().equals(Asteroid.Message.ASTEROID_DIE.toString())) {
 			slateObjectForRemoval(evt.getSource());
+			AsteroidDieNetworkPacket asteroidDie = new AsteroidDieNetworkPacket(((Asteroid)evt.getSource()).getPosition());
+			pcs.firePropertyChange(Message.ASTEROID_EXP.toString(),asteroidDie,false); //Forward event
 		}
 	}
 	
