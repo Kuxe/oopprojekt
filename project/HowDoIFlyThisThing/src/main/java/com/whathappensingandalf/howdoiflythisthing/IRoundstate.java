@@ -3,7 +3,7 @@ package com.whathappensingandalf.howdoiflythisthing;
 import java.beans.PropertyChangeListener;
 import java.util.Set;
 
-public interface Roundstate {
+public interface IRoundstate {
 	public enum State {
 		ACTIVE,
 		INACTIVE

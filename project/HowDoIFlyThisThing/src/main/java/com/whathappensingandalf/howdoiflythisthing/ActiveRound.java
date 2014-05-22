@@ -4,7 +4,7 @@ import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
 import java.util.Set;
 
-public class ActiveRound implements Roundstate {
+public class ActiveRound implements IRoundstate {
 	private PropertyChangeSupport pcs;
 	
 	public ActiveRound() {
@@ -26,7 +26,7 @@ public class ActiveRound implements Roundstate {
 	
 	@Override
 	public State getState() {
-		return Roundstate.State.ACTIVE;
+		return IRoundstate.State.ACTIVE;
 	}
 
 	@Override
