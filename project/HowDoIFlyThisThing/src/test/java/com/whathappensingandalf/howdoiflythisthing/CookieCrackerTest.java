@@ -1,3 +1,4 @@
+package com.whathappensingandalf.howdoiflythisthing;
 import static org.junit.Assert.*;
 
 import java.beans.PropertyChangeEvent;
@@ -12,6 +13,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import utils.TypeWrapper;
+
 import com.whathappensingandalf.howdoiflythisthing.CookieCracker;
 
 
@@ -24,9 +27,11 @@ public class CookieCrackerTest implements PropertyChangeListener{
 	private int width= 0;
 	private int height= 0;
 	private CookieCracker cc= new CookieCracker(position, velocity, acceleration, direction, width, height);
+	private boolean pcsChange= false;
 	
 	@Before
 	public void setUp() throws Exception {
+		pcsChange= false;
 	}
 
 	@After
@@ -40,37 +45,47 @@ public class CookieCrackerTest implements PropertyChangeListener{
 
 	@Test
 	public void testRemove() {
-		assertTrue(true);
+		cc.addPropertyChangeListener(this);
+		cc.remove();
+		assertTrue(pcsChange);
 	}
 
 	@Test
 	public void testGetVelocity() {
-		assertTrue(true);
+		Vector2f vel= cc.getVelocity();
+		assertTrue(vel.x == velocity.x);
+		assertTrue(vel.y == velocity.y);
 	}
 
 	@Test
 	public void testGetAcceleration() {
-		assertTrue(true);
+		Vector2f acc= cc.getAcceleration();
+		assertTrue(acc.x == acceleration.x);
+		assertTrue(acc.y == acceleration.y);
 	}
 
 	@Test
 	public void testGetDirection() {
-		assertTrue(true);
+		Vector2f dir= cc.getDirection();
+		assertTrue(dir.x == direction.x);
+		assertTrue(dir.y == direction.y);
 	}
 
 	@Test
 	public void testGetPosition() {
-		assertTrue(true);
+		Point2f pos= cc.getPosition();
+		assertTrue(pos.x == position.x);
+		assertTrue(pos.y == position.y);
 	}
 
 	@Test
 	public void testGetRotVelocity() {
-		assertTrue(true);
+		assertTrue(cc.getRotVelocity()== 0.0f);
 	}
 
 	@Test
 	public void testGetRotAcceleration() {
-		assertTrue(true);
+		assertTrue(cc.getRotAcceleration()== 0.0f);
 	}
 
 	@Test
@@ -181,7 +196,7 @@ public class CookieCrackerTest implements PropertyChangeListener{
 	@Override
 	public void propertyChange(PropertyChangeEvent evt) {
 		if(evt.getPropertyName().equals("PROJECTILE_DIE")){
-			
+			pcsChange= true;
 		}
 	}
 }
