@@ -97,6 +97,7 @@ public class View extends BasicGame implements ApplicationListener{
 			container.setTargetFrameRate(60);
 			container.setForceExit(false);
 			container.setFullscreen(fullscreen);
+			container.setIcon("resources/LauncherIcon32x32.png");
 		}catch(SlickException ex){
 			Logger.getLogger(View.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -394,7 +395,8 @@ public class View extends BasicGame implements ApplicationListener{
 			planet_1 = new SpriteSheet("resources/planet_1.png", 100, 100, colorFilter);
 			
 			hullImage= new SpriteSheet("resources/hull.png", 15, 20, colorFilter);
-			shieldImage= new SpriteSheet("resources/shield.png", 15, 20, colorFilter);			
+			shieldImage= new SpriteSheet("resources/shield.png", 15, 20, colorFilter);
+			
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
