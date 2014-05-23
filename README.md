@@ -3,6 +3,11 @@ oopprojekt
 
 Objektorienterat Programmeringsprojekt VT -14
 
+Download release v1.0
+==========
+Download instructions
+1. Download and extract the content: https://docs.google.com/uc?authuser=0&id=0BwTyNk16iQbddjZSdS16bVBoT3M&export=download
+2. Run HDIFTT.jar
 
 Building
 ==========
