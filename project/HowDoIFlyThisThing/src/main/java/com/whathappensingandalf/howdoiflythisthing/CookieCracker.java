@@ -54,8 +54,8 @@ public class CookieCracker implements IProjectile{
 		this.position= cookieCracker.getPosition();
 		this.width = cookieCracker.getWidth();
 		this.height = cookieCracker.getHeight();
-		this.rotationVelocity.setValue(cookieCracker.getRotVelocity());
-		this.rotationAcceleration.setValue(cookieCracker.getRotAcceleration());
+		this.rotationVelocity= new TypeWrapper(cookieCracker.getRotVelocity());
+		this.rotationAcceleration= new TypeWrapper(cookieCracker.getRotAcceleration());
 		mC= new MoveComponent(position, velocity, acceleration, direction, new TypeWrapper(0.0f),new TypeWrapper(0.0f));
 		colliComp = new CollidableComponent(position, width, height);
 		pcs = new PropertyChangeSupport(this);

@@ -3,6 +3,7 @@ import static org.junit.Assert.*;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Iterator;
 
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
@@ -20,32 +21,41 @@ import com.whathappensingandalf.howdoiflythisthing.CookieCracker;
 
 public class CookieCrackerTest implements PropertyChangeListener{
 	
-	private Point2f position= new Point2f(0, 0);
-	private Vector2f velocity= new Vector2f(0, 0);
-	private Vector2f acceleration= new Vector2f(0, 0);
-	private Vector2f direction= new Vector2f(0, 0);
-	private int width= 0;
-	private int height= 0;
+	private Point2f position= new Point2f(1, 1);
+	private Vector2f velocity= new Vector2f(1, 1);
+	private Vector2f acceleration= new Vector2f(1, 1);
+	private Vector2f direction= new Vector2f(1, 1);
+	private int width= 1;
+	private int height= 1;
 	private CookieCracker cc= new CookieCracker(position, velocity, acceleration, direction, width, height);
 	private boolean pcsChange= false;
 	
 	@Before
 	public void setUp() throws Exception {
 		pcsChange= false;
-	}
-
-	@After
-	public void tearDown() throws Exception {
+		cc.addPropertyChangeListener(this);
 	}
 
 	@Test
 	public void testMove() {
-		assertTrue(true);
+		Timestep timestep= new Timestep();
+		timestep.start();
+		try{
+			Thread.sleep(1000);
+		}catch(InterruptedException e){
+			e.printStackTrace();
+		}
+		timestep.end();
+		timestep.calculateDeltatime();
+		cc.move(timestep);
+		assertTrue(cc.getPosition().x > velocity.x * timestep.getDelta() + 0.99);
+		assertTrue(cc.getPosition().x < velocity.x * timestep.getDelta() + 1.10);
+		assertTrue(cc.getPosition().y > velocity.y * timestep.getDelta() + 0.99);
+		assertTrue(cc.getPosition().y < velocity.y * timestep.getDelta() + 1.10);
 	}
 
 	@Test
 	public void testRemove() {
-		cc.addPropertyChangeListener(this);
 		cc.remove();
 		assertTrue(pcsChange);
 	}
@@ -54,7 +64,6 @@ public class CookieCrackerTest implements PropertyChangeListener{
 	public void testGetVelocity() {
 		Vector2f vel= cc.getVelocity();
 		assertTrue(vel.x == velocity.x);
-		assertTrue(vel.y == velocity.y);
 	}
 
 	@Test
@@ -90,107 +99,166 @@ public class CookieCrackerTest implements PropertyChangeListener{
 
 	@Test
 	public void testSetVelocity() {
-		assertTrue(true);
+		Vector2f vel= new Vector2f(3, 4);
+		cc.setVelocity(vel);		
+		assertTrue(vel.equals(cc.getVelocity()));
 	}
 
 	@Test
 	public void testSetAcceleration() {
-		assertTrue(true);
+		Vector2f acc= new Vector2f(3, 4);
+		cc.setAcceleration(acc);
+		assertTrue(acc.equals(cc.getAcceleration()));
 	}
 
 	@Test
 	public void testSetDirection() {
-		assertTrue(true);
+		Vector2f dir= new Vector2f(3, 4);
+		cc.setDirection(dir);
+		assertTrue(dir.equals(cc.getDirection()));
 	}
 
 	@Test
 	public void testSetPosition() {
-		assertTrue(true);
+		Point2f pos= new Point2f(3, 4);
+		cc.setPosition(pos);
+		assertTrue(pos.equals(cc.getPosition()));
 	}
 
 	@Test
 	public void testSetRotVelocity() {
-		assertTrue(true);
+		float rotVel= 5.0f;
+		cc.setRotVelocity(rotVel);
+		assertTrue(rotVel == cc.getRotVelocity());
 	}
 
 	@Test
 	public void testSetRotAcceleration() {
-		assertTrue(true);
+		float rotAcc= 5.0f;
+		cc.setRotAcceleration(rotAcc);
+		assertTrue(rotAcc == cc.getRotAcceleration());
 	}
 
 	@Test
 	public void testCollideDetection() {
-		assertTrue(true);
+		CookieCracker cc2= new CookieCracker(position, velocity, acceleration, direction, width, height);
+		CookieCracker cc3= new CookieCracker(new Point2f(100, 100), velocity, acceleration, direction, width, height);
+		assertTrue(cc.collideDetection(cc2));
+		assertTrue(!(cc.collideDetection(cc3)));
 	}
 
 	@Test
 	public void testGetHeight() {
-		assertTrue(true);
+		assertTrue(cc.getHeight() == 1);
 	}
 
 	@Test
 	public void testGetWidth() {
-		assertTrue(true);
+		assertTrue(cc.getWidth() == 1);
 	}
 
 	@Test
 	public void testGetType() {
-		assertTrue(true);
+		assertTrue(cc.getType().equals("COOKIE_CRACKER"));
 	}
 
 	@Test
 	public void testAccept() {
-		assertTrue(true);
+		CookieCracker cc2= new CookieCracker(position, velocity, acceleration, direction, width, height);
+		cc2.accept(cc);
+		assertTrue(cc.getAcceleration().equals(acceleration));
+		assertTrue(cc.getVelocity().equals(velocity));
+		assertTrue(cc.getAcceleration().equals(acceleration));
+		assertTrue(cc.getDirection().equals(direction));
+		assertTrue(cc.getWidth() == width);
+		assertTrue(cc.getHeight() == height);
 	}
 
 	@Test
 	public void testVisitSpaceship() {
-		assertTrue(true);
+		Spaceship spaceship= new Spaceship(position, direction, width, height);
+		cc.visit(spaceship);
+		assertTrue(pcsChange);
 	}
 
 	@Test
 	public void testVisitIProjectile() {
-		assertTrue(true);
+		Bullet bullet= new Bullet(position, velocity, acceleration, direction, width, height);
+		cc.visit(bullet);
+		assertTrue(pcsChange);
 	}
 
 	@Test
 	public void testVisitAsteroid() {
-		assertTrue(true);
+		Asteroid asteroid= new Asteroid(position, width, height);
+		cc.visit(asteroid);
+		assertTrue(pcsChange);
 	}
 
 	@Test
 	public void testVisitCookieCracker() {
-		assertTrue(true);
+		CookieCracker cc2= new CookieCracker(position, velocity, acceleration, direction, width, height);
+		cc.visit(cc2);
+		assertTrue(!pcsChange);
 	}
 
 	@Test
 	public void testVisitIPickup() {
-		assertTrue(true);
+		HealthPickup hp= new HealthPickup(position, 3, 3);
+		cc.visit(hp);
+		assertTrue(!pcsChange);
 	}
-
+	
 	@Test
 	public void testGetDamage() {
-		assertTrue(true);
+		assertTrue(cc.getDamage() == 1);
 	}
 
 	@Test
 	public void testRemovePropertyChangeListener() {
-		assertTrue(true);
+		cc.removePropertyChangeListener(this);
+		cc.accept(cc);
+		assertTrue(!pcsChange);
 	}
 
 	@Test
 	public void testAddPropertyChangeListener() {
-		assertTrue(true);
+		Bullet bullet= new Bullet(position, velocity, acceleration, direction, width, height);
+		cc.removePropertyChangeListener(this);
+		cc.visit(bullet);
+		boolean temp= pcsChange;
+		cc.addPropertyChangeListener(this);
+		cc.visit(bullet);
+		assertTrue(!temp);
+		assertTrue(pcsChange);
 	}
 
 	@Test
 	public void testClone() {
-		assertTrue(true);
+		CookieCracker cc2= cc.clone();
+		assertTrue(cc2.getAcceleration().equals(cc.getAcceleration()));
+		assertTrue(cc2.getDirection().equals(cc.getDirection()));
+		assertTrue(cc2.getHeight() == cc.getHeight());
+		assertTrue(cc2.getPosition().equals(cc.getPosition()));
+		assertTrue(cc2.getRotAcceleration() == cc.getRotAcceleration());
+		assertTrue(cc2.getRotVelocity() == cc.getRotVelocity());
+		assertTrue(cc2.getVelocity().equals(cc.getVelocity()));
+		assertTrue(cc2.getWidth() == cc.getWidth());
 	}
 
 	@Test
 	public void testGetCollectionDrawables() {
-		assertTrue(true);
+		boolean boo= false;
+		Iterator<? extends DrawableData> it= cc.getCollectionDrawables().iterator();
+		while(it.hasNext() && !boo){
+			DrawableData dd= (DrawableData)it.next();
+			boo= (dd.getDirection().equals(cc.getDirection()) &&
+					dd.getPosition().equals(cc.getPosition()) &&
+					dd.getType().equals(cc.getType()) &&
+					dd.getHeight()== cc.getHeight() &&
+					dd.getWidth() == cc.getWidth());
+			assertTrue(boo);
+		}
 	}
 
 	@Override
@@ -199,4 +267,4 @@ public class CookieCrackerTest implements PropertyChangeListener{
 			pcsChange= true;
 		}
 	}
-}
+}//end CookieCrackerTest

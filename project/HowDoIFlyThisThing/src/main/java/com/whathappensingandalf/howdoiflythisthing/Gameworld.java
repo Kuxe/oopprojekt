@@ -59,7 +59,6 @@ public class Gameworld implements PropertyChangeListener{
 	private Map<Object, ICollidable> collidables;
 	private Map<Object, IDrawable> drawables;
 	private Map<Object, IRechargable> chargables;
-	private Map<Object, IDrawable> animationes;
 	
 	/**
 	 * HashMap which is unlocked by any gameworld object, ie spaceship.
@@ -74,6 +73,7 @@ public class Gameworld implements PropertyChangeListener{
 	private PropertyChangeSupport pcs;
 	private ITimer pickupSpawnTimer;
 	private ITimer shieldTimer;
+	private boolean spawnPickups = true;
 	
 	public Gameworld(){
 		moveables = 					new HashMap();
@@ -81,7 +81,6 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap = 					new HashMap();
 		listOfObjectsToBeRemoved = 		new HashSet();
 		drawables =						new HashMap();
-		animationes =					new HashMap();
 		listOfSounds = 					new HashSet();
 		chargables =					new HashMap();
 		
@@ -150,7 +149,6 @@ public class Gameworld implements PropertyChangeListener{
 		
 		//Objects are now removed and only left removal is form the list iteself
 		listOfObjectsToBeRemoved.clear();
-		this.animationes.clear();
 	}
 
 	/**
@@ -362,14 +360,6 @@ public class Gameworld implements PropertyChangeListener{
 		this.chargables = chargables;
 	}
 
-	public Map<Object, IDrawable> getAnimationes() {
-		return animationes;
-	}
-
-	public void setAnimationes(Map<Object, IDrawable> animationes) {
-		this.animationes = animationes;
-	}
-
 	public Map<Object, List<Map<Object, ? extends IListable>>> getRemovalMap() {
 		return removalMap;
 	}
@@ -434,13 +424,21 @@ public class Gameworld implements PropertyChangeListener{
 	public void setShieldTimer(ITimer shieldTimer) {
 		this.shieldTimer = shieldTimer;
 	}
+	
+	public void spawnPickups(boolean spawn) {
+		spawnPickups = spawn;
+	}
+	
+	public boolean isSpawningPickups() {
+		return spawnPickups;
+	}
 
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		pcs.addPropertyChangeListener(listener);
 	}
 	
 	private void pickupSpawnUppdate(){
-		if(pickupSpawnTimer.isTimerDone()){
+		if(pickupSpawnTimer.isTimerDone() && spawnPickups){
 			pickupSpawnTimer.start();
 			double spawnChance=Math.random();
 			if(spawnChance<0.1){
