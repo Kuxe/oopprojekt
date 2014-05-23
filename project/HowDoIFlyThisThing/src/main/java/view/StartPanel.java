@@ -1,5 +1,7 @@
 package view;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import view.LauncherFrame.Message;
 
 /**
@@ -126,7 +128,7 @@ public class StartPanel extends javax.swing.JPanel {
 
         imageLabel.setBackground(new java.awt.Color(0, 0, 0));
         imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imageLabel.setIcon(new javax.swing.ImageIcon("C:\\gitrepos\\oopprojekt\\project\\HowDoIFlyThisThing\\resources\\LauncherImage.png")); // NOI18N
+        imageLabel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/LauncherImage.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
