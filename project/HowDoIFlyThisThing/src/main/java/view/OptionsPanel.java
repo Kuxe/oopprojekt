@@ -53,38 +53,38 @@ public class OptionsPanel extends javax.swing.JPanel{
         setMinimumSize(new java.awt.Dimension(360, 480));
         setPreferredSize(new java.awt.Dimension(360, 480));
 
-        fullscreenLabel.setForeground(new java.awt.Color(0, 42, 219));
+        fullscreenLabel.setForeground(new java.awt.Color(0, 167, 255));
         fullscreenLabel.setText("Toggle fullscreen");
         fullscreenLabel.setMaximumSize(new java.awt.Dimension(130, 14));
         fullscreenLabel.setMinimumSize(new java.awt.Dimension(130, 14));
         fullscreenLabel.setPreferredSize(new java.awt.Dimension(130, 14));
 
-        fireKeyLabel.setForeground(new java.awt.Color(0, 42, 219));
+        fireKeyLabel.setForeground(new java.awt.Color(0, 167, 255));
         fireKeyLabel.setText("Fire key");
         fireKeyLabel.setMaximumSize(new java.awt.Dimension(130, 14));
         fireKeyLabel.setMinimumSize(new java.awt.Dimension(130, 14));
         fireKeyLabel.setPreferredSize(new java.awt.Dimension(130, 14));
 
-        leftThrusterKeyLabel.setForeground(new java.awt.Color(0, 42, 219));
+        leftThrusterKeyLabel.setForeground(new java.awt.Color(0, 167, 255));
         leftThrusterKeyLabel.setText("Left thruster key");
         leftThrusterKeyLabel.setMaximumSize(new java.awt.Dimension(70, 14));
         leftThrusterKeyLabel.setMinimumSize(new java.awt.Dimension(70, 14));
         leftThrusterKeyLabel.setPreferredSize(new java.awt.Dimension(70, 14));
 
-        mainThrusterKeyLabel.setForeground(new java.awt.Color(0, 42, 219));
+        mainThrusterKeyLabel.setForeground(new java.awt.Color(0, 167, 255));
         mainThrusterKeyLabel.setText("Main thruster key");
         mainThrusterKeyLabel.setMaximumSize(new java.awt.Dimension(130, 14));
         mainThrusterKeyLabel.setMinimumSize(new java.awt.Dimension(130, 14));
         mainThrusterKeyLabel.setPreferredSize(new java.awt.Dimension(130, 14));
 
-        rightThrusterKeyLabel.setForeground(new java.awt.Color(0, 42, 219));
+        rightThrusterKeyLabel.setForeground(new java.awt.Color(0, 167, 255));
         rightThrusterKeyLabel.setText("Right thruster key");
         rightThrusterKeyLabel.setMaximumSize(new java.awt.Dimension(130, 14));
         rightThrusterKeyLabel.setMinimumSize(new java.awt.Dimension(130, 14));
         rightThrusterKeyLabel.setPreferredSize(new java.awt.Dimension(130, 14));
 
         fullscreenCheckBox.setBackground(new java.awt.Color(0, 0, 0));
-        fullscreenCheckBox.setForeground(new java.awt.Color(0, 42, 219));
+        fullscreenCheckBox.setForeground(new java.awt.Color(0, 167, 255));
         fullscreenCheckBox.setText("Fullscreen");
 
         fireTextField.setBackground(new java.awt.Color(153, 153, 153));
