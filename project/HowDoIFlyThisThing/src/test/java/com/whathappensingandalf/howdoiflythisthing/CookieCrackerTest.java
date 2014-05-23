@@ -267,4 +267,4 @@ public class CookieCrackerTest implements PropertyChangeListener{
 			pcsChange= true;
 		}
 	}
-}
+}//end CookieCrackerTest
