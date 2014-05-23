@@ -35,10 +35,12 @@ public class StartPanel extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         connectionErrorLabel = new javax.swing.JLabel();
         hostErrorLabel = new javax.swing.JLabel();
+        imageLabel = new javax.swing.JLabel();
 
         errorLabel.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         errorLabel.setText("Could not connect.");
 
+        setBackground(new java.awt.Color(0, 0, 0));
         setMaximumSize(new java.awt.Dimension(360, 480));
         setMinimumSize(new java.awt.Dimension(360, 480));
         setPreferredSize(new java.awt.Dimension(360, 480));
@@ -100,6 +102,15 @@ public class StartPanel extends javax.swing.JPanel {
             }
         });
 
+        jSeparator1.setBackground(new java.awt.Color(120, 120, 120));
+        jSeparator1.setForeground(new java.awt.Color(120, 120, 120));
+
+        jSeparator2.setBackground(new java.awt.Color(120, 120, 120));
+        jSeparator2.setForeground(new java.awt.Color(120, 120, 120));
+
+        jSeparator3.setBackground(new java.awt.Color(120, 120, 120));
+        jSeparator3.setForeground(new java.awt.Color(120, 120, 120));
+
         connectionErrorLabel.setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         connectionErrorLabel.setForeground(new java.awt.Color(255, 0, 0));
         connectionErrorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -113,6 +124,10 @@ public class StartPanel extends javax.swing.JPanel {
         hostErrorLabel.setText("Port 5000 allready in use.");
         hostErrorLabel.setAlignmentY(0.0F);
 
+        imageLabel.setBackground(new java.awt.Color(0, 0, 0));
+        imageLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        imageLabel.setIcon(new javax.swing.ImageIcon("C:\\gitrepos\\oopprojekt\\project\\HowDoIFlyThisThing\\resources\\LauncherImage.png")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,6 +136,11 @@ public class StartPanel extends javax.swing.JPanel {
             .addComponent(jSeparator2)
             .addComponent(jSeparator1)
             .addComponent(connectionErrorLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(hostErrorLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(79, 79, 79)
+                .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -134,12 +154,8 @@ public class StartPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(135, 135, 135)
                         .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(ipTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 81, Short.MAX_VALUE))
-            .addComponent(hostErrorLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(140, Short.MAX_VALUE))
+            .addComponent(imageLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,7 +180,8 @@ public class StartPanel extends javax.swing.JPanel {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(exitButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(247, 247, 247))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(imageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -203,6 +220,7 @@ public class StartPanel extends javax.swing.JPanel {
     private javax.swing.JButton exitButton;
     private javax.swing.JButton hostButton;
     private javax.swing.JLabel hostErrorLabel;
+    private javax.swing.JLabel imageLabel;
     private javax.swing.JTextField ipTextField;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

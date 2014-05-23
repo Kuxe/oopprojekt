@@ -3,9 +3,15 @@ package view;
 import java.awt.CardLayout;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
 
 /**
  *
@@ -34,6 +40,16 @@ public class LauncherFrame extends javax.swing.JFrame implements PropertyChangeL
 	 */
 	public LauncherFrame() {
 		initComponents();
+		
+		try {
+			File iconFile = new File("resources/LauncherIcon.png");
+			BufferedImage iconImg;
+			iconImg = ImageIO.read(iconFile);
+			this.setIconImage(iconImg);
+		} catch (IOException ex) {
+			System.out.println("Icon not found.");
+		}
+		
 		cardLayout = (CardLayout)backgroundPanel.getLayout();
 		pcs = new PropertyChangeSupport(this);
 		startPanel = new StartPanel();
