@@ -19,7 +19,7 @@ import java.io.IOException;
 public class HowDoIFlyThisThing {
 
 	private final Keybindings keybindings;
-	private ModelNetworkState state;
+	private IModelNetworkState state;
 	
 	public HowDoIFlyThisThing(Keybindings keybindings) {
 		this.keybindings = new Keybindings(keybindings);
@@ -87,7 +87,7 @@ public class HowDoIFlyThisThing {
 		return state.getShield();
 	}
 	
-	public ModelNetworkState getState(){
+	public IModelNetworkState getState(){
 		return state;
 	}
 	

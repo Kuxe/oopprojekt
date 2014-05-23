@@ -8,15 +8,19 @@ package com.whathappensingandalf.howdoiflythisthing;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.vecmath.Point2f;
 import javax.vecmath.Vector2f;
+
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 /**

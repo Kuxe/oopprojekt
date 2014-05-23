@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  */
 public class SpectatorStateTest {
 	
-	SpectatorState specStat;
+	private SpectatorState specStat;
 	
 	public SpectatorStateTest() {
 	}

@@ -59,7 +59,6 @@ public class Gameworld implements PropertyChangeListener{
 	private Map<Object, ICollidable> collidables;
 	private Map<Object, IDrawable> drawables;
 	private Map<Object, IRechargable> chargables;
-	private Map<Object, IDrawable> animationes;
 	
 	/**
 	 * HashMap which is unlocked by any gameworld object, ie spaceship.
@@ -74,6 +73,7 @@ public class Gameworld implements PropertyChangeListener{
 	private PropertyChangeSupport pcs;
 	private ITimer pickupSpawnTimer;
 	private ITimer shieldTimer;
+	private boolean spawnPickups = true;
 	
 	public Gameworld(){
 		moveables = 					new HashMap();
@@ -81,7 +81,6 @@ public class Gameworld implements PropertyChangeListener{
 		removalMap = 					new HashMap();
 		listOfObjectsToBeRemoved = 		new HashSet();
 		drawables =						new HashMap();
-		animationes =					new HashMap();
 		listOfSounds = 					new HashSet();
 		chargables =					new HashMap();
 		
@@ -90,10 +89,9 @@ public class Gameworld implements PropertyChangeListener{
 		pcs = new PropertyChangeSupport(this);
 		pickupSpawnTimer = new Timer(10000);
 		shieldTimer=new Timer(10000);
-		generateWorld();
 	}
 	
-	private void generateWorld(){
+	public void generateWorld(){
 		Random random = new Random();
 		int numberOfAsteroids = random.nextInt(20)+1;
 		for(int i = 0; i<numberOfAsteroids; i++){
@@ -151,7 +149,6 @@ public class Gameworld implements PropertyChangeListener{
 		
 		//Objects are now removed and only left removal is form the list iteself
 		listOfObjectsToBeRemoved.clear();
-		this.animationes.clear();
 	}
 
 	/**
@@ -329,20 +326,119 @@ public class Gameworld implements PropertyChangeListener{
 		}
 	}
 	
+	
+	
+	public Map<Object, IMovable> getMoveables() {
+		return moveables;
+	}
+
+	public void setMoveables(Map<Object, IMovable> moveables) {
+		this.moveables = moveables;
+	}
+
+	public Map<Object, ICollidable> getCollidables() {
+		return collidables;
+	}
+
+	public void setCollidables(Map<Object, ICollidable> collidables) {
+		this.collidables = collidables;
+	}
+
+	public Map<Object, IDrawable> getDrawables() {
+		return drawables;
+	}
+
+	public void setDrawables(Map<Object, IDrawable> drawables) {
+		this.drawables = drawables;
+	}
+
+	public Map<Object, IRechargable> getChargables() {
+		return chargables;
+	}
+
+	public void setChargables(Map<Object, IRechargable> chargables) {
+		this.chargables = chargables;
+	}
+
+	public Map<Object, List<Map<Object, ? extends IListable>>> getRemovalMap() {
+		return removalMap;
+	}
+
+	public void setRemovalMap(
+			Map<Object, List<Map<Object, ? extends IListable>>> removalMap) {
+		this.removalMap = removalMap;
+	}
+
+	public Set<Object> getListOfObjectsToBeRemoved() {
+		return listOfObjectsToBeRemoved;
+	}
+
+	public void setListOfObjectsToBeRemoved(Set<Object> listOfObjectsToBeRemoved) {
+		this.listOfObjectsToBeRemoved = listOfObjectsToBeRemoved;
+	}
+
+	public Timestep getTimestep() {
+		return timestep;
+	}
+
+	public void setTimestep(Timestep timestep) {
+		this.timestep = timestep;
+	}
+
 	public WorldBorder getBorder() {
 		return worldBorder;
 	}
-	
-	public Set<String> getListOfSounds(){
+
+	public void setBorder(WorldBorder worldBorder) {
+		this.worldBorder = worldBorder;
+	}
+
+	public Set<String> getListOfSounds() {
 		return listOfSounds;
 	}
+
+	public void setListOfSounds(Set<String> listOfSounds) {
+		this.listOfSounds = listOfSounds;
+	}
+
+	public PropertyChangeSupport getPcs() {
+		return pcs;
+	}
+
+	public void setPcs(PropertyChangeSupport pcs) {
+		this.pcs = pcs;
+	}
+
+	public ITimer getPickupSpawnTimer() {
+		return pickupSpawnTimer;
+	}
+
+	public void setPickupSpawnTimer(ITimer pickupSpawnTimer) {
+		this.pickupSpawnTimer = pickupSpawnTimer;
+	}
+
+	public ITimer getShieldTimer() {
+		return shieldTimer;
+	}
+
+	public void setShieldTimer(ITimer shieldTimer) {
+		this.shieldTimer = shieldTimer;
+	}
 	
+	public void spawnPickups(boolean spawn) {
+		spawnPickups = spawn;
+	}
+	
+	public boolean isSpawningPickups() {
+		return spawnPickups;
+	}
+
 	public void addPropertyChangeListener(PropertyChangeListener listener) {
 		pcs.addPropertyChangeListener(listener);
 	}
 	
-	public void pickupSpawnUppdate(){
-		if(pickupSpawnTimer.isTimerDone()){
+	private void pickupSpawnUppdate(){
+		if(pickupSpawnTimer.isTimerDone() && spawnPickups){
 			pickupSpawnTimer.start();
 			double spawnChance=Math.random();
 			if(spawnChance<0.1){
