@@ -88,7 +88,7 @@ public class OptionsPanel extends javax.swing.JPanel{
         fullscreenCheckBox.setText("Fullscreen");
 
         fireTextField.setBackground(new java.awt.Color(153, 153, 153));
-        fireTextField.setText("jTextField1");
+        fireTextField.setText("SPACE");
         fireTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 fireTextFieldFocusGained(evt);
@@ -104,7 +104,7 @@ public class OptionsPanel extends javax.swing.JPanel{
         });
 
         leftTextField.setBackground(new java.awt.Color(153, 153, 153));
-        leftTextField.setText("jTextField2");
+        leftTextField.setText("A");
         leftTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 leftTextFieldFocusGained(evt);
@@ -120,7 +120,7 @@ public class OptionsPanel extends javax.swing.JPanel{
         });
 
         mainTextField.setBackground(new java.awt.Color(153, 153, 153));
-        mainTextField.setText("jTextField3");
+        mainTextField.setText("W");
         mainTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 mainTextFieldFocusGained(evt);
@@ -136,7 +136,7 @@ public class OptionsPanel extends javax.swing.JPanel{
         });
 
         rightTextField.setBackground(new java.awt.Color(153, 153, 153));
-        rightTextField.setText("jTextField4");
+        rightTextField.setText("D");
         rightTextField.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 rightTextFieldFocusGained(evt);

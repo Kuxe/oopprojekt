@@ -63,16 +63,6 @@ public class Thruster {
 	* Returns the acceleration created by this thruster.
 	 * @return A vector with the acurate direction and magnitude.
 	*/
-//	public Vector2f getAcceleration(){
-//		temp.scale(0);
-//		if(active){
-//			// "Sets the value of this tuple to the scalar multiplication of tuple t1."
-//			temp.scale(magnitude, direction);
-//			return temp;
-//		}else {
-//			return temp;
-//		}
-//	} 
 	public Vector2f getAcceleration(){
 		if(active){
 			return this.direction;
