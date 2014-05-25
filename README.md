@@ -10,6 +10,8 @@ Download instructions
 1. Download <a href="https://docs.google.com/uc?authuser=0&id=0BwTyNk16iQbddjZSdS16bVBoT3M&export=download">this zip</a> and extract the content
 2. Run HDIFTT.jar
 
+(Newer versions avaiable if you build from source, follow instructions bellow)
+
 Building
 ==========
 You need to setup lwjgl natives in order to build oopprojekt.
