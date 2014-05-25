@@ -60,47 +60,97 @@ public class ThrusterComponentTest {
 
 	@Test
 	public void testActivateMainThruster() {
-//		TODO
-		assertTrue(true);
+		tc.calculateAceleration();
+		boolean deactivate= (acceleration.x == 0 && acceleration.y == 0);
+		tc.activateMainThruster();
+		tc.calculateAceleration();
+		boolean activate= (acceleration.x == 0 && acceleration.y == 200);
+		assertTrue(deactivate);
+		assertTrue(activate);
 	}
 
 	@Test
 	public void testActivateLeftThruster() {
-		assertTrue(true);
+		tc.calculateAceleration();
+		boolean deactivate= (acceleration.x == 0 && acceleration.y == 0);
+		tc.activateLeftThruster();
+		tc.calculateAceleration();
+		boolean activate= (acceleration.x == 0 && acceleration.y == 10);
+		assertTrue(deactivate);
+		assertTrue(activate);
 	}
 
 	@Test
 	public void testActivateRightThruster() {
-		assertTrue(true);
+		tc.calculateAceleration();
+		boolean deactivate= (acceleration.x == 0 && acceleration.y == 0);
+		tc.activateRightThruster();
+		tc.calculateAceleration();
+		boolean activate= (acceleration.x == 0 && acceleration.y == 10);
+		assertTrue(deactivate);
+		assertTrue(activate);
 	}
 
 	@Test
 	public void testDeactivateMainThruster() {
-		assertTrue(true);
+		tc.activateMainThruster();
+		tc.calculateAceleration();
+		boolean activate= (acceleration.x == 0 && acceleration.y == 200);
+		tc.deactivateMainThruster();
+		tc.calculateAceleration();
+		boolean deactivate= (acceleration.x == 0 && acceleration.y == 0);
+		assertTrue(activate);
+		assertTrue(deactivate);
 	}
 
 	@Test
 	public void testDeactivateLeftThruster() {
-		assertTrue(true);
+		tc.activateLeftThruster();
+		tc.calculateAceleration();
+		boolean activate= (acceleration.x == 0 && acceleration.y == 10);
+		tc.deactivateLeftThruster();
+		tc.calculateAceleration();
+		boolean deactivate= (acceleration.x == 0 && acceleration.y == 0);
+		assertTrue(activate);
+		assertTrue(deactivate);
 	}
 
 	@Test
 	public void testDeactivateRightThruster() {
-		assertTrue(true);
+		tc.activateRightThruster();
+		tc.calculateAceleration();
+		boolean activate= (acceleration.x == 0 && acceleration.y == 10);
+		tc.deactivateRightThruster();
+		tc.calculateAceleration();
+		boolean deactivate= (acceleration.x == 0 && acceleration.y == 0);
+		assertTrue(activate);
+		assertTrue(deactivate);
 	}
 
 	@Test
 	public void testIsMainThusterActive() {
-		assertTrue(true);
+		boolean d= tc.isMainThusterActive();
+		tc.activateMainThruster();
+		boolean a= tc.isMainThusterActive();
+		assertTrue(!d);
+		assertTrue(a);
 	}
 
 	@Test
 	public void testIsLeftThusterActive() {
-		assertTrue(true);
+		boolean d= tc.isLeftThusterActive();
+		tc.activateLeftThruster();
+		boolean a= tc.isLeftThusterActive();
+		assertTrue(!d);
+		assertTrue(a);
 	}
 
 	@Test
 	public void testIsRightThusterActive() {
-		assertTrue(true);
+		boolean d= tc.isRightThusterActive();
+		tc.activateRightThruster();
+		boolean a= tc.isRightThusterActive();
+		assertTrue(!d);
+		assertTrue(a);
 	}
 }//end ThrusterComponentTest
